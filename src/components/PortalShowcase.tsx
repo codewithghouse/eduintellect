@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { LayoutDashboard, Users, UserCog, GraduationCap, ArrowUpRight } from 'lucide-react';
 import LoginModal from './LoginModal';

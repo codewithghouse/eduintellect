@@ -1,4 +1,3 @@
-import React from 'react';
 import Hero from '../components/Hero';
 import PortalShowcase from '../components/PortalShowcase';
 import { Target, Shield, Zap, Sparkles } from 'lucide-react';
@@ -49,7 +48,7 @@ const Features = () => {
                   { icon: <Zap />, title: 'Incredible Speed', desc: 'Optimized for mobile and desktop, ensuring zero lag.' },
                   { icon: <Shield />, title: 'Military-Grade Security', desc: 'Secure Firebase-backed architecture for data safety.' },
                   { icon: <Target />, title: 'Goal-Oriented AI', desc: 'AI that tracks student risks and alerts you instantly.' },
-                ].map((item, i) => (
+                ].map((item) => (
                   <div key={item.title} className="flex gap-4">
                     <div className="w-12 h-12 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-center text-brand-500 shrink-0 shadow-inner">
                       {item.icon}

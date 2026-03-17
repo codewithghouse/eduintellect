@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { GraduationCap, Menu, X, ChevronRight } from 'lucide-react';
 import { cn } from '../lib/utils';

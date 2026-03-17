@@ -1,4 +1,3 @@
-import React from 'react';
 import { GraduationCap, Mail, Phone, MapPin, Github, Twitter, Linkedin } from 'lucide-react';
 
 const Footer = () => {
