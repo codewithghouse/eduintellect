@@ -1,5 +1,12 @@
 import { GraduationCap, Mail, Phone, MapPin, Github, Twitter, Linkedin } from 'lucide-react';
 
+const PORTAL_URLS = {
+  owner: import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/',
+  principal: import.meta.env.VITE_PRINCIPAL_DASHBOARD_URL || 'https://principal-dashboard-seven.vercel.app/',
+  teacher: import.meta.env.VITE_TEACHER_DASHBOARD_URL || 'https://teacher-dashboard-ochre.vercel.app/',
+  parent: import.meta.env.VITE_PARENT_DASHBOARD_URL || 'https://parent-dashboard-ten.vercel.app/',
+};
+
 const Footer = () => {
   return (
     <footer className="bg-slate-950 border-t border-slate-900 pt-16 pb-8">
@@ -33,10 +40,10 @@ const Footer = () => {
           <div>
             <h4 className="text-white font-semibold mb-6">Portals</h4>
             <ul className="space-y-4">
-              <li><a href="#" className="text-slate-400 hover:text-brand-400 text-sm transition-colors">Owner Dashboard</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-400 text-sm transition-colors">Principal Portal</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-400 text-sm transition-colors">Teacher App</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-400 text-sm transition-colors">Parent Connect</a></li>
+              <li><a href={PORTAL_URLS.owner} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-brand-400 text-sm transition-colors">Owner Dashboard</a></li>
+              <li><a href={PORTAL_URLS.principal} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-brand-400 text-sm transition-colors">Principal Portal</a></li>
+              <li><a href={PORTAL_URLS.teacher} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-brand-400 text-sm transition-colors">Teacher App</a></li>
+              <li><a href={PORTAL_URLS.parent} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-brand-400 text-sm transition-colors">Parent Connect</a></li>
             </ul>
           </div>
 

@@ -17,7 +17,7 @@ const roles = [
     color: 'bg-blue-600',
     hoverColor: 'hover:border-blue-500/50',
     glow: 'group-hover:shadow-blue-500/20',
-    url: 'https://owner-dashboard-blue.vercel.app/'
+    url: import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/'
   },
   {
     id: 'principal',
@@ -26,7 +26,7 @@ const roles = [
     color: 'bg-purple-600',
     hoverColor: 'hover:border-purple-500/50',
     glow: 'group-hover:shadow-purple-500/20',
-    url: 'https://principal-dashboard-seven.vercel.app/'
+    url: import.meta.env.VITE_PRINCIPAL_DASHBOARD_URL || 'https://principal-dashboard-seven.vercel.app/'
   },
   {
     id: 'teacher',
@@ -35,7 +35,7 @@ const roles = [
     color: 'bg-emerald-600',
     hoverColor: 'hover:border-emerald-500/50',
     glow: 'group-hover:shadow-emerald-500/20',
-    url: 'https://teacher-dashboard-ochre.vercel.app/'
+    url: import.meta.env.VITE_TEACHER_DASHBOARD_URL || 'https://teacher-dashboard-ochre.vercel.app/'
   },
   {
     id: 'parent',
@@ -44,7 +44,7 @@ const roles = [
     color: 'bg-orange-600',
     hoverColor: 'hover:border-orange-500/50',
     glow: 'group-hover:shadow-orange-500/20',
-    url: 'https://parent-dashboard-ten.vercel.app/'
+    url: import.meta.env.VITE_PARENT_DASHBOARD_URL || 'https://parent-dashboard-ten.vercel.app/'
   }
 ];
 

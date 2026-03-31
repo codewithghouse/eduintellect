@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Loader2, ArrowRight, ShieldCheck } from 'lucide-react';
 import { auth, db } from '../lib/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useNavigate, Link } from 'react-router-dom';
 
@@ -10,6 +10,8 @@ const OwnerLoginPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [resetSent, setResetSent] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
 
   const [formData, setFormData] = useState({
     email: '',
@@ -36,15 +38,14 @@ const OwnerLoginPage = () => {
       if (userDoc.exists() && userDoc.data().role === 'owner') {
         // Successful login for owner
         // Redirect to live Vercel dashboard or internal portal
-        window.location.href = 'https://owner-dashboard-blue.vercel.app/';
+        window.location.href = import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/';
       } else {
         await auth.signOut();
         setError('Access Denied. You are not registered as a school owner.');
       }
 
     } catch (err: any) {
-      console.error(err);
-      if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found') {
+      if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
         setError('Invalid email or password.');
       } else {
         setError(err.message || 'Login failed. Please try again.');
@@ -78,6 +79,12 @@ const OwnerLoginPage = () => {
             </div>
           )}
 
+          {resetSent && (
+            <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm">
+              Password reset email sent! Check your inbox.
+            </div>
+          )}
+
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
               <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest ml-1">Work Email</label>
@@ -98,7 +105,29 @@ const OwnerLoginPage = () => {
             <div className="space-y-2">
               <div className="flex justify-between items-center ml-1">
                 <label className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Password</label>
-                <button type="button" className="text-[10px] font-bold text-brand-400 hover:text-brand-300">Forgot Password?</button>
+                <button
+                  type="button"
+                  disabled={resetLoading}
+                  onClick={async () => {
+                    if (!formData.email) {
+                      setError('Please enter your email address first.');
+                      return;
+                    }
+                    setResetLoading(true);
+                    setError('');
+                    try {
+                      await sendPasswordResetEmail(auth, formData.email);
+                      setResetSent(true);
+                    } catch {
+                      setError('Could not send reset email. Please check your email address.');
+                    } finally {
+                      setResetLoading(false);
+                    }
+                  }}
+                  className="text-[10px] font-bold text-brand-400 hover:text-brand-300 disabled:opacity-50"
+                >
+                  {resetLoading ? 'Sending...' : 'Forgot Password?'}
+                </button>
               </div>
               <div className="relative">
                 <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />

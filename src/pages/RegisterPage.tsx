@@ -26,8 +26,18 @@ const RegisterPage = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError('');
+
+    if (formData.password.length < 6) {
+      setError('Password must be at least 6 characters.');
+      return;
+    }
+    if (!/^\+?[\d\s\-()]{7,15}$/.test(formData.phone)) {
+      setError('Please enter a valid phone number.');
+      return;
+    }
+
+    setLoading(true);
 
     try {
       // 1. Create User in Firebase Auth
@@ -53,12 +63,17 @@ const RegisterPage = () => {
 
       setSuccess(true);
       setTimeout(() => {
-        window.location.href = 'https://owner-dashboard-blue.vercel.app/';
+        window.location.href = import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/';
       }, 3000);
 
     } catch (err: any) {
-      console.error(err);
-      setError(err.message || 'Something went wrong during registration.');
+      if (err.code === 'auth/email-already-in-use') {
+        setError('This email is already registered. Please login instead.');
+      } else if (err.code === 'auth/weak-password') {
+        setError('Password must be at least 6 characters.');
+      } else {
+        setError(err.message || 'Something went wrong during registration.');
+      }
     } finally {
       setLoading(false);
     }
@@ -194,9 +209,10 @@ const RegisterPage = () => {
                       required
                       type="password"
                       name="password"
+                      minLength={6}
                       value={formData.password}
                       onChange={handleChange}
-                      placeholder="••••••••"
+                      placeholder="Min. 6 characters"
                       className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-brand-500 transition-all outline-none"
                     />
                   </div>
