@@ -27,20 +27,20 @@ const Header = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b",
         isScrolled 
-          ? "bg-slate-950/80 backdrop-blur-md border-slate-800 py-3" 
-          : "bg-transparent border-transparent py-5"
+          ? "bg-[#002147]/95 backdrop-blur-md border-white/5 py-3 shadow-2xl" 
+          : "bg-[#002147] border-white/5 py-5 shadow-xl"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <div className="w-10 h-10 bg-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-600/20 group-hover:rotate-12 transition-transform">
+        <Link to="/" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:scale-110 transition-transform">
             <GraduationCap className="text-white w-6 h-6" />
           </div>
-          <span className="text-xl font-bold tracking-tight text-white">
-            Edu<span className="text-brand-400">Intellect</span>
+          <span className="text-xl md:text-2xl font-black tracking-tight text-white">
+            Edu<span className="text-blue-400">Intellect</span>
           </span>
         </Link>
 
@@ -50,7 +50,7 @@ const Header = () => {
             <a 
               key={link.name} 
               href={link.href}
-              className="text-sm font-medium text-slate-300 hover:text-brand-400 transition-colors"
+              className="text-sm font-semibold text-slate-300 hover:text-white transition-colors"
             >
               {link.name}
             </a>
@@ -61,7 +61,7 @@ const Header = () => {
         <div className="hidden md:flex items-center gap-4">
           <button 
             onClick={() => setIsLoginModalOpen(true)}
-            className="text-sm font-medium text-slate-300 hover:text-white transition-colors"
+            className="text-sm font-semibold text-slate-300 hover:text-white transition-colors"
           >
             Login
           </button>
@@ -72,7 +72,7 @@ const Header = () => {
 
         {/* Mobile Menu Toggle */}
         <button 
-          className="md:hidden text-slate-300"
+          className="md:hidden text-white"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? <X /> : <Menu />}
@@ -81,33 +81,33 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-slate-900 border-b border-slate-800 p-4 animate-fade-in">
-          <nav className="flex flex-col gap-4">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#002147] border-b border-white/5 p-6 animate-fade-in shadow-2xl">
+          <nav className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <a 
                 key={link.name} 
                 href={link.href}
-                className="text-lg font-medium text-slate-300 hover:text-brand-400"
+                className="text-lg font-bold text-slate-100 hover:text-blue-400"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <hr className="border-slate-800" />
-            <div className="flex flex-col gap-3">
+            <hr className="border-blue-500/10" />
+            <div className="flex flex-col gap-4">
               <button 
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsLoginModalOpen(true);
                 }}
-                className="w-full text-center py-2 text-slate-300 font-medium"
+                className="w-full text-center py-2 text-slate-100 font-bold uppercase tracking-widest text-sm"
               >
                 Login
               </button>
               <Link 
                 to="/register"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="btn-primary w-full text-center text-white"
+                className="btn-primary w-full text-center text-white font-bold"
               >
                 Register School
               </Link>

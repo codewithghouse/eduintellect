@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, Users, UserCog, GraduationCap, ArrowUpRight } from 'lucide-react';
+import { LayoutDashboard, Users, UserCog, GraduationCap, ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import LoginModal from './LoginModal';
 
 const portals = [
@@ -42,11 +42,11 @@ const PortalShowcase = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   return (
-    <section id="portals" className="py-24 bg-slate-950">
+    <section id="portals" className="py-24 bg-slate-50 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">One Platform, <span className="text-brand-400">Four Portals.</span></h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">Experience a unified ecosystem where every role has specialized tools to achieve excellence.</p>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">One Platform, <span className="text-blue-600">Four Portals.</span></h2>
+          <p className="text-slate-600 max-w-2xl mx-auto font-medium">Experience a unified ecosystem where every role has specialized tools to achieve excellence.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -57,24 +57,24 @@ const PortalShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="glass-card p-6 flex flex-col h-full group transition-all hover:bg-white/10"
+              whileHover={{ y: -8 }}
+              className="bg-white p-8 rounded-3xl border border-slate-100 flex flex-col h-full group transition-all hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-600/10"
             >
-              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${portal.color} flex items-center justify-center text-white mb-6 shadow-lg`}>
+              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${portal.color} flex items-center justify-center text-white mb-8 shadow-lg shadow-blue-100`}>
                 {portal.icon}
               </div>
-              <div className="text-xs font-semibold text-brand-400 uppercase tracking-wider mb-2">{portal.role}</div>
-              <h3 className="text-xl font-bold text-white mb-3 flex items-center gap-2">
-                {portal.title} Portal
+              <div className="text-[10px] font-black text-blue-600 uppercase tracking-[0.2em] mb-3">{portal.role}</div>
+              <h3 className="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+                {portal.title} <span className="font-light text-slate-400">Portal</span>
               </h3>
-              <p className="text-slate-400 text-sm mb-6 flex-grow leading-relaxed">
+              <p className="text-slate-500 text-sm mb-8 flex-grow leading-relaxed font-medium">
                 {portal.description}
               </p>
               
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-4 mb-10">
                 {portal.features.map((feature) => (
-                  <li key= {feature} className="text-xs text-slate-300 flex items-center gap-2">
-                    <div className="w-1 h-1 rounded-full bg-slate-700"></div>
+                  <li key= {feature} className="text-[13px] text-slate-600 font-bold flex items-center gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0" />
                     {feature}
                   </li>
                 ))}
@@ -82,9 +82,9 @@ const PortalShowcase = () => {
 
               <button 
                 onClick={() => setIsLoginModalOpen(true)}
-                className="flex items-center gap-2 text-sm font-semibold text-white group-hover:text-brand-400 transition-colors"
+                className="flex items-center gap-2 text-sm font-bold text-slate-900 group-hover:text-blue-600 transition-colors uppercase tracking-widest mt-auto group/btn"
               >
-                Explore Portal <ArrowUpRight className="w-4 h-4" />
+                Explore Portal <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
               </button>
             </motion.div>
           ))}
