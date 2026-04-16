@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { GraduationCap, Menu, X, ChevronRight } from 'lucide-react';
+import { GraduationCap, Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 import LoginModal from './LoginModal';
 
@@ -18,107 +18,109 @@ const Header = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'Features', href: '#features' },
-    { name: 'Portals', href: '#portals' },
-    { name: 'Pricing', href: '#pricing' },
+    { name: 'Owner', href: '/owner' },
+    { name: 'Principal', href: '/principal' },
+    { name: 'Teacher', href: '/teacher' },
+    { name: 'Student/Parent', href: '/student-parent' },
   ];
 
   return (
-    <header 
+    <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b",
-        isScrolled 
-          ? "bg-[#002147]/95 backdrop-blur-md border-white/5 py-3 shadow-2xl" 
-          : "bg-[#002147] border-white/5 py-5 shadow-xl"
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        isScrolled
+          ? "bg-[#fbfbfd]/80 backdrop-blur-2xl backdrop-saturate-[1.8] border-b border-[#d2d2d7]/40 py-2.5"
+          : "bg-transparent py-4"
       )}
     >
-      <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+      <div className="max-w-[980px] mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-600/30 group-hover:scale-110 transition-transform">
-            <GraduationCap className="text-white w-6 h-6" />
+        <Link to="/" className="flex items-center gap-2.5 group">
+          <div className="w-8 h-8 bg-[#0071e3] rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+            <GraduationCap className="text-white w-5 h-5" />
           </div>
-          <span className="text-xl md:text-2xl font-black tracking-tight text-white">
-            Edu<span className="text-blue-400">Intellect</span>
+          <span className={cn(
+            "text-[21px] font-semibold tracking-tight transition-colors duration-300",
+            isScrolled ? "text-[#1d1d1f]" : "text-[#1d1d1f]"
+          )}>
+            Edu<span className="text-[#0071e3]">Intellect</span>
           </span>
         </Link>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden md:flex items-center gap-7">
           {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              className="text-sm font-semibold text-slate-300 hover:text-white transition-colors"
+            <Link
+              key={link.name}
+              to={link.href}
+              className="text-[12px] font-normal text-[#424245] hover:text-[#1d1d1f] transition-colors duration-300 tracking-[0.008em]"
             >
               {link.name}
-            </a>
+            </Link>
           ))}
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-4">
-          <button 
+        <div className="hidden md:flex items-center gap-5">
+          <button
             onClick={() => setIsLoginModalOpen(true)}
-            className="text-sm font-semibold text-slate-300 hover:text-white transition-colors"
+            className="text-[12px] font-normal text-[#424245] hover:text-[#1d1d1f] transition-colors duration-300"
           >
-            Login
+            Sign in
           </button>
-          <Link to="/register" className="btn-primary flex items-center gap-2 text-sm text-white">
-            Register School <ChevronRight className="w-4 h-4" />
+          <Link to="/register" className="text-[12px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-1.5 rounded-full transition-all duration-300">
+            Get Started
           </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden text-white"
+        <button
+          className="md:hidden text-[#1d1d1f]"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <X /> : <Menu />}
+          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#002147] border-b border-white/5 p-6 animate-fade-in shadow-2xl">
-          <nav className="flex flex-col gap-6">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#fbfbfd]/95 backdrop-blur-2xl border-b border-[#d2d2d7]/40 animate-fade-in">
+          <nav className="flex flex-col max-w-[980px] mx-auto px-6 py-4">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href}
-                className="text-lg font-bold text-slate-100 hover:text-blue-400"
+              <Link
+                key={link.name}
+                to={link.href}
+                className="text-[17px] font-normal text-[#1d1d1f] py-3 border-b border-[#d2d2d7]/30"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
-            <hr className="border-blue-500/10" />
-            <div className="flex flex-col gap-4">
-              <button 
+            <div className="flex flex-col gap-3 pt-4">
+              <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
                   setIsLoginModalOpen(true);
                 }}
-                className="w-full text-center py-2 text-slate-100 font-bold uppercase tracking-widest text-sm"
+                className="text-[17px] text-[#0071e3] font-normal py-2"
               >
-                Login
+                Sign in
               </button>
-              <Link 
+              <Link
                 to="/register"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="btn-primary w-full text-center text-white font-bold"
+                className="btn-primary w-full text-center text-[17px]"
               >
-                Register School
+                Get Started
               </Link>
             </div>
           </nav>
         </div>
       )}
-      {/* Modal */}
-      <LoginModal 
-        isOpen={isLoginModalOpen} 
-        onClose={() => setIsLoginModalOpen(false)} 
+
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
       />
     </header>
   );

@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@remotion/cli": "^4.0.448",
+    "@remotion/player": "^4.0.448",
     "@tailwindcss/postcss": "^4.2.1",
     "clsx": "^2.1.1",
     "firebase": "^12.10.0",
@@ -18,6 +20,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.1",
+    "remotion": "^4.0.448",
+    "sf-pro": "^1.0.4",
     "tailwind-merge": "^3.5.0"
   },
   "devDependencies": {

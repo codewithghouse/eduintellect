@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, UserCog, LayoutDashboard, GraduationCap, Users, ArrowRight } from 'lucide-react';
-import { cn } from '../lib/utils';
 import { Link } from 'react-router-dom';
 
 interface LoginModalProps {
@@ -13,37 +12,33 @@ const roles = [
   {
     id: 'owner',
     title: 'School Owner',
+    subtitle: 'Administration & Analytics',
     icon: <UserCog className="w-5 h-5" />,
-    color: 'bg-blue-600',
-    hoverColor: 'hover:border-blue-500/50',
-    glow: 'group-hover:shadow-blue-500/20',
+    color: '#0071e3',
     url: import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/'
   },
   {
     id: 'principal',
     title: 'Principal',
+    subtitle: 'Academic Management',
     icon: <LayoutDashboard className="w-5 h-5" />,
-    color: 'bg-purple-600',
-    hoverColor: 'hover:border-purple-500/50',
-    glow: 'group-hover:shadow-purple-500/20',
+    color: '#5856d6',
     url: import.meta.env.VITE_PRINCIPAL_DASHBOARD_URL || 'https://principal-dashboard-seven.vercel.app/'
   },
   {
     id: 'teacher',
     title: 'Teacher',
+    subtitle: 'Classroom Tools',
     icon: <GraduationCap className="w-5 h-5" />,
-    color: 'bg-emerald-600',
-    hoverColor: 'hover:border-emerald-500/50',
-    glow: 'group-hover:shadow-emerald-500/20',
+    color: '#34c759',
     url: import.meta.env.VITE_TEACHER_DASHBOARD_URL || 'https://teacher-dashboard-ochre.vercel.app/'
   },
   {
     id: 'parent',
     title: 'Parent',
+    subtitle: 'Family Connect',
     icon: <Users className="w-5 h-5" />,
-    color: 'bg-orange-600',
-    hoverColor: 'hover:border-orange-500/50',
-    glow: 'group-hover:shadow-orange-500/20',
+    color: '#ff9500',
     url: import.meta.env.VITE_PARENT_DASHBOARD_URL || 'https://parent-dashboard-ten.vercel.app/'
   }
 ];
@@ -58,34 +53,36 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[60]"
+            className="fixed inset-0 bg-black/40 backdrop-blur-xl z-[60]"
           />
 
-          {/* Modal Container */}
+          {/* Modal */}
           <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[70] p-4">
             <motion.div
-              initial={{ scale: 0.95, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.95, opacity: 0, y: 20 }}
-              className="bg-slate-900 border border-slate-800 w-full max-w-lg rounded-3xl overflow-hidden pointer-events-auto shadow-2xl"
+              initial={{ scale: 0.96, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.96, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-white w-full max-w-[420px] rounded-[20px] overflow-hidden pointer-events-auto shadow-2xl"
             >
               {/* Header */}
-              <div className="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/50">
+              <div className="px-7 pt-7 pb-5 flex items-start justify-between">
                 <div>
-                  <h3 className="text-xl font-bold text-white">Select Your Portal</h3>
-                  <p className="text-slate-500 text-sm">Choose your role to access your dashboard</p>
+                  <h3 className="text-[22px] font-semibold text-[#1d1d1f] tracking-[-0.02em]">Select Your Portal</h3>
+                  <p className="text-[#86868b] text-[14px] mt-1">Choose your role to continue</p>
                 </div>
-                <button 
+                <button
                   onClick={onClose}
-                  className="w-10 h-10 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white transition-all flex items-center justify-center active:scale-90"
+                  className="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#86868b] hover:text-[#1d1d1f] transition-all duration-200 flex items-center justify-center"
                 >
-                  <X className="w-5 h-5" />
+                  <X className="w-4 h-4" />
                 </button>
               </div>
 
-              {/* Roles List */}
-              <div className="p-6 grid grid-cols-1 gap-3">
+              {/* Roles */}
+              <div className="px-7 pb-3 space-y-2">
                 {roles.map((role) => (
                   <button
                     key={role.id}
@@ -95,37 +92,33 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                       }
                       onClose();
                     }}
-                    className={cn(
-                      "group relative flex items-center justify-between p-4 rounded-2xl bg-slate-800/50 border border-slate-700/50 transition-all active:scale-[0.98] shadow-sm",
-                      role.hoverColor,
-                      role.glow,
-                      "hover:bg-slate-800"
-                    )}
+                    className="group w-full flex items-center justify-between p-4 rounded-[14px] bg-[#fbfbfd] border border-[#d2d2d7]/40 hover:border-[#d2d2d7] hover:shadow-sm transition-all duration-200"
                   >
-                    <div className="flex items-center gap-4">
-                      <div className={cn(
-                        "w-12 h-12 rounded-xl flex items-center justify-center text-white shadow-lg",
-                        role.color
-                      )}>
+                    <div className="flex items-center gap-3.5">
+                      <div
+                        className="w-10 h-10 rounded-[10px] flex items-center justify-center text-white"
+                        style={{ backgroundColor: role.color }}
+                      >
                         {role.icon}
                       </div>
                       <div className="text-left">
-                        <div className="font-bold text-white group-hover:text-brand-400 transition-colors uppercase text-xs tracking-widest mb-0.5">Access Portal</div>
-                        <div className="text-lg font-semibold text-slate-200">{role.title}</div>
+                        <div className="text-[15px] font-medium text-[#1d1d1f]">{role.title}</div>
+                        <div className="text-[12px] text-[#86868b]">{role.subtitle}</div>
                       </div>
                     </div>
-                    
-                    <div className="w-8 h-8 rounded-full bg-slate-700/50 flex items-center justify-center text-slate-500 group-hover:bg-brand-500 group-hover:text-white transition-all transform group-hover:translate-x-1">
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
+
+                    <ArrowRight className="w-4 h-4 text-[#86868b] group-hover:text-[#0071e3] group-hover:translate-x-0.5 transition-all duration-200" />
                   </button>
                 ))}
               </div>
 
               {/* Footer */}
-              <div className="p-6 bg-slate-950/50 text-center border-t border-slate-800">
-                <p className="text-slate-500 text-sm">
-                  First time here? <Link to="/register" onClick={onClose} className="text-brand-400 font-semibold hover:underline">Register your school</Link>
+              <div className="px-7 py-5 bg-[#f5f5f7] text-center border-t border-[#d2d2d7]/40">
+                <p className="text-[#86868b] text-[13px]">
+                  New here?{' '}
+                  <Link to="/register" onClick={onClose} className="text-[#0071e3] hover:underline">
+                    Register your school
+                  </Link>
                 </p>
               </div>
             </motion.div>

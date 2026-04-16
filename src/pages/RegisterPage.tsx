@@ -40,7 +40,6 @@ const RegisterPage = () => {
     setLoading(true);
 
     try {
-      // 1. Create User in Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
@@ -48,7 +47,6 @@ const RegisterPage = () => {
       );
       const user = userCredential.user;
 
-      // 2. Save School & Owner details in Firestore
       await setDoc(doc(db, 'schools', user.uid), {
         schoolName: formData.schoolName,
         ownerName: formData.ownerName,
@@ -81,39 +79,42 @@ const RegisterPage = () => {
 
   if (success) {
     return (
-      <div className="min-h-[80vh] flex items-center justify-center p-4">
-        <motion.div 
-          initial={{ scale: 0.9, opacity: 0 }}
+      <div className="min-h-[80vh] flex items-center justify-center p-6 bg-[#fbfbfd]">
+        <motion.div
+          initial={{ scale: 0.95, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          className="glass-card p-12 text-center max-w-md w-full"
+          transition={{ ease: [0.16, 1, 0.3, 1] }}
+          className="bg-white rounded-[20px] border border-[#d2d2d7]/40 p-12 text-center max-w-md w-full shadow-lg"
         >
-          <div className="w-20 h-20 bg-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
-            <CheckCircle2 className="w-12 h-12 text-emerald-500" />
+          <div className="w-16 h-16 bg-[#34c759]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle2 className="w-8 h-8 text-[#34c759]" />
           </div>
-          <h2 className="text-3xl font-bold text-white mb-4">Registration Successful!</h2>
-          <p className="text-slate-400 mb-8">
-            Masha Allah! Your school <strong>{formData.schoolName}</strong> is now part of the EduIntellect ecosystem. Redirecting you...
+          <h2 className="text-[28px] font-semibold text-[#1d1d1f] mb-3 tracking-[-0.02em]">Registration Successful</h2>
+          <p className="text-[#86868b] text-[15px] mb-8 leading-[1.47]">
+            Your school <strong className="text-[#1d1d1f]">{formData.schoolName}</strong> is now part of the EduIntellect ecosystem. Redirecting you...
           </p>
-          <Loader2 className="w-6 h-6 text-brand-500 animate-spin mx-auto" />
+          <Loader2 className="w-5 h-5 text-[#0071e3] animate-spin mx-auto" />
         </motion.div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div className="min-h-screen pt-28 pb-20 px-6 bg-[#fbfbfd]">
+      <div className="max-w-[980px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text Side */}
           <div className="space-y-8">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ ease: [0.16, 1, 0.3, 1] }}
             >
-              <h1 className="text-4xl md:text-6xl font-black text-white mb-6 leading-tight">
-                Empower Your <span className="gradient-text">Institution</span> Today.
+              <h1 className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] mb-5 leading-[1.08] tracking-[-0.035em]">
+                Empower your{' '}
+                <span className="gradient-text">institution</span> today.
               </h1>
-              <p className="text-slate-400 text-lg leading-relaxed">
+              <p className="text-[#86868b] text-[17px] leading-[1.47] tracking-[0.011em]">
                 Join hundreds of visionary schools using EduIntellect to revolutionize education management. Register now and get full access to all portals.
               </p>
             </motion.div>
@@ -125,11 +126,9 @@ const RegisterPage = () => {
                 'Integrated Parent-Teacher Communication',
                 'Advanced Financial & Academic Reports'
               ].map((item) => (
-                <div key={item} className="flex items-center gap-3 text-slate-300">
-                  <div className="w-5 h-5 rounded-full bg-brand-500/20 flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-brand-500"></div>
-                  </div>
-                  <span className="text-sm font-medium">{item}</span>
+                <div key={item} className="flex items-center gap-3 text-[#424245]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-[#0071e3]"></div>
+                  <span className="text-[15px]">{item}</span>
                 </div>
               ))}
             </div>
@@ -139,55 +138,56 @@ const RegisterPage = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="glass-card p-8 md:p-10 border-white/10"
+            transition={{ delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="bg-white rounded-[20px] border border-[#d2d2d7]/40 p-8 md:p-10 shadow-sm"
           >
-            <div className="mb-10">
-              <h2 className="text-2xl font-bold text-white mb-2">Register Your School</h2>
-              <p className="text-slate-500 text-sm">Become a part of the future of education.</p>
+            <div className="mb-8">
+              <h2 className="text-[22px] font-semibold text-[#1d1d1f] mb-1 tracking-[-0.02em]">Register Your School</h2>
+              <p className="text-[#86868b] text-[14px]">Become a part of the future of education.</p>
             </div>
 
             {error && (
-              <div className="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
+              <div className="mb-6 p-4 rounded-[12px] bg-[#ff3b30]/5 border border-[#ff3b30]/20 text-[#ff3b30] text-[14px]">
                 {error}
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">School Name</label>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] ml-1">School Name</label>
                   <div className="relative">
-                    <School className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <School className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
                     <input
                       required
                       name="schoolName"
                       value={formData.schoolName}
                       onChange={handleChange}
                       placeholder="e.g. Oakridge Academy"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-brand-500 transition-all outline-none"
+                      className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]"
                     />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">Owner Name</label>
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] ml-1">Owner Name</label>
                   <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
                     <input
                       required
                       name="ownerName"
                       value={formData.ownerName}
                       onChange={handleChange}
                       placeholder="Full Name"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-brand-500 transition-all outline-none"
+                      className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">Email Address</label>
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-medium text-[#86868b] ml-1">Email Address</label>
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                  <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
                   <input
                     required
                     type="email"
@@ -195,16 +195,16 @@ const RegisterPage = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="owner@school.com"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-brand-500 transition-all outline-none"
+                    className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">Password</label>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] ml-1">Password</label>
                   <div className="relative">
-                    <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
                     <input
                       required
                       type="password"
@@ -213,38 +213,38 @@ const RegisterPage = () => {
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="Min. 6 characters"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-brand-500 transition-all outline-none"
+                      className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]"
                     />
                   </div>
                 </div>
-                <div className="space-y-2">
-                  <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">Phone Number</label>
+                <div className="space-y-1.5">
+                  <label className="text-[12px] font-medium text-[#86868b] ml-1">Phone Number</label>
                   <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500" />
+                    <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
                     <input
                       required
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+1 (234) 567 890"
-                      className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-brand-500 transition-all outline-none"
+                      className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <label className="text-xs font-semibold text-slate-400 uppercase tracking-wider ml-1">School Address</label>
+              <div className="space-y-1.5">
+                <label className="text-[12px] font-medium text-[#86868b] ml-1">School Address</label>
                 <div className="relative">
-                  <MapPin className="absolute left-4 top-4 w-5 h-5 text-slate-500" />
+                  <MapPin className="absolute left-3.5 top-3.5 w-4 h-4 text-[#86868b]" />
                   <textarea
                     required
                     name="address"
                     rows={3}
                     value={formData.address}
                     onChange={handleChange}
-                    placeholder="Full Address of the school"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 pl-12 pr-4 text-white focus:border-brand-500 transition-all outline-none resize-none"
+                    placeholder="Full address of the school"
+                    className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none resize-none placeholder:text-[#b0b0b8]"
                   />
                 </div>
               </div>
@@ -252,19 +252,19 @@ const RegisterPage = () => {
               <button
                 disabled={loading}
                 type="submit"
-                className="w-full btn-primary py-4 text-lg flex items-center justify-center gap-2 group"
+                className="w-full bg-[#0071e3] hover:bg-[#0077ed] text-white py-3.5 rounded-[12px] text-[15px] font-medium flex items-center justify-center gap-2 transition-all duration-300 disabled:opacity-50"
               >
                 {loading ? (
-                  <Loader2 className="w-6 h-6 animate-spin" />
+                  <Loader2 className="w-5 h-5 animate-spin" />
                 ) : (
                   <>
-                    Complete Registration <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                    Complete Registration <ArrowRight className="w-4 h-4" />
                   </>
                 )}
               </button>
 
-              <p className="text-center text-slate-500 text-sm">
-                By registering, you agree to our <Link to="#" className="text-brand-400 hover:underline">Terms</Link> and <Link to="#" className="text-brand-400 hover:underline">Privacy Policy</Link>.
+              <p className="text-center text-[#86868b] text-[12px]">
+                By registering, you agree to our <Link to="#" className="text-[#0071e3] hover:underline">Terms</Link> and <Link to="#" className="text-[#0071e3] hover:underline">Privacy Policy</Link>.
               </p>
             </form>
           </motion.div>

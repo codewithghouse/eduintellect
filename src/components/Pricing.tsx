@@ -1,4 +1,4 @@
-import { Check, Zap, Rocket, Crown } from 'lucide-react';
+import { Check } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const plans = [
@@ -7,9 +7,7 @@ const plans = [
     price: '$49',
     description: 'Perfect for small private schools or single branches.',
     features: ['Up to 200 Students', 'Core Management Tools', 'Basic Reports', 'Email Support'],
-    icon: <Zap className="w-6 h-6 text-blue-500" />,
-    color: 'border-blue-500/20',
-    btnClass: 'btn-secondary'
+    highlighted: false,
   },
   {
     name: 'Pro',
@@ -17,78 +15,102 @@ const plans = [
     popular: true,
     description: 'The complete solution for growing educational institutions.',
     features: ['Unlimited Students', 'AI Risk Monitoring', 'Advanced Analytics', 'Parent-Teacher App', 'Priority Support'],
-    icon: <Rocket className="w-6 h-6 text-brand-500" />,
-    color: 'border-brand-500/50',
-    btnClass: 'btn-primary'
+    highlighted: true,
   },
   {
     name: 'Enterprise',
     price: 'Custom',
     description: 'Advanced features for multi-branch school networks.',
     features: ['Multi-Branch Sync', 'Custom AI Models', 'Whitelabel App', 'Dedicated Account Manager'],
-    icon: <Crown className="w-6 h-6 text-purple-500" />,
-    color: 'border-purple-500/20',
-    btnClass: 'btn-secondary'
+    highlighted: false,
   }
 ];
 
 const Pricing = () => {
   return (
-    <section id="pricing" className="py-24 bg-white">
-      <div className="container mx-auto px-4 md:px-6">
+    <section id="pricing" className="py-24 bg-[#fbfbfd]">
+      <div className="max-w-[980px] mx-auto px-6">
         <div className="text-center mb-16">
-          <motion.h2 
+          <motion.p
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-black text-slate-900 mb-4"
+            className="text-[#0071e3] text-[17px] font-semibold mb-2 tracking-[-0.01em]"
           >
-            Simple, Transparent <span className="text-blue-600">Pricing.</span>
+            Pricing
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] mb-4 tracking-[-0.035em] leading-[1.08]"
+          >
+            Simple, transparent pricing.
           </motion.h2>
-          <p className="text-slate-600 max-w-2xl mx-auto font-medium">Choose the plan that fits your school's vision and start transforming today.</p>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="text-[#86868b] text-[17px] max-w-[500px] mx-auto tracking-[0.011em]"
+          >
+            Choose the plan that fits your school's vision and start transforming today.
+          </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className={`relative bg-slate-50 p-10 rounded-[2.5rem] border ${plan.color.replace('border-brand', 'border-blue').replace('/30', '/10')} flex flex-col h-full overflow-hidden transition-all hover:bg-white hover:border-blue-200 hover:shadow-2xl hover:shadow-blue-600/10`}
+              transition={{ delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative p-8 rounded-[20px] flex flex-col h-full transition-all duration-300 ${
+                plan.highlighted
+                  ? 'bg-[#1d1d1f] text-white'
+                  : 'bg-white border border-[#d2d2d7]/40 hover:border-[#d2d2d7] hover:shadow-lg'
+              }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 right-0 bg-blue-600 text-white text-[10px] uppercase font-black px-6 py-2 rounded-bl-3xl tracking-widest shadow-lg">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#0071e3] text-white text-[11px] font-medium px-4 py-1 rounded-full tracking-[-0.01em]">
                   Most Popular
                 </div>
               )}
-              
-              <div className="mb-8 p-4 w-fit rounded-2xl bg-white shadow-sm border border-slate-100">{plan.icon}</div>
-              <h3 className="text-2xl font-extrabold text-slate-900 mb-2">{plan.name}</h3>
-              <div className="mb-6">
-                <span className="text-5xl font-black text-slate-900 tracking-tight">{plan.price}</span>
-                {plan.price !== 'Custom' && <span className="text-slate-500 text-base font-bold ml-2">/ month</span>}
+
+              <h3 className={`text-[22px] font-semibold mb-2 tracking-[-0.02em] ${plan.highlighted ? 'text-white' : 'text-[#1d1d1f]'}`}>
+                {plan.name}
+              </h3>
+              <div className="mb-4">
+                <span className={`text-[48px] font-semibold tracking-[-0.04em] ${plan.highlighted ? 'text-white' : 'text-[#1d1d1f]'}`}>
+                  {plan.price}
+                </span>
+                {plan.price !== 'Custom' && (
+                  <span className={`text-[15px] ml-1 ${plan.highlighted ? 'text-[#86868b]' : 'text-[#86868b]'}`}>/ month</span>
+                )}
               </div>
-              <p className="text-slate-500 text-sm mb-10 leading-relaxed font-medium">
+              <p className={`text-[14px] mb-8 leading-[1.47] tracking-[-0.01em] ${plan.highlighted ? 'text-[#86868b]' : 'text-[#86868b]'}`}>
                 {plan.description}
               </p>
-              
-              <div className="space-y-5 mb-12 flex-grow">
+
+              <div className="space-y-4 mb-10 flex-grow">
                 {plan.features.map((feature) => (
-                  <div key={feature} className="flex items-start gap-4 text-[14px] text-slate-700 font-bold">
-                    <div className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center shrink-0 border border-blue-100">
-                      <Check className="w-3 h-3 text-blue-600" />
+                  <div key={feature} className="flex items-center gap-3 text-[14px]">
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 ${
+                      plan.highlighted ? 'bg-[#0071e3]' : 'bg-[#f5f5f7]'
+                    }`}>
+                      <Check className={`w-3 h-3 ${plan.highlighted ? 'text-white' : 'text-[#0071e3]'}`} />
                     </div>
-                    <span>{feature}</span>
+                    <span className={plan.highlighted ? 'text-[#d2d2d7]' : 'text-[#424245]'}>{feature}</span>
                   </div>
                 ))}
               </div>
 
-              <button className={`w-full py-5 rounded-2xl font-black transition-all active:scale-95 uppercase tracking-widest text-sm ${
-                plan.popular 
-                  ? 'bg-blue-600 hover:bg-blue-500 text-white shadow-2xl shadow-blue-600/40' 
-                  : 'bg-white hover:bg-slate-50 text-slate-900 border border-slate-200 shadow-sm'
+              <button className={`w-full py-3.5 rounded-full font-medium text-[15px] transition-all duration-300 tracking-[-0.01em] ${
+                plan.highlighted
+                  ? 'bg-[#0071e3] hover:bg-[#0077ed] text-white'
+                  : 'bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#1d1d1f]'
               }`}>
                 Choose {plan.name}
               </button>
