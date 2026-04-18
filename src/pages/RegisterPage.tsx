@@ -6,6 +6,15 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { Link } from 'react-router-dom';
 
+// ── Field caps (server-side Firestore rules should also enforce) ─────────────
+const MAX_SCHOOL_NAME = 120;
+const MAX_OWNER_NAME  = 120;
+const MAX_PHONE       = 20;
+const MAX_ADDRESS     = 500;
+const MIN_PASSWORD    = 10;
+
+const clean = (s: string, max: number) => s.trim().slice(0, max);
+
 const RegisterPage = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -28,8 +37,13 @@ const RegisterPage = () => {
     e.preventDefault();
     setError('');
 
-    if (formData.password.length < 6) {
-      setError('Password must be at least 6 characters.');
+    // Stronger password policy than Firebase's 6-char minimum.
+    if (formData.password.length < MIN_PASSWORD) {
+      setError(`Password must be at least ${MIN_PASSWORD} characters.`);
+      return;
+    }
+    if (!/[A-Z]/.test(formData.password) || !/[0-9]/.test(formData.password)) {
+      setError('Password must include at least one uppercase letter and one number.');
       return;
     }
     if (!/^\+?[\d\s\-()]{7,15}$/.test(formData.phone)) {
@@ -42,17 +56,19 @@ const RegisterPage = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
-        formData.email,
-        formData.password
+        formData.email.trim().toLowerCase(),
+        formData.password,
       );
       const user = userCredential.user;
 
+      // Sanitize + bound every field before persisting. Prevents overlong
+      // values from bloating Firestore and strips leading/trailing whitespace.
       await setDoc(doc(db, 'schools', user.uid), {
-        schoolName: formData.schoolName,
-        ownerName: formData.ownerName,
-        email: formData.email,
-        phone: formData.phone,
-        address: formData.address,
+        schoolName: clean(formData.schoolName, MAX_SCHOOL_NAME),
+        ownerName: clean(formData.ownerName, MAX_OWNER_NAME),
+        email: formData.email.trim().toLowerCase(),
+        phone: clean(formData.phone, MAX_PHONE),
+        address: clean(formData.address, MAX_ADDRESS),
         ownerId: user.uid,
         role: 'owner',
         status: 'active',
@@ -65,12 +81,22 @@ const RegisterPage = () => {
       }, 3000);
 
     } catch (err: any) {
-      if (err.code === 'auth/email-already-in-use') {
-        setError('This email is already registered. Please login instead.');
-      } else if (err.code === 'auth/weak-password') {
-        setError('Password must be at least 6 characters.');
+      const code = err?.code ?? '';
+      // Map known codes to user-facing messages. Never surface raw Firebase
+      // internals — they leak SDK details and confuse users.
+      if (code === 'auth/email-already-in-use') {
+        setError('This email is already registered. Please sign in instead.');
+      } else if (code === 'auth/weak-password') {
+        setError('Password is too weak.');
+      } else if (code === 'auth/invalid-email') {
+        setError('Invalid email address.');
+      } else if (code === 'auth/network-request-failed') {
+        setError('Network error. Check your internet connection.');
+      } else if (code === 'auth/too-many-requests') {
+        setError('Too many attempts. Please wait a few minutes and try again.');
       } else {
-        setError(err.message || 'Something went wrong during registration.');
+        console.error('[register] unexpected error:', code, err?.message);
+        setError('Registration failed. Please try again.');
       }
     } finally {
       setLoading(false);
@@ -161,6 +187,7 @@ const RegisterPage = () => {
                     <input
                       required
                       name="schoolName"
+                      maxLength={MAX_SCHOOL_NAME}
                       value={formData.schoolName}
                       onChange={handleChange}
                       placeholder="e.g. Oakridge Academy"
@@ -175,6 +202,7 @@ const RegisterPage = () => {
                     <input
                       required
                       name="ownerName"
+                      maxLength={MAX_OWNER_NAME}
                       value={formData.ownerName}
                       onChange={handleChange}
                       placeholder="Full Name"
@@ -192,6 +220,7 @@ const RegisterPage = () => {
                     required
                     type="email"
                     name="email"
+                    maxLength={254}
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="owner@school.com"
@@ -209,10 +238,10 @@ const RegisterPage = () => {
                       required
                       type="password"
                       name="password"
-                      minLength={6}
+                      minLength={MIN_PASSWORD}
                       value={formData.password}
                       onChange={handleChange}
-                      placeholder="Min. 6 characters"
+                      placeholder={`Min. ${MIN_PASSWORD} chars, 1 uppercase, 1 number`}
                       className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]"
                     />
                   </div>
@@ -224,6 +253,7 @@ const RegisterPage = () => {
                     <input
                       required
                       name="phone"
+                      maxLength={MAX_PHONE}
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="+1 (234) 567 890"
@@ -241,6 +271,7 @@ const RegisterPage = () => {
                     required
                     name="address"
                     rows={3}
+                    maxLength={MAX_ADDRESS}
                     value={formData.address}
                     onChange={handleChange}
                     placeholder="Full address of the school"
