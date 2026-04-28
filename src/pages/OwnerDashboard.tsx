@@ -14,9 +14,9 @@ const OwnerDashboard = () => {
             <div className="w-10 h-10 rounded-[12px] bg-[#0071e3] flex items-center justify-center text-white">
               <UserCog className="w-5 h-5" />
             </div>
-            <p className="text-[#0071e3] text-[14px] font-semibold tracking-[-0.01em]">Administration</p>
+            <p className="text-[#0071e3] text-[14px] font-normal tracking-[-0.01em]">Administration</p>
           </div>
-          <h1 className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] leading-[1.08] tracking-[-0.035em] mb-4">
+          <h1 className="text-[40px] md:text-[48px] font-normal text-[#1d1d1f] leading-[1.08] tracking-[-0.035em] mb-4">
             Owner Dashboard
           </h1>
           <p className="text-[#86868b] text-[17px] max-w-[600px] leading-[1.47] tracking-[0.011em] mb-12">

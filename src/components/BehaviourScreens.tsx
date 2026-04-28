@@ -24,14 +24,14 @@ const SPHeader = () => (
 
 const PageHead = ({ sub }: { sub: string }) => (
   <div style={{ padding: '18px 20px 0' }}>
-    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(40,57,108,.4)', marginBottom: 4 }}>Parent Dashboard</div>
-    <div style={{ fontSize: 23, fontWeight: 700, color: '#1a2340', letterSpacing: '-.6px', lineHeight: 1.15 }}>Behaviour &amp;<br />Discipline</div>
-    <div style={{ fontSize: 12, color: '#8892b0', marginTop: 3 }}>{sub.split('Tanveer')[0]}<strong style={{ color: '#28396c', fontWeight: 600 }}>Tanveer</strong>{sub.split('Tanveer')[1]}</div>
+    <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(40,57,108,.4)', marginBottom: 4 }}>Parent Dashboard</div>
+    <div style={{ fontSize: 23, fontWeight: 300, color: '#1a2340', letterSpacing: '-.6px', lineHeight: 1.15 }}>Behaviour &amp;<br />Discipline</div>
+    <div style={{ fontSize: 12, color: '#8892b0', marginTop: 3 }}>{sub.split('Tanveer')[0]}<strong style={{ color: '#28396c', fontWeight: 400 }}>Tanveer</strong>{sub.split('Tanveer')[1]}</div>
   </div>
 );
 
 const SecLbl = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '18px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+  <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '18px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
     {children}<div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.13)' }} />
   </div>
 );
@@ -54,19 +54,19 @@ export const BehaviourOverview = () => (
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize: '22px 22px', pointerEvents: 'none' }} />
 
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 5, display: 'flex', alignItems: 'center', gap: 7 }}>
+            <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 5, display: 'flex', alignItems: 'center', gap: 7 }}>
               Overall Rating<div style={{ flex: 1, height: '.5px', background: 'rgba(255,255,255,.1)' }} />
             </div>
-            <div style={{ fontSize: 16, fontWeight: 700, color: '#fff', letterSpacing: '-.3px', marginBottom: 3 }}>Overall Behavior Rating</div>
+            <div style={{ fontSize: 16, fontWeight: 300, color: '#fff', letterSpacing: '-.3px', marginBottom: 3 }}>Overall Behavior Rating</div>
             <div style={{ fontSize: 11, color: 'rgba(255,255,255,.5)', marginBottom: 18 }}>Based on teacher observations this term</div>
 
             <div style={{ display: 'flex', alignItems: 'flex-end', gap: 18, marginBottom: 16 }}>
-              <div style={{ fontSize: 52, fontWeight: 700, color: '#fff', letterSpacing: '-2px', lineHeight: 1 }}>5.0<span style={{ fontSize: 20, color: 'rgba(255,255,255,.5)', fontWeight: 500 }}>/5</span></div>
+              <div style={{ fontSize: 52, fontWeight: 300, color: '#fff', letterSpacing: '-2px', lineHeight: 1 }}>5.0<span style={{ fontSize: 20, color: 'rgba(255,255,255,.5)', fontWeight: 500 }}>/5</span></div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <div style={{ display: 'flex', gap: 3 }}>
                   {[0, 1, 2, 3, 4].map(i => <span key={i} style={{ fontSize: 18, lineHeight: 1 }}>⭐</span>)}
                 </div>
-                <div style={{ fontSize: 10, color: 'rgba(255,255,255,.4)', fontWeight: 600, letterSpacing: '.04em' }}>Perfect Score</div>
+                <div style={{ fontSize: 10, color: 'rgba(255,255,255,.4)', fontWeight: 400, letterSpacing: '.04em' }}>Perfect Score</div>
               </div>
             </div>
 
@@ -78,8 +78,8 @@ export const BehaviourOverview = () => (
               ].map(c => (
                 <div key={c.lbl} style={{ background: 'rgba(255,255,255,.04)', padding: '11px 10px', display: 'flex', flexDirection: 'column', gap: 3, alignItems: 'center' }}>
                   <div style={{ fontSize: 16 }}>{c.icon}</div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: '#fff', lineHeight: 1 }}>{c.val}</div>
-                  <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)' }}>{c.lbl}</div>
+                  <div style={{ fontSize: 11, fontWeight: 300, color: '#fff', lineHeight: 1 }}>{c.val}</div>
+                  <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)' }}>{c.lbl}</div>
                 </div>
               ))}
             </div>
@@ -100,8 +100,8 @@ export const BehaviourOverview = () => (
               <div style={{ width: 30, height: 30, borderRadius: 9, background: c.bg, border: `.5px solid ${c.bdr}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 10 }}>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={c.stroke} strokeWidth="2.2" strokeLinecap="round">{c.icon}</svg>
               </div>
-              <div style={{ fontSize: 22, fontWeight: 700, letterSpacing: '-.5px', lineHeight: 1, color: c.color, position: 'relative', zIndex: 1 }}>{c.val}</div>
-              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', marginTop: 3, color: c.color, position: 'relative', zIndex: 1 }}>{c.lbl}</div>
+              <div style={{ fontSize: 22, fontWeight: 300, letterSpacing: '-.5px', lineHeight: 1, color: c.color, position: 'relative', zIndex: 1 }}>{c.val}</div>
+              <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.07em', textTransform: 'uppercase', marginTop: 3, color: c.color, position: 'relative', zIndex: 1 }}>{c.lbl}</div>
             </div>
           ))}
         </div>
@@ -113,8 +113,8 @@ export const BehaviourOverview = () => (
             <div style={{ width: 34, height: 34, borderRadius: 11, background: 'rgba(245,197,66,.12)', border: '.5px solid rgba(245,197,66,.25)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#c8a010" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" /></svg>
             </div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#1a2340', letterSpacing: '-.3px' }}>Positive Highlights</div>
-            <div style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 700, color: '#c8a010', background: 'rgba(245,197,66,.12)', border: '.5px solid rgba(245,197,66,.25)', padding: '3px 9px', borderRadius: 100 }}>3</div>
+            <div style={{ fontSize: 15, fontWeight: 300, color: '#1a2340', letterSpacing: '-.3px' }}>Positive Highlights</div>
+            <div style={{ marginLeft: 'auto', fontSize: 12, fontWeight: 300, color: '#c8a010', background: 'rgba(245,197,66,.12)', border: '.5px solid rgba(245,197,66,.25)', padding: '3px 9px', borderRadius: 100 }}>3</div>
           </div>
 
           {[
@@ -127,10 +127,10 @@ export const BehaviourOverview = () => (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={r.stroke} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">{r.icon}</svg>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{r.title}</div>
+                <div style={{ fontSize: 12, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{r.title}</div>
                 <div style={{ fontSize: 10, color: '#8892b0', marginTop: 2 }}>{r.date}</div>
               </div>
-              <div style={{ padding: '3px 9px', borderRadius: 100, fontSize: 9, fontWeight: 700, background: r.icoBg, color: r.color, border: `.5px solid ${r.icoBdr}`, flexShrink: 0 }}>{r.badge}</div>
+              <div style={{ padding: '3px 9px', borderRadius: 100, fontSize: 9, fontWeight: 300, background: r.icoBg, color: r.color, border: `.5px solid ${r.icoBdr}`, flexShrink: 0 }}>{r.badge}</div>
             </div>
           ))}
         </div>
@@ -161,13 +161,13 @@ export const BehaviourTrend = () => (
             <div style={{ width: 34, height: 34, borderRadius: 11, background: 'rgba(245,156,42,.1)', border: '.5px solid rgba(245,156,42,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#f59c2a" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
             </div>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#1a2340', letterSpacing: '-.3px' }}>Areas for Improvement</div>
+            <div style={{ fontSize: 15, fontWeight: 300, color: '#1a2340', letterSpacing: '-.3px' }}>Areas for Improvement</div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 9, padding: 14 }}>
             <div style={{ width: 50, height: 50, borderRadius: 16, background: 'rgba(46,188,113,.1)', border: '.5px solid rgba(46,188,113,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 0 5px rgba(46,188,113,.04)' }}>
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2ebc71" strokeWidth="2" strokeLinecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
             </div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#1e9a5a', textAlign: 'center' }}>No areas for improvement!</div>
+            <div style={{ fontSize: 13, fontWeight: 300, color: '#1e9a5a', textAlign: 'center' }}>No areas for improvement!</div>
             <div style={{ fontSize: 11, color: '#8892b0', textAlign: 'center', lineHeight: 1.55 }}>No improvement areas recorded this term.<br />Tanveer is doing great — keep it up!</div>
           </div>
         </div>
@@ -176,8 +176,8 @@ export const BehaviourTrend = () => (
         <SecLbl>Behaviour Trend</SecLbl>
         <div style={{ margin: '10px 16px 0', background: '#fff', borderRadius: 22, padding: 18, boxShadow: '0 0 0 .5px rgba(40,57,108,.06), 0 2px 8px rgba(40,57,108,.06)', border: '.5px solid rgba(40,57,108,.06)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#1a2340', letterSpacing: '-.3px' }}>Behavior Trend</div>
-            <div style={{ fontSize: 10, fontWeight: 700, color: '#1e9a5a', background: 'rgba(46,188,113,.1)', border: '.5px solid rgba(46,188,113,.2)', padding: '4px 10px', borderRadius: 100, display: 'flex', alignItems: 'center', gap: 3 }}>
+            <div style={{ fontSize: 15, fontWeight: 300, color: '#1a2340', letterSpacing: '-.3px' }}>Behavior Trend</div>
+            <div style={{ fontSize: 10, fontWeight: 300, color: '#1e9a5a', background: 'rgba(46,188,113,.1)', border: '.5px solid rgba(46,188,113,.2)', padding: '4px 10px', borderRadius: 100, display: 'flex', alignItems: 'center', gap: 3 }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /><polyline points="16 7 22 7 22 13" /></svg>
               Improving
             </div>
@@ -222,11 +222,11 @@ export const BehaviourTrend = () => (
           </div>
 
           <div style={{ display: 'flex', gap: 12, marginTop: 10, alignItems: 'center' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 10, fontWeight: 600, color: '#4a5578' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5, fontSize: 10, fontWeight: 400, color: '#4a5578' }}>
               <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#28396c' }} />
               Behavior Rating
             </div>
-            <div style={{ marginLeft: 'auto', color: '#1e9a5a', display: 'flex', alignItems: 'center', gap: 3, fontSize: 10, fontWeight: 600 }}>
+            <div style={{ marginLeft: 'auto', color: '#1e9a5a', display: 'flex', alignItems: 'center', gap: 3, fontSize: 10, fontWeight: 400 }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
               4.0 → 5.0
             </div>
@@ -242,9 +242,9 @@ export const BehaviourTrend = () => (
           ].map(c => (
             <div key={c.name} style={{ background: '#fff', borderRadius: 16, padding: '14px 16px', boxShadow: '0 0 0 .5px rgba(40,57,108,.06), 0 2px 8px rgba(40,57,108,.06)', border: '.5px solid rgba(40,57,108,.06)' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 9 }}>
-                <div style={{ width: 32, height: 32, borderRadius: 10, background: c.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0 }}>{c.initials}</div>
+                <div style={{ width: 32, height: 32, borderRadius: 10, background: c.color, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 300, color: '#fff', flexShrink: 0 }}>{c.initials}</div>
                 <div>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{c.name}</div>
+                  <div style={{ fontSize: 12, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{c.name}</div>
                   <div style={{ fontSize: 10, color: '#8892b0', marginTop: 1 }}>{c.meta}</div>
                 </div>
                 <div style={{ marginLeft: 'auto', display: 'flex', gap: 1 }}>

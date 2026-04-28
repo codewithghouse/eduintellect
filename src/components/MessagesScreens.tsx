@@ -45,8 +45,8 @@ export const MessagesEmpty = () => (
               <div style={{ width: 26, height: 26, borderRadius: 8, background: s.bg, border: `.5px solid ${s.bdr}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 4 }}>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke={s.stroke} strokeWidth="2.2" strokeLinecap="round">{s.icon}</svg>
               </div>
-              <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase', color: '#c0c8dc', lineHeight: 1.3, whiteSpace: 'pre-line' }}>{s.lbl}</div>
-              <div style={{ fontSize: 20, fontWeight: 700, color: s.color, letterSpacing: '-.5px', lineHeight: 1 }}>{s.val}</div>
+              <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.07em', textTransform: 'uppercase', color: '#c0c8dc', lineHeight: 1.3, whiteSpace: 'pre-line' }}>{s.lbl}</div>
+              <div style={{ fontSize: 20, fontWeight: 300, color: s.color, letterSpacing: '-.5px', lineHeight: 1 }}>{s.val}</div>
             </div>
           ))}
         </div>
@@ -58,7 +58,7 @@ export const MessagesEmpty = () => (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" strokeWidth="2" strokeLinecap="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /></svg>
           </div>
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#fff', letterSpacing: '-.3px' }}>Teacher Messages</div>
+            <div style={{ fontSize: 15, fontWeight: 300, color: '#fff', letterSpacing: '-.3px' }}>Teacher Messages</div>
             <div style={{ fontSize: 10, color: 'rgba(255,255,255,.5)', marginTop: 1 }}>Direct communication with your teachers</div>
           </div>
         </div>
@@ -74,7 +74,7 @@ export const MessagesEmpty = () => (
         </div>
 
         {/* New Message Button */}
-        <div style={{ margin: '10px 16px 0', background: 'linear-gradient(135deg,#28396c,#1e2d57)', borderRadius: 14, padding: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: 14, fontWeight: 700, color: '#fff', position: 'relative', overflow: 'hidden', boxShadow: '0 6px 22px rgba(40,57,108,.26), 0 2px 6px rgba(0,0,0,.1)' }}>
+        <div style={{ margin: '10px 16px 0', background: 'linear-gradient(135deg,#28396c,#1e2d57)', borderRadius: 14, padding: 13, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: 14, fontWeight: 300, color: '#fff', position: 'relative', overflow: 'hidden', boxShadow: '0 6px 22px rgba(40,57,108,.26), 0 2px 6px rgba(0,0,0,.1)' }}>
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 55%)' }} />
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" style={{ position: 'relative', zIndex: 1 }}><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
           <span style={{ position: 'relative', zIndex: 1 }}>New Message</span>
@@ -86,7 +86,7 @@ export const MessagesEmpty = () => (
           <div style={{ width: 68, height: 68, borderRadius: 22, background: 'linear-gradient(140deg,#f5efe2,#ede5d4)', border: '.5px solid rgba(40,57,108,.13)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 18px rgba(40,57,108,.08), 0 0 0 6px rgba(40,57,108,.04)', marginBottom: 3, position: 'relative', zIndex: 1 }}>
             <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#28396C" strokeWidth="1.5" strokeLinecap="round" opacity="0.4"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /></svg>
           </div>
-          <div style={{ fontSize: 15, fontWeight: 700, color: '#1a2340', letterSpacing: '-.3px', textAlign: 'center' }}>No conversations yet</div>
+          <div style={{ fontSize: 15, fontWeight: 300, color: '#1a2340', letterSpacing: '-.3px', textAlign: 'center' }}>No conversations yet</div>
           <div style={{ fontSize: 12, color: '#8892b0', textAlign: 'center', lineHeight: 1.65, maxWidth: 220 }}>Tap "New Message" above to start a conversation with any of your teachers.</div>
         </div>
 
@@ -111,12 +111,12 @@ export const MessagesSelectTeacher = () => (
         {/* Back row */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '12px 20px 0', cursor: 'pointer', width: 'fit-content' }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28396C" strokeWidth="2.2" strokeLinecap="round"><polyline points="15 18 9 12 15 6" /></svg>
-          <span style={{ fontSize: 13, fontWeight: 600, color: '#28396c', letterSpacing: '-.1px' }}>Messages</span>
+          <span style={{ fontSize: 13, fontWeight: 400, color: '#28396c', letterSpacing: '-.1px' }}>Messages</span>
         </div>
 
         {/* Header */}
         <div style={{ padding: '6px 20px 0' }}>
-          <div style={{ fontSize: 21, fontWeight: 700, color: '#1a2340', letterSpacing: '-.5px' }}>Select Teacher</div>
+          <div style={{ fontSize: 21, fontWeight: 300, color: '#1a2340', letterSpacing: '-.5px' }}>Select Teacher</div>
           <div style={{ fontSize: 12, color: '#8892b0', marginTop: 3 }}>Choose who you'd like to message</div>
         </div>
 
@@ -131,7 +131,7 @@ export const MessagesSelectTeacher = () => (
         </div>
 
         {/* Section Label */}
-        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '14px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '14px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
           Your Teachers<div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.13)' }} />
         </div>
 
@@ -142,14 +142,14 @@ export const MessagesSelectTeacher = () => (
             { initials: 'PS', avBg: 'linear-gradient(140deg,#1e2d57,#3d5494)', avShadow: '0 3px 10px rgba(40,57,108,.25)', online: false, name: 'Pasha Sir', role: 'Subject Teacher', subj: 'Islamic Read', tagBg: 'rgba(40,57,108,.08)', tagColor: '#28396c', tagBdr: 'rgba(40,57,108,.13)', tagIcon: <><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></> },
           ].map(t => (
             <div key={t.name} style={{ background: '#fff', borderRadius: 18, padding: '12px 14px', boxShadow: '0 0 0 .5px rgba(40,57,108,.06), 0 2px 8px rgba(40,57,108,.06)', border: '.5px solid rgba(40,57,108,.06)', display: 'flex', alignItems: 'center', gap: 11 }}>
-              <div style={{ width: 44, height: 44, borderRadius: 14, background: t.avBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 700, color: '#fff', flexShrink: 0, position: 'relative', boxShadow: t.avShadow }}>
+              <div style={{ width: 44, height: 44, borderRadius: 14, background: t.avBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14, fontWeight: 300, color: '#fff', flexShrink: 0, position: 'relative', boxShadow: t.avShadow }}>
                 {t.initials}
                 {t.online && <div style={{ position: 'absolute', bottom: -1, right: -1, width: 11, height: 11, background: '#2ebc71', borderRadius: '50%', border: '2px solid #fff' }} />}
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{t.name}</div>
+                <div style={{ fontSize: 14, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{t.name}</div>
                 <div style={{ fontSize: 11, color: '#8892b0', marginTop: 1 }}>{t.role}</div>
-                <div style={{ marginTop: 5, display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 100, fontSize: 9, fontWeight: 700, background: t.tagBg, color: t.tagColor, border: `.5px solid ${t.tagBdr}` }}>
+                <div style={{ marginTop: 5, display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 100, fontSize: 9, fontWeight: 300, background: t.tagBg, color: t.tagColor, border: `.5px solid ${t.tagBdr}` }}>
                   <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">{t.tagIcon}</svg>
                   {t.subj}
                 </div>
@@ -189,12 +189,12 @@ export const MessagesChat = () => (
         <div style={{ display: 'flex', alignItems: 'center', cursor: 'pointer', marginRight: 2, position: 'relative', zIndex: 1 }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.7)" strokeWidth="2.2" strokeLinecap="round"><polyline points="15 18 9 12 15 6" /></svg>
         </div>
-        <div style={{ width: 36, height: 36, borderRadius: 11, background: 'linear-gradient(140deg,#1A6B50,#2EBC71)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', flexShrink: 0, position: 'relative', zIndex: 1, boxShadow: '0 3px 10px rgba(46,188,113,.3)' }}>
+        <div style={{ width: 36, height: 36, borderRadius: 11, background: 'linear-gradient(140deg,#1A6B50,#2EBC71)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 300, color: '#fff', flexShrink: 0, position: 'relative', zIndex: 1, boxShadow: '0 3px 10px rgba(46,188,113,.3)' }}>
           JA
           <div style={{ position: 'absolute', bottom: -1, right: -1, width: 10, height: 10, background: '#2ebc71', borderRadius: '50%', border: '2px solid #334880' }} />
         </div>
         <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
-          <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', letterSpacing: '-.2px' }}>Jamal Sir</div>
+          <div style={{ fontSize: 14, fontWeight: 300, color: '#fff', letterSpacing: '-.2px' }}>Jamal Sir</div>
           <div style={{ fontSize: 10, color: 'rgba(255,255,255,.5)', marginTop: 1, display: 'flex', alignItems: 'center', gap: 4 }}>
             <div style={{ width: 5, height: 5, background: '#2ebc71', borderRadius: '50%', boxShadow: '0 0 0 2px rgba(46,188,113,.25)' }} />
             Online now · Class Teacher
@@ -216,7 +216,7 @@ export const MessagesChat = () => (
       <div style={{ flex: 1, padding: '16px 16px 0', display: 'flex', flexDirection: 'column', gap: 10, overflowY: 'auto', scrollbarWidth: 'none' as const }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, margin: '2px 0' }}>
           <div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.07)' }} />
-          <div style={{ fontSize: 9, fontWeight: 600, color: '#c0c8dc', letterSpacing: '.04em' }}>Today, Apr 18</div>
+          <div style={{ fontSize: 9, fontWeight: 400, color: '#c0c8dc', letterSpacing: '.04em' }}>Today, Apr 18</div>
           <div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.07)' }} />
         </div>
 
@@ -227,7 +227,7 @@ export const MessagesChat = () => (
           { type: 'sent', av: 'T', avBg: 'linear-gradient(140deg,#1e2d57,#3d5494)', text: 'That\'s wonderful! Thank you so much sir. We will keep supporting him at home. 🙏', time: '9:35 AM ✓✓' },
         ].map((m, i) => (
           <div key={i} style={{ display: 'flex', gap: 7, flexDirection: m.type === 'sent' ? 'row-reverse' : 'row' }}>
-            <div style={{ width: 26, height: 26, borderRadius: 9, background: m.avBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 700, color: '#fff', flexShrink: 0, alignSelf: 'flex-end' }}>
+            <div style={{ width: 26, height: 26, borderRadius: 9, background: m.avBg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 300, color: '#fff', flexShrink: 0, alignSelf: 'flex-end' }}>
               {m.av}
             </div>
             <div style={{ maxWidth: '70%' }}>

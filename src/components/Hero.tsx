@@ -16,7 +16,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#0071e3] text-[17px] md:text-[21px] font-semibold mb-3 tracking-[-0.01em]"
+            className="text-[#0071e3] text-[17px] md:text-[21px] font-normal mb-3 tracking-[-0.01em]"
           >
             The future of school management.
           </motion.p>
@@ -25,7 +25,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[48px] md:text-[64px] lg:text-[80px] font-semibold text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-6"
+            className="text-[48px] md:text-[64px] lg:text-[80px] font-normal text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-6"
           >
             Manage Your School.
             <br />
@@ -77,7 +77,7 @@ const Hero = () => {
             { label: 'Parent-Teacher Sync', value: 'Seamless' }
           ].map((item, i) => (
             <div key={item.label} className={`text-center py-4 ${i < 2 ? 'sm:border-r border-[#d2d2d7]/40' : ''}`}>
-              <p className="text-[28px] font-semibold text-[#1d1d1f] tracking-[-0.026em] mb-1">{item.value}</p>
+              <p className="text-[28px] font-normal text-[#1d1d1f] tracking-[-0.026em] mb-1">{item.value}</p>
               <p className="text-[14px] text-[#86868b] tracking-[-0.01em]">{item.label}</p>
             </div>
           ))}

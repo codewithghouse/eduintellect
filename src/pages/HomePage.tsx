@@ -53,7 +53,7 @@ const Features = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                  className="text-[40px] md:text-[56px] font-semibold text-white mb-2 tracking-[-0.04em]"
+                  className="text-[40px] md:text-[56px] font-normal text-white mb-2 tracking-[-0.04em]"
                 >
                   <CountUp to={stat.value} />
                 </motion.div>
@@ -75,10 +75,10 @@ const Features = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="inline-flex items-center gap-2 text-[#0071e3] text-[14px] font-semibold mb-4 tracking-[-0.01em]">
+                <div className="inline-flex items-center gap-2 text-[#0071e3] text-[14px] font-normal mb-4 tracking-[-0.01em]">
                   <Sparkles className="w-4 h-4" /> Why EduIntellect
                 </div>
-                <h2 className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] mb-6 leading-[1.08] tracking-[-0.035em]">
+                <h2 className="text-[40px] md:text-[48px] font-normal text-[#1d1d1f] mb-6 leading-[1.08] tracking-[-0.035em]">
                   Cutting-edge tech meets{' '}
                   <span className="gradient-text">administrative mastery.</span>
                 </h2>
@@ -105,7 +105,7 @@ const Features = () => {
                       {item.icon}
                     </div>
                     <div>
-                      <h4 className="text-[#1d1d1f] font-semibold text-[17px] mb-1 tracking-[-0.01em]">{item.title}</h4>
+                      <h4 className="text-[#1d1d1f] font-normal text-[17px] mb-1 tracking-[-0.01em]">{item.title}</h4>
                       <p className="text-[#86868b] text-[15px] leading-[1.47] tracking-[-0.01em]">{item.desc}</p>
                     </div>
                   </motion.div>
@@ -126,7 +126,7 @@ const Features = () => {
                   <div className="w-20 h-20 bg-[#f5f5f7] rounded-full flex items-center justify-center mb-6">
                     <Zap className="w-10 h-10 text-[#0071e3]" />
                   </div>
-                  <h3 className="text-[24px] font-semibold text-[#1d1d1f] mb-2 tracking-[-0.02em]">Live Demo Portal</h3>
+                  <h3 className="text-[24px] font-normal text-[#1d1d1f] mb-2 tracking-[-0.02em]">Live Demo Portal</h3>
                   <p className="text-[#86868b] text-[15px] leading-relaxed max-w-[240px]">Experience the power of real-time education technology.</p>
                 </div>
               </div>

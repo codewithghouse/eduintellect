@@ -70,7 +70,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
               {/* Header */}
               <div className="px-7 pt-7 pb-5 flex items-start justify-between">
                 <div>
-                  <h3 className="text-[22px] font-semibold text-[#1d1d1f] tracking-[-0.02em]">Select Your Portal</h3>
+                  <h3 className="text-[22px] font-normal text-[#1d1d1f] tracking-[-0.02em]">Select Your Portal</h3>
                   <p className="text-[#86868b] text-[14px] mt-1">Choose your role to continue</p>
                 </div>
                 <button

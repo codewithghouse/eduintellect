@@ -16,7 +16,7 @@ const SPH = () => (<div className="sp-hdr"><div className="sp-brand"><div classN
 
 const PageHead = () => (
   <div style={{ padding: '18px 20px 0' }}>
-    <div style={{ fontSize: 24, fontWeight: 700, color: '#1a2340', letterSpacing: '-.5px', lineHeight: 1.15 }}>Tests &amp;<br />Examinations</div>
+    <div style={{ fontSize: 24, fontWeight: 300, color: '#1a2340', letterSpacing: '-.5px', lineHeight: 1.15 }}>Tests &amp;<br />Examinations</div>
     <div style={{ fontSize: 12, color: '#8892b0', marginTop: 4 }}>Track upcoming assessments and latest outcomes</div>
   </div>
 );
@@ -27,8 +27,8 @@ const Hero = ({ empty }: { empty: boolean }) => (
     <div style={{ width: 40, height: 40, borderRadius: 13, background: 'rgba(255,255,255,.12)', border: '.5px solid rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14, position: 'relative', zIndex: 1 }}>
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="4" width="18" height="18" rx="3" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
     </div>
-    <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.5)', marginBottom: 6, position: 'relative', zIndex: 1 }}>Coming Up Next</div>
-    <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', letterSpacing: '-.4px', lineHeight: 1.15, marginBottom: 8, position: 'relative', zIndex: 1 }}>{empty ? 'No upcoming tests' : 'English Mid-Term'}</div>
+    <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.14em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.5)', marginBottom: 6, position: 'relative', zIndex: 1 }}>Coming Up Next</div>
+    <div style={{ fontSize: 20, fontWeight: 300, color: '#fff', letterSpacing: '-.4px', lineHeight: 1.15, marginBottom: 8, position: 'relative', zIndex: 1 }}>{empty ? 'No upcoming tests' : 'English Mid-Term'}</div>
     <div style={{ display: 'flex', alignItems: 'center', gap: 6, position: 'relative', zIndex: 1, marginBottom: 16 }}>
       <div style={{ width: 5, height: 5, borderRadius: '50%', background: empty ? 'rgba(255,255,255,.3)' : 'rgba(46,188,113,.7)' }} />
       <span style={{ fontSize: 11, color: 'rgba(255,255,255,.5)', fontWeight: 500 }}>{empty ? '9:00 AM • Enjoy your free time!' : 'Apr 20 • 9:00 AM • Jamal Sir'}</span>
@@ -36,8 +36,8 @@ const Hero = ({ empty }: { empty: boolean }) => (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'rgba(255,255,255,.08)', borderRadius: 14, overflow: 'hidden', position: 'relative', zIndex: 1 }}>
       {[{ v: empty ? '0' : '1', l: 'This Week' }, { v: empty ? '0' : '3', l: 'This Term' }].map((s) => (
         <div key={s.l} style={{ background: 'rgba(255,255,255,.04)', padding: '12px 14px', display: 'flex', flexDirection: 'column' as const, gap: 3 }}>
-          <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', letterSpacing: '-.4px', lineHeight: 1 }}>{s.v}</div>
-          <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.09em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.38)' }}>{s.l}</div>
+          <div style={{ fontSize: 20, fontWeight: 300, color: '#fff', letterSpacing: '-.4px', lineHeight: 1 }}>{s.v}</div>
+          <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.09em', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,.38)' }}>{s.l}</div>
         </div>
       ))}
     </div>
@@ -45,7 +45,7 @@ const Hero = ({ empty }: { empty: boolean }) => (
 );
 
 const SecLbl = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '16px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+  <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '16px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
     {children}<div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.13)' }} />
   </div>
 );
@@ -66,8 +66,8 @@ const MiniEmpty = ({ icon, txt }: { icon: React.ReactNode; txt: string }) => (
 const GradeBreakdown = ({ counts, taken }: { counts: number[]; taken: number }) => (
   <ListCard>
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
-      <div style={{ fontSize: 14, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>Grade Breakdown</div>
-      <div style={{ fontSize: 10, fontWeight: 600, color: '#8892b0' }}>{taken} tests taken</div>
+      <div style={{ fontSize: 14, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>Grade Breakdown</div>
+      <div style={{ fontSize: 10, fontWeight: 400, color: '#8892b0' }}>{taken} tests taken</div>
     </div>
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
       {[
@@ -77,8 +77,8 @@ const GradeBreakdown = ({ counts, taken }: { counts: number[]; taken: number }) 
         { val: counts[3], lbl: 'Below C', bg: 'rgba(232,85,85,.07)', bdr: 'rgba(232,85,85,.18)', color: '#c03030' },
       ].map((g) => (
         <div key={g.lbl} style={{ borderRadius: 14, padding: '12px 10px', display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 4, background: g.bg, border: `.5px solid ${g.bdr}` }}>
-          <div style={{ fontSize: 26, fontWeight: 700, letterSpacing: '-.7px', lineHeight: 1, color: g.color }}>{g.val}</div>
-          <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.07em', textTransform: 'uppercase' as const, color: g.color }}>{g.lbl}</div>
+          <div style={{ fontSize: 26, fontWeight: 300, letterSpacing: '-.7px', lineHeight: 1, color: g.color }}>{g.val}</div>
+          <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.07em', textTransform: 'uppercase' as const, color: g.color }}>{g.lbl}</div>
         </div>
       ))}
     </div>
@@ -129,10 +129,10 @@ export const ParentTestsFilled = () => (
             <div key={t.name} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: i === 0 ? '.5px solid rgba(40,57,108,.07)' : 'none' }}>
               <div style={{ width: 36, height: 36, borderRadius: 11, background: t.icoBg, border: `.5px solid ${t.icoBdr}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>{t.ico}</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{t.name}</div>
+                <div style={{ fontSize: 13, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{t.name}</div>
                 <div style={{ fontSize: 10, color: '#8892b0', marginTop: 2 }}>{t.sub}</div>
               </div>
-              <div style={{ padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 700, background: t.bBg, color: t.bC, border: `.5px solid ${t.bBdr}`, flexShrink: 0 }}>{t.badge}</div>
+              <div style={{ padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 300, background: t.bBg, color: t.bC, border: `.5px solid ${t.bBdr}`, flexShrink: 0 }}>{t.badge}</div>
             </div>
           ))}
         </ListCard>
@@ -145,12 +145,12 @@ export const ParentTestsFilled = () => (
             { grade: 'B+', gBg: 'rgba(40,57,108,.08)', gBdr: 'rgba(40,57,108,.13)', gC: '#28396c', name: 'Islamic Reading Quiz', sub: 'Apr 3 · Pasha Sir', score: '78%', sC: '#28396c' },
           ].map((r, i) => (
             <div key={r.name} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0', borderBottom: i === 0 ? '.5px solid rgba(40,57,108,.07)' : 'none' }}>
-              <div style={{ width: 36, height: 36, borderRadius: 11, background: r.gBg, border: `.5px solid ${r.gBdr}`, color: r.gC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>{r.grade}</div>
+              <div style={{ width: 36, height: 36, borderRadius: 11, background: r.gBg, border: `.5px solid ${r.gBdr}`, color: r.gC, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 300, flexShrink: 0 }}>{r.grade}</div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{r.name}</div>
+                <div style={{ fontSize: 13, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{r.name}</div>
                 <div style={{ fontSize: 10, color: '#8892b0', marginTop: 2 }}>{r.sub}</div>
               </div>
-              <div style={{ fontSize: 16, fontWeight: 700, color: r.sC, letterSpacing: '-.3px', flexShrink: 0 }}>{r.score}</div>
+              <div style={{ fontSize: 16, fontWeight: 300, color: r.sC, letterSpacing: '-.3px', flexShrink: 0 }}>{r.score}</div>
             </div>
           ))}
         </ListCard>

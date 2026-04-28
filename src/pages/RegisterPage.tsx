@@ -115,7 +115,7 @@ const RegisterPage = () => {
           <div className="w-16 h-16 bg-[#34c759]/10 rounded-full flex items-center justify-center mx-auto mb-6">
             <CheckCircle2 className="w-8 h-8 text-[#34c759]" />
           </div>
-          <h2 className="text-[28px] font-semibold text-[#1d1d1f] mb-3 tracking-[-0.02em]">Registration Successful</h2>
+          <h2 className="text-[28px] font-normal text-[#1d1d1f] mb-3 tracking-[-0.02em]">Registration Successful</h2>
           <p className="text-[#86868b] text-[15px] mb-8 leading-[1.47]">
             Your school <strong className="text-[#1d1d1f]">{formData.schoolName}</strong> is now part of the EduIntellect ecosystem. Redirecting you...
           </p>
@@ -136,7 +136,7 @@ const RegisterPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ease: [0.16, 1, 0.3, 1] }}
             >
-              <h1 className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] mb-5 leading-[1.08] tracking-[-0.035em]">
+              <h1 className="text-[40px] md:text-[48px] font-normal text-[#1d1d1f] mb-5 leading-[1.08] tracking-[-0.035em]">
                 Empower your{' '}
                 <span className="gradient-text">institution</span> today.
               </h1>
@@ -168,7 +168,7 @@ const RegisterPage = () => {
             className="bg-white rounded-[20px] border border-[#d2d2d7]/40 p-8 md:p-10 shadow-sm"
           >
             <div className="mb-8">
-              <h2 className="text-[22px] font-semibold text-[#1d1d1f] mb-1 tracking-[-0.02em]">Register Your School</h2>
+              <h2 className="text-[22px] font-normal text-[#1d1d1f] mb-1 tracking-[-0.02em]">Register Your School</h2>
               <p className="text-[#86868b] text-[14px]">Become a part of the future of education.</p>
             </div>
 

@@ -29,10 +29,10 @@ const Hero = () => (
     <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px)', backgroundSize: '22px 22px', pointerEvents: 'none' }} />
 
     <div style={{ position: 'relative', zIndex: 1 }}>
-      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 7, display: 'flex', alignItems: 'center', gap: 7 }}>
+      <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 7, display: 'flex', alignItems: 'center', gap: 7 }}>
         Payment Center<div style={{ flex: 1, height: '.5px', background: 'rgba(255,255,255,.1)' }} />
       </div>
-      <div style={{ fontSize: 32, fontWeight: 700, color: '#fff', letterSpacing: '-.8px', lineHeight: 1.1, marginBottom: 7 }}>Fee Status</div>
+      <div style={{ fontSize: 32, fontWeight: 300, color: '#fff', letterSpacing: '-.8px', lineHeight: 1.1, marginBottom: 7 }}>Fee Status</div>
       <div style={{ fontSize: 12, color: 'rgba(255,255,255,.5)', marginBottom: 18, display: 'flex', alignItems: 'center', gap: 6 }}>
         Tanveer Sultana
         <div style={{ width: 4, height: 4, background: 'rgba(255,255,255,.3)', borderRadius: '50%' }} />
@@ -44,7 +44,7 @@ const Hero = () => (
           { label: 'All Terms', active: false, icon: <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" /> },
           { label: 'History', active: false, icon: <><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></> },
         ].map(c => (
-          <div key={c.label} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '7px 12px', borderRadius: 12, background: c.active ? 'rgba(255,255,255,.18)' : 'rgba(255,255,255,.1)', border: `.5px solid ${c.active ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.18)'}`, fontSize: 11, fontWeight: 700, color: 'rgba(255,255,255,.8)' }}>
+          <div key={c.label} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '7px 12px', borderRadius: 12, background: c.active ? 'rgba(255,255,255,.18)' : 'rgba(255,255,255,.1)', border: `.5px solid ${c.active ? 'rgba(255,255,255,.3)' : 'rgba(255,255,255,.18)'}`, fontSize: 11, fontWeight: 300, color: 'rgba(255,255,255,.8)' }}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">{c.icon}</svg>
             {c.label}
           </div>
@@ -64,9 +64,9 @@ const SumCard = ({ variant, lbl, val, tag, icon, stroke, bg, bdr }: { variant: '
       <div style={{ width: 28, height: 28, borderRadius: 9, background: bg, border: `.5px solid ${bdr}`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 3 }}>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke={stroke} strokeWidth="2.5" strokeLinecap="round">{icon}</svg>
       </div>
-      <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c0c8dc', lineHeight: 1.3, whiteSpace: 'pre-line' }}>{lbl}</div>
-      <div style={{ fontSize: val.length > 4 ? 16 : 20, fontWeight: 700, letterSpacing: '-.5px', lineHeight: 1, color: valColor }}>{val}</div>
-      <div style={{ fontSize: 9, fontWeight: 600, marginTop: 1, color: tagColor }}>{tag}</div>
+      <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.08em', textTransform: 'uppercase', color: '#c0c8dc', lineHeight: 1.3, whiteSpace: 'pre-line' }}>{lbl}</div>
+      <div style={{ fontSize: val.length > 4 ? 16 : 20, fontWeight: 300, letterSpacing: '-.5px', lineHeight: 1, color: valColor }}>{val}</div>
+      <div style={{ fontSize: 9, fontWeight: 400, marginTop: 1, color: tagColor }}>{tag}</div>
     </div>
   );
 };
@@ -76,7 +76,7 @@ const ContactStrip = () => (
     <div style={{ width: 34, height: 34, borderRadius: 11, background: '#28396c', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: '0 2px 8px rgba(40,57,108,.22)' }}>
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
     </div>
-    <div style={{ flex: 1, fontSize: 11, color: '#4a5578', lineHeight: 1.55 }}>Contact your <strong style={{ color: '#28396c', fontWeight: 700 }}>school administration</strong> for payment queries and fee structure.</div>
+    <div style={{ flex: 1, fontSize: 11, color: '#4a5578', lineHeight: 1.55 }}>Contact your <strong style={{ color: '#28396c', fontWeight: 300 }}>school administration</strong> for payment queries and fee structure.</div>
     <div style={{ width: 26, height: 26, borderRadius: 8, background: 'rgba(40,57,108,.08)', border: '.5px solid rgba(40,57,108,.13)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#28396C" strokeWidth="2.2" strokeLinecap="round"><polyline points="9 18 15 12 9 6" /></svg>
     </div>
@@ -84,7 +84,7 @@ const ContactStrip = () => (
 );
 
 const SecLbl = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '16px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+  <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '16px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
     {children}<div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.13)' }} />
   </div>
 );
@@ -121,13 +121,13 @@ export const FeeStatusEmpty = () => (
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke={r.stroke} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">{r.icon}</svg>
                 </div>
                 <div>
-                  <div style={{ fontSize: 13, fontWeight: 600, color: '#1a2340', letterSpacing: '-.2px' }}>{r.label}</div>
+                  <div style={{ fontSize: 13, fontWeight: 400, color: '#1a2340', letterSpacing: '-.2px' }}>{r.label}</div>
                   <div style={{ fontSize: 10, color: '#8892b0', marginTop: 1 }}>{r.sub}</div>
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3 }}>
-                <div style={{ fontSize: 18, fontWeight: 700, letterSpacing: '-.4px', color: r.amtColor }}>{r.amt}</div>
-                <div style={{ padding: '3px 8px', borderRadius: 100, fontSize: 9, fontWeight: 700, background: r.chipBg, color: r.chipColor, border: `.5px solid ${r.chipBdr}` }}>{r.chip}</div>
+                <div style={{ fontSize: 18, fontWeight: 300, letterSpacing: '-.4px', color: r.amtColor }}>{r.amt}</div>
+                <div style={{ padding: '3px 8px', borderRadius: 100, fontSize: 9, fontWeight: 300, background: r.chipBg, color: r.chipColor, border: `.5px solid ${r.chipBdr}` }}>{r.chip}</div>
               </div>
             </div>
           ))}
@@ -141,7 +141,7 @@ export const FeeStatusEmpty = () => (
             <div style={{ width: 64, height: 64, borderRadius: 20, background: 'linear-gradient(140deg,#f5efe2,#ede5d4)', border: '.5px solid rgba(40,57,108,.13)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 18px rgba(40,57,108,.08), 0 0 0 6px rgba(40,57,108,.04)', position: 'relative', zIndex: 1, marginBottom: 2 }}>
               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#28396C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.4"><rect x="1" y="4" width="22" height="16" rx="3" /><line x1="1" y1="10" x2="23" y2="10" /><line x1="8" y1="15" x2="12" y2="15" /><line x1="15" y1="15" x2="17" y2="15" /></svg>
             </div>
-            <div style={{ fontSize: 14, fontWeight: 700, color: '#1a2340', letterSpacing: '-.3px', textAlign: 'center' }}>No Fee Records Found</div>
+            <div style={{ fontSize: 14, fontWeight: 300, color: '#1a2340', letterSpacing: '-.3px', textAlign: 'center' }}>No Fee Records Found</div>
             <div style={{ fontSize: 12, color: '#8892b0', textAlign: 'center', lineHeight: 1.65, maxWidth: 200 }}>Your school has not added any fee records yet. Check back later.</div>
           </div>
         </div>
@@ -177,8 +177,8 @@ export const FeeStatusFilled = () => (
         <SecLbl>Payment Records</SecLbl>
         <div style={{ margin: '10px 16px 0', background: '#fff', borderRadius: 20, padding: 18, boxShadow: '0 0 0 .5px rgba(40,57,108,.06), 0 2px 8px rgba(40,57,108,.06)', border: '.5px solid rgba(40,57,108,.06)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 14 }}>
-            <div style={{ fontSize: 15, fontWeight: 700, color: '#1a2340', letterSpacing: '-.3px' }}>All Transactions</div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 600, color: '#28396c' }}>
+            <div style={{ fontSize: 15, fontWeight: 300, color: '#1a2340', letterSpacing: '-.3px' }}>All Transactions</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 400, color: '#28396c' }}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" /></svg>
               Filter
             </div>
@@ -206,12 +206,12 @@ export const FeeStatusFilled = () => (
                   )}
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 12, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{r.name}</div>
+                  <div style={{ fontSize: 12, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{r.name}</div>
                   <div style={{ fontSize: 10, color: '#8892b0', marginTop: 2 }}>{r.date}</div>
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 3 }}>
-                  <div style={{ fontSize: 15, fontWeight: 700, letterSpacing: '-.3px', color: amtColor }}>{r.amt}</div>
-                  <div style={{ padding: '3px 8px', borderRadius: 100, fontSize: 9, fontWeight: 700, background: chipBg, color: chipColor, border: `.5px solid ${chipBdr}` }}>{r.status}</div>
+                  <div style={{ fontSize: 15, fontWeight: 300, letterSpacing: '-.3px', color: amtColor }}>{r.amt}</div>
+                  <div style={{ padding: '3px 8px', borderRadius: 100, fontSize: 9, fontWeight: 300, background: chipBg, color: chipColor, border: `.5px solid ${chipBdr}` }}>{r.status}</div>
                 </div>
               </div>
             );

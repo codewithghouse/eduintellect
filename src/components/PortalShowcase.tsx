@@ -49,7 +49,7 @@ const PortalShowcase = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[#0071e3] text-[17px] font-semibold mb-2 tracking-[-0.01em]"
+            className="text-[#0071e3] text-[17px] font-normal mb-2 tracking-[-0.01em]"
           >
             Four dedicated portals
           </motion.p>
@@ -58,7 +58,7 @@ const PortalShowcase = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] mb-4 tracking-[-0.035em] leading-[1.08]"
+            className="text-[40px] md:text-[48px] font-normal text-[#1d1d1f] mb-4 tracking-[-0.035em] leading-[1.08]"
           >
             One platform. Every role.
           </motion.h2>
@@ -91,7 +91,7 @@ const PortalShowcase = () => {
                 {portal.icon}
               </div>
               <div className="text-[12px] font-medium text-[#86868b] uppercase tracking-[0.08em] mb-2">{portal.role}</div>
-              <h3 className="text-[22px] font-semibold text-[#1d1d1f] mb-3 tracking-[-0.02em]">
+              <h3 className="text-[22px] font-normal text-[#1d1d1f] mb-3 tracking-[-0.02em]">
                 {portal.title}
               </h3>
               <p className="text-[#86868b] text-[14px] mb-6 flex-grow leading-[1.47] tracking-[-0.01em]">

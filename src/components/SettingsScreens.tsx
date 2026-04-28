@@ -23,7 +23,7 @@ const SPHeader = () => (
 );
 
 const SecLbl = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '16px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+  <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '16px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
     {children}<div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.13)' }} />
   </div>
 );
@@ -46,18 +46,18 @@ export const SettingsPreferences = () => (
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.8)" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="3" /><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14" /></svg>
           </div>
           <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
-            <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 2 }}>Institutional Portal Registry</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#fff', letterSpacing: '-.1px', display: 'flex', alignItems: 'center', gap: 5 }}>
+            <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 2 }}>Institutional Portal Registry</div>
+            <div style={{ fontSize: 11, fontWeight: 300, color: '#fff', letterSpacing: '-.1px', display: 'flex', alignItems: 'center', gap: 5 }}>
               <div style={{ width: 5, height: 5, background: '#2ebc71', borderRadius: '50%', boxShadow: '0 0 0 2px rgba(46,188,113,.25)' }} />
               Settings Sync Active
             </div>
           </div>
-          <div style={{ padding: '3px 9px', background: 'rgba(46,188,113,.15)', borderRadius: 100, fontSize: 9, fontWeight: 700, color: '#2ebc71', border: '.5px solid rgba(46,188,113,.25)', position: 'relative', zIndex: 1 }}>Live</div>
+          <div style={{ padding: '3px 9px', background: 'rgba(46,188,113,.15)', borderRadius: 100, fontSize: 9, fontWeight: 300, color: '#2ebc71', border: '.5px solid rgba(46,188,113,.25)', position: 'relative', zIndex: 1 }}>Live</div>
         </div>
 
         {/* Page Head */}
         <div style={{ padding: '16px 20px 0' }}>
-          <div style={{ fontSize: 23, fontWeight: 700, color: '#1a2340', letterSpacing: '-.6px', marginBottom: 3 }}>Portal Preferences</div>
+          <div style={{ fontSize: 23, fontWeight: 300, color: '#1a2340', letterSpacing: '-.6px', marginBottom: 3 }}>Portal Preferences</div>
           <div style={{ fontSize: 11, color: '#8892b0', fontWeight: 400, lineHeight: 1.55 }}>Manage your parental profile and predictive intelligence alerts.</div>
         </div>
 
@@ -67,8 +67,8 @@ export const SettingsPreferences = () => (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2EBC71" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></svg>
           </div>
           <div style={{ flex: 1 }}>
-            <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: '#c0c8dc', marginBottom: 2 }}>Identity Status</div>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#1e9a5a', letterSpacing: '-.2px' }}>Verified Guardian</div>
+            <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase', color: '#c0c8dc', marginBottom: 2 }}>Identity Status</div>
+            <div style={{ fontSize: 13, fontWeight: 300, color: '#1e9a5a', letterSpacing: '-.2px' }}>Verified Guardian</div>
           </div>
           <div style={{ width: 26, height: 26, borderRadius: 8, background: 'rgba(46,188,113,.1)', border: '.5px solid rgba(46,188,113,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2EBC71" strokeWidth="2.5" strokeLinecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
@@ -81,15 +81,15 @@ export const SettingsPreferences = () => (
         <div style={{ margin: '12px 16px 0', background: '#fff', borderRadius: 22, padding: '20px 18px 18px', boxShadow: '0 0 0 .5px rgba(40,57,108,.08), 0 4px 18px rgba(40,57,108,.09), 0 24px 56px rgba(40,57,108,.13)', border: '.5px solid rgba(40,57,108,.07)', position: 'relative', overflow: 'hidden', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <div style={{ position: 'absolute', top: -50, left: '50%', transform: 'translateX(-50%)', width: 220, height: 160, background: 'radial-gradient(ellipse,rgba(40,57,108,.05) 0%,transparent 70%)', pointerEvents: 'none' }} />
           <div style={{ position: 'relative', marginBottom: 11 }}>
-            <div style={{ width: 72, height: 72, borderRadius: 22, background: 'linear-gradient(140deg,#1e2d57,#3d5494)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 700, color: '#fff', boxShadow: '0 6px 24px rgba(40,57,108,.28), 0 0 0 3px rgba(255,255,255,.9), 0 0 0 4px rgba(40,57,108,.12)' }}>T</div>
+            <div style={{ width: 72, height: 72, borderRadius: 22, background: 'linear-gradient(140deg,#1e2d57,#3d5494)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, fontWeight: 300, color: '#fff', boxShadow: '0 6px 24px rgba(40,57,108,.28), 0 0 0 3px rgba(255,255,255,.9), 0 0 0 4px rgba(40,57,108,.12)' }}>T</div>
             <div style={{ position: 'absolute', bottom: -4, right: -4, width: 26, height: 26, borderRadius: 8, background: '#28396c', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '2px solid white', boxShadow: '0 2px 8px rgba(40,57,108,.25)' }}>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z" /><circle cx="12" cy="13" r="4" /></svg>
             </div>
           </div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: '#1a2340', letterSpacing: '-.4px', marginBottom: 7 }}>Tanveer Sultana</div>
+          <div style={{ fontSize: 18, fontWeight: 300, color: '#1a2340', letterSpacing: '-.4px', marginBottom: 7 }}>Tanveer Sultana</div>
           <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', justifyContent: 'center' }}>
-            <div style={{ padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 700, letterSpacing: '.04em', background: 'rgba(40,57,108,.08)', color: '#28396c', border: '.5px solid rgba(40,57,108,.13)' }}>Parent Guardian</div>
-            <div style={{ padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 700, letterSpacing: '.04em', background: '#f5efe2', color: '#8892b0', border: '.5px solid rgba(40,57,108,.07)' }}>ID: WZ8S2JVT</div>
+            <div style={{ padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 300, letterSpacing: '.04em', background: 'rgba(40,57,108,.08)', color: '#28396c', border: '.5px solid rgba(40,57,108,.13)' }}>Parent Guardian</div>
+            <div style={{ padding: '4px 10px', borderRadius: 100, fontSize: 10, fontWeight: 300, letterSpacing: '.04em', background: '#f5efe2', color: '#8892b0', border: '.5px solid rgba(40,57,108,.07)' }}>ID: WZ8S2JVT</div>
           </div>
         </div>
 
@@ -102,7 +102,7 @@ export const SettingsPreferences = () => (
             { lbl: 'Interface Locality', txt: 'ENG: Institutional English', muted: false, icon: <><circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" /><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" /></> },
           ].map((f, i, arr) => (
             <div key={f.lbl} style={{ padding: '12px 16px', borderBottom: i < arr.length - 1 ? '.5px solid rgba(40,57,108,.07)' : 'none' }}>
-              <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: '#c0c8dc', marginBottom: 5 }}>{f.lbl}</div>
+              <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase', color: '#c0c8dc', marginBottom: 5 }}>{f.lbl}</div>
               <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
                 <div style={{ width: 26, height: 26, borderRadius: 8, background: 'rgba(40,57,108,.08)', border: '.5px solid rgba(40,57,108,.13)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#28396C" strokeWidth="2.2" strokeLinecap="round">{f.icon}</svg>
@@ -115,7 +115,7 @@ export const SettingsPreferences = () => (
         </div>
 
         {/* Commit Button */}
-        <div style={{ margin: '14px 16px', background: 'linear-gradient(135deg,#28396c,#1e2d57)', borderRadius: 16, padding: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: 14, fontWeight: 700, color: '#fff', letterSpacing: '.02em', position: 'relative', overflow: 'hidden', boxShadow: '0 6px 22px rgba(40,57,108,.26)' }}>
+        <div style={{ margin: '14px 16px', background: 'linear-gradient(135deg,#28396c,#1e2d57)', borderRadius: 16, padding: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, fontSize: 14, fontWeight: 300, color: '#fff', letterSpacing: '.02em', position: 'relative', overflow: 'hidden', boxShadow: '0 6px 22px rgba(40,57,108,.26)' }}>
           <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 55%)' }} />
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" style={{ position: 'relative', zIndex: 1 }}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
           <span style={{ position: 'relative', zIndex: 1 }}>Commit Changes</span>
@@ -143,9 +143,9 @@ export const SettingsAlertsSecurity = () => (
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,.014) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.014) 1px,transparent 1px)', backgroundSize: '22px 22px', pointerEvents: 'none' }} />
           <svg style={{ position: 'absolute', right: -10, bottom: -10, opacity: 0.06, pointerEvents: 'none' }} width="130" height="150" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
 
-          <div style={{ width: 42, height: 42, borderRadius: 14, background: 'rgba(255,255,255,.15)', border: '.5px solid rgba(255,255,255,.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 12, position: 'relative', zIndex: 1 }}>T</div>
-          <div style={{ fontSize: 18, fontWeight: 700, color: '#fff', letterSpacing: '-.5px', marginBottom: 3, position: 'relative', zIndex: 1 }}>Tanveer Sultana</div>
-          <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: 16, position: 'relative', zIndex: 1 }}>Grade Subdivision Matrix</div>
+          <div style={{ width: 42, height: 42, borderRadius: 14, background: 'rgba(255,255,255,.15)', border: '.5px solid rgba(255,255,255,.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 300, color: '#fff', marginBottom: 12, position: 'relative', zIndex: 1 }}>T</div>
+          <div style={{ fontSize: 18, fontWeight: 300, color: '#fff', letterSpacing: '-.5px', marginBottom: 3, position: 'relative', zIndex: 1 }}>Tanveer Sultana</div>
+          <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.4)', marginBottom: 16, position: 'relative', zIndex: 1 }}>Grade Subdivision Matrix</div>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'rgba(255,255,255,.08)', borderRadius: 14, overflow: 'hidden', position: 'relative', zIndex: 1 }}>
             {[
@@ -153,8 +153,8 @@ export const SettingsAlertsSecurity = () => (
               { lbl: 'Sync ID', val: 'WZ8S2JVT' },
             ].map(m => (
               <div key={m.lbl} style={{ background: 'rgba(255,255,255,.04)', padding: '10px 12px' }}>
-                <div style={{ fontSize: 7, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,.35)', marginBottom: 3 }}>{m.lbl}</div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#fff', letterSpacing: '-.2px' }}>{m.val}</div>
+                <div style={{ fontSize: 7, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase', color: 'rgba(255,255,255,.35)', marginBottom: 3 }}>{m.lbl}</div>
+                <div style={{ fontSize: 13, fontWeight: 300, color: '#fff', letterSpacing: '-.2px' }}>{m.val}</div>
               </div>
             ))}
           </div>
@@ -168,7 +168,7 @@ export const SettingsAlertsSecurity = () => (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F59C2A" strokeWidth="2.2" strokeLinecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 01-3.46 0" /></svg>
             </div>
             <div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>Notification Controls</div>
+              <div style={{ fontSize: 13, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>Notification Controls</div>
               <div style={{ fontSize: 10, color: '#8892b0', marginTop: 1 }}>Manage intelligent alert preferences</div>
             </div>
           </div>
@@ -185,7 +185,7 @@ export const SettingsAlertsSecurity = () => (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={t.stroke} strokeWidth="2.2" strokeLinecap="round">{t.icon}</svg>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{t.title}</div>
+                <div style={{ fontSize: 12, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{t.title}</div>
                 <div style={{ fontSize: 10, color: '#8892b0', marginTop: 1 }}>{t.sub}</div>
               </div>
               {/* Toggle */}
@@ -204,12 +204,12 @@ export const SettingsAlertsSecurity = () => (
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28396C" strokeWidth="2.2" strokeLinecap="round"><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0110 0v4" /></svg>
             </div>
             <div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>Security Ops</div>
+              <div style={{ fontSize: 13, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>Security Ops</div>
               <div style={{ fontSize: 10, color: '#8892b0', marginTop: 1 }}>Encryption &amp; access controls</div>
             </div>
           </div>
           <div style={{ padding: '10px 16px', background: 'rgba(232,85,85,.04)', borderBottom: '.5px solid rgba(40,57,108,.07)' }}>
-            <div style={{ fontSize: 10, color: '#8892b0', lineHeight: 1.6, letterSpacing: '-.1px' }}>Encryption and access controls are managed by the <strong style={{ color: '#4a5578', fontWeight: 600 }}>Institutional Administrator</strong>. Contact your school for changes.</div>
+            <div style={{ fontSize: 10, color: '#8892b0', lineHeight: 1.6, letterSpacing: '-.1px' }}>Encryption and access controls are managed by the <strong style={{ color: '#4a5578', fontWeight: 400 }}>Institutional Administrator</strong>. Contact your school for changes.</div>
           </div>
           {[
             { title: 'Biometric Key', sub: 'Authorized Device', status: 'Active', statusColor: '#1e9a5a', dotColor: '#2ebc71', dotGlow: 'rgba(46,188,113,.2)', iconBg: 'rgba(40,57,108,.08)', iconBdr: 'rgba(40,57,108,.13)', iconStroke: '#28396C', icon: <><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0110 0v4" /><circle cx="12" cy="16" r="1" /></> },
@@ -220,10 +220,10 @@ export const SettingsAlertsSecurity = () => (
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke={s.iconStroke} strokeWidth="2.2" strokeLinecap="round">{s.icon}</svg>
               </div>
               <div style={{ flex: 1 }}>
-                <div style={{ fontSize: 12, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{s.title}</div>
+                <div style={{ fontSize: 12, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{s.title}</div>
                 <div style={{ fontSize: 10, color: '#8892b0', marginTop: 1 }}>{s.sub}</div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 9, fontWeight: 700, color: s.statusColor, flexShrink: 0 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 9, fontWeight: 300, color: s.statusColor, flexShrink: 0 }}>
                 <div style={{ width: 6, height: 6, borderRadius: '50%', background: s.dotColor, boxShadow: `0 0 0 2px ${s.dotGlow}` }} />
                 {s.status}
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C0C8DC" strokeWidth="2.2" strokeLinecap="round"><polyline points="9 18 15 12 9 6" /></svg>

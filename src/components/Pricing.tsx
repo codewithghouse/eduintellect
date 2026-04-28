@@ -35,7 +35,7 @@ const Pricing = () => {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-[#0071e3] text-[17px] font-semibold mb-2 tracking-[-0.01em]"
+            className="text-[#0071e3] text-[17px] font-normal mb-2 tracking-[-0.01em]"
           >
             Pricing
           </motion.p>
@@ -44,7 +44,7 @@ const Pricing = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] mb-4 tracking-[-0.035em] leading-[1.08]"
+            className="text-[40px] md:text-[48px] font-normal text-[#1d1d1f] mb-4 tracking-[-0.035em] leading-[1.08]"
           >
             Simple, transparent pricing.
           </motion.h2>
@@ -79,11 +79,11 @@ const Pricing = () => {
                 </div>
               )}
 
-              <h3 className={`text-[22px] font-semibold mb-2 tracking-[-0.02em] ${plan.highlighted ? 'text-white' : 'text-[#1d1d1f]'}`}>
+              <h3 className={`text-[22px] font-normal mb-2 tracking-[-0.02em] ${plan.highlighted ? 'text-white' : 'text-[#1d1d1f]'}`}>
                 {plan.name}
               </h3>
               <div className="mb-4">
-                <span className={`text-[48px] font-semibold tracking-[-0.04em] ${plan.highlighted ? 'text-white' : 'text-[#1d1d1f]'}`}>
+                <span className={`text-[48px] font-normal tracking-[-0.04em] ${plan.highlighted ? 'text-white' : 'text-[#1d1d1f]'}`}>
                   {plan.price}
                 </span>
                 {plan.price !== 'Custom' && (

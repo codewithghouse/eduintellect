@@ -10,7 +10,7 @@ const SPTabBar = ({ badge = 4 }: { badge?: number }) => (
           {i === 4 && <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />}
         </svg>
         {i === 3 && (
-          <span style={{ position: 'absolute', top: -5, right: 'calc(50% - 16px)', minWidth: 14, height: 14, background: '#e85555', borderRadius: 7, fontSize: 9, fontWeight: 700, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 2px', border: '1.5px solid rgba(253,250,244,.92)' }}>{badge}</span>
+          <span style={{ position: 'absolute', top: -5, right: 'calc(50% - 16px)', minWidth: 14, height: 14, background: '#e85555', borderRadius: 7, fontSize: 9, fontWeight: 300, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 2px', border: '1.5px solid rgba(253,250,244,.92)' }}>{badge}</span>
         )}
         <span>{t}</span>
       </div>
@@ -28,8 +28,8 @@ const SPHeader = () => (
 const PageHead = ({ newCount }: { newCount: number }) => (
   <div style={{ padding: '16px 20px 0' }}>
     <div style={{ display: 'flex', alignItems: 'center', gap: 9, marginBottom: 3 }}>
-      <div style={{ fontSize: 23, fontWeight: 700, color: '#1a2340', letterSpacing: '-.6px' }}>Alerts &amp; Notifications</div>
-      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 100, background: 'linear-gradient(135deg,#e85555,#C83030)', fontSize: 10, fontWeight: 700, color: '#fff', boxShadow: '0 2px 8px rgba(232,85,85,.3)', letterSpacing: '.04em' }}>
+      <div style={{ fontSize: 23, fontWeight: 300, color: '#1a2340', letterSpacing: '-.6px' }}>Alerts &amp; Notifications</div>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 100, background: 'linear-gradient(135deg,#e85555,#C83030)', fontSize: 10, fontWeight: 300, color: '#fff', boxShadow: '0 2px 8px rgba(232,85,85,.3)', letterSpacing: '.04em' }}>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
         {newCount} New
       </div>
@@ -39,7 +39,7 @@ const PageHead = ({ newCount }: { newCount: number }) => (
 );
 
 const MarkAllRead = () => (
-  <div style={{ margin: '12px 16px 0', background: '#fff', borderRadius: 14, padding: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, fontSize: 13, fontWeight: 700, color: '#28396c', boxShadow: '0 0 0 .5px rgba(40,57,108,.06), 0 2px 8px rgba(40,57,108,.06)', border: '.5px solid rgba(40,57,108,.13)' }}>
+  <div style={{ margin: '12px 16px 0', background: '#fff', borderRadius: 14, padding: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, fontSize: 13, fontWeight: 300, color: '#28396c', boxShadow: '0 0 0 .5px rgba(40,57,108,.06), 0 2px 8px rgba(40,57,108,.06)', border: '.5px solid rgba(40,57,108,.13)' }}>
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#28396C" strokeWidth="2.2" strokeLinecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
     Mark All Read
   </div>
@@ -60,7 +60,7 @@ const FilterTabs = ({ activeKey }: { activeKey: string }) => {
         return (
           <div key={t.key} style={{
             padding: '7px 13px', borderRadius: 12,
-            fontSize: 11, fontWeight: 700, whiteSpace: 'nowrap' as const, flexShrink: 0,
+            fontSize: 11, fontWeight: 300, whiteSpace: 'nowrap' as const, flexShrink: 0,
             background: act ? 'linear-gradient(135deg,#28396c,#334880)' : '#fff',
             color: act ? '#fff' : '#4a5578',
             border: act ? '.5px solid transparent' : '.5px solid rgba(40,57,108,.08)',
@@ -73,7 +73,7 @@ const FilterTabs = ({ activeKey }: { activeKey: string }) => {
 };
 
 const SecLbl = ({ children }: { children: React.ReactNode }) => (
-  <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '16px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+  <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '16px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
     {children}<div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.13)' }} />
   </div>
 );
@@ -113,16 +113,16 @@ const AlertCard = ({ accentGradient, iconBg, iconBdr, iconStroke, icon, title, p
         </div>
         <div style={{ flex: 1 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 5 }}>
-            <div style={{ fontSize: 13, fontWeight: 700, color: '#1a2340', letterSpacing: '-.2px' }}>{title}</div>
+            <div style={{ fontSize: 13, fontWeight: 300, color: '#1a2340', letterSpacing: '-.2px' }}>{title}</div>
             {priority && (
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 3, padding: '2px 8px', borderRadius: 100, fontSize: 9, fontWeight: 700, background: priority.bg, color: priority.color, border: `.5px solid ${priority.bdr}`, letterSpacing: '.03em' }}>
+              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 3, padding: '2px 8px', borderRadius: 100, fontSize: 9, fontWeight: 300, background: priority.bg, color: priority.color, border: `.5px solid ${priority.bdr}`, letterSpacing: '.03em' }}>
                 <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                   {priority.label === 'Good News' ? <><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></> : <><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></>}
                 </svg>
                 {priority.label}
               </div>
             )}
-            <div style={{ padding: '2px 8px', borderRadius: 100, fontSize: 9, fontWeight: 600, background: categoryBg || 'rgba(40,57,108,.08)', color: categoryColor || '#28396c', border: `.5px solid ${categoryBdr || 'rgba(40,57,108,.13)'}` }}>{categoryLabel}</div>
+            <div style={{ padding: '2px 8px', borderRadius: 100, fontSize: 9, fontWeight: 400, background: categoryBg || 'rgba(40,57,108,.08)', color: categoryColor || '#28396c', border: `.5px solid ${categoryBdr || 'rgba(40,57,108,.13)'}` }}>{categoryLabel}</div>
             {showUnreadDot && <div style={{ width: 6, height: 6, background: unreadDotColor, borderRadius: '50%', marginLeft: 'auto', flexShrink: 0, boxShadow: `0 0 0 2px ${unreadDotColor}33` }} />}
           </div>
           <div style={{ fontSize: 12, color: '#4a5578', lineHeight: 1.6, fontWeight: 400, letterSpacing: '-.1px', marginBottom: 7 }}>{body}</div>
@@ -134,18 +134,18 @@ const AlertCard = ({ accentGradient, iconBg, iconBdr, iconStroke, icon, title, p
       </div>
 
       {/* Recommended Actions label */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 8, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', marginBottom: 9 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 4, fontSize: 8, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', marginBottom: 9 }}>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="rgba(40,57,108,.35)" strokeWidth="2.2" strokeLinecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" /></svg>
         Recommended Actions
       </div>
 
       {/* Buttons */}
       <div style={{ display: 'flex', gap: 8 }}>
-        <div style={{ flex: 1, padding: '10px 12px', borderRadius: 11, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5, color: '#fff', background: primaryBtn.bg, boxShadow: primaryBtn.shadow }}>
+        <div style={{ flex: 1, padding: '10px 12px', borderRadius: 11, fontSize: 11, fontWeight: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5, color: '#fff', background: primaryBtn.bg, boxShadow: primaryBtn.shadow }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round">{primaryBtn.icon}</svg>
           {primaryBtn.label}
         </div>
-        <div style={{ flex: 1, padding: '10px 12px', borderRadius: 11, fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5, color: '#4a5578', background: '#f5efe2', border: '.5px solid rgba(40,57,108,.07)' }}>
+        <div style={{ flex: 1, padding: '10px 12px', borderRadius: 11, fontSize: 11, fontWeight: 300, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5, color: '#4a5578', background: '#f5efe2', border: '.5px solid rgba(40,57,108,.07)' }}>
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
           Acknowledge
         </div>
@@ -224,7 +224,7 @@ export const AlertsAll = () => {
             priority={goodNewsPriority}
             categoryLabel="Academic"
             categoryBg="rgba(91,111,212,.1)" categoryColor="#5b6fd4" categoryBdr="rgba(91,111,212,.2)"
-            body={<>Tanveer Sultana scored an impressive <strong style={{ color: '#1e9a5a', fontWeight: 700 }}>89%</strong> in "Unit 1". Hard work is clearly paying off — keep encouraging this momentum!</>}
+            body={<>Tanveer Sultana scored an impressive <strong style={{ color: '#1e9a5a', fontWeight: 300 }}>89%</strong> in "Unit 1". Hard work is clearly paying off — keep encouraging this momentum!</>}
             date="Recent"
             dateIcon={<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C0C8DC" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>}
             primaryBtn={viewPerfBtn}
@@ -272,7 +272,7 @@ export const AlertsAcademic = () => {
             priority={goodNewsPriority}
             categoryLabel="Academic"
             categoryBg="rgba(91,111,212,.1)" categoryColor="#5b6fd4" categoryBdr="rgba(91,111,212,.2)"
-            body={<>Tanveer Sultana scored an impressive <strong style={{ color: '#1e9a5a', fontWeight: 700 }}>89%</strong> in "Unit 1" (a subject). Hard work is clearly paying off — keep encouraging this momentum!</>}
+            body={<>Tanveer Sultana scored an impressive <strong style={{ color: '#1e9a5a', fontWeight: 300 }}>89%</strong> in "Unit 1" (a subject). Hard work is clearly paying off — keep encouraging this momentum!</>}
             date="Recent"
             dateIcon={<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#C0C8DC" strokeWidth="2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>}
             primaryBtn={viewPerfBtn}
