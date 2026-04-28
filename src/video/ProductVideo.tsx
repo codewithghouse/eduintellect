@@ -171,7 +171,7 @@ const IntroSequence: React.FC = () => {
         textAlign: 'center', lineHeight: 1.1,
         transform: `translateY(${titleY}px)`, opacity: titleOpacity,
       }}>
-        Edu<span style={{ color: C.blue }}>Intellect</span>
+        Edu<span style={{ color: C.blue }}>llent</span>
       </div>
 
       {/* Subtitle */}
