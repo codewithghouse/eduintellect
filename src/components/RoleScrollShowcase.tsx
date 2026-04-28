@@ -28,7 +28,7 @@ const RoleScrollShowcase = () => (
       <img
         src="/dashboards/ownerui.png"
         alt="Owner dashboard"
-        className="mx-auto rounded-xl object-cover h-full w-full object-left-top"
+        className="mx-auto rounded-xl object-contain h-full w-full"
         draggable={false}
       />
     </ContainerScroll>
@@ -37,7 +37,7 @@ const RoleScrollShowcase = () => (
       <img
         src="/dashboards/principalui.png"
         alt="Principal dashboard"
-        className="mx-auto rounded-xl object-cover h-full w-full object-left-top"
+        className="mx-auto rounded-xl object-contain h-full w-full"
         draggable={false}
       />
     </ContainerScroll>
@@ -46,7 +46,7 @@ const RoleScrollShowcase = () => (
       <img
         src="/dashboards/teacherui.png"
         alt="Teacher dashboard"
-        className="mx-auto rounded-xl object-cover h-full w-full object-left-top"
+        className="mx-auto rounded-xl object-contain h-full w-full"
         draggable={false}
       />
     </ContainerScroll>
@@ -55,7 +55,7 @@ const RoleScrollShowcase = () => (
       <img
         src="/dashboards/parentui.png"
         alt="Parent dashboard — Performance Analytics"
-        className="mx-auto rounded-xl object-cover h-full w-full object-left-top"
+        className="mx-auto rounded-xl object-contain h-full w-full"
         draggable={false}
       />
     </ContainerScroll>
@@ -79,7 +79,7 @@ const Title = ({
     >
       <Sparkles className="w-4 h-4" /> {eyebrow}
     </p>
-    <h2 className="text-[32px] md:text-[56px] lg:text-[64px] font-semibold text-[#1d1d1f] dark:text-white leading-[1.05] tracking-[-0.035em] mb-4">
+    <h2 className="text-[32px] md:text-[56px] lg:text-[64px] font-light text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-4">
       {headline}
     </h2>
     <p className="text-[#86868b] text-[16px] md:text-[18px] max-w-[560px] mx-auto leading-[1.45]">

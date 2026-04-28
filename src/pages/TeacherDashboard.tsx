@@ -7,6 +7,14 @@ import { TestsOverview, CreateTestForm } from '../components/TestsScreens';
 import { AssignmentsOverview, CreateAssignment } from '../components/AssignmentsScreens';
 import { AttendanceOverview, AttendanceConcerns, MarkAttendanceScreen } from '../components/AttendanceScreens';
 import TeacherIPadMockup from '../components/TeacherIPadMockup';
+import TeacherExamGeneratorIPad from '../components/ipad/TeacherExamGeneratorIPad';
+import TeacherBehaviourIPad from '../components/ipad/TeacherBehaviourIPad';
+import TeacherLeaderboardIPad from '../components/ipad/TeacherLeaderboardIPad';
+import TeacherPerformanceIPad from '../components/ipad/TeacherPerformanceIPad';
+import TeacherConceptMasteryIPad from '../components/ipad/TeacherConceptMasteryIPad';
+import TeacherRisksAlertsIPad from '../components/ipad/TeacherRisksAlertsIPad';
+import TeacherLessonPlannerIPad from '../components/ipad/TeacherLessonPlannerIPad';
+import TeacherSummarizeLessonIPad from '../components/ipad/TeacherSummarizeLessonIPad';
 
 /* ───── SVG icon helpers ───── */
 const BackArrow = () => (
@@ -2547,145 +2555,142 @@ const TeacherDashboard = () => {
           </div>
         </motion.div>
 
-        {/* 2-column paired sections grid */}
-        <div className="phone-sections-grid">
+        {/* ─── Feature iPad mockups: alternating left/right with content ─── */}
+        {([
+          {
+            ipad: <TeacherExamGeneratorIPad />,
+            eyebrow: 'AI Exam Generator',
+            headline: 'A full exam paper in 30 seconds.',
+            body: "Pick subject, grade, chapters, difficulty — AI generates question paper, answer key, and Bloom's-taxonomy distribution.",
+            bullets: [
+              'Question types: MCQ, Short, Long, Fill-in-the-blanks',
+              'Grounded in your school syllabus + past papers',
+              'Edit, regenerate any section, print or share to students',
+            ],
+            brand: '#0055FF',
+          },
+          {
+            ipad: <TeacherBehaviourIPad />,
+            eyebrow: 'Student Behaviour',
+            headline: 'Every star, every concern — never lost.',
+            body: 'Log positives, concerns and incidents in 5 seconds. AI spots patterns and auto-generates improvement plans.',
+            bullets: [
+              'Quick 1-5 star rating with optional notes',
+              'Pattern detection across weeks and months',
+              'Visible to parents — positive notes too (game-changer)',
+            ],
+            brand: '#00C853',
+          },
+          {
+            ipad: <TeacherLeaderboardIPad />,
+            eyebrow: 'Teacher Leaderboard',
+            headline: 'See where you rank — in real time.',
+            body: 'Branch-wide rankings, refreshed weekly. Composite score across attendance, marks, parent rating, grading speed.',
+            bullets: [
+              'Podium top 3 + your weekly rank movement',
+              'Same metric the principal sees — full transparency',
+              'Healthy competition that actually moves the needle',
+            ],
+            brand: '#FFAA00',
+          },
+          {
+            ipad: <TeacherPerformanceIPad />,
+            eyebrow: 'Teacher Performance',
+            headline: 'Your personal AI coach.',
+            body: 'Composite score breakdown by metric, AI diagnosis of weak spots, and a weekly action plan personalized to you.',
+            bullets: [
+              '4 KPIs with target progress bars',
+              'AI diagnosis tells you the ONE thing to fix this week',
+              'Action checklist with predicted score impact (+0.5 to +3.2)',
+            ],
+            brand: '#7B3FF4',
+          },
+          {
+            ipad: <TeacherConceptMasteryIPad />,
+            eyebrow: 'Concept Mastery',
+            headline: 'See exactly which topics aren’t landing.',
+            body: 'Heat-map of students × concepts with color-coded mastery. Cold zones surfaced with AI re-teach plans.',
+            bullets: [
+              'Mastery heat-map auto-built from test data',
+              'AI suggests re-teach strategies (videos, pairings, quizzes)',
+              'Tracks improvement week-over-week',
+            ],
+            brand: '#FF3355',
+          },
+          {
+            ipad: <TeacherRisksAlertsIPad />,
+            eyebrow: 'Risks & Alerts',
+            headline: 'Catch slipping students before exam day.',
+            body: 'AI scores every student weekly. Critical / At-Risk / Watch tiers with the specific reasons behind each.',
+            bullets: [
+              'Multi-signal risk model (attendance + marks + behaviour)',
+              'One-tap actions: call parent, log note, schedule meet',
+              'Auto-clears when student recovers',
+            ],
+            brand: '#FF8800',
+          },
+          {
+            ipad: <TeacherLessonPlannerIPad />,
+            eyebrow: 'AI Lesson Planner',
+            headline: 'A complete lesson plan in under a minute.',
+            body: 'Pick chapter + duration + class profile — AI builds objectives, lesson flow, activities, real-life examples and homework.',
+            bullets: [
+              'Curriculum-aware (CBSE / ICSE / State boards)',
+              'Activity-led, visual aids, group-work toggles',
+              'Save, edit, share with co-teachers',
+            ],
+            brand: '#7B3FF4',
+          },
+          {
+            ipad: <TeacherSummarizeLessonIPad />,
+            eyebrow: 'Summarize Lesson',
+            headline: 'Any recording → a digestible summary.',
+            body: 'Drop audio, text or PDF — AI extracts key concepts, must-remember points, follow-up questions, and a parent-friendly summary.',
+            bullets: [
+              'Multi-modal: audio (transcribe + summarize), text, PDF',
+              'Auto-shares parent version to the parent dashboard',
+              'Builds a searchable knowledge base of every lesson',
+            ],
+            brand: '#00C853',
+          },
+        ] as const).map((f, i) => {
+          const ipadOnLeft = i % 2 === 0;
+          return (
+            <motion.div
+              key={f.eyebrow}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-10% 0px' }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-28 grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-10 lg:gap-14 items-center"
+            >
+              {/* iPad */}
+              <div className={`w-full ${ipadOnLeft ? 'lg:order-1' : 'lg:order-2'}`}>
+                {f.ipad}
+              </div>
 
-          {/* Row 1: Classroom + Planning */}
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Classroom Management</div>
-              <div className="phone-section-title">Track. Monitor. Improve.</div>
-              <div className="phone-section-desc">Student profiles and one-tap attendance marking.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><StudentProfile /><MarkAttendance /></div>
-          </motion.div>
+              {/* Content */}
+              <div className={`w-full max-w-[480px] mx-auto lg:mx-0 ${ipadOnLeft ? 'lg:order-2' : 'lg:order-1'}`}>
+                <p className="text-[13px] font-normal tracking-[-0.01em] mb-3" style={{ color: f.brand }}>{f.eyebrow}</p>
+                <h2 className="text-[#1d1d1f] text-[32px] md:text-[40px] font-light leading-[1.1] tracking-[-0.02em] mb-5">
+                  {f.headline}
+                </h2>
+                <p className="text-[#86868b] text-[16px] leading-[1.55] tracking-[0.005em] mb-7">
+                  {f.body}
+                </p>
+                <div className="space-y-3">
+                  {f.bullets.map((line, j) => (
+                    <div key={j} className="flex items-start gap-3">
+                      <span className="mt-[7px] w-1.5 h-1.5 rounded-full shrink-0" style={{ background: f.brand }} />
+                      <p className="text-[#1d1d1f] text-[14px] font-normal leading-[1.5] tracking-[0.005em]">{line}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          );
+        })}
 
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Planning & Organization</div>
-              <div className="phone-section-title">Your week. At a glance.</div>
-              <div className="phone-section-desc">Schedule visualization and academic report generation.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><WeeklySchedule /><ReportsScreen /></div>
-          </motion.div>
-
-          {/* Row 2: AI Summarizer + AI Planner */}
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Summarize Lesson</div>
-              <div className="phone-section-title">AI reads. You teach.</div>
-              <div className="phone-section-desc">Upload PDF — get summaries, key concepts, and exam points instantly.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><SummarizeUpload /><SummarizeResult /></div>
-          </motion.div>
-
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">AI Lesson Planner</div>
-              <div className="phone-section-title">Plan in seconds.</div>
-              <div className="phone-section-desc">AI generates classroom-ready plans with phase-by-phase breakdown.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><LessonPlannerForm /><LessonPlannerResult /></div>
-          </motion.div>
-
-          {/* Row 3: Principal Notes + Parent Communication */}
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Principal Notes</div>
-              <div className="phone-section-title">Stay connected. Always.</div>
-              <div className="phone-section-desc">Encrypted admin channel for instructions and updates.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><PrincipalNotesInbox /><PrincipalNotesDetail /></div>
-          </motion.div>
-
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Parent Communication</div>
-              <div className="phone-section-title">Bridge the gap.</div>
-              <div className="phone-section-desc">Direct messaging with parents — progress updates and queries.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><ParentNotesList /><ParentNotesChat /></div>
-          </motion.div>
-
-          {/* Row 4: Tests & Exams + Assignments */}
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Tests & Exams</div>
-              <div className="phone-section-title">Assess. Analyze.</div>
-              <div className="phone-section-desc">Create tests, track scores, and analyze performance.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><TestsOverview /><CreateTestForm /></div>
-          </motion.div>
-
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Assignments</div>
-              <div className="phone-section-title">Assign. Collect. Grade.</div>
-              <div className="phone-section-desc">Track submissions, grade work, and manage deadlines.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><AssignmentsOverview /><CreateAssignment /></div>
-          </motion.div>
-
-          {/* Row 5: Gradebook + Concept Mastery */}
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Gradebook</div>
-              <div className="phone-section-title">Every mark. One place.</div>
-              <div className="phone-section-desc">Grade tables, score entry, and distribution charts.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><GradebookMain /><GradebookScores /></div>
-          </motion.div>
-
-          <motion.div className="phone-section-item" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header">
-              <div className="phone-section-label">Concept Mastery</div>
-              <div className="phone-section-title">Know what they know.</div>
-              <div className="phone-section-desc">Mastery rings, status breakdowns, and AI recommendations.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28 }}><ConceptMasteryOverview /><ConceptMasteryDetail /></div>
-          </motion.div>
-
-          {/* Row 6 (full-width): Risks & Alerts — 3 screens */}
-          <motion.div className="phone-section-item phone-section-full" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header" style={{ textAlign: 'center' }}>
-              <div className="phone-section-label">Risks & Alerts</div>
-              <div className="phone-section-title">Spot risks. Act fast.</div>
-              <div className="phone-section-desc" style={{ margin: '0 auto' }}>Color-coded severity levels, threshold settings, and quick actions to keep every student on track.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28, justifyContent: 'center' }}><AlertsAllTab /><AlertsAttendanceTab /><AlertsGradesTab /></div>
-          </motion.div>
-
-          {/* Row 7 (full-width): Students — 3 screens */}
-          <motion.div className="phone-section-item phone-section-full" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header" style={{ textAlign: 'center' }}>
-              <div className="phone-section-label">Student Management</div>
-              <div className="phone-section-title">Every student. One view.</div>
-              <div className="phone-section-desc" style={{ margin: '0 auto' }}>Directory, profiles, academic tracking, feedback, and behaviour ratings.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28, justifyContent: 'center' }}><StudentsList /><StudentProfileOverview /><StudentFeedback /></div>
-          </motion.div>
-
-          {/* Row 8 (full-width): Attendance — 3 screens */}
-          <motion.div className="phone-section-item phone-section-full" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header" style={{ textAlign: 'center' }}>
-              <div className="phone-section-label">Attendance</div>
-              <div className="phone-section-title">Present. Absent. Tracked.</div>
-              <div className="phone-section-desc" style={{ margin: '0 auto' }}>Weekly overviews, concern alerts, detailed logs, and one-tap P/A/L marking.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28, justifyContent: 'center' }}><AttendanceOverview /><AttendanceConcerns /><MarkAttendanceScreen /></div>
-          </motion.div>
-
-          {/* Row 9: Personalization — centered single */}
-          <motion.div className="phone-section-item phone-section-full" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="phone-section-header" style={{ textAlign: 'center' }}>
-              <div className="phone-section-label">Personalization</div>
-              <div className="phone-section-title">Make it yours.</div>
-              <div className="phone-section-desc" style={{ margin: '0 auto' }}>Notifications, preferences, security, and profile management.</div>
-            </div>
-            <div className="phone-section-row" style={{ marginTop: 28, justifyContent: 'center' }}><SettingsScreen /></div>
-          </motion.div>
-
-        </div>
       </div>
     </div>
   );

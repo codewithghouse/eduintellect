@@ -69,10 +69,20 @@ export const Card = ({
     style={{
       rotateX: rotate,
       scale,
+      // Inner highlight (white-ish 1.5px ring) sits inside via box-shadow inset
+      // so it reads as a real iPad bezel without taking layout space.
+      boxShadow:
+        '0 0 0 1.5px #2c2c2e, 0 30px 80px rgba(15,23,42,0.25), 0 80px 160px rgba(15,23,42,0.18)',
     }}
-    className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-2 md:p-6 bg-[#222222] rounded-[30px] shadow-[0_0_#0000004d,0_9px_20px_#0000004a,0_37px_37px_#00000042,0_84px_50px_#00000026,0_149px_60px_#0000000a,0_233px_65px_#00000003] transition-shadow duration-500 ease-out hover:shadow-[0_30px_70px_-15px_rgba(0,113,227,0.55),0_60px_120px_-30px_rgba(41,151,255,0.45),0_15px_40px_-10px_rgba(0,113,227,0.35)]"
+    className="relative max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full p-3 md:p-3.5 bg-[#1c1c1e] rounded-[28px] md:rounded-[40px] transition-[box-shadow] duration-500 ease-out hover:shadow-[0_0_0_1.5px_rgba(0,85,255,0.45),0_0_40px_rgba(0,85,255,0.28),0_30px_80px_rgba(0,85,255,0.30),0_80px_160px_rgba(0,85,255,0.22)]"
   >
-    <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900 md:rounded-2xl md:p-4">
+    {/* Camera dot — top edge center, premium iPad Pro M4 detail */}
+    <div
+      className="absolute left-1/2 -translate-x-1/2 rounded-full bg-[#3a3a3c] pointer-events-none"
+      style={{ top: 6, width: 5, height: 5 }}
+    />
+    {/* SCREEN */}
+    <div className="h-full w-full overflow-hidden rounded-[18px] md:rounded-[26px] bg-[#EEF4FF]">
       {children}
     </div>
   </motion.div>
