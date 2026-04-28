@@ -5,7 +5,7 @@ import { ProductVideo } from './ProductVideo';
 export const RemotionRoot: React.FC = () => {
   return (
     <Composition
-      id="EduIntellectVideo"
+      id="EdullentVideo"
       component={ProductVideo}
       durationInFrames={1800}
       fps={30}

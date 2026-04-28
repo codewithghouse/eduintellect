@@ -12,7 +12,7 @@ const PPTabBar = () => (
 
 const PPHeader = () => (
   <div className="pp-hdr">
-    <div className="pp-brand"><div className="pp-live-dot" /><span className="pp-brand-txt">EduIntellect</span></div>
+    <div className="pp-brand"><div className="pp-live-dot" /><span className="pp-brand-txt">Edullent</span></div>
     <div className="pp-av">S</div>
   </div>
 );
@@ -66,7 +66,7 @@ export const ParentHome = () => (
         </div>
         <div className="pp-ai">
           <div className="pp-ai-hdr">
-            <div className="pp-ai-hdr-l"><span style={{ fontSize: 13, opacity: .8 }}>✦</span><span className="pp-ai-hdr-txt">EduIntellect AI · Live</span></div>
+            <div className="pp-ai-hdr-l"><span style={{ fontSize: 13, opacity: .8 }}>✦</span><span className="pp-ai-hdr-txt">Edullent AI · Live</span></div>
             <div className="pp-ai-live"><div style={{ width: 5, height: 5, background: '#30d158', borderRadius: '50%' }} />LIVE</div>
           </div>
           <div className="pp-ai-grid">

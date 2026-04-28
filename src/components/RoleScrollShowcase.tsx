@@ -299,7 +299,7 @@ const DashboardShell = ({
         >
           {icon}
         </div>
-        <span className="font-semibold text-white text-[13px] md:text-[14px]">EduIntellect</span>
+        <span className="font-semibold text-white text-[13px] md:text-[14px]">Edullent</span>
         <span className="hidden md:inline text-[12px] text-zinc-500 ml-1">/ {role} dashboard</span>
       </div>
       <div className="flex items-center gap-3">

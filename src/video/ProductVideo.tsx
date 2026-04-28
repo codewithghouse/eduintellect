@@ -419,7 +419,7 @@ const OutroSequence: React.FC = () => {
         marginTop: 20, fontSize: 15, color: C.gray,
         opacity: ctaOpacity, letterSpacing: '0.02em',
       }}>
-        eduintellect.com
+        edullent.com
       </div>
     </AbsoluteFill>
   );

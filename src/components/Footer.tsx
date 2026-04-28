@@ -54,7 +54,7 @@ const Footer = () => {
           <div>
             <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Contact</h4>
             <ul className="space-y-3">
-              <li className="text-[#424245] text-[12px]">support@eduintellect.com</li>
+              <li className="text-[#424245] text-[12px]">support@edullent.com</li>
               <li className="text-[#424245] text-[12px]">+1 (234) 567-890</li>
               <li className="text-[#424245] text-[12px] leading-[1.47]">123 Tech Lane, Silicon Valley,<br />Innovation City, 560001</li>
             </ul>
@@ -66,7 +66,7 @@ const Footer = () => {
       <div className="border-t border-[#d2d2d7]/60">
         <div className="max-w-[980px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-[#86868b] text-[12px] text-center md:text-left">
-            Copyright &copy; {new Date().getFullYear()} EduIntellect. All rights reserved.
+            Copyright &copy; {new Date().getFullYear()} Edullent. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Privacy Policy</a>

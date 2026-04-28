@@ -25,7 +25,7 @@ const IpadShowcase = () => (
             <div className="relative w-full h-full rounded-[24px] md:rounded-[32px] overflow-hidden bg-white">
               <img
                 src="/dashboards/IOSUI.png"
-                alt="EduIntellect iOS app"
+                alt="Edullent iOS app"
                 className="w-full h-full object-cover object-center"
                 draggable={false}
               />

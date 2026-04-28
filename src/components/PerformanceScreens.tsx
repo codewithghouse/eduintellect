@@ -10,7 +10,7 @@ const SPTabBar = () => (
     ))}
   </div>
 );
-const SPH = () => (<div className="sp-hdr"><div className="sp-brand"><div className="sp-live-dot" /><span className="sp-brand-txt">EduIntellect</span></div><div className="sp-av">T</div></div>);
+const SPH = () => (<div className="sp-hdr"><div className="sp-brand"><div className="sp-live-dot" /><span className="sp-brand-txt">Edullent</span></div><div className="sp-av">T</div></div>);
 
 const subjects = [
   { name: 'English', grade: 'A+', pct: 98, color: '#2ebc71', gradeBg: 'rgba(46,188,113,.1)', gradeBdr: 'rgba(46,188,113,.2)', status: 'Outstanding', fillClass: 'green' },

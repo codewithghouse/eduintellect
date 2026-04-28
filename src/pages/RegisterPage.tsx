@@ -117,7 +117,7 @@ const RegisterPage = () => {
           </div>
           <h2 className="text-[28px] font-normal text-[#1d1d1f] mb-3 tracking-[-0.02em]">Registration Successful</h2>
           <p className="text-[#86868b] text-[15px] mb-8 leading-[1.47]">
-            Your school <strong className="text-[#1d1d1f]">{formData.schoolName}</strong> is now part of the EduIntellect ecosystem. Redirecting you...
+            Your school <strong className="text-[#1d1d1f]">{formData.schoolName}</strong> is now part of the Edullent ecosystem. Redirecting you...
           </p>
           <Loader2 className="w-5 h-5 text-[#0071e3] animate-spin mx-auto" />
         </motion.div>
@@ -141,7 +141,7 @@ const RegisterPage = () => {
                 <span className="gradient-text">institution</span> today.
               </h1>
               <p className="text-[#86868b] text-[17px] leading-[1.47] tracking-[0.011em]">
-                Join hundreds of visionary schools using EduIntellect to revolutionize education management. Register now and get full access to all portals.
+                Join hundreds of visionary schools using Edullent to revolutionize education management. Register now and get full access to all portals.
               </p>
             </motion.div>
 

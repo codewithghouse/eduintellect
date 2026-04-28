@@ -20,7 +20,7 @@ const SPTabBar = ({ activeIdx = 3 }: { activeIdx?: number }) => (
 
 const SPHeader = () => (
   <div className="sp-hdr">
-    <div className="sp-brand"><div className="sp-live-dot" /><span className="sp-brand-txt">EduIntellect</span></div>
+    <div className="sp-brand"><div className="sp-live-dot" /><span className="sp-brand-txt">Edullent</span></div>
     <div className="sp-av">S</div>
   </div>
 );

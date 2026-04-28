@@ -42,7 +42,7 @@ export const SchoolMessages = () => (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 18px 0' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <div style={{ width: 6, height: 6, background: '#2ebc71', borderRadius: '50%', boxShadow: '0 0 0 2px rgba(46,188,113,.2)' }} />
-            <span style={{ fontSize: 14, fontWeight: 300, color: '#28396c', letterSpacing: '.02em' }}>EduIntellect</span>
+            <span style={{ fontSize: 14, fontWeight: 300, color: '#28396c', letterSpacing: '.02em' }}>Edullent</span>
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
             <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 1px 4px rgba(40,57,108,.1), 0 3px 10px rgba(40,57,108,.06)', position: 'relative' }}>

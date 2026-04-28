@@ -682,7 +682,7 @@ const ReportsScreen = () => (
           <div className="ph-rpt-title">Reports</div>
           <div className="ph-rpt-sub">Generate and download academic reports.</div>
           <div className="ph-rpt-chips">
-            <div className="ph-rpt-chip">EduIntellect Main</div>
+            <div className="ph-rpt-chip">Edullent Main</div>
             <div className="ph-rpt-chip">4 report types</div>
           </div>
         </div>
@@ -822,7 +822,7 @@ const SummarizeUpload = () => (
           <div className="ph-sum-sub">Upload any PDF — AI reads &<br />summarizes it instantly</div>
           <div className="ph-powered">
             <svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" rx="1.5" /><line x1="3" y1="4" x2="7" y2="4" /><line x1="3" y1="6" x2="5.5" y2="6" /></svg>
-            <span>EduIntellect engine</span>
+            <span>Edullent engine</span>
           </div>
         </div>
       </div>
@@ -1089,7 +1089,7 @@ const LessonPlannerForm = () => (
           <div className="ph-sum-sub">Generate classroom-ready lesson plans in seconds</div>
           <div className="ph-powered">
             <svg viewBox="0 0 10 10"><rect x="1" y="1" width="8" height="8" rx="1.5" /><line x1="3.5" y1="4" x2="6.5" y2="4" /><line x1="3.5" y1="6" x2="5.5" y2="6" /></svg>
-            <span>EduIntellect engine</span>
+            <span>Edullent engine</span>
           </div>
         </div>
         <div className="ph-action-tabs">

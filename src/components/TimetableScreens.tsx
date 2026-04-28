@@ -12,7 +12,7 @@ const SPTabBar = () => (
 );
 
 const SPHeader = () => (
-  <div className="sp-hdr"><div className="sp-brand"><div className="sp-live-dot" /><span className="sp-brand-txt">EduIntellect</span></div><div className="sp-av">T</div></div>
+  <div className="sp-hdr"><div className="sp-brand"><div className="sp-live-dot" /><span className="sp-brand-txt">Edullent</span></div><div className="sp-av">T</div></div>
 );
 
 const HeroBanner = ({ todayCount }: { todayCount: number }) => (

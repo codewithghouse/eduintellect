@@ -12,7 +12,7 @@ const SPTabBar = () => (
   </div>
 );
 
-const SPH = () => (<div className="sp-hdr"><div className="sp-brand"><div className="sp-live-dot" /><span className="sp-brand-txt">EduIntellect</span></div><div className="sp-av">T</div></div>);
+const SPH = () => (<div className="sp-hdr"><div className="sp-brand"><div className="sp-live-dot" /><span className="sp-brand-txt">Edullent</span></div><div className="sp-av">T</div></div>);
 
 const PageHead = () => (
   <div style={{ padding: '18px 20px 0' }}>
