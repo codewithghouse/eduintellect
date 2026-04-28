@@ -6,6 +6,7 @@ import { StudentsList, StudentProfileOverview, StudentFeedback } from '../compon
 import { TestsOverview, CreateTestForm } from '../components/TestsScreens';
 import { AssignmentsOverview, CreateAssignment } from '../components/AssignmentsScreens';
 import { AttendanceOverview, AttendanceConcerns, MarkAttendanceScreen } from '../components/AttendanceScreens';
+import TeacherIPadMockup from '../components/TeacherIPadMockup';
 
 /* ───── SVG icon helpers ───── */
 const BackArrow = () => (
@@ -2505,6 +2506,45 @@ const TeacherDashboard = () => {
           <p className="text-[#86868b] text-[17px] max-w-[600px] mx-auto leading-[1.47] tracking-[0.011em]">
             Manage attendance, track student progress, and organize your schedule — all from one powerful interface.
           </p>
+        </motion.div>
+
+        {/* iPad desktop mockup (left) + content slot (right) */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="mb-24 grid grid-cols-1 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] gap-10 lg:gap-14 items-center"
+        >
+          {/* Left — iPad mockup */}
+          <div className="w-full">
+            <TeacherIPadMockup />
+          </div>
+
+          {/* Right — content slot (TODO: fill with copy / features list / CTA) */}
+          <div className="w-full max-w-[480px] mx-auto lg:mx-0">
+            <p className="text-[#34c759] text-[13px] font-normal tracking-[-0.01em] mb-3">Built for the desk</p>
+            <h2 className="text-[#1d1d1f] text-[32px] md:text-[40px] font-light leading-[1.1] tracking-[-0.02em] mb-5">
+              Your entire classroom — on one screen.
+            </h2>
+            <p className="text-[#86868b] text-[16px] leading-[1.55] tracking-[0.005em] mb-7">
+              Sidebar nav, real-time stats, today's schedule and your branch rank — everything a teacher needs, organised the way you'd organise a desk.
+            </p>
+            {/* Bullet points placeholder — replace with whatever you want */}
+            <div className="space-y-3">
+              {[
+                'Sectioned sidebar — Overview, Classroom, Academics, AI & Insights.',
+                'Live attendance, pending grading, at-risk students at a glance.',
+                "Today's classes timeline with the ongoing class flagged Live.",
+                'Branch leaderboard rank with weekly movement and a top tip.',
+              ].map((line, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span className="mt-[7px] w-1.5 h-1.5 rounded-full bg-[#34c759] shrink-0" />
+                  <p className="text-[#1d1d1f] text-[14px] font-normal leading-[1.5] tracking-[0.005em]">{line}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
 
         {/* 2-column paired sections grid */}
