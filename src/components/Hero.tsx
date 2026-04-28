@@ -31,7 +31,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#0071e3] text-[17px] md:text-[21px] font-semibold mb-3 tracking-[-0.01em]"
+            className="text-[#0071e3] text-[17px] md:text-[21px] font-normal mb-3 tracking-[-0.01em]"
           >
             The future of school management.
           </motion.p>
@@ -40,7 +40,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[48px] md:text-[64px] lg:text-[80px] font-semibold text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-6"
+            className="text-[48px] md:text-[64px] lg:text-[80px] font-normal text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-6"
           >
             <span className="block">Manage Your School.</span>
             <span className="block">

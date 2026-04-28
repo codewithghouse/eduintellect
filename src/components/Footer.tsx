@@ -19,7 +19,7 @@ const Footer = () => {
               <div className="w-7 h-7 bg-[#0071e3] rounded-lg flex items-center justify-center">
                 <GraduationCap className="text-white w-4 h-4" />
               </div>
-              <span className="text-[17px] font-semibold text-[#1d1d1f] tracking-tight">
+              <span className="text-[17px] font-normal text-[#1d1d1f] tracking-tight">
                 Edu<span className="text-[#0071e3]">Intellect</span>
               </span>
             </div>
@@ -30,7 +30,7 @@ const Footer = () => {
 
           {/* Portals */}
           <div>
-            <h4 className="text-[#1d1d1f] font-semibold text-[12px] mb-4 tracking-[-0.01em]">Portals</h4>
+            <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Portals</h4>
             <ul className="space-y-3">
               <li><a href={PORTAL_URLS.owner} target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Owner Dashboard</a></li>
               <li><a href={PORTAL_URLS.principal} target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Principal Portal</a></li>
@@ -41,7 +41,7 @@ const Footer = () => {
 
           {/* Features */}
           <div>
-            <h4 className="text-[#1d1d1f] font-semibold text-[12px] mb-4 tracking-[-0.01em]">Features</h4>
+            <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Features</h4>
             <ul className="space-y-3">
               <li><a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">AI Student Monitoring</a></li>
               <li><a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Digital Attendance</a></li>
@@ -52,7 +52,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="text-[#1d1d1f] font-semibold text-[12px] mb-4 tracking-[-0.01em]">Contact</h4>
+            <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Contact</h4>
             <ul className="space-y-3">
               <li className="text-[#424245] text-[12px]">support@eduintellect.com</li>
               <li className="text-[#424245] text-[12px]">+1 (234) 567-890</li>

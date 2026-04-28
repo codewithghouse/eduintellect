@@ -40,7 +40,7 @@ const Header = () => {
             <GraduationCap className="text-white w-5 h-5" />
           </div>
           <span className={cn(
-            "text-[21px] font-semibold tracking-tight transition-colors duration-300",
+            "text-[21px] font-normal tracking-tight transition-colors duration-300",
             isScrolled ? "text-[#1d1d1f]" : "text-[#1d1d1f]"
           )}>
             Edu<span className="text-[#0071e3]">Intellect</span>

@@ -25,12 +25,12 @@ const SPHeader = () => (
 const PageHead = () => (
   <div style={{ padding: '16px 20px 0' }}>
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 5 }}>
-      <div style={{ fontSize: 24, fontWeight: 700, color: '#1a2340', letterSpacing: '-.6px' }}>Academic Reports</div>
+      <div style={{ fontSize: 24, fontWeight: 300, color: '#1a2340', letterSpacing: '-.6px' }}>Academic Reports</div>
       <div style={{ width: 30, height: 30, borderRadius: 10, background: 'rgba(40,57,108,.08)', border: '.5px solid rgba(40,57,108,.13)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#28396C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>
       </div>
     </div>
-    <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.12em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.38)' }}>Authorized Academic Intelligence &amp; Documentation Pipeline</div>
+    <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.12em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.38)' }}>Authorized Academic Intelligence &amp; Documentation Pipeline</div>
   </div>
 );
 
@@ -54,13 +54,13 @@ const ReportCard = ({ title, time, iconBg, iconShadow, icon, format }: ReportCar
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.9)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">{icon}</svg>
       </div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontSize: 14, fontWeight: 700, color: '#1a2340', letterSpacing: '-.3px', lineHeight: 1.25, marginBottom: 6 }}>{title}</div>
+        <div style={{ fontSize: 14, fontWeight: 300, color: '#1a2340', letterSpacing: '-.3px', lineHeight: 1.25, marginBottom: 6 }}>{title}</div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 3, fontSize: 9, fontWeight: 700, color: '#8892b0', letterSpacing: '.04em', textTransform: 'uppercase' as const }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 3, fontSize: 9, fontWeight: 300, color: '#8892b0', letterSpacing: '.04em', textTransform: 'uppercase' as const }}>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
             Faculty
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 3, fontSize: 9, fontWeight: 700, color: '#8892b0', letterSpacing: '.04em', textTransform: 'uppercase' as const }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 3, fontSize: 9, fontWeight: 300, color: '#8892b0', letterSpacing: '.04em', textTransform: 'uppercase' as const }}>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
             {time}
           </div>
@@ -76,15 +76,15 @@ const ReportCard = ({ title, time, iconBg, iconShadow, icon, format }: ReportCar
 
     {/* Bottom actions */}
     <div style={{ padding: '12px 18px', display: 'flex', alignItems: 'center', gap: 9 }}>
-      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '5px 10px', borderRadius: 100, background: 'linear-gradient(135deg,#5b6fd4,#4a5cc8)', fontSize: 10, fontWeight: 700, color: '#fff', letterSpacing: '.04em', boxShadow: '0 2px 8px rgba(91,111,212,.28)', flexShrink: 0 }}>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '5px 10px', borderRadius: 100, background: 'linear-gradient(135deg,#5b6fd4,#4a5cc8)', fontSize: 10, fontWeight: 300, color: '#fff', letterSpacing: '.04em', boxShadow: '0 2px 8px rgba(91,111,212,.28)', flexShrink: 0 }}>
         <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" /></svg>
         Verified
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', gap: 1, flex: 1 }}>
-        <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: '#c0c8dc' }}>Format</div>
-        <div style={{ fontSize: 11, fontWeight: 700, color: '#4a5578' }}>{format}</div>
+        <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: '#c0c8dc' }}>Format</div>
+        <div style={{ fontSize: 11, fontWeight: 300, color: '#4a5578' }}>{format}</div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '9px 15px', background: 'linear-gradient(135deg,#28396c,#1e2d57)', borderRadius: 12, fontSize: 11, fontWeight: 700, color: '#fff', boxShadow: '0 4px 14px rgba(40,57,108,.25)', flexShrink: 0, position: 'relative', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '9px 15px', background: 'linear-gradient(135deg,#28396c,#1e2d57)', borderRadius: 12, fontSize: 11, fontWeight: 300, color: '#fff', boxShadow: '0 4px 14px rgba(40,57,108,.25)', flexShrink: 0, position: 'relative', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg,rgba(255,255,255,.1) 0%,transparent 55%)' }} />
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.2" strokeLinecap="round" style={{ position: 'relative', zIndex: 1 }}><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
         <span style={{ position: 'relative', zIndex: 1 }}>Download</span>
@@ -169,7 +169,7 @@ export const AcademicReportsPolicy = () => (
         />
 
         {/* Section Label */}
-        <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '18px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
+        <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.1em', textTransform: 'uppercase' as const, color: 'rgba(40,57,108,.35)', padding: '18px 20px 0', display: 'flex', alignItems: 'center', gap: 8 }}>
           Document Policy<div style={{ flex: 1, height: '.5px', background: 'rgba(40,57,108,.13)' }} />
         </div>
 
@@ -180,12 +180,12 @@ export const AcademicReportsPolicy = () => (
           <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,.016) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.016) 1px,transparent 1px)', backgroundSize: '22px 22px', pointerEvents: 'none' }} />
 
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 7 }}>
+            <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.45)', marginBottom: 8, display: 'flex', alignItems: 'center', gap: 7 }}>
               Infrastructure Policy<div style={{ flex: 1, height: '.5px', background: 'rgba(255,255,255,.1)' }} />
             </div>
-            <div style={{ fontSize: 20, fontWeight: 700, color: '#fff', letterSpacing: '-.5px', lineHeight: 1.2, marginBottom: 12 }}>Document Infrastructure Policy</div>
+            <div style={{ fontSize: 20, fontWeight: 300, color: '#fff', letterSpacing: '-.5px', lineHeight: 1.2, marginBottom: 12 }}>Document Infrastructure Policy</div>
             <div style={{ fontSize: 12, color: 'rgba(255,255,255,.65)', lineHeight: 1.7, fontWeight: 400, letterSpacing: '-.1px', marginBottom: 18 }}>
-              Academic reports are generated by the instructional faculty and mirrored to the parent portal for peak transparency. Each document is <strong style={{ color: 'rgba(255,255,255,.9)', fontWeight: 600 }}>cryptographically verified</strong> to ensure record integrity and authenticity.
+              Academic reports are generated by the instructional faculty and mirrored to the parent portal for peak transparency. Each document is <strong style={{ color: 'rgba(255,255,255,.9)', fontWeight: 400 }}>cryptographically verified</strong> to ensure record integrity and authenticity.
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, background: 'rgba(255,255,255,.08)', borderRadius: 14, overflow: 'hidden' }}>
@@ -200,8 +200,8 @@ export const AcademicReportsPolicy = () => (
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.75)" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">{s.icon}</svg>
                   </div>
                   <div>
-                    <div style={{ fontSize: 8, fontWeight: 700, letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)' }}>{s.lbl}</div>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: '#fff', letterSpacing: '-.1px', marginTop: 1 }}>{s.val}</div>
+                    <div style={{ fontSize: 8, fontWeight: 300, letterSpacing: '.08em', textTransform: 'uppercase', color: 'rgba(255,255,255,.38)' }}>{s.lbl}</div>
+                    <div style={{ fontSize: 12, fontWeight: 300, color: '#fff', letterSpacing: '-.1px', marginTop: 1 }}>{s.val}</div>
                   </div>
                 </div>
               ))}

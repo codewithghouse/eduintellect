@@ -16,12 +16,12 @@ const SPTabBar = () => (
 );
 
 const SenderAvatar = () => (
-  <div style={{ width: 30, height: 30, borderRadius: 10, background: 'linear-gradient(140deg,#1e2d57,#3d5494)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, color: '#fff', flexShrink: 0 }}>G</div>
+  <div style={{ width: 30, height: 30, borderRadius: 10, background: 'linear-gradient(140deg,#1e2d57,#3d5494)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 300, color: '#fff', flexShrink: 0 }}>G</div>
 );
 
 const DatePill = ({ label }: { label: string }) => (
   <div style={{ display: 'flex', justifyContent: 'center', padding: '12px 0 5px' }}>
-    <div style={{ background: 'rgba(40,57,108,.1)', borderRadius: 100, padding: '4px 12px', fontSize: 10, fontWeight: 600, color: '#4a5578', letterSpacing: '.02em', border: '.5px solid rgba(40,57,108,.08)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
+    <div style={{ background: 'rgba(40,57,108,.1)', borderRadius: 100, padding: '4px 12px', fontSize: 10, fontWeight: 400, color: '#4a5578', letterSpacing: '.02em', border: '.5px solid rgba(40,57,108,.08)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
       {label}
     </div>
   </div>
@@ -42,14 +42,14 @@ export const SchoolMessages = () => (
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '10px 18px 0' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
             <div style={{ width: 6, height: 6, background: '#2ebc71', borderRadius: '50%', boxShadow: '0 0 0 2px rgba(46,188,113,.2)' }} />
-            <span style={{ fontSize: 14, fontWeight: 700, color: '#28396c', letterSpacing: '.02em' }}>EduIntellect</span>
+            <span style={{ fontSize: 14, fontWeight: 300, color: '#28396c', letterSpacing: '.02em' }}>EduIntellect</span>
           </div>
           <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
             <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 1px 4px rgba(40,57,108,.1), 0 3px 10px rgba(40,57,108,.06)', position: 'relative' }}>
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4A5578" strokeWidth="1.8" strokeLinecap="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" /><path d="M13.73 21a2 2 0 01-3.46 0" /></svg>
               <div style={{ position: 'absolute', top: 1, right: 1, width: 7, height: 7, background: '#e85555', borderRadius: '50%', border: '1.5px solid #fff' }} />
             </div>
-            <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(140deg,#1e2d57,#3d5494)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, color: '#fff', boxShadow: '0 2px 8px rgba(40,57,108,.28)' }}>T</div>
+            <div style={{ width: 32, height: 32, borderRadius: '50%', background: 'linear-gradient(140deg,#1e2d57,#3d5494)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 300, color: '#fff', boxShadow: '0 2px 8px rgba(40,57,108,.28)' }}>T</div>
           </div>
         </div>
 
@@ -65,8 +65,8 @@ export const SchoolMessages = () => (
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke={s.stroke} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">{s.icon}</svg>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: '#c0c8dc', lineHeight: 1.3, whiteSpace: 'pre-line' }}>{s.lbl}</div>
-                <div style={{ fontSize: 20, fontWeight: 700, color: s.color, letterSpacing: '-.5px', lineHeight: 1 }}>{s.val}</div>
+                <div style={{ fontSize: 9, fontWeight: 300, letterSpacing: '.06em', textTransform: 'uppercase', color: '#c0c8dc', lineHeight: 1.3, whiteSpace: 'pre-line' }}>{s.lbl}</div>
+                <div style={{ fontSize: 20, fontWeight: 300, color: s.color, letterSpacing: '-.5px', lineHeight: 1 }}>{s.val}</div>
               </div>
             </div>
           ))}
@@ -85,7 +85,7 @@ export const SchoolMessages = () => (
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.85)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" /><polyline points="9 22 9 12 15 12 15 22" /></svg>
         </div>
         <div style={{ flex: 1, position: 'relative', zIndex: 1 }}>
-          <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', letterSpacing: '-.2px' }}>Ghouse Pasha</div>
+          <div style={{ fontSize: 14, fontWeight: 300, color: '#fff', letterSpacing: '-.2px' }}>Ghouse Pasha</div>
           <div style={{ fontSize: 10, color: 'rgba(255,255,255,.55)', marginTop: 1, fontWeight: 400, display: 'flex', alignItems: 'center', gap: 4 }}>
             <div style={{ width: 5, height: 5, background: '#2ebc71', borderRadius: '50%', boxShadow: '0 0 0 2px rgba(46,188,113,.3)' }} />
             School Administration
@@ -111,7 +111,7 @@ export const SchoolMessages = () => (
           <div style={{ display: 'flex', alignItems: 'flex-end', gap: 7 }}>
             <SenderAvatar />
             <div>
-              <div style={{ fontSize: 10, fontWeight: 700, color: '#4a5578', marginBottom: 3, letterSpacing: '-.1px' }}>Ghouse Pasha</div>
+              <div style={{ fontSize: 10, fontWeight: 300, color: '#4a5578', marginBottom: 3, letterSpacing: '-.1px' }}>Ghouse Pasha</div>
               <div style={{ background: '#fff', borderRadius: '4px 16px 16px 16px', padding: '8px 12px', boxShadow: '0 1px 5px rgba(40,57,108,.07)', border: '.5px solid rgba(40,57,108,.05)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 14, maxWidth: 180 }}>
                 <div style={{ fontSize: 12, color: '#1a2340', fontWeight: 500, letterSpacing: '-.1px' }}>Ghouse pasha</div>
                 <div style={{ fontSize: 9, color: '#c0c8dc', fontWeight: 500 }}>22:50</div>
@@ -136,18 +136,18 @@ export const SchoolMessages = () => (
             <div style={{ marginTop: 20 }}><SenderAvatar /></div>
             <div style={{ flex: 1, maxWidth: '88%' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, color: '#4a5578', letterSpacing: '-.1px' }}>Ghouse Pasha</div>
-                <div style={{ padding: '2px 7px', borderRadius: 100, fontSize: 8, fontWeight: 700, background: 'rgba(40,57,108,.08)', color: '#28396c', border: '.5px solid rgba(40,57,108,.13)', letterSpacing: '.04em', textTransform: 'uppercase' }}>Admin</div>
+                <div style={{ fontSize: 10, fontWeight: 300, color: '#4a5578', letterSpacing: '-.1px' }}>Ghouse Pasha</div>
+                <div style={{ padding: '2px 7px', borderRadius: 100, fontSize: 8, fontWeight: 300, background: 'rgba(40,57,108,.08)', color: '#28396c', border: '.5px solid rgba(40,57,108,.13)', letterSpacing: '.04em', textTransform: 'uppercase' }}>Admin</div>
               </div>
               <div style={{ background: '#fff', borderRadius: '4px 18px 18px 18px', padding: '12px 14px', boxShadow: '0 1px 6px rgba(40,57,108,.08), 0 4px 14px rgba(40,57,108,.06)', border: '.5px solid rgba(40,57,108,.05)', maxWidth: '100%' }}>
                 {/* Important banner */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '7px 10px', background: 'rgba(200,160,16,.1)', borderRadius: 9, border: '.5px solid rgba(200,160,16,.22)', marginBottom: 9 }}>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C8A010" strokeWidth="2.2" strokeLinecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /><line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" /></svg>
-                  <div style={{ fontSize: 10, fontWeight: 700, color: '#C8A010', letterSpacing: '.04em', textTransform: 'uppercase' }}>Important Update</div>
+                  <div style={{ fontSize: 10, fontWeight: 300, color: '#C8A010', letterSpacing: '.04em', textTransform: 'uppercase' }}>Important Update</div>
                 </div>
                 <div style={{ fontSize: 12, color: '#1a2340', lineHeight: 1.7, fontWeight: 400, letterSpacing: '-.1px' }}>
                   <p style={{ marginBottom: 7 }}>Dear Parent,</p>
-                  <p style={{ marginBottom: 7 }}>This is an important update about <strong style={{ color: '#28396c', fontWeight: 700 }}>Tanveer's</strong> progress.</p>
+                  <p style={{ marginBottom: 7 }}>This is an important update about <strong style={{ color: '#28396c', fontWeight: 300 }}>Tanveer's</strong> progress.</p>
                   <p style={{ marginBottom: 7 }}>We have observed the following concerns:</p>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6, margin: '3px 0' }}>
                     <div style={{ width: 4, height: 4, borderRadius: '50%', background: '#28396c', flexShrink: 0, marginTop: 6 }} />
@@ -173,12 +173,12 @@ export const SchoolMessages = () => (
             <div style={{ marginTop: 20 }}><SenderAvatar /></div>
             <div style={{ flex: 1, maxWidth: '88%' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, color: '#4a5578', letterSpacing: '-.1px' }}>Ghouse Pasha</div>
-                <div style={{ padding: '2px 7px', borderRadius: 100, fontSize: 8, fontWeight: 700, background: 'rgba(40,57,108,.08)', color: '#28396c', border: '.5px solid rgba(40,57,108,.13)', letterSpacing: '.04em', textTransform: 'uppercase' }}>Admin</div>
+                <div style={{ fontSize: 10, fontWeight: 300, color: '#4a5578', letterSpacing: '-.1px' }}>Ghouse Pasha</div>
+                <div style={{ padding: '2px 7px', borderRadius: 100, fontSize: 8, fontWeight: 300, background: 'rgba(40,57,108,.08)', color: '#28396c', border: '.5px solid rgba(40,57,108,.13)', letterSpacing: '.04em', textTransform: 'uppercase' }}>Admin</div>
               </div>
               <div style={{ background: '#fff', borderRadius: '4px 18px 18px 18px', padding: '12px 14px', boxShadow: '0 1px 6px rgba(40,57,108,.08), 0 4px 14px rgba(40,57,108,.06)', border: '.5px solid rgba(40,57,108,.05)' }}>
                 <div style={{ fontSize: 12, color: '#1a2340', lineHeight: 1.7, fontWeight: 400, letterSpacing: '-.1px' }}>
-                  <p style={{ marginBottom: 7 }}>Good morning! We are pleased to inform you that Tanveer's attendance has been recorded as <strong style={{ color: '#1e9a5a', fontWeight: 700 }}>100%</strong> this month. 🎉</p>
+                  <p style={{ marginBottom: 7 }}>Good morning! We are pleased to inform you that Tanveer's attendance has been recorded as <strong style={{ color: '#1e9a5a', fontWeight: 300 }}>100%</strong> this month. 🎉</p>
                   <p>Please ensure he continues to attend regularly. Thank you!</p>
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginTop: 8, justifyContent: 'flex-end' }}>

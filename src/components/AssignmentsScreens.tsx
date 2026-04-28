@@ -109,7 +109,7 @@ export const AssignmentsOverview = () => (
             <div style={{ display: 'flex', gap: 3, alignItems: 'center', padding: '4px 0 2px' }}>
               <div style={{ display: 'flex' }}>
                 {[{ bg: '#e3fafc', color: '#0c8599', text: 'TS' }, { bg: '#fff9db', color: '#c87014', text: 'SM' }].map((a, i) => (
-                  <div key={a.text} style={{ width: 20, height: 20, borderRadius: '50%', background: a.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 7, fontWeight: 600, color: a.color, border: '1.5px solid #fff', marginLeft: i > 0 ? -5 : 0 }}>{a.text}</div>
+                  <div key={a.text} style={{ width: 20, height: 20, borderRadius: '50%', background: a.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 7, fontWeight: 400, color: a.color, border: '1.5px solid #fff', marginLeft: i > 0 ? -5 : 0 }}>{a.text}</div>
                 ))}
               </div>
               <span style={{ fontSize: 10, color: '#8c92a4' }}>All submitted</span>

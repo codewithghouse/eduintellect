@@ -34,7 +34,7 @@ const OwnerDashboard = () => {
               Administration
             </p>
           </div>
-          <h1 className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] leading-[1.08] tracking-[-0.035em] mb-4">
+          <h1 className="text-[40px] md:text-[48px] font-normal text-[#1d1d1f] leading-[1.08] tracking-[-0.035em] mb-4">
             Owner Dashboard
           </h1>
           <p className="text-[#86868b] text-[17px] max-w-[600px] leading-[1.47] tracking-[0.011em] mb-16">

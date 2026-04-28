@@ -2498,8 +2498,8 @@ const TeacherDashboard = () => {
               <GraduationCap className="w-5 h-5" />
             </div>
           </div>
-          <p className="text-[#34c759] text-[14px] font-semibold tracking-[-0.01em] mb-2">Educator App</p>
-          <h1 className="text-[40px] md:text-[48px] font-semibold text-[#1d1d1f] leading-[1.08] tracking-[-0.035em] mb-4">
+          <p className="text-[#34c759] text-[14px] font-normal tracking-[-0.01em] mb-2">Educator App</p>
+          <h1 className="text-[40px] md:text-[48px] font-normal text-[#1d1d1f] leading-[1.08] tracking-[-0.035em] mb-4">
             Teacher Dashboard
           </h1>
           <p className="text-[#86868b] text-[17px] max-w-[600px] mx-auto leading-[1.47] tracking-[0.011em]">
