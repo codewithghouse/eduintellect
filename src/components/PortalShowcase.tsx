@@ -1,41 +1,33 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, Users, UserCog, GraduationCap, ArrowRight } from 'lucide-react';
 import LoginModal from './LoginModal';
+import { ColorChangeCard } from './ui/color-change-card';
 
 const portals = [
   {
     title: 'School Owner',
     role: 'Administration',
     description: 'Track growth, finances, and multi-branch performance with high-level analytics.',
-    icon: <UserCog className="w-6 h-6" />,
-    color: '#0071e3',
-    features: ['Multi-branch control', 'Financial auditing', 'Growth mapping']
+    bgColor: '#3b5a82', // matte steel blue
   },
   {
     title: 'Principal',
     role: 'Academic Head',
     description: 'Monitor teacher performance, academic risks, and overall school operations.',
-    icon: <LayoutDashboard className="w-6 h-6" />,
-    color: '#5856d6',
-    features: ['Academic alerts', 'Risk intervention', 'Resource management']
+    bgColor: '#6b5b95', // matte dusty purple
   },
   {
     title: 'Teacher',
     role: 'Educator App',
     description: 'Manage attendance, grades, and utilize AI tools for student monitoring.',
-    icon: <GraduationCap className="w-6 h-6" />,
-    color: '#34c759',
-    features: ['Smart attendance', 'AI report cards', 'Class engagement']
+    bgColor: '#5d8b7a', // matte sage green
   },
   {
     title: 'Parent',
     role: 'Family Connect',
-    description: 'Stay updated with your child\u2019s progress, attendance, and school announcements.',
-    icon: <Users className="w-6 h-6" />,
-    color: '#ff9500',
-    features: ['Real-time tracking', 'Digital fee payment', 'Direct messaging']
-  }
+    description: "Stay updated with your child's progress, attendance, and school announcements.",
+    bgColor: '#c87f5a', // matte terracotta
+  },
 ];
 
 const PortalShowcase = () => {
@@ -43,7 +35,7 @@ const PortalShowcase = () => {
 
   return (
     <section id="portals" className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-[980px] mx-auto px-6">
+      <div className="max-w-[1200px] mx-auto px-6">
         <div className="text-center mb-16">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -67,7 +59,7 @@ const PortalShowcase = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
-            className="text-[#86868b] text-[17px] max-w-[500px] mx-auto tracking-[0.011em]"
+            className="text-[#86868b] text-[17px] max-w-[520px] mx-auto tracking-[0.011em]"
           >
             A unified ecosystem where every role has specialized tools to achieve excellence.
           </motion.p>
@@ -81,38 +73,14 @@ const PortalShowcase = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
-              whileHover={{ y: -6 }}
-              className="bg-[#fbfbfd] p-7 rounded-[20px] border border-[#d2d2d7]/40 flex flex-col h-full group transition-all duration-300 hover:border-[#d2d2d7] hover:shadow-lg"
             >
-              <div
-                className="w-12 h-12 rounded-[14px] flex items-center justify-center text-white mb-6"
-                style={{ backgroundColor: portal.color }}
-              >
-                {portal.icon}
-              </div>
-              <div className="text-[12px] font-medium text-[#86868b] uppercase tracking-[0.08em] mb-2">{portal.role}</div>
-              <h3 className="text-[22px] font-normal text-[#1d1d1f] mb-3 tracking-[-0.02em]">
-                {portal.title}
-              </h3>
-              <p className="text-[#86868b] text-[14px] mb-6 flex-grow leading-[1.47] tracking-[-0.01em]">
-                {portal.description}
-              </p>
-
-              <ul className="space-y-3 mb-8">
-                {portal.features.map((feature) => (
-                  <li key={feature} className="text-[13px] text-[#424245] flex items-center gap-2.5">
-                    <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: portal.color }}></div>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <button
+              <ColorChangeCard
+                eyebrow={portal.role}
+                heading={portal.title}
+                description={portal.description}
+                bgColor={portal.bgColor}
                 onClick={() => setIsLoginModalOpen(true)}
-                className="flex items-center gap-1.5 text-[14px] font-normal text-[#0071e3] hover:text-[#0077ed] transition-colors duration-300 mt-auto group/btn"
-              >
-                Explore Portal <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-1 transition-transform duration-300" />
-              </button>
+              />
             </motion.div>
           ))}
         </div>
