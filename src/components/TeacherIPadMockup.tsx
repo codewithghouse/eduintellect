@@ -66,7 +66,7 @@ const TeacherIPadMockup = () => {
   const GREEN = '#00C853';
   const RED = '#FF3355';
   const ORANGE = '#FF8800';
-  const VIOLET = '#6B21E8';
+  const VIOLET = '#0044CC';
   const FONT = "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif";
 
   // Sidebar nav data — mirrors real teacher dashboard's 6 sections / 19 items
@@ -431,7 +431,7 @@ const TeacherIPadMockup = () => {
                 { label: 'Attendance Rate', val: '90.7%', sub: '↑ Strong · 30d', color: BLUE, bg: 'linear-gradient(135deg, #DEE6F8 0%, #F8FAFE 100%)', border: 'rgba(0,85,255,0.10)', subColor: GREEN },
                 { label: 'Pending Grading', val: '0', sub: '✓ All caught up', color: ORANGE, bg: 'linear-gradient(135deg, #FFF6E8 0%, #FFEED4 100%)', border: 'rgba(255,136,0,0.14)', subColor: GREEN },
                 { label: 'At-Risk', val: '3', sub: '● Need outreach', color: RED, bg: 'linear-gradient(135deg, #FFEEF0 0%, #FFE2E6 100%)', border: 'rgba(255,51,85,0.14)', subColor: RED },
-                { label: 'Classes Today', val: '4', sub: '● 1 in progress', color: VIOLET, bg: 'linear-gradient(135deg, #F2EBFF 0%, #E8DEFC 100%)', border: 'rgba(107,33,232,0.12)', subColor: VIOLET },
+                { label: 'Classes Today', val: '4', sub: '● 1 in progress', color: VIOLET, bg: 'linear-gradient(135deg, #F2EBFF 0%, #E8DEFC 100%)', border: 'rgba(0,85,255,0.12)', subColor: VIOLET },
               ].map(c => (
                 <div
                   key={c.label}
@@ -677,11 +677,11 @@ const TeacherIPadMockup = () => {
             <div
               style={{
                 marginTop: 8,
-                background: `linear-gradient(135deg, ${VIOLET} 0%, #5915C0 100%)`,
+                background: `linear-gradient(135deg, ${VIOLET} 0%, #003ECC 100%)`,
                 color: '#fff',
                 borderRadius: 11,
                 padding: '9px 12px',
-                boxShadow: '0 6px 18px rgba(107,33,232,0.20)',
+                boxShadow: '0 6px 18px rgba(0,85,255,0.20)',
                 display: 'flex',
                 alignItems: 'center',
                 gap: 9,

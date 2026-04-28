@@ -33,7 +33,7 @@ const RoleScrollShowcase = () => (
       />
     </ContainerScroll>
 
-    <ContainerScroll titleComponent={<Title eyebrow="For Principals" headline="Run your school with intelligence." brand="#7e22ce" />}>
+    <ContainerScroll titleComponent={<Title eyebrow="For Principals" headline="Run your school with intelligence." brand="#003ECC" />}>
       <img
         src="/dashboards/principalui.png"
         alt="Principal dashboard"
@@ -137,7 +137,7 @@ const OwnerDashboard = () => (
 
 /* ============================ PRINCIPAL DASHBOARD ============================ */
 const PrincipalDashboard = () => (
-  <DashboardShell role="Principal" badgeColor="#7e22ce" icon={<GraduationCap className="w-4 h-4 text-white" />}>
+  <DashboardShell role="Principal" badgeColor="#003ECC" icon={<GraduationCap className="w-4 h-4 text-white" />}>
     <KpiRow
       items={[
         { icon: <Users className="w-3.5 h-3.5" />, label: 'Students', value: '1,284' },
@@ -145,7 +145,7 @@ const PrincipalDashboard = () => (
         { icon: <Award className="w-3.5 h-3.5" />, label: 'Avg. Score', value: '82.1' },
         { icon: <ClipboardList className="w-3.5 h-3.5" />, label: 'Tasks', value: '347' },
       ]}
-      accent="#7e22ce"
+      accent="#003ECC"
     />
 
     <div className="grid grid-cols-3 gap-2 md:gap-3 mt-3">
@@ -153,8 +153,8 @@ const PrincipalDashboard = () => (
         <svg viewBox="0 0 300 90" className="w-full h-[70px] md:h-[110px]">
           <defs>
             <linearGradient id="pgrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#a855f7" stopOpacity="0.45" />
-              <stop offset="100%" stopColor="#a855f7" stopOpacity="0" />
+              <stop offset="0%" stopColor="#1166FF" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#1166FF" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path
@@ -164,7 +164,7 @@ const PrincipalDashboard = () => (
           <path
             d="M0 70 L25 60 L50 64 L75 50 L100 55 L125 38 L150 42 L175 30 L200 33 L225 22 L250 26 L275 14 L300 18"
             fill="none"
-            stroke="#a855f7"
+            stroke="#1166FF"
             strokeWidth="2"
             strokeLinecap="round"
           />
@@ -174,7 +174,7 @@ const PrincipalDashboard = () => (
         <ul className="space-y-2">
           {['Class 8B attendance dipped 6%', '3 students at retention risk', 'Math scores up 12% vs term'].map((t) => (
             <li key={t} className="text-[10px] md:text-[11px] text-zinc-400 flex gap-1.5 leading-snug">
-              <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#a855f7] shrink-0" />
+              <span className="mt-1 w-1.5 h-1.5 rounded-full bg-[#1166FF] shrink-0" />
               <span>{t}</span>
             </li>
           ))}
@@ -307,7 +307,7 @@ const DashboardShell = ({
         <div
           className="w-7 h-7 rounded-full"
           style={{
-            background: `linear-gradient(135deg, ${badgeColor}, #a855f7)`,
+            background: `linear-gradient(135deg, ${badgeColor}, #1166FF)`,
           }}
         />
       </div>

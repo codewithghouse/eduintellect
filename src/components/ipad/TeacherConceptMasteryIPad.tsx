@@ -15,7 +15,7 @@ const TeacherConceptMasteryIPad = () => {
   const GREEN = '#00C853';
   const RED = '#FF3355';
   const ORANGE = '#FF8800';
-  const VIOLET = '#7B3FF4';
+  const VIOLET = '#0055FF';
   const GOLD = '#FFAA00';
 
   // Heat-map cells: 5 students × 6 concepts (mastery 0-100)
@@ -166,7 +166,7 @@ const TeacherConceptMasteryIPad = () => {
           </div>
 
           {/* AI re-teach suggestions */}
-          <div style={{ background: `linear-gradient(135deg, ${VIOLET} 0%, #5915C0 100%)`, color: '#fff', borderRadius: 11, padding: 10, position: 'relative', overflow: 'hidden', boxShadow: '0 6px 18px rgba(123,63,244,0.22)' }}>
+          <div style={{ background: `linear-gradient(135deg, ${VIOLET} 0%, #003ECC 100%)`, color: '#fff', borderRadius: 11, padding: 10, position: 'relative', overflow: 'hidden', boxShadow: '0 6px 18px rgba(0,85,255,0.22)' }}>
             <div style={{ position: 'absolute', top: -20, right: -20, width: 80, height: 80, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 65%)' }} />
             <div style={{ position: 'relative', zIndex: 2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6 }}>

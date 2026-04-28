@@ -220,13 +220,13 @@ const TeacherExamGeneratorIPad = () => {
             </div>
 
             {/* Section C: Long */}
-            <div style={{ background: 'rgba(123,63,244,0.05)', border: '1px solid rgba(123,63,244,0.16)', borderRadius: 8, padding: 8 }}>
+            <div style={{ background: 'rgba(0,85,255,0.05)', border: '1px solid rgba(0,85,255,0.16)', borderRadius: 8, padding: 8 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
-                <span style={{ fontSize: 6, fontWeight: 500, color: '#7B3FF4', letterSpacing: '0.12em', textTransform: 'uppercase' as const }}>Section C · Long</span>
+                <span style={{ fontSize: 6, fontWeight: 500, color: '#0055FF', letterSpacing: '0.12em', textTransform: 'uppercase' as const }}>Section C · Long</span>
                 <span style={{ marginLeft: 'auto', fontSize: 6, color: TT4, fontWeight: 500 }}>4 × 5.5 = 22 marks</span>
               </div>
               <div style={{ fontSize: 7, fontWeight: 400, color: TT1, lineHeight: 1.4 }}>
-                <b style={{ color: '#7B3FF4', fontWeight: 500 }}>Q17.</b> Prove that the sum of first n terms of an AP whose first term is a and common difference d is given by Sₙ = n/2 [2a + (n−1)d]. Hence find S₂₀ for the AP: 7, 11, 15, …
+                <b style={{ color: '#0055FF', fontWeight: 500 }}>Q17.</b> Prove that the sum of first n terms of an AP whose first term is a and common difference d is given by Sₙ = n/2 [2a + (n−1)d]. Hence find S₂₀ for the AP: 7, 11, 15, …
               </div>
             </div>
           </div>

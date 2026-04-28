@@ -28,7 +28,7 @@ const fontStack = '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helveti
 /* ─── All 14 sections data ─── */
 const sections = [
   { label: 'Classroom Management', title: 'Track. Monitor.\nImprove.', screens: ['Student Profile', 'Mark Attendance'], color: '#0071e3', emoji: '📊' },
-  { label: 'Planning & Organization', title: 'Your week.\nAt a glance.', screens: ['Weekly Schedule', 'Reports'], color: '#5856d6', emoji: '📅' },
+  { label: 'Planning & Organization', title: 'Your week.\nAt a glance.', screens: ['Weekly Schedule', 'Reports'], color: '#0055FF', emoji: '📅' },
   { label: 'Summarize Lesson', title: 'AI reads.\nYou teach.', screens: ['Upload Form', 'Generated Summary'], color: '#6741d9', emoji: '✨' },
   { label: 'AI Lesson Planner', title: 'Plan in\nseconds.', screens: ['Form', 'Lesson Plan'], color: '#6741d9', emoji: '🎯' },
   { label: 'Principal Notes', title: 'Stay connected.\nAlways.', screens: ['Inbox', 'Chat Detail'], color: '#3b5bdb', emoji: '💬' },
@@ -37,7 +37,7 @@ const sections = [
   { label: 'Concept Mastery', title: 'Know what\nthey know.', screens: ['Overview', 'Student Detail'], color: '#0071e3', emoji: '🧠' },
   { label: 'Gradebook', title: 'Every mark.\nOne place.', screens: ['Main View', 'Enter Scores'], color: '#087f5b', emoji: '📝' },
   { label: 'Student Management', title: 'Every student.\nOne view.', screens: ['List', 'Profile', 'Feedback'], color: '#ff9500', emoji: '👩‍🎓' },
-  { label: 'Tests & Exams', title: 'Assess.\nAnalyze.', screens: ['Overview', 'Create Test'], color: '#5856d6', emoji: '📋' },
+  { label: 'Tests & Exams', title: 'Assess.\nAnalyze.', screens: ['Overview', 'Create Test'], color: '#0055FF', emoji: '📋' },
   { label: 'Assignments', title: 'Assign. Collect.\nGrade.', screens: ['Overview', 'Create'], color: '#c87014', emoji: '📚' },
   { label: 'Attendance', title: 'Present. Absent.\nTracked.', screens: ['Overview', 'Concerns', 'Mark'], color: '#34c759', emoji: '✅' },
   { label: 'Personalization', title: 'Make it\nyours.', screens: ['Settings'], color: '#0071e3', emoji: '⚙️' },

@@ -15,7 +15,7 @@ const TeacherRisksAlertsIPad = () => {
   const GREEN = '#00C853';
   const RED = '#FF3355';
   const ORANGE = '#FF8800';
-  const VIOLET = '#7B3FF4';
+  const VIOLET = '#0055FF';
   const GOLD = '#FFAA00';
 
   return (
@@ -53,7 +53,7 @@ const TeacherRisksAlertsIPad = () => {
         </div>
 
         {/* AI Insight banner */}
-        <div style={{ background: `linear-gradient(135deg, ${VIOLET} 0%, #5915C0 100%)`, color: '#fff', borderRadius: 11, padding: '9px 12px', display: 'flex', alignItems: 'center', gap: 9, marginBottom: 8, position: 'relative', overflow: 'hidden', boxShadow: '0 6px 18px rgba(123,63,244,0.20)' }}>
+        <div style={{ background: `linear-gradient(135deg, ${VIOLET} 0%, #003ECC 100%)`, color: '#fff', borderRadius: 11, padding: '9px 12px', display: 'flex', alignItems: 'center', gap: 9, marginBottom: 8, position: 'relative', overflow: 'hidden', boxShadow: '0 6px 18px rgba(0,85,255,0.20)' }}>
           <div style={{ position: 'absolute', top: -20, right: -20, width: 80, height: 80, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 65%)' }} />
           <div style={{ width: 26, height: 26, borderRadius: 8, background: 'rgba(255,255,255,0.18)', border: '0.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, zIndex: 2 }}>
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" /></svg>

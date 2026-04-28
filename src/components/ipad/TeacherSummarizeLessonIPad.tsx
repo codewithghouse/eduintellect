@@ -13,11 +13,11 @@ const TeacherSummarizeLessonIPad = () => {
   const TT4 = '#99AACC';
   const SURFACE = '#F4F7FE';
   const GREEN = '#00C853';
-  const VIOLET = '#7B3FF4';
+  const VIOLET = '#0055FF';
   const GOLD = '#FFAA00';
   const ORANGE = '#FF8800';
 
-  const HERO_GRAD = `linear-gradient(135deg, ${VIOLET} 0%, #5915C0 100%)`;
+  const HERO_GRAD = `linear-gradient(135deg, ${VIOLET} 0%, #003ECC 100%)`;
 
   return (
     <IPadShellWithSidebar activePath="/summarize-lesson">
@@ -38,7 +38,7 @@ const TeacherSummarizeLessonIPad = () => {
 
       <div style={{ flex: 1, padding: '6px 12px 12px', overflowY: 'auto', minHeight: 0 }}>
         {/* AI Hero */}
-        <div style={{ borderRadius: 14, padding: '12px 14px', background: HERO_GRAD, color: '#fff', position: 'relative', overflow: 'hidden', marginBottom: 8, boxShadow: '0 6px 18px rgba(123,63,244,0.22)' }}>
+        <div style={{ borderRadius: 14, padding: '12px 14px', background: HERO_GRAD, color: '#fff', position: 'relative', overflow: 'hidden', marginBottom: 8, boxShadow: '0 6px 18px rgba(0,85,255,0.22)' }}>
           <div style={{ position: 'absolute', top: -25, right: -25, width: 100, height: 100, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 65%)' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 2 }}>
             <div style={{ width: 28, height: 28, borderRadius: 9, background: 'rgba(255,255,255,0.18)', border: '0.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
@@ -155,7 +155,7 @@ const TeacherSummarizeLessonIPad = () => {
             </div>
 
             {/* Follow-up Questions */}
-            <div style={{ background: 'rgba(123,63,244,0.05)', border: '1px solid rgba(123,63,244,0.16)', borderRadius: 8, padding: 8, marginBottom: 6 }}>
+            <div style={{ background: 'rgba(0,85,255,0.05)', border: '1px solid rgba(0,85,255,0.16)', borderRadius: 8, padding: 8, marginBottom: 6 }}>
               <div style={{ fontSize: 6, fontWeight: 500, color: VIOLET, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 4 }}>❓ Follow-up Questions</div>
               {[
                 'Can a quadratic have only 1 root? When?',

@@ -188,7 +188,7 @@ const OwnerDashboardIPad = () => {
                 {/* 3 lines */}
                 <path d="M 22 32 L 70 30 L 118 28 L 166 26 L 214 24 L 262 22 L 298 22" fill="none" stroke={BLUE} strokeWidth="2" strokeLinecap="round" />
                 <path d="M 22 38 L 70 36 L 118 34 L 166 33 L 214 32 L 262 30 L 298 30" fill="none" stroke={GOLD} strokeWidth="2" strokeLinecap="round" />
-                <path d="M 22 42 L 70 40 L 118 39 L 166 38 L 214 37 L 262 36 L 298 36" fill="none" stroke="#7B3FF4" strokeWidth="2" strokeLinecap="round" />
+                <path d="M 22 42 L 70 40 L 118 39 L 166 38 L 214 37 L 262 36 L 298 36" fill="none" stroke="#0055FF" strokeWidth="2" strokeLinecap="round" />
                 {['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'].map((m, i) => (
                   <text key={m} x={22 + i * 48} y="108" fontSize="7" fill={TT4} textAnchor="middle">{m}</text>
                 ))}
@@ -197,7 +197,7 @@ const OwnerDashboardIPad = () => {
                 {[
                   { l: 'Edullent Bandra', c: BLUE },
                   { l: 'Edullent Koramangala', c: GOLD },
-                  { l: 'Edullent Saket', c: '#7B3FF4' },
+                  { l: 'Edullent Saket', c: '#0055FF' },
                 ].map(l => (
                   <div key={l.l} style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
                     <span style={{ width: 6, height: 6, borderRadius: '50%', background: l.c }} />

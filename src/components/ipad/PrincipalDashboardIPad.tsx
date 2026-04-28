@@ -17,7 +17,7 @@ const PrincipalDashboardIPad = () => {
   const GREEN = '#00C853';
   const RED = '#FF3355';
   const ORANGE = '#FF8800';
-  const VIOLET = '#7B3FF4';
+  const VIOLET = '#0055FF';
 
   const NAV: { title: string; items: { label: string; icon: string; active?: boolean }[] }[] = [
     { title: 'Overview', items: [{ label: 'Dashboard', icon: 'dashboard', active: true }] },

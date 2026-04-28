@@ -17,7 +17,7 @@ const TeacherPerformanceIPad = () => {
   const GREEN = '#00C853';
   const RED = '#FF3355';
   const ORANGE = '#FF8800';
-  const VIOLET = '#7B3FF4';
+  const VIOLET = '#0055FF';
   const GOLD = '#FFAA00';
 
   const HERO_GRAD = `linear-gradient(135deg, ${NAVY_DEEP} 0%, ${NAVY} 35%, #0044CC 70%, ${BLUE} 100%)`;
@@ -87,7 +87,7 @@ const TeacherPerformanceIPad = () => {
         {/* AI Diagnosis + Action Plan */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 8 }}>
           {/* Diagnosis */}
-          <div style={{ background: `linear-gradient(135deg, ${VIOLET} 0%, #5915C0 100%)`, color: '#fff', borderRadius: 11, padding: 12, position: 'relative', overflow: 'hidden', boxShadow: '0 6px 18px rgba(123,63,244,0.22)' }}>
+          <div style={{ background: `linear-gradient(135deg, ${VIOLET} 0%, #003ECC 100%)`, color: '#fff', borderRadius: 11, padding: 12, position: 'relative', overflow: 'hidden', boxShadow: '0 6px 18px rgba(0,85,255,0.22)' }}>
             <div style={{ position: 'absolute', top: -20, right: -20, width: 80, height: 80, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.18) 0%, transparent 65%)' }} />
             <div style={{ position: 'relative', zIndex: 2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6 }}>

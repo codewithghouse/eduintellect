@@ -16,7 +16,7 @@ const TeacherBehaviourIPad = () => {
   const GREEN = '#00C853';
   const RED = '#FF3355';
   const ORANGE = '#FF8800';
-  const VIOLET = '#7B3FF4';
+  const VIOLET = '#0055FF';
   const GOLD = '#FFAA00';
 
   return (
@@ -120,7 +120,7 @@ const TeacherBehaviourIPad = () => {
                 </svg>
               </div>
               <div style={{ fontSize: 9, fontWeight: 500, color: TT1, letterSpacing: '-0.15px' }}>Improvement Plans</div>
-              <div style={{ marginLeft: 'auto', fontSize: 6, fontWeight: 500, color: VIOLET, background: 'rgba(123,63,244,0.10)', padding: '2px 6px', borderRadius: 999 }}>2 active</div>
+              <div style={{ marginLeft: 'auto', fontSize: 6, fontWeight: 500, color: VIOLET, background: 'rgba(0,85,255,0.10)', padding: '2px 6px', borderRadius: 999 }}>2 active</div>
             </div>
             {[
               { title: 'Submit homework on time', priority: 'HIGH', status: 'active', tone: RED, progress: 60 },

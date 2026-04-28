@@ -100,9 +100,9 @@ const HeroScrollSection = () => {
           style={{ y: bgY, opacity: bgOpacity }}
           className="absolute inset-0 -z-10 pointer-events-none"
         >
-          <div className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-br from-[#0071e3]/[0.10] via-[#7e22ce]/[0.04] to-transparent rounded-full blur-3xl" />
+          <div className="absolute top-[8%] left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-gradient-to-br from-[#0071e3]/[0.10] via-[#003ECC]/[0.04] to-transparent rounded-full blur-3xl" />
           <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-[#0071e3]/[0.07] to-transparent rounded-full blur-3xl" />
-          <div className="absolute top-[40%] right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#a855f7]/[0.06] to-transparent rounded-full blur-3xl" />
+          <div className="absolute top-[40%] right-0 w-[500px] h-[500px] bg-gradient-to-bl from-[#1166FF]/[0.06] to-transparent rounded-full blur-3xl" />
         </motion.div>
 
         {/* Hero copy — sits above the laptop, fades up on enter */}
@@ -275,7 +275,7 @@ const DashboardUI = () => (
       </div>
       <div className="flex items-center gap-3">
         <Bell className="w-4 h-4 text-[#86868b]" />
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#0071e3] to-[#a855f7]" />
+        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#0071e3] to-[#1166FF]" />
       </div>
     </div>
 
@@ -366,7 +366,7 @@ const DashboardUI = () => (
             className="flex items-center justify-between py-1.5 md:py-2"
           >
             <div className="flex items-center gap-2">
-              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-gradient-to-br from-[#0071e3] to-[#a855f7]" />
+              <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-gradient-to-br from-[#0071e3] to-[#1166FF]" />
               <div className="text-[10px] md:text-[12px] text-[#1d1d1f]">
                 <span className="font-medium">{row.name}</span>{' '}
                 <span className="text-[#86868b]">{row.action}</span>

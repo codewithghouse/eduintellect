@@ -41,7 +41,7 @@ export const ParentHome = () => (
             <div className="pp-ring">
               <svg viewBox="0 0 80 80" width="80" height="80">
                 <circle fill="none" stroke="#ede8f5" strokeWidth="6" cx="40" cy="40" r="34" />
-                <circle fill="none" stroke="#6b35b8" strokeWidth="6" strokeLinecap="round" cx="40" cy="40" r="34" strokeDasharray="213.63" strokeDashoffset="145.3" />
+                <circle fill="none" stroke="#0044CC" strokeWidth="6" strokeLinecap="round" cx="40" cy="40" r="34" strokeDasharray="213.63" strokeDashoffset="145.3" />
               </svg>
               <div className="pp-ring-center">32%</div>
             </div>
@@ -51,7 +51,7 @@ export const ParentHome = () => (
           {[
             { label: 'Attendance', val: '100%', st: 'On track ✓', stColor: '#30d158', icoBg: 'rgba(48,209,88,.1)', icoStroke: '#30d158', icon: <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg> },
             { label: 'Pending Work', val: '0', st: 'Due this week', stColor: '#ff9f0a', icoBg: 'rgba(255,159,10,.1)', icoStroke: '#ff9f0a', icon: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg> },
-            { label: 'Upcoming Tests', val: '0', st: 'Next 7 days', stColor: '#c0b2d4', icoBg: 'rgba(107,53,184,.1)', icoStroke: '#6b35b8', icon: <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg> },
+            { label: 'Upcoming Tests', val: '0', st: 'Next 7 days', stColor: '#c0b2d4', icoBg: 'rgba(107,53,184,.1)', icoStroke: '#0044CC', icon: <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg> },
             { label: 'Recent Grade', val: 'C', st: 'General', stColor: '#c0b2d4', icoBg: 'rgba(255,111,163,.1)', icoStroke: '#ff6fa3', icon: <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg> },
           ].map((s) => (
             <div key={s.label} className="pp-sc">

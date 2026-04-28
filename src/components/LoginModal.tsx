@@ -22,7 +22,7 @@ const roles = [
     title: 'Principal',
     subtitle: 'Academic Management',
     icon: <LayoutDashboard className="w-5 h-5" />,
-    color: '#5856d6',
+    color: '#0055FF',
     url: import.meta.env.VITE_PRINCIPAL_DASHBOARD_URL || 'https://principal-dashboard-seven.vercel.app/'
   },
   {

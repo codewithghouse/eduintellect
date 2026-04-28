@@ -2603,7 +2603,7 @@ const TeacherDashboard = () => {
               'AI diagnosis tells you the ONE thing to fix this week',
               'Action checklist with predicted score impact (+0.5 to +3.2)',
             ],
-            brand: '#7B3FF4',
+            brand: '#0055FF',
           },
           {
             ipad: <TeacherConceptMasteryIPad />,
@@ -2639,7 +2639,7 @@ const TeacherDashboard = () => {
               'Activity-led, visual aids, group-work toggles',
               'Save, edit, share with co-teachers',
             ],
-            brand: '#7B3FF4',
+            brand: '#0055FF',
           },
           {
             ipad: <TeacherSummarizeLessonIPad />,
