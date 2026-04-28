@@ -1,11 +1,26 @@
+import { useEffect, useMemo, useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Hero = () => {
+  const [titleNumber, setTitleNumber] = useState(0);
+  const titles = useMemo(
+    () => ['Visionary', 'Genius', 'Maestro', 'Strategist', 'Pro'],
+    [],
+  );
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setTitleNumber((n) => (n === titles.length - 1 ? 0 : n + 1));
+    }, 2000);
+    return () => clearTimeout(timeoutId);
+  }, [titleNumber, titles]);
+
+  const longest = titles.reduce((a, b) => (a.length > b.length ? a : b));
+
   return (
     <section className="relative pt-32 pb-20 md:pt-44 md:pb-28 overflow-hidden bg-[#fbfbfd]">
-      {/* Subtle Apple-style gradient background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-[#0071e3]/[0.04] via-transparent to-transparent rounded-full blur-3xl"></div>
       </div>
@@ -27,9 +42,34 @@ const Hero = () => {
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-[48px] md:text-[64px] lg:text-[80px] font-semibold text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-6"
           >
-            Manage Your School.
-            <br />
-            <span className="gradient-text">Like a Visionary.</span>
+            <span className="block">Manage Your School.</span>
+            <span className="block">
+              Like a{' '}
+              <span className="relative inline-block overflow-hidden align-bottom leading-[1.05]">
+                <span aria-hidden className="invisible">
+                  {longest}
+                </span>
+                {titles.map((title, index) => (
+                  <motion.span
+                    key={title}
+                    className="absolute left-0 right-0 text-center gradient-text font-semibold"
+                    initial={{ opacity: 0, y: '-100%' }}
+                    transition={{ type: 'spring', stiffness: 50, damping: 12 }}
+                    animate={
+                      titleNumber === index
+                        ? { y: '0%', opacity: 1 }
+                        : {
+                            y: titleNumber > index ? '-150%' : '150%',
+                            opacity: 0,
+                          }
+                    }
+                  >
+                    {title}
+                  </motion.span>
+                ))}
+              </span>
+              <span className="text-[#1d1d1f]">.</span>
+            </span>
           </motion.h1>
 
           <motion.p
@@ -63,26 +103,6 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Apple-style divider line */}
-      <div className="max-w-[980px] mx-auto px-6 mt-20">
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-0 border-t border-[#d2d2d7]/60 pt-10"
-        >
-          {[
-            { label: 'AI Smart Insights', value: 'Built-in' },
-            { label: 'Real-time Analytics', value: 'Always On' },
-            { label: 'Parent-Teacher Sync', value: 'Seamless' }
-          ].map((item, i) => (
-            <div key={item.label} className={`text-center py-4 ${i < 2 ? 'sm:border-r border-[#d2d2d7]/40' : ''}`}>
-              <p className="text-[28px] font-semibold text-[#1d1d1f] tracking-[-0.026em] mb-1">{item.value}</p>
-              <p className="text-[14px] text-[#86868b] tracking-[-0.01em]">{item.label}</p>
-            </div>
-          ))}
-        </motion.div>
-      </div>
     </section>
   );
 };
