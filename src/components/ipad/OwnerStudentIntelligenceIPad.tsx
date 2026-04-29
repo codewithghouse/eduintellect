@@ -1,154 +1,152 @@
 /**
- * Static iPad mockup — Owner › Students Intelligence page.
- * Mirrors /students from owner-dashboard.
+ * Static iPad mockup — Owner · Students Intelligence page.
+ * Mirrors owner-dashboard/src/pages/StudentsIntelligence.tsx with mock data.
+ *
+ * Layout: 4 KPI cards → Performance Grid heatmap (branches × grades)
+ * → Student metrics table with risk tier pills.
  */
 
 import OwnerIPadShell from './OwnerIPadShell';
 
-const NAVY_DEEP = '#001040';
-const NAVY = '#001A66';
-const BLUE = '#0055FF';
-const TT1 = '#001040';
-const TT3 = '#5070B0';
-const TT4 = '#99AACC';
-const GREEN = '#00C853';
-const RED = '#FF3355';
-const ORANGE = '#FF8800';
-const VIOLET = '#0055FF';
+const OwnerStudentIntelligenceIPad = () => {
+  const BLUE = '#0055FF';
+  const VIOLET = '#7B3FF4';
+  const T1 = '#1e294b';
+  const T3 = '#64748b';
+  const T4 = '#94a3b8';
+  const GREEN = '#10B981';
+  const AMBER = '#F59E0B';
+  const RED = '#FF3355';
 
-const OwnerStudentIntelligenceIPad = () => (
-  <OwnerIPadShell activePath="/students">
-    <div style={{ padding: 12 }}>
-      {/* Hero */}
-      <div style={{
-        borderRadius: 12, padding: '12px 14px',
-        background: `linear-gradient(135deg, ${NAVY_DEEP} 0%, ${NAVY} 35%, #0044CC 70%, ${BLUE} 100%)`,
-        color: '#fff', marginBottom: 8, position: 'relative', overflow: 'hidden',
-        boxShadow: '0 6px 18px rgba(0,8,60,0.22)',
-      }}>
-        <div style={{ position: 'absolute', top: -25, right: -25, width: 110, height: 110, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,.10) 0%, transparent 65%)' }} />
-        <div style={{ position: 'relative', zIndex: 2 }}>
-          <div style={{ fontSize: 6, fontWeight: 500, color: 'rgba(255,255,255,.7)', letterSpacing: '0.18em', textTransform: 'uppercase' as const, marginBottom: 4 }}>
-            Network-wide · Apr 2026
-          </div>
-          <div style={{ fontSize: 16, fontWeight: 400, letterSpacing: '-0.4px' }}>Students Intelligence</div>
-          <div style={{ fontSize: 8, color: 'rgba(255,255,255,.6)', marginTop: 3 }}>Cross-branch student analytics + AI insights</div>
+  // Heatmap: 5 branches × 6 grades, values are pass-rate %
+  const branches = ['Bandra', 'Andheri', 'Powai', 'Thane', 'Goregaon'];
+  const grades = ['G6', 'G7', 'G8', 'G9', 'G10', 'G11'];
+  const heat: number[][] = [
+    [92, 89, 91, 88, 86, 90],
+    [85, 82, 78, 80, 76, 79],
+    [88, 86, 84, 87, 81, 85],
+    [74, 72, 69, 70, 65, 67],
+    [80, 78, 76, 75, 72, 74],
+  ];
+  const cellColor = (v: number) => {
+    if (v >= 88) return '#10B981';
+    if (v >= 80) return '#34D399';
+    if (v >= 72) return '#F59E0B';
+    if (v >= 65) return '#FB923C';
+    return '#FF3355';
+  };
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 1, marginTop: 10, background: 'rgba(255,255,255,.12)', borderRadius: 8, overflow: 'hidden' }}>
-            {[
-              { l: 'TOTAL', v: '4,286', col: '#fff' },
-              { l: 'AT-RISK', v: '127', col: '#FF99AA' },
-              { l: 'TOP 10%', v: '429', col: '#6FFFAA' },
-              { l: 'AVG GPA', v: '8.4', col: '#FFDD55' },
-              { l: 'ENGAGED', v: '94%', col: '#fff' },
-            ].map(s => (
-              <div key={s.l} style={{ background: 'rgba(0,20,80,.6)', padding: '7px 8px', textAlign: 'center' }}>
-                <div style={{ fontSize: 13, fontWeight: 400, color: s.col, letterSpacing: '-0.3px' }}>{s.v}</div>
-                <div style={{ fontSize: 6, fontWeight: 500, color: 'rgba(255,255,255,.55)', letterSpacing: '0.1em', marginTop: 2 }}>{s.l}</div>
-              </div>
-            ))}
-          </div>
+  const students = [
+    { rank: 1, name: 'Aarav Sharma', initials: 'AS', grade: 'G9', att: 96, score: 94, trend: 4, risk: 'Low', riskColor: GREEN },
+    { rank: 2, name: 'Diya Patel', initials: 'DP', grade: 'G10', att: 93, score: 91, trend: 2, risk: 'Low', riskColor: GREEN },
+    { rank: 3, name: 'Vihaan Iyer', initials: 'VI', grade: 'G8', att: 90, score: 88, trend: 5, risk: 'Low', riskColor: GREEN },
+    { rank: 4, name: 'Anaya Singh', initials: 'AN', grade: 'G11', att: 87, score: 84, trend: -1, risk: 'Med', riskColor: AMBER },
+    { rank: 5, name: 'Krish Mehta', initials: 'KM', grade: 'G9', att: 78, score: 71, trend: -3, risk: 'Med', riskColor: AMBER },
+    { rank: 6, name: 'Riya Kapoor', initials: 'RK', grade: 'G7', att: 72, score: 64, trend: -4, risk: 'High', riskColor: RED },
+    { rank: 7, name: 'Aryan Reddy', initials: 'AR', grade: 'G10', att: 68, score: 58, trend: -6, risk: 'High', riskColor: RED },
+  ];
+
+  return (
+    <OwnerIPadShell activePath="/students">
+      <div style={{ padding: '12px 14px 6px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
+          <span style={{ width: 4, height: 4, borderRadius: 1, background: VIOLET }} />
+          <span style={{ fontSize: 7, fontWeight: 500, color: T3, letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>
+            Owner · Intelligence
+          </span>
+        </div>
+        <h1 style={{ fontSize: 22, fontWeight: 300, color: T1, letterSpacing: '-0.7px', lineHeight: 1.05, margin: 0 }}>
+          Students Intelligence
+        </h1>
+        <div style={{ fontSize: 9, fontWeight: 400, color: T3, marginTop: 3 }}>
+          Intelligence-driven student tracking · early risk detection across the network.
         </div>
       </div>
 
-      {/* Filters row */}
-      <div style={{ display: 'flex', gap: 5, marginBottom: 8, alignItems: 'center' }}>
-        {['All Branches', 'Bandra', 'Koramangala', 'Saket', 'Jubilee Hills'].map((b, i) => (
-          <div key={b} style={{
-            padding: '4px 10px', borderRadius: 999, fontSize: 7, fontWeight: 500,
-            background: i === 0 ? NAVY_DEEP : '#fff',
-            color: i === 0 ? '#fff' : TT3,
-            border: `0.5px solid ${i === 0 ? NAVY_DEEP : 'rgba(0,85,255,.10)'}`,
-          }}>{b}</div>
-        ))}
-        <div style={{ marginLeft: 'auto', fontSize: 7, fontWeight: 500, color: BLUE, background: 'rgba(0,85,255,.10)', padding: '4px 10px', borderRadius: 999 }}>
-          Export CSV
+      <div style={{ flex: 1, padding: '6px 12px 12px', overflowY: 'auto', minHeight: 0 }}>
+        {/* 4 KPI cards */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 7, marginBottom: 8 }}>
+          {[
+            { label: 'Total Students', val: '8,420', sub: 'Across 5 branches', color: BLUE, bg: 'linear-gradient(135deg, #DEE6F8 0%, #F8FAFE 100%)' },
+            { label: 'At-Risk', val: '342', sub: '4.1% of network', color: RED, bg: 'linear-gradient(135deg, #FFE5E9 0%, #FFD0D7 100%)' },
+            { label: 'Top 10%', val: '842', sub: 'Avg 91.2%', color: GREEN, bg: 'linear-gradient(135deg, #E8FBEF 0%, #DAF6E4 100%)' },
+            { label: 'Avg GPA', val: '7.8', sub: '↑ 0.3 vs last term', color: VIOLET, bg: 'linear-gradient(135deg, #F2EBFF 0%, #E8DEFC 100%)' },
+          ].map(c => (
+            <div key={c.label} style={{ background: c.bg, border: `0.5px solid ${c.color}33`, borderRadius: 11, padding: '8px 10px' }}>
+              <div style={{ fontSize: 6, fontWeight: 500, color: c.color, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 4 }}>{c.label}</div>
+              <div style={{ fontSize: 18, fontWeight: 300, color: T1, letterSpacing: '-0.7px', lineHeight: 1 }}>{c.val}</div>
+              <div style={{ fontSize: 6, fontWeight: 500, color: c.color, marginTop: 3 }}>{c.sub}</div>
+            </div>
+          ))}
         </div>
-      </div>
 
-      {/* 2-col: Distribution + Top Students */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: 7, marginBottom: 8 }}>
-        {/* Performance distribution */}
-        <div style={{ background: '#fff', borderRadius: 11, padding: 10, boxShadow: '0 4px 12px rgba(20,40,90,.06)', border: '0.5px solid rgba(0,85,255,.07)' }}>
-          <div style={{ fontSize: 6, fontWeight: 500, color: TT3, letterSpacing: '0.18em', textTransform: 'uppercase' as const, marginBottom: 4 }}>Performance Distribution</div>
-          <div style={{ fontSize: 9, fontWeight: 500, color: TT1, marginBottom: 7 }}>4,286 students across 4 branches</div>
-          <div style={{ display: 'flex', alignItems: 'flex-end', gap: 6, height: 90, marginTop: 8 }}>
-            {[
-              { l: '<40', v: 8, c: RED },
-              { l: '40-55', v: 16, c: ORANGE },
-              { l: '55-70', v: 28, c: '#FFAA00' },
-              { l: '70-85', v: 38, c: BLUE },
-              { l: '85+', v: 10, c: GREEN },
-            ].map(b => (
-              <div key={b.l} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 3 }}>
-                <div style={{ fontSize: 7, fontWeight: 500, color: b.c }}>{b.v}%</div>
-                <div style={{ width: '100%', background: `${b.c}33`, borderRadius: 4, height: `${b.v * 1.6}px`, position: 'relative' }}>
-                  <div style={{ background: b.c, borderRadius: 4, height: '100%' }} />
+        {/* Performance Grid heatmap */}
+        <div style={{ background: '#fff', borderRadius: 11, padding: 10, boxShadow: '0 4px 12px rgba(20,40,90,0.06)', border: '0.5px solid rgba(0,85,255,0.07)', marginBottom: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 7 }}>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={BLUE} strokeWidth="2"><rect x="3" y="3" width="7" height="7" /><rect x="14" y="3" width="7" height="7" /><rect x="3" y="14" width="7" height="7" /><rect x="14" y="14" width="7" height="7" /></svg>
+            <div style={{ fontSize: 9, fontWeight: 500, color: T1 }}>Performance Grid</div>
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 4, fontSize: 5.5, color: T4 }}>
+              <span>Low</span>
+              {[RED, '#FB923C', AMBER, '#34D399', GREEN].map((c, i) => <div key={i} style={{ width: 8, height: 8, borderRadius: 1.5, background: c }} />)}
+              <span>High</span>
+            </div>
+          </div>
+          {/* Header row */}
+          <div style={{ display: 'grid', gridTemplateColumns: '60px repeat(6, 1fr)', gap: 3, marginBottom: 3 }}>
+            <div />
+            {grades.map(g => <div key={g} style={{ fontSize: 6, fontWeight: 500, color: T4, textAlign: 'center', letterSpacing: '0.06em' }}>{g}</div>)}
+          </div>
+          {branches.map((b, bi) => (
+            <div key={b} style={{ display: 'grid', gridTemplateColumns: '60px repeat(6, 1fr)', gap: 3, marginBottom: 2 }}>
+              <div style={{ fontSize: 7, fontWeight: 500, color: T1, display: 'flex', alignItems: 'center' }}>{b}</div>
+              {heat[bi].map((v, gi) => (
+                <div key={gi} style={{ height: 18, background: cellColor(v), borderRadius: 3, display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: 6.5, fontWeight: 600 }}>
+                  {v}%
                 </div>
-                <div style={{ fontSize: 6, fontWeight: 500, color: TT4 }}>{b.l}</div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ))}
         </div>
 
-        {/* AI insight card */}
-        <div style={{
-          background: `linear-gradient(135deg, ${VIOLET} 0%, #003ECC 100%)`,
-          color: '#fff', borderRadius: 11, padding: 10,
-          boxShadow: '0 6px 18px rgba(0,85,255,.22)',
-          position: 'relative', overflow: 'hidden',
-        }}>
-          <div style={{ position: 'absolute', top: -20, right: -20, width: 70, height: 70, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,.18) 0%, transparent 65%)' }} />
-          <div style={{ position: 'relative', zIndex: 2 }}>
-            <div style={{ fontSize: 6, fontWeight: 500, color: 'rgba(255,255,255,.7)', letterSpacing: '0.18em', textTransform: 'uppercase' as const, marginBottom: 5 }}>
-              AI Brand Insight
-            </div>
-            <div style={{ fontSize: 9, fontWeight: 500, lineHeight: 1.4, marginBottom: 6 }}>
-              Bandra is your strongest branch on student outcomes (avg 87.4) — but Saket has caught up most this month (+4.8%).
-            </div>
-            <div style={{ fontSize: 7, color: 'rgba(255,255,255,.78)', lineHeight: 1.4 }}>
-              <b style={{ color: '#FFD166', fontWeight: 500 }}>Action:</b> Replicate Saket's evening-tutoring pilot in Jubilee Hills (lowest avg).
+        {/* Student metrics table */}
+        <div style={{ background: '#fff', borderRadius: 11, padding: 10, boxShadow: '0 4px 12px rgba(20,40,90,0.06)', border: '0.5px solid rgba(0,85,255,0.07)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 7 }}>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke={VIOLET} strokeWidth="2"><circle cx="9" cy="7" r="4" /><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /></svg>
+            <div style={{ fontSize: 9, fontWeight: 500, color: T1 }}>Student List</div>
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 5 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 3, padding: '2px 6px', background: '#F8FAFE', borderRadius: 6, border: `0.5px solid ${BLUE}22` }}>
+                <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke={T4} strokeWidth="2"><circle cx="11" cy="11" r="8" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+                <span style={{ fontSize: 6, color: T4 }}>Search…</span>
+              </div>
+              <span style={{ fontSize: 6, fontWeight: 500, color: BLUE, background: `${BLUE}1a`, padding: '2px 6px', borderRadius: 999 }}>Top 100</span>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Top students table */}
-      <div style={{ background: '#fff', borderRadius: 11, padding: 10, boxShadow: '0 4px 12px rgba(20,40,90,.06)', border: '0.5px solid rgba(0,85,255,.07)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 7 }}>
-          <div style={{ fontSize: 9, fontWeight: 500, color: TT1 }}>Top 100 Students (network-wide)</div>
-          <div style={{ marginLeft: 'auto', display: 'flex', gap: 3 }}>
-            {['Score', 'Growth', 'Attendance'].map((s, i) => (
-              <div key={s} style={{ fontSize: 6, fontWeight: 500, color: i === 0 ? '#fff' : TT3, background: i === 0 ? BLUE : '#F4F7FE', padding: '3px 7px', borderRadius: 999 }}>
-                {s}
-              </div>
+          {/* Header */}
+          <div style={{ display: 'grid', gridTemplateColumns: '20px 1fr 28px 30px 30px 26px 32px', gap: 5, padding: '3px 0 5px', borderBottom: '0.5px solid #F1F5F9' }}>
+            {['#', 'Name', 'Gr', 'Att', 'Avg', 'Tr', 'Risk'].map(h => (
+              <div key={h} style={{ fontSize: 5.5, fontWeight: 600, color: T4, letterSpacing: '0.12em', textTransform: 'uppercase' as const }}>{h}</div>
             ))}
           </div>
+          {students.map((s, i) => (
+            <div key={s.name} style={{ display: 'grid', gridTemplateColumns: '20px 1fr 28px 30px 30px 26px 32px', gap: 5, alignItems: 'center', padding: '4px 0', borderBottom: i < students.length - 1 ? '0.5px solid #F1F5F9' : 'none' }}>
+              <span style={{ fontSize: 7, fontWeight: 500, color: T4 }}>{s.rank}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 5, minWidth: 0 }}>
+                <div style={{ width: 16, height: 16, borderRadius: '50%', background: `linear-gradient(135deg, ${VIOLET}, ${BLUE})`, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 6, fontWeight: 600, flexShrink: 0 }}>
+                  {s.initials}
+                </div>
+                <span style={{ fontSize: 7, fontWeight: 500, color: T1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{s.name}</span>
+              </div>
+              <span style={{ fontSize: 6.5, color: T3 }}>{s.grade}</span>
+              <span style={{ fontSize: 6.5, fontWeight: 500, color: s.att >= 85 ? GREEN : s.att >= 75 ? AMBER : RED }}>{s.att}%</span>
+              <span style={{ fontSize: 6.5, fontWeight: 500, color: s.score >= 85 ? GREEN : s.score >= 70 ? AMBER : RED }}>{s.score}%</span>
+              <span style={{ fontSize: 6.5, fontWeight: 500, color: s.trend >= 0 ? GREEN : RED }}>{s.trend >= 0 ? '↑' : '↓'}{Math.abs(s.trend)}</span>
+              <span style={{ fontSize: 5.5, fontWeight: 600, color: '#fff', background: s.riskColor, padding: '2px 5px', borderRadius: 999, textAlign: 'center', letterSpacing: '0.04em' }}>{s.risk}</span>
+            </div>
+          ))}
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '20px 1fr 60px 50px 50px 50px', gap: 6, fontSize: 6, fontWeight: 500, color: TT4, textTransform: 'uppercase' as const, letterSpacing: '0.1em', padding: '4px 0', borderBottom: '0.5px solid #F1F5F9' }}>
-          <div>#</div><div>Student</div><div>Branch</div><div style={{ textAlign: 'right' }}>Score</div><div style={{ textAlign: 'right' }}>Att.</div><div style={{ textAlign: 'right' }}>Growth</div>
-        </div>
-        {[
-          { r: 1, n: 'Aarav Sharma', b: 'Bandra', s: 96.2, a: '98%', g: '+4.8' },
-          { r: 2, n: 'Diya Patel', b: 'Koramangala', s: 95.7, a: '97%', g: '+3.2' },
-          { r: 3, n: 'Vihaan Reddy', b: 'Bandra', s: 94.9, a: '96%', g: '+2.1' },
-          { r: 4, n: 'Anaya Singh', b: 'Saket', s: 94.4, a: '99%', g: '+5.4' },
-          { r: 5, n: 'Ishaan Joshi', b: 'Bandra', s: 93.8, a: '95%', g: '+1.8' },
-          { r: 6, n: 'Sara Khan', b: 'Jubilee Hills', s: 93.1, a: '92%', g: '+0.6' },
-          { r: 7, n: 'Karan Mehta', b: 'Koramangala', s: 92.6, a: '94%', g: '+2.9' },
-        ].map((s, i) => (
-          <div key={s.r} style={{ display: 'grid', gridTemplateColumns: '20px 1fr 60px 50px 50px 50px', gap: 6, fontSize: 8, padding: '4px 0', borderBottom: i < 6 ? '0.5px solid #F1F5F9' : 'none', alignItems: 'center' }}>
-            <div style={{ fontWeight: 500, color: TT3 }}>{s.r}</div>
-            <div style={{ fontWeight: 500, color: TT1 }}>{s.n}</div>
-            <div style={{ fontSize: 7, color: TT4 }}>{s.b}</div>
-            <div style={{ textAlign: 'right', fontWeight: 500, color: TT1 }}>{s.s}</div>
-            <div style={{ textAlign: 'right', fontSize: 7, color: TT3 }}>{s.a}</div>
-            <div style={{ textAlign: 'right', fontSize: 7, fontWeight: 500, color: GREEN }}>{s.g}</div>
-          </div>
-        ))}
       </div>
-    </div>
-  </OwnerIPadShell>
-);
+    </OwnerIPadShell>
+  );
+};
 
 export default OwnerStudentIntelligenceIPad;

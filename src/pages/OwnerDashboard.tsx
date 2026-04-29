@@ -112,7 +112,14 @@ const FEATURES: {
 
 const OwnerDashboard = () => {
   return (
-    <div className="min-h-screen pt-28 pb-20 bg-white">
+    <div className="owner-page-sf min-h-screen pt-28 pb-20 bg-white">
+      <style dangerouslySetInnerHTML={{ __html: `
+        .owner-page-sf,
+        .owner-page-sf * {
+          font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+          font-weight: 400 !important;
+        }
+      ` }} />
       <div className="max-w-[1400px] mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
