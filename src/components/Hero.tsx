@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Hero = () => {
   const [titleNumber, setTitleNumber] = useState(0);
   const titles = useMemo(
-    () => ['Visionary', 'Genius', 'Maestro', 'Strategist', 'Pro'],
+    () => ['Genius', 'Maestro', 'Strategist', 'Pro'],
     [],
   );
 
