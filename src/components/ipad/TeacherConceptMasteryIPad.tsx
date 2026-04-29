@@ -1,192 +1,182 @@
 /**
- * Static iPad mockup — Concept Mastery page.
- * Mirrors /concept-mastery: header + class picker + 4 stat cards +
- * student × concept heat-map matrix + cold-zone list with re-teach actions.
+ * Static iPad mockup — Teacher · Concept Mastery page.
+ * Faithful pixel-shrink of teacher-dashboard/src/pages/ConceptMastery.tsx.
+ *
+ * Layout matches source:
+ *   1. Header: eyebrow + h1 + subtitle
+ *   2. Class picker card + search + export buttons
+ *   3. HERO Class Mastery (dark gradient with frosted icon + status pill +
+ *      huge percentage + status legend)
+ *   4. Section header: "Students" + count
+ *   5. Student cards: side band + avatar + name + mastery pill + concept rows
+ *      with colored progress bars
  */
 
 import IPadShellWithSidebar from './IPadShellWithSidebar';
 
 const TeacherConceptMasteryIPad = () => {
-  const BLUE = '#0055FF';
-  const TT1 = '#001040';
-  const TT3 = '#5070B0';
-  const TT4 = '#99AACC';
-  const SURFACE = '#F4F7FE';
+  const B1 = '#0055FF';
+  const VIOLET = '#7B3FF4';
+  const T1 = '#001040';
+  const T2 = '#002080';
+  const T3 = '#5070B0';
+  const T4 = '#99AACC';
   const GREEN = '#00C853';
-  const RED = '#FF3355';
   const ORANGE = '#FF8800';
-  const VIOLET = '#0055FF';
-  const GOLD = '#FFAA00';
+  const RED = '#FF3355';
+  const SURFACE = '#F4F7FE';
+  const HERO_GRAD = 'linear-gradient(135deg, #000A33 0%, #001A66 32%, #0044CC 68%, #0055FF 100%)';
 
-  // Heat-map cells: 5 students × 6 concepts (mastery 0-100)
-  const STUDENTS = ['Aryan R.', 'Riya S.', 'Vikram P.', 'Neha K.', 'Karan M.'];
-  const CONCEPTS = ['Quadratics', 'AP', 'Trig', 'Geometry', 'Stats', 'Probability'];
-  const matrix = [
-    [92, 88, 76, 64, 81, 70],
-    [85, 91, 83, 78, 88, 82],
-    [54, 62, 48, 38, 55, 42],
-    [78, 81, 72, 65, 75, 68],
-    [42, 38, 30, 28, 45, 32],
+  const concepts = ['Quadratics', 'Trigonometry', 'AP', 'Probability'];
+
+  const students = [
+    { name: 'Aarav Sharma', initials: 'AS', avatarBg: '#7B3FF4', mastery: 88, band: 'Mastered', bandColor: GREEN, concepts: [92, 85, 91, 84] },
+    { name: 'Diya Patel', initials: 'DP', avatarBg: '#0EAFAE', mastery: 92, band: 'Mastered', bandColor: GREEN, concepts: [95, 90, 94, 89] },
+    { name: 'Krish Mehta', initials: 'KM', avatarBg: '#FF8800', mastery: 64, band: 'Developing', bandColor: ORANGE, concepts: [72, 58, 64, 62] },
+    { name: 'Riya Kapoor', initials: 'RK', avatarBg: '#FF3355', mastery: 42, band: 'Weak', bandColor: RED, concepts: [55, 38, 41, 34] },
   ];
-  const colorFor = (v: number) => {
-    if (v >= 85) return GREEN;
-    if (v >= 70) return BLUE;
-    if (v >= 55) return GOLD;
-    if (v >= 40) return ORANGE;
-    return RED;
-  };
-  const bgFor = (v: number) => {
-    if (v >= 85) return 'rgba(0,200,83,0.20)';
-    if (v >= 70) return 'rgba(0,85,255,0.16)';
-    if (v >= 55) return 'rgba(255,170,0,0.20)';
-    if (v >= 40) return 'rgba(255,136,0,0.20)';
-    return 'rgba(255,51,85,0.22)';
-  };
 
   return (
     <IPadShellWithSidebar activePath="/concept-mastery">
-      {/* Header */}
-      <div style={{ padding: '12px 14px 6px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
-          <span style={{ width: 4, height: 4, borderRadius: 1, background: BLUE }} />
-          <span style={{ fontSize: 7, fontWeight: 500, color: TT3, letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>
-            Teacher Dashboard · Concept Mastery
-          </span>
-        </div>
-        <h1 style={{ fontSize: 22, fontWeight: 300, color: TT1, letterSpacing: '-0.7px', lineHeight: 1.05, margin: 0 }}>
-          Concept Mastery
-        </h1>
-        <div style={{ fontSize: 9, fontWeight: 400, color: TT3, marginTop: 3 }}>
-          Class 10B · Mathematics — see exactly which topics aren't landing.
-        </div>
-      </div>
+      <div style={{ background: '#EEF4FF', flex: 1, overflowY: 'auto', minHeight: 0, padding: '10px 12px 12px', fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif" }}>
 
-      <div style={{ flex: 1, padding: '6px 12px 12px', overflowY: 'auto', minHeight: 0 }}>
-        {/* 4 stat cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 7, marginBottom: 8 }}>
-          {[
-            { label: 'Avg Mastery', val: '67%', sub: '↑ 4% vs last test', color: BLUE, bg: 'linear-gradient(135deg, #DEE6F8 0%, #F8FAFE 100%)' },
-            { label: 'Strong Concepts', val: '2', sub: 'Quadratics · AP', color: GREEN, bg: 'linear-gradient(135deg, #E8FBEF 0%, #DAF6E4 100%)' },
-            { label: 'Cold Zones', val: '2', sub: 'Geometry · Probability', color: RED, bg: 'linear-gradient(135deg, #FFEEF0 0%, #FFE2E6 100%)' },
-            { label: 'Students Below 50', val: '2', sub: 'Need re-teach', color: ORANGE, bg: 'linear-gradient(135deg, #FFF6E8 0%, #FFEED4 100%)' },
-          ].map(c => (
-            <div key={c.label} style={{ background: c.bg, border: `0.5px solid ${c.color}33`, borderRadius: 11, padding: '8px 10px' }}>
-              <div style={{ fontSize: 6, fontWeight: 500, color: c.color, letterSpacing: '0.14em', textTransform: 'uppercase' as const, marginBottom: 4 }}>{c.label}</div>
-              <div style={{ fontSize: 18, fontWeight: 300, color: TT1, letterSpacing: '-0.8px', lineHeight: 1 }}>{c.val}</div>
-              <div style={{ fontSize: 7, fontWeight: 500, color: c.color, marginTop: 3 }}>{c.sub}</div>
-            </div>
-          ))}
+        {/* Header */}
+        <div style={{ marginBottom: 8 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
+            <span style={{ width: 4, height: 4, borderRadius: 1, background: B1 }} />
+            <span style={{ fontSize: 6, fontWeight: 700, color: T3, letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>
+              Teacher Dashboard · Mastery
+            </span>
+          </div>
+          <h1 style={{ fontSize: 22, fontWeight: 700, color: T1, letterSpacing: '-0.7px', lineHeight: 1.05, margin: 0 }}>
+            Concept Mastery
+          </h1>
+          <div style={{ fontSize: 8, fontWeight: 500, color: T3, marginTop: 3, letterSpacing: '-0.1px' }}>
+            Track student understanding across assessed concepts.
+          </div>
         </div>
 
-        {/* Heat-map */}
-        <div style={{ background: '#fff', borderRadius: 11, padding: 10, boxShadow: '0 4px 12px rgba(20,40,90,0.06)', border: '0.5px solid rgba(0,85,255,0.07)', marginBottom: 8 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 7 }}>
-            <div style={{ width: 22, height: 22, borderRadius: 7, background: VIOLET, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" /><rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" /></svg>
+        {/* Class picker + search + export */}
+        <div style={{ display: 'flex', gap: 5, marginBottom: 8 }}>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', gap: 7, padding: '6px 9px', background: '#fff', borderRadius: 9, boxShadow: '0 4px 12px rgba(0,85,255,0.10)', border: `0.5px solid ${B1}14` }}>
+            <div style={{ width: 22, height: 22, borderRadius: 6, background: VIOLET, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg>
             </div>
-            <div style={{ fontSize: 9, fontWeight: 500, color: TT1, letterSpacing: '-0.15px' }}>Mastery Heat-map</div>
-            <div style={{ marginLeft: 'auto', display: 'flex', gap: 4, alignItems: 'center' }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ fontSize: 5.5, fontWeight: 700, color: T3, letterSpacing: '0.16em', textTransform: 'uppercase' as const }}>Viewing</div>
+              <div style={{ fontSize: 8, fontWeight: 700, color: T1, letterSpacing: '-0.15px', marginTop: 1 }}>10B · Mathematics</div>
+            </div>
+            <span style={{ color: T4, fontSize: 12, lineHeight: 1, flexShrink: 0 }}>›</span>
+          </div>
+          <div style={{ width: 28, height: 28, borderRadius: 7, background: B1, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 4px 10px ${B1}55`, flexShrink: 0 }}>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.5" y2="16.5" /></svg>
+          </div>
+          <div style={{ width: 28, height: 28, borderRadius: 7, background: '#fff', color: B1, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,85,255,0.10)', border: `0.5px solid ${B1}14`, flexShrink: 0 }}>
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+          </div>
+        </div>
+
+        {/* HERO — Class Mastery */}
+        <div style={{
+          background: HERO_GRAD,
+          borderRadius: 14, padding: '12px 14px',
+          marginBottom: 8, position: 'relative', overflow: 'hidden',
+          boxShadow: '0 12px 28px rgba(0,8,60,0.28)',
+        }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(255,255,255,0.09) 0%, transparent 45%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 9 }}>
+              <div style={{ width: 26, height: 26, borderRadius: 8, background: 'rgba(255,255,255,0.14)', border: '0.5px solid rgba(255,255,255,0.22)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', flexShrink: 0 }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M9 11H3v8h6v-8zM15 3h-6v16h6V3zM21 13h-6v6h6v-6z" /></svg>
+              </div>
+              <div>
+                <div style={{ fontSize: 6, fontWeight: 700, color: 'rgba(255,255,255,0.72)', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>Class Mastery</div>
+                <div style={{ fontSize: 6.5, color: 'rgba(255,255,255,0.5)', marginTop: 1, fontWeight: 500, letterSpacing: '-0.1px' }}>4 concepts · 10B Math</div>
+              </div>
+              <div style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 3, padding: '3px 8px', borderRadius: 999, background: 'rgba(255,208,96,0.2)', border: '0.5px solid rgba(255,208,96,0.5)', color: '#FFD060', fontSize: 6, fontWeight: 700, letterSpacing: '0.05em' }}>
+                <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#FFD060', boxShadow: '0 0 6px #FFD060' }} />
+                Developing
+              </div>
+            </div>
+            <div style={{ fontSize: 36, fontWeight: 800, color: '#fff', letterSpacing: '-1.5px', lineHeight: 1, marginBottom: 5, display: 'flex', alignItems: 'baseline', gap: 1 }}>
+              76
+              <span style={{ fontSize: 16, fontWeight: 700, color: 'rgba(255,255,255,0.65)', letterSpacing: '-0.4px' }}>%</span>
+            </div>
+            <div style={{ fontSize: 7, color: 'rgba(255,255,255,0.72)', fontWeight: 500, letterSpacing: '-0.1px', marginBottom: 9 }}>
+              <strong style={{ color: '#fff', fontWeight: 700 }}>Mixed performance</strong> — 1 at risk, 2 mastering unit.
+            </div>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
               {[
-                { v: '85+', c: GREEN },
-                { v: '70-84', c: BLUE },
-                { v: '55-69', c: GOLD },
-                { v: '40-54', c: ORANGE },
-                { v: '<40', c: RED },
-              ].map(l => (
-                <div key={l.v} style={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <span style={{ width: 7, height: 7, borderRadius: 1.5, background: l.c }} />
-                  <span style={{ fontSize: 5, fontWeight: 500, color: TT3 }}>{l.v}</span>
+                { l: 'Mastered ≥ 80%', c: '#6FFFAA' },
+                { l: 'Developing ≥ 50%', c: '#FFD060' },
+                { l: 'Weak < 50%', c: '#FF9AA9' },
+              ].map(item => (
+                <div key={item.l} style={{ display: 'inline-flex', alignItems: 'center', gap: 3, padding: '2px 7px', borderRadius: 999, background: 'rgba(255,255,255,0.08)', border: '0.5px solid rgba(255,255,255,0.15)', fontSize: 5.5, fontWeight: 700, color: 'rgba(255,255,255,0.85)' }}>
+                  <span style={{ width: 4, height: 4, borderRadius: '50%', background: item.c, boxShadow: `0 0 4px ${item.c}` }} />
+                  {item.l}
                 </div>
               ))}
             </div>
           </div>
+        </div>
 
-          {/* Matrix */}
-          <div style={{ display: 'grid', gridTemplateColumns: `78px repeat(${CONCEPTS.length}, 1fr)`, gap: 3, fontSize: 6 }}>
-            {/* Header row */}
-            <div />
-            {CONCEPTS.map(c => (
-              <div key={c} style={{ fontSize: 6, fontWeight: 500, color: TT3, letterSpacing: '0.06em', textTransform: 'uppercase' as const, textAlign: 'center', padding: '0 0 4px' }}>
-                {c}
+        {/* Section head */}
+        <div style={{ display: 'flex', alignItems: 'baseline', gap: 5, padding: '0 2px 6px' }}>
+          <span style={{ fontSize: 10, fontWeight: 700, color: T1, letterSpacing: '-0.25px' }}>Students</span>
+          <span style={{ fontSize: 6, color: T3, fontWeight: 600, letterSpacing: '-0.1px' }}>4 assessed · 4 concepts</span>
+        </div>
+
+        {/* Student cards */}
+        {students.map(s => (
+          <div key={s.name} style={{
+            background: '#fff', borderRadius: 12, padding: '8px 10px', marginBottom: 5,
+            boxShadow: '0 4px 12px rgba(0,85,255,0.10)',
+            border: `0.5px solid ${B1}14`,
+            position: 'relative', overflow: 'hidden',
+          }}>
+            <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 2.5, background: s.bandColor }} />
+
+            <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 7 }}>
+              <div style={{ width: 24, height: 24, borderRadius: 7, background: s.avatarBg, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 7.5, fontWeight: 700, flexShrink: 0 }}>
+                {s.initials}
               </div>
-            ))}
-
-            {/* Rows */}
-            {STUDENTS.map((s, i) => (
-              <>
-                <div key={s} style={{ fontSize: 7, fontWeight: 500, color: TT1, padding: '6px 4px', display: 'flex', alignItems: 'center' }}>
-                  {s}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 8.5, fontWeight: 700, color: T1, letterSpacing: '-0.2px', lineHeight: 1.2 }}>{s.name}</div>
+                <div style={{ fontSize: 5.5, color: T3, marginTop: 1, fontWeight: 500, display: 'flex', alignItems: 'center', gap: 3 }}>
+                  <span>10B</span><span style={{ color: T4 }}>·</span><span>4 concepts assessed</span>
                 </div>
-                {matrix[i].map((v, j) => (
-                  <div
-                    key={j}
-                    style={{
-                      background: bgFor(v),
-                      border: `0.5px solid ${colorFor(v)}33`,
-                      borderRadius: 5,
-                      padding: '6px 0',
-                      textAlign: 'center',
-                      fontSize: 8,
-                      fontWeight: 500,
-                      color: colorFor(v),
-                    }}
-                  >
-                    {v}
+              </div>
+              <div style={{
+                padding: '2px 7px', borderRadius: 999,
+                background: `${s.bandColor}22`, color: s.bandColor,
+                fontSize: 5.5, fontWeight: 700, letterSpacing: '0.06em', flexShrink: 0,
+                display: 'flex', alignItems: 'center', gap: 3,
+              }}>
+                <span style={{ width: 4, height: 4, borderRadius: '50%', background: s.bandColor }} />
+                {s.band}
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4 }}>
+              {concepts.map((h, i) => {
+                const pct = s.concepts[i];
+                const c = pct >= 80 ? GREEN : pct >= 50 ? ORANGE : RED;
+                const grad = pct >= 80 ? 'linear-gradient(90deg, #00E866, #00C853)' : pct >= 50 ? 'linear-gradient(90deg, #FFAA00, #FF8800)' : 'linear-gradient(90deg, #FF5577, #FF3355)';
+                return (
+                  <div key={h} style={{ background: SURFACE, borderRadius: 7, padding: '4px 7px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 2 }}>
+                      <div style={{ fontSize: 6.5, fontWeight: 700, color: T2, letterSpacing: '-0.1px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', paddingRight: 4 }}>{h}</div>
+                      <div style={{ fontSize: 7.5, fontWeight: 700, color: c, letterSpacing: '-0.2px', flexShrink: 0 }}>{pct}%</div>
+                    </div>
+                    <div style={{ height: 3.5, background: '#EAF0FB', borderRadius: 999, overflow: 'hidden' }}>
+                      <div style={{ height: '100%', width: `${pct}%`, background: grad, borderRadius: 999 }} />
+                    </div>
                   </div>
-                ))}
-              </>
-            ))}
-          </div>
-        </div>
-
-        {/* Cold zones + AI suggest */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-          {/* Cold zones */}
-          <div style={{ background: '#fff', borderRadius: 11, padding: 10, boxShadow: '0 4px 12px rgba(20,40,90,0.06)', border: `0.5px solid ${RED}1F` }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 7 }}>
-              <div style={{ width: 22, height: 22, borderRadius: 7, background: RED, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M12 3L3 20h18L12 3z" /><line x1="12" y1="9" x2="12" y2="14" /></svg>
-              </div>
-              <div style={{ fontSize: 9, fontWeight: 500, color: TT1, letterSpacing: '-0.15px' }}>Cold Zones</div>
-              <div style={{ marginLeft: 'auto', fontSize: 6, fontWeight: 500, color: RED, background: 'rgba(255,51,85,0.10)', padding: '2px 6px', borderRadius: 999 }}>2 critical</div>
-            </div>
-            {[
-              { concept: 'Probability', avg: 38, students: '5/5 below 50' },
-              { concept: 'Geometry', avg: 51, students: '3/5 below 65' },
-              { concept: 'Trigonometry', avg: 62, students: '2/5 below 60' },
-            ].map((z, i) => (
-              <div key={i} style={{ padding: '6px 0', borderBottom: i < 2 ? '0.5px solid #F1F5F9' : 'none' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 3 }}>
-                  <div style={{ fontSize: 8, fontWeight: 500, color: TT1 }}>{z.concept}</div>
-                  <div style={{ marginLeft: 'auto', fontSize: 9, fontWeight: 500, color: colorFor(z.avg) }}>{z.avg}%</div>
-                </div>
-                <div style={{ fontSize: 6, color: TT4 }}>{z.students}</div>
-              </div>
-            ))}
-          </div>
-
-          {/* AI re-teach suggestions */}
-          <div style={{ background: `linear-gradient(135deg, ${VIOLET} 0%, #003ECC 100%)`, color: '#fff', borderRadius: 11, padding: 10, position: 'relative', overflow: 'hidden', boxShadow: '0 6px 18px rgba(0,85,255,0.22)' }}>
-            <div style={{ position: 'absolute', top: -20, right: -20, width: 80, height: 80, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 65%)' }} />
-            <div style={{ position: 'relative', zIndex: 2 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6 }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" /></svg>
-                <div style={{ fontSize: 6, fontWeight: 500, letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>AI Re-teach Plan</div>
-              </div>
-              {[
-                'Use Khan Academy "Probability with dice" video (Mon)',
-                'Pair Karan + Vikram for guided Geometry practice',
-                '5-Q quick quiz before Wednesday for Trig recap',
-                'Share solved-paper PDF for Probability (auto-emailed)',
-              ].map((t, i) => (
-                <div key={i} style={{ display: 'flex', gap: 5, padding: '4px 0', borderTop: i > 0 ? '0.5px solid rgba(255,255,255,0.10)' : 'none' }}>
-                  <span style={{ fontSize: 7, color: '#FFD166', fontWeight: 500 }}>{i + 1}.</span>
-                  <span style={{ fontSize: 7, color: 'rgba(255,255,255,0.9)', lineHeight: 1.35 }}>{t}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
-        </div>
+        ))}
       </div>
     </IPadShellWithSidebar>
   );

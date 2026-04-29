@@ -1,182 +1,180 @@
 /**
- * Static iPad mockup — Summarize Lesson page.
- * Mirrors /summarize-lesson: input area (text/audio/PDF) + AI-extracted output:
- * key concepts, must-remember points, follow-up questions, parent-friendly summary.
+ * Static iPad mockup — Teacher · Summarize Lesson page.
+ * Faithful pixel-shrink of teacher-dashboard/src/pages/SummarizeLesson.tsx (desktop).
+ *
+ * Layout matches source:
+ *   1. Page header: "AI POWERED" pill + h1 "Summarize lesson" (gradient on "lesson")
+ *      + subtitle "Upload any PDF — AI reads & summarizes it instantly."
+ *   2. AI Hero gradient banner with frosted icon + "POWERED BY EDULLENT ENGINE" eyebrow
+ *      + Waiting/Ready pill + headline "Any PDF → exam notes ✨" + 3 stat tiles
+ *   3. 2-col: Upload zone (dashed border, dropzone with icon + browse btn)
+ *      + What you'll get (7 section preview cards)
  */
 
 import IPadShellWithSidebar from './IPadShellWithSidebar';
 
 const TeacherSummarizeLessonIPad = () => {
-  const BLUE = '#0055FF';
-  const TT1 = '#001040';
-  const TT3 = '#5070B0';
-  const TT4 = '#99AACC';
-  const SURFACE = '#F4F7FE';
-  const GREEN = '#00C853';
-  const VIOLET = '#0055FF';
-  const GOLD = '#FFAA00';
-  const ORANGE = '#FF8800';
+  const B1 = '#0055FF';
+  const T1 = '#001040';
+  const T3 = '#5070B0';
+  const T4 = '#99AACC';
+  const HERO_GRAD = 'linear-gradient(135deg, #000A33 0%, #001A66 32%, #0044CC 68%, #0055FF 100%)';
 
-  const HERO_GRAD = `linear-gradient(135deg, ${VIOLET} 0%, #003ECC 100%)`;
+  const sections = [
+    { name: 'Quick Summary', icon: 'doc', color: B1 },
+    { name: 'Key Concepts', icon: 'star', color: '#7B3FF4' },
+    { name: 'Must Remember', icon: 'pin', color: '#FF8800' },
+    { name: 'Examples', icon: 'sparkle', color: '#10B981' },
+    { name: 'Practice Qs', icon: 'help', color: '#F59E0B' },
+    { name: 'Parent Note', icon: 'msg', color: '#0EAFAE' },
+    { name: 'Vocabulary', icon: 'book', color: '#EC4899' },
+  ];
 
   return (
     <IPadShellWithSidebar activePath="/summarize-lesson">
-      <div style={{ padding: '12px 14px 6px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
-          <span style={{ width: 4, height: 4, borderRadius: 1, background: VIOLET }} />
-          <span style={{ fontSize: 7, fontWeight: 500, color: TT3, letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>
-            Teacher Dashboard · Summarize Lesson
-          </span>
-        </div>
-        <h1 style={{ fontSize: 22, fontWeight: 300, color: TT1, letterSpacing: '-0.7px', lineHeight: 1.05, margin: 0 }}>
-          Summarize Lesson
-        </h1>
-        <div style={{ fontSize: 9, fontWeight: 400, color: TT3, marginTop: 3 }}>
-          Drop a recording, transcript, or PDF — AI extracts everything that matters.
-        </div>
-      </div>
+      <div style={{ background: '#EEF4FF', flex: 1, overflowY: 'auto', minHeight: 0, padding: '10px 12px 12px', fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif" }}>
 
-      <div style={{ flex: 1, padding: '6px 12px 12px', overflowY: 'auto', minHeight: 0 }}>
+        {/* Page header */}
+        <div style={{ marginBottom: 8 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '2px 8px', borderRadius: 999, background: `linear-gradient(135deg, ${B1}, #1166FF)`, color: '#fff', fontSize: 5.5, fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase' as const, marginBottom: 4, boxShadow: `0 3px 10px ${B1}55` }}>
+            <span style={{ color: '#FFDD55', fontSize: 7, lineHeight: 1, filter: 'drop-shadow(0 0 2px rgba(255,221,85,0.6))' }}>✦</span>
+            AI Powered
+          </div>
+          <h1 style={{ fontSize: 22, fontWeight: 700, color: T1, letterSpacing: '-0.7px', lineHeight: 1.05, margin: 0 }}>
+            Summarize{' '}
+            <span style={{ background: `linear-gradient(135deg, ${B1} 0%, #1166FF 100%)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>lesson</span>
+          </h1>
+          <div style={{ fontSize: 8, fontWeight: 500, color: T3, marginTop: 3, letterSpacing: '-0.1px' }}>
+            Upload any PDF — AI reads &amp; summarizes it instantly.
+          </div>
+        </div>
+
         {/* AI Hero */}
-        <div style={{ borderRadius: 14, padding: '12px 14px', background: HERO_GRAD, color: '#fff', position: 'relative', overflow: 'hidden', marginBottom: 8, boxShadow: '0 6px 18px rgba(0,85,255,0.22)' }}>
-          <div style={{ position: 'absolute', top: -25, right: -25, width: 100, height: 100, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 65%)' }} />
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 2 }}>
-            <div style={{ width: 28, height: 28, borderRadius: 9, background: 'rgba(255,255,255,0.18)', border: '0.5px solid rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M8 21h8a4 4 0 004-4V8a3 3 0 00-3-3H7a3 3 0 00-3 3v9a4 4 0 004 4z" /><line x1="8" y1="9" x2="16" y2="9" /></svg>
-            </div>
-            <div>
-              <div style={{ fontSize: 7, fontWeight: 500, color: 'rgba(255,255,255,0.7)', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>Multi-modal AI</div>
-              <div style={{ fontSize: 8, color: 'rgba(255,255,255,0.55)', marginTop: 2 }}>Audio · Text · PDF — all sources welcome</div>
-            </div>
-            <div style={{ marginLeft: 'auto', fontSize: 7, fontWeight: 500, color: '#6FFFAA', background: 'rgba(0,232,102,0.18)', border: '0.5px solid rgba(0,232,102,0.5)', padding: '4px 10px', borderRadius: 999 }}>
-              ✓ Done
-            </div>
-          </div>
-        </div>
-
-        {/* 2-col: Input left, AI Output right */}
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 3fr', gap: 8 }}>
-          {/* Input area */}
-          <div style={{ background: '#fff', borderRadius: 12, padding: 10, boxShadow: '0 4px 12px rgba(20,40,90,0.06)', border: '0.5px solid rgba(0,85,255,0.07)' }}>
-            <div style={{ fontSize: 7, fontWeight: 500, color: TT3, letterSpacing: '0.18em', textTransform: 'uppercase' as const, marginBottom: 7 }}>Source</div>
-
-            {/* Tabs */}
-            <div style={{ display: 'flex', gap: 3, marginBottom: 8 }}>
-              {[
-                { label: '🎙 Audio', on: true },
-                { label: '📄 Text', on: false },
-                { label: '📑 PDF', on: false },
-              ].map(t => (
-                <div key={t.label} style={{ flex: 1, padding: '5px 0', textAlign: 'center', borderRadius: 6, fontSize: 7, fontWeight: 500, background: t.on ? BLUE : SURFACE, color: t.on ? '#fff' : TT3 }}>
-                  {t.label}
-                </div>
-              ))}
-            </div>
-
-            {/* File pill */}
-            <div style={{ background: SURFACE, borderRadius: 8, padding: 8, marginBottom: 6 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                <div style={{ width: 22, height: 22, borderRadius: 6, background: VIOLET, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M19.07 4.93a10 10 0 010 14.14" /></svg>
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 8, fontWeight: 500, color: TT1, lineHeight: 1.2 }}>quadratic-class-10b.m4a</div>
-                  <div style={{ fontSize: 6, color: TT4, marginTop: 1 }}>42 min · 18.4 MB · Apr 28</div>
-                </div>
-                <div style={{ fontSize: 6, fontWeight: 500, color: GREEN, background: 'rgba(0,200,83,0.12)', padding: '2px 6px', borderRadius: 999 }}>Transcribed</div>
-              </div>
-              {/* Waveform mock */}
-              <div style={{ marginTop: 6, display: 'flex', alignItems: 'center', gap: 1, height: 22 }}>
-                {Array.from({ length: 60 }).map((_, i) => {
-                  const h = 6 + Math.abs(Math.sin(i * 0.5) * 14);
-                  return <div key={i} style={{ flex: 1, height: h, background: i < 28 ? VIOLET : '#D9D9E5', borderRadius: 1 }} />;
-                })}
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
-                <span style={{ fontSize: 6, fontWeight: 500, color: TT3 }}>19:24</span>
-                <span style={{ fontSize: 6, fontWeight: 500, color: TT4 }}>42:00</span>
-              </div>
-            </div>
-
-            <div style={{ height: 1, background: SURFACE, margin: '8px 0' }} />
-            <div style={{ fontSize: 7, fontWeight: 500, color: TT3, letterSpacing: '0.18em', textTransform: 'uppercase' as const, marginBottom: 6 }}>Options</div>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 3, marginBottom: 8 }}>
-              {[
-                { label: 'Key concepts', on: true },
-                { label: 'Must remember', on: true },
-                { label: 'Follow-up Qs', on: true },
-                { label: 'Parent summary', on: true },
-              ].map(t => (
-                <div key={t.label} style={{ padding: '3px 7px', borderRadius: 999, fontSize: 6, fontWeight: 500, background: t.on ? VIOLET : SURFACE, color: t.on ? '#fff' : TT3 }}>
-                  {t.label}
-                </div>
-              ))}
-            </div>
-
-            <button type="button" style={{ width: '100%', padding: '8px 0', borderRadius: 8, background: VIOLET, color: '#fff', fontSize: 9, fontWeight: 500, border: 'none', boxShadow: `0 4px 12px ${VIOLET}55`, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5 }}>
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M12 3v3M12 18v3M3 12h3M18 12h3" /></svg>
-              Summarize with AI
-            </button>
-          </div>
-
-          {/* AI Output */}
-          <div style={{ background: '#fff', borderRadius: 12, padding: 10, boxShadow: '0 4px 12px rgba(20,40,90,0.06)', border: '0.5px solid rgba(0,85,255,0.07)' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 7 }}>
-              <div style={{ width: 22, height: 22, borderRadius: 7, background: VIOLET, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="14 2 14 8 20 8" /><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /></svg>
+        <div style={{
+          background: HERO_GRAD, borderRadius: 14, padding: '12px 14px', color: '#fff',
+          marginBottom: 9, position: 'relative', overflow: 'hidden',
+          boxShadow: '0 12px 28px rgba(0,26,102,0.32)',
+        }}>
+          <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 45%)', pointerEvents: 'none' }} />
+          <div style={{ position: 'absolute', top: 14, right: 30, width: 2.5, height: 2.5, background: '#FFDD55', borderRadius: '50%', boxShadow: '-18px 12px 0 -1px rgba(255,255,255,0.7), 10px 18px 0 -1px rgba(255,221,85,0.85), -28px 28px 0 -2px rgba(255,255,255,0.55)' }} />
+          <div style={{ position: 'relative', zIndex: 2 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 7, marginBottom: 9 }}>
+              <div style={{ width: 26, height: 26, borderRadius: 8, background: 'rgba(255,255,255,0.16)', border: '0.5px solid rgba(255,255,255,0.28)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#FFDD55', flexShrink: 0 }}>
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /></svg>
               </div>
               <div>
-                <div style={{ fontSize: 9, fontWeight: 500, color: TT1, letterSpacing: '-0.15px' }}>Quadratic Equations — Class 10B</div>
-                <div style={{ fontSize: 7, color: TT3, marginTop: 1 }}>Apr 28 · 42 min lesson · 4 sections</div>
+                <div style={{ fontSize: 6, fontWeight: 700, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>Powered by Edullent engine</div>
+                <div style={{ fontSize: 6.5, color: 'rgba(255,255,255,0.55)', marginTop: 1, fontWeight: 500, letterSpacing: '-0.1px' }}>Smart extraction · Real-time</div>
               </div>
-              <div style={{ marginLeft: 'auto', fontSize: 6, fontWeight: 500, color: '#fff', background: BLUE, padding: '3px 7px', borderRadius: 999 }}>Share to Parents</div>
+              <div style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 999, background: 'rgba(255,255,255,0.18)', border: '0.5px solid rgba(255,255,255,0.32)', color: '#fff', fontSize: 6, fontWeight: 700 }}>
+                <span style={{ width: 4, height: 4, borderRadius: '50%', background: '#FFDD55', boxShadow: '0 0 6px #FFDD55' }} />
+                Waiting
+              </div>
             </div>
 
-            {/* Key Concepts */}
-            <div style={{ background: 'rgba(0,85,255,0.04)', border: '1px solid rgba(0,85,255,0.12)', borderRadius: 8, padding: 8, marginBottom: 6 }}>
-              <div style={{ fontSize: 6, fontWeight: 500, color: BLUE, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 4 }}>🔑 Key Concepts</div>
-              {[
-                'Standard form ax² + bx + c = 0 (a ≠ 0)',
-                'Solving by factorization · completing square · quadratic formula',
-                'Discriminant D = b² − 4ac → nature of roots',
-              ].map((c, i) => (
-                <div key={i} style={{ fontSize: 7, color: TT1, lineHeight: 1.4, marginBottom: 2 }}>
-                  <b style={{ color: BLUE, fontWeight: 500 }}>•</b> {c}
+            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 14 }}>
+              <div>
+                <div style={{ fontSize: 17, fontWeight: 800, color: '#fff', letterSpacing: '-0.6px', lineHeight: 1.1, marginBottom: 4 }}>
+                  Any PDF → exam notes ✨
+                </div>
+                <div style={{ fontSize: 7.5, color: 'rgba(255,255,255,0.82)', fontWeight: 500, letterSpacing: '-0.1px', lineHeight: 1.4, maxWidth: 220 }}>
+                  Drop a chapter and get <strong style={{ color: '#fff', fontWeight: 700 }}>7 ready-made study sections</strong> back in seconds.
+                </div>
+              </div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, background: 'rgba(255,255,255,0.12)', borderRadius: 8, padding: 1, overflow: 'hidden' }}>
+                {[
+                  { val: '7', label: 'Sections', color: '#fff' },
+                  { val: '~12s', label: 'Avg Time', color: '#FFDD55' },
+                  { val: '20MB', label: 'Max Size', color: '#6FFFAA' },
+                ].map(s => (
+                  <div key={s.label} style={{ background: 'rgba(0,10,51,0.7)', padding: '7px 11px', textAlign: 'center', minWidth: 50 }}>
+                    <div style={{ fontSize: 12, fontWeight: 800, color: s.color, letterSpacing: '-0.4px' }}>{s.val}</div>
+                    <div style={{ fontSize: 5, fontWeight: 700, color: 'rgba(255,255,255,0.6)', letterSpacing: '0.14em', textTransform: 'uppercase' as const, marginTop: 2 }}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 2-col: Upload zone + What you'll get */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 7 }}>
+
+          {/* Upload zone — dashed dropzone */}
+          <div style={{
+            background: '#fff',
+            border: `1.5px dashed ${B1}38`,
+            borderRadius: 12, padding: '20px 14px',
+            textAlign: 'center', position: 'relative', overflow: 'hidden',
+            boxShadow: '0 4px 12px rgba(0,85,255,0.10), 0 18px 30px rgba(0,85,255,0.08)',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <div style={{ position: 'absolute', top: -25, left: '50%', transform: 'translateX(-50%)', width: 140, height: 60, background: `radial-gradient(ellipse, ${B1}22, transparent 70%)` }} />
+            <div style={{ position: 'absolute', top: 7, right: 7, background: '#F4F7FE', color: T3, fontSize: 5.5, fontWeight: 700, padding: '2px 6px', borderRadius: 999, letterSpacing: '0.04em', border: `0.5px solid ${B1}14` }}>MAX 20 MB</div>
+
+            <div style={{
+              width: 44, height: 44, borderRadius: 12,
+              background: `linear-gradient(135deg, ${B1}, #1166FF)`,
+              marginBottom: 9,
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              color: '#fff', position: 'relative',
+              boxShadow: `0 8px 18px ${B1}55, inset 0 1px 0 rgba(255,255,255,0.18)`,
+            }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="17 8 12 3 7 8" /><line x1="12" y1="3" x2="12" y2="15" /></svg>
+              <span style={{ position: 'absolute', top: -3, right: -3, fontSize: 11, color: '#FFDD55', textShadow: '0 0 6px rgba(255,221,85,0.8)', lineHeight: 1 }}>✦</span>
+            </div>
+
+            <div style={{ fontSize: 11, fontWeight: 800, color: T1, letterSpacing: '-0.3px', marginBottom: 3 }}>
+              Drop PDF here
+            </div>
+            <div style={{ fontSize: 7, color: T3, fontWeight: 500, letterSpacing: '-0.1px', lineHeight: 1.5, marginBottom: 8 }}>
+              or click to browse files<br />
+              <strong style={{ color: B1, fontWeight: 700 }}>Text-based PDF only</strong>
+            </div>
+
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 4,
+              padding: '5px 12px',
+              background: `linear-gradient(135deg, ${B1}, #1166FF)`,
+              color: '#fff',
+              fontSize: 7.5, fontWeight: 700, borderRadius: 999,
+              letterSpacing: '-0.1px',
+              boxShadow: `0 5px 12px ${B1}55`,
+            }}>
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /></svg>
+              Browse files
+            </div>
+          </div>
+
+          {/* What you'll get */}
+          <div style={{ background: '#fff', borderRadius: 12, padding: 10, boxShadow: '0 4px 12px rgba(0,85,255,0.10)', border: `0.5px solid ${B1}14` }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 6 }}>
+              <div style={{ width: 18, height: 18, borderRadius: 5, background: `${B1}1a`, color: B1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M9 11l3 3L22 4" /><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" /></svg>
+              </div>
+              <div>
+                <div style={{ fontSize: 8.5, fontWeight: 700, color: T1, letterSpacing: '-0.2px' }}>What you'll get</div>
+                <div style={{ fontSize: 5.5, color: T4, fontWeight: 500 }}>7 study-ready sections per upload</div>
+              </div>
+            </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 4 }}>
+              {sections.map((s, i) => (
+                <div key={s.name} style={{ display: 'flex', alignItems: 'center', gap: 5, padding: '4px 6px', background: '#F8FAFE', borderRadius: 6, border: `0.5px solid ${s.color}22` }}>
+                  <span style={{ fontSize: 5, fontWeight: 700, color: T4, minWidth: 9 }}>{String(i + 1).padStart(2, '0')}</span>
+                  <div style={{ width: 14, height: 14, borderRadius: 4, background: `${s.color}1a`, color: s.color, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
+                      {s.icon === 'doc' && <><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14 2 14 8 20 8" /></>}
+                      {s.icon === 'star' && <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26" />}
+                      {s.icon === 'pin' && <><path d="M12 17v5" /><path d="M9 10.76a2 2 0 01-1.11 1.79l-1.78.9A2 2 0 005 15.24V16a1 1 0 001 1h12a1 1 0 001-1v-.76a2 2 0 00-1.11-1.79l-1.78-.9A2 2 0 0115 10.76V7a1 1 0 011-1 2 2 0 000-4H8a2 2 0 000 4 1 1 0 011 1z" /></>}
+                      {s.icon === 'sparkle' && <><path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M5.6 18.4L18.4 5.6" /></>}
+                      {s.icon === 'help' && <><circle cx="12" cy="12" r="10" /><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3" /><line x1="12" y1="17" x2="12.01" y2="17" /></>}
+                      {s.icon === 'msg' && <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />}
+                      {s.icon === 'book' && <><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z" /><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z" /></>}
+                    </svg>
+                  </div>
+                  <span style={{ fontSize: 6.5, fontWeight: 700, color: T1, letterSpacing: '-0.1px' }}>{s.name}</span>
                 </div>
               ))}
-            </div>
-
-            {/* Must Remember */}
-            <div style={{ background: 'rgba(255,170,0,0.06)', border: '1px solid rgba(255,170,0,0.18)', borderRadius: 8, padding: 8, marginBottom: 6 }}>
-              <div style={{ fontSize: 6, fontWeight: 500, color: GOLD, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 4 }}>⚡ Must Remember</div>
-              <div style={{ fontSize: 7, color: TT1, lineHeight: 1.4 }}>
-                <b style={{ color: GOLD, fontWeight: 500 }}>Quadratic formula:</b> x = [−b ± √(b² − 4ac)] / 2a · <b style={{ color: GOLD, fontWeight: 500 }}>D &gt; 0</b> = 2 real roots · <b style={{ color: GOLD, fontWeight: 500 }}>D = 0</b> = equal roots · <b style={{ color: GOLD, fontWeight: 500 }}>D &lt; 0</b> = no real roots.
-              </div>
-            </div>
-
-            {/* Follow-up Questions */}
-            <div style={{ background: 'rgba(0,85,255,0.05)', border: '1px solid rgba(0,85,255,0.16)', borderRadius: 8, padding: 8, marginBottom: 6 }}>
-              <div style={{ fontSize: 6, fontWeight: 500, color: VIOLET, letterSpacing: '0.12em', textTransform: 'uppercase' as const, marginBottom: 4 }}>❓ Follow-up Questions</div>
-              {[
-                'Can a quadratic have only 1 root? When?',
-                'How does discriminant relate to graph shape?',
-                'Real-life: where do we see quadratics outside math class?',
-              ].map((q, i) => (
-                <div key={i} style={{ fontSize: 7, color: TT1, lineHeight: 1.4, marginBottom: 2 }}>
-                  <b style={{ color: VIOLET, fontWeight: 500 }}>Q{i + 1}.</b> {q}
-                </div>
-              ))}
-            </div>
-
-            {/* Parent Summary */}
-            <div style={{ background: 'rgba(0,200,83,0.06)', border: '1px solid rgba(0,200,83,0.16)', borderRadius: 8, padding: 8 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 4 }}>
-                <span style={{ fontSize: 6, fontWeight: 500, color: GREEN, letterSpacing: '0.12em', textTransform: 'uppercase' as const }}>👨‍👩‍👧 Parent-Friendly Summary</span>
-                <span style={{ marginLeft: 'auto', fontSize: 6, fontWeight: 500, color: GREEN, background: 'rgba(0,200,83,0.12)', padding: '2px 6px', borderRadius: 999 }}>Auto-shared</span>
-              </div>
-              <div style={{ fontSize: 7, color: TT1, lineHeight: 1.45 }}>
-                Today, your child learned how to solve <b style={{ fontWeight: 500 }}>quadratic equations</b> — equations where the highest power is 2. They covered three solving methods and how to predict the type of solution. Practice problems are in NCERT Ex 4.3 (Q1–5).
-              </div>
             </div>
           </div>
         </div>
