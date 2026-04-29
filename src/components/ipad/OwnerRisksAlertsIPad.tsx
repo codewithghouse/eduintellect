@@ -10,16 +10,16 @@
 import OwnerIPadShell from './OwnerIPadShell';
 
 const OwnerRisksAlertsIPad = () => {
-  const BLUE = '#0055FF';
+  const BLUE = '#0a84ff';
   const T1 = '#1e294b';
   const T3 = '#64748b';
   const T4 = '#94a3b8';
-  const RED = '#FF3333';
+  const RED = '#ff3b30';
   const RED_2 = '#DC2626';
   const GOLD = '#F59E0B';
   const GOLD_2 = '#D97706';
   const EMERALD = '#10B981';
-  const VIOLET = '#7B3FF4';
+  const VIOLET = '#5856d6';
 
   // Donut: 4 categories
   const donut = [
@@ -100,7 +100,7 @@ const OwnerRisksAlertsIPad = () => {
             { label: 'Critical', val: '8', sub: 'Immediate action', color: RED, grad: `linear-gradient(135deg, ${RED} 0%, ${RED_2} 100%)` },
             { label: 'Warnings', val: '24', sub: 'Watch list', color: GOLD, grad: `linear-gradient(135deg, ${GOLD} 0%, ${GOLD_2} 100%)` },
             { label: 'Resolved 30d', val: '46', sub: '↑ 12 vs last month', color: EMERALD, grad: `linear-gradient(135deg, ${EMERALD} 0%, #059669 100%)` },
-            { label: 'System Health', val: '92%', sub: 'All systems green', color: BLUE, grad: `linear-gradient(135deg, ${BLUE} 0%, #1166FF 100%)` },
+            { label: 'System Health', val: '92%', sub: 'All systems green', color: BLUE, grad: `linear-gradient(135deg, ${BLUE} 0%, #0a84ff 100%)` },
           ].map(c => (
             <div key={c.label} style={{ background: c.grad, borderRadius: 11, padding: '8px 10px', color: '#fff', position: 'relative', overflow: 'hidden', boxShadow: `0 6px 18px ${c.color}40` }}>
               <div style={{ position: 'absolute', top: -15, right: -15, width: 60, height: 60, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 65%)' }} />
@@ -204,7 +204,7 @@ const OwnerRisksAlertsIPad = () => {
                 <div style={{ fontSize: 5.5, color: T4 }}>{a.when}</div>
               </div>
               <div style={{ display: 'flex', gap: 4, flexShrink: 0 }}>
-                <div style={{ fontSize: 6, fontWeight: 500, color: '#fff', background: `linear-gradient(135deg, ${BLUE}, #1166FF)`, padding: '4px 8px', borderRadius: 6 }}>Act now</div>
+                <div style={{ fontSize: 6, fontWeight: 500, color: '#fff', background: `linear-gradient(135deg, ${BLUE}, #0a84ff)`, padding: '4px 8px', borderRadius: 6 }}>Act now</div>
                 <div style={{ fontSize: 6, fontWeight: 500, color: T3, background: '#F1F5F9', padding: '4px 8px', borderRadius: 6 }}>Delegate</div>
               </div>
             </div>

@@ -112,12 +112,66 @@ const FEATURES: {
 
 const OwnerDashboard = () => {
   return (
-    <div className="owner-page-sf min-h-screen pt-28 pb-20 bg-white">
+    <div className="owner-page-sf min-h-screen pt-28 pb-20" style={{ background: '#f5f5f7' }}>
       <style dangerouslySetInnerHTML={{ __html: `
+        /* ── Typography: SF Pro Display, weight 400 end-to-end ── */
         .owner-page-sf,
-        .owner-page-sf * {
+        .owner-page-sf *,
+        .owner-page-sf *::before,
+        .owner-page-sf *::after {
           font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
           font-weight: 400 !important;
+          font-style: normal !important;
+        }
+        .owner-page-sf input,
+        .owner-page-sf textarea,
+        .owner-page-sf select,
+        .owner-page-sf button,
+        .owner-page-sf option,
+        .owner-page-sf text,
+        .owner-page-sf tspan {
+          font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+          font-weight: 400 !important;
+        }
+        .owner-page-sf b,
+        .owner-page-sf strong,
+        .owner-page-sf em,
+        .owner-page-sf i {
+          font-weight: 400 !important;
+          font-style: normal !important;
+        }
+
+        /* ── Premium Apple-style baseline ── */
+        .owner-page-sf {
+          color: #1d1d1f;
+        }
+
+        /* ── Headings + body text: Apple grays ── */
+        .owner-page-sf h1,
+        .owner-page-sf h2,
+        .owner-page-sf h3 {
+          color: #1d1d1f !important;
+          letter-spacing: -0.02em !important;
+        }
+        .owner-page-sf p {
+          color: #6e6e73 !important;
+        }
+
+        /* ── Eyebrow brand color refinement (page-level) ── */
+        .owner-page-sf .eyebrow,
+        .owner-page-sf [class*="text-[#0071e3]"] {
+          color: #0066cc !important;
+        }
+
+        /* ── Bullet markers + accent dots: subtle premium blue ── */
+        .owner-page-sf [style*="background: #0071e3"],
+        .owner-page-sf [style*="background:#0071e3"] {
+          background: #0066cc !important;
+        }
+
+        /* ── Reset any overly bright shadows on outer iPad bezels ── */
+        .owner-page-sf .max-w-\\[1400px\\] > div {
+          /* alternating sections */
         }
       ` }} />
       <div className="max-w-[1400px] mx-auto px-6">

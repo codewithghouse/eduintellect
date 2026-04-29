@@ -10,18 +10,18 @@
 import OwnerIPadShell from './OwnerIPadShell';
 
 const OwnerBrandLeaderboardIPad = () => {
-  const BLUE = '#0055FF';
+  const BLUE = '#0a84ff';
   const NAVY_DEEP = '#000A33';
   const NAVY = '#001A66';
   const T1 = '#1e294b';
   const T3 = '#64748b';
   const T4 = '#94a3b8';
   const EMERALD = '#10B981';
-  const RED = '#FF3333';
-  const GOLD = '#FFAA00';
+  const RED = '#ff3b30';
+  const GOLD = '#ffcc00';
   const SILVER = '#A8A8B5';
   const BRONZE = '#CD7F32';
-  const VIOLET = '#7B3FF4';
+  const VIOLET = '#5856d6';
 
   const branches = [
     { rank: 1, name: 'Bandra', score: 91, students: 2140, teachers: 68, color: GOLD, trend: '+3.2', trendDir: 'up', context: 'Network leader' },
@@ -49,7 +49,7 @@ const OwnerBrandLeaderboardIPad = () => {
       <div style={{ flex: 1, padding: '0 0 12px', overflowY: 'auto', minHeight: 0 }}>
         {/* Hero gradient with 5 KPIs */}
         <div style={{
-          background: `linear-gradient(135deg, ${NAVY_DEEP} 0%, ${NAVY} 35%, #0044CC 75%, ${BLUE} 100%)`,
+          background: `linear-gradient(135deg, ${NAVY_DEEP} 0%, ${NAVY} 35%, #0066cc 75%, ${BLUE} 100%)`,
           padding: '14px 14px 16px',
           color: '#fff',
           position: 'relative',
@@ -58,8 +58,8 @@ const OwnerBrandLeaderboardIPad = () => {
           <div style={{ position: 'absolute', top: -30, right: -30, width: 120, height: 120, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,170,0,0.25) 0%, transparent 65%)' }} />
           <div style={{ position: 'relative', zIndex: 2 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 4 }}>
-              <svg width="9" height="9" viewBox="0 0 24 24" fill="#FFCC22"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="#FFCC22" strokeWidth="2" /></svg>
-              <span style={{ fontSize: 6, fontWeight: 600, color: '#FFCC22', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>
+              <svg width="9" height="9" viewBox="0 0 24 24" fill="#ffcc00"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="#ffcc00" strokeWidth="2" /></svg>
+              <span style={{ fontSize: 6, fontWeight: 600, color: '#ffcc00', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>
                 Edullent Group · October
               </span>
             </div>
@@ -74,7 +74,7 @@ const OwnerBrandLeaderboardIPad = () => {
                 { label: 'Branches', val: '5' },
                 { label: 'Students', val: '8,420' },
                 { label: 'Teachers', val: '259' },
-                { label: 'Network Avg', val: '78%', accent: '#FFD700' },
+                { label: 'Network Avg', val: '78%', accent: '#ffcc00' },
                 { label: 'At-Risk', val: '342', accent: '#FF8888' },
               ].map(k => (
                 <div key={k.label}>

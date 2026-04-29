@@ -10,14 +10,14 @@
 import OwnerIPadShell from './OwnerIPadShell';
 
 const OwnerBranchComparisonIPad = () => {
-  const BLUE = '#0055FF';
+  const BLUE = '#0a84ff';
   const NAVY = '#001A66';
   const T1 = '#1e294b';
   const T3 = '#64748b';
   const T4 = '#94a3b8';
   const EMERALD = '#10B981';
-  const RED = '#FF3333';
-  const GOLD = '#FFAA00';
+  const RED = '#ff3b30';
+  const GOLD = '#ffcc00';
   const SILVER = '#A8A8B5';
   const BRONZE = '#CD7F32';
   const GREEN_DARK = '#00833A';
@@ -175,11 +175,11 @@ const OwnerBranchComparisonIPad = () => {
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, position: 'relative', zIndex: 2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 3, padding: '2px 6px', background: 'rgba(255,255,255,0.15)', borderRadius: 999, backdropFilter: 'blur(4px)' }}>
-                <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#FFCC22" strokeWidth="2"><path d="M12 2v4M12 18v4M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1" /></svg>
-                <span style={{ fontSize: 5.5, fontWeight: 600, color: '#FFCC22', letterSpacing: '0.04em' }}>EDULLENT AI · FRESH</span>
+                <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" strokeWidth="2"><path d="M12 2v4M12 18v4M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1" /></svg>
+                <span style={{ fontSize: 5.5, fontWeight: 600, color: '#ffcc00', letterSpacing: '0.04em' }}>EDULLENT AI · FRESH</span>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ fontSize: 16, fontWeight: 300, color: '#FFD700', letterSpacing: '-0.5px', lineHeight: 1 }}>91%</div>
+                <div style={{ fontSize: 16, fontWeight: 300, color: '#ffcc00', letterSpacing: '-0.5px', lineHeight: 1 }}>91%</div>
                 <div style={{ fontSize: 5, color: 'rgba(255,255,255,0.55)', letterSpacing: '0.1em', textTransform: 'uppercase' as const, marginTop: 1 }}>Composite</div>
               </div>
               <div style={{ textAlign: 'right' }}>
@@ -237,6 +237,6 @@ const OwnerBranchComparisonIPad = () => {
   );
 };
 
-const VIOLET_LINE = '#7B3FF4';
+const VIOLET_LINE = '#5856d6';
 
 export default OwnerBranchComparisonIPad;

@@ -9,14 +9,14 @@
 import OwnerIPadShell from './OwnerIPadShell';
 
 const OwnerTeacherPerformanceIPad = () => {
-  const BLUE = '#0055FF';
+  const BLUE = '#0a84ff';
   const T1 = '#1e294b';
   const T3 = '#64748b';
   const T4 = '#94a3b8';
   const EMERALD = '#10B981';
   const AMBER = '#F59E0B';
   const ROSE = '#EF4444';
-  const GOLD = '#FFAA00';
+  const GOLD = '#ffcc00';
 
   const tierColor = (s: number) => (s >= 80 ? EMERALD : s >= 60 ? BLUE : s >= 40 ? AMBER : ROSE);
 
@@ -83,7 +83,7 @@ const OwnerTeacherPerformanceIPad = () => {
             <div key={b.name} style={{
               fontSize: 6.5, fontWeight: 500,
               padding: '4px 8px', borderRadius: 999,
-              background: b.active ? `linear-gradient(135deg, ${BLUE}, #1166FF)` : '#fff',
+              background: b.active ? `linear-gradient(135deg, ${BLUE}, #0a84ff)` : '#fff',
               color: b.active ? '#fff' : BLUE,
               border: b.active ? 'none' : `0.5px solid ${BLUE}33`,
             }}>{b.name}</div>

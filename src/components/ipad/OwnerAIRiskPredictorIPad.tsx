@@ -10,18 +10,18 @@
 import OwnerIPadShell from './OwnerIPadShell';
 
 const OwnerAIRiskPredictorIPad = () => {
-  const BLUE = '#0055FF';
+  const BLUE = '#0a84ff';
   const T1 = '#1e294b';
   const T3 = '#64748b';
   const T4 = '#94a3b8';
-  const RED = '#FF3355';
-  const ORANGE = '#FF8800';
+  const RED = '#ff3b30';
+  const ORANGE = '#ff9500';
   const AMBER = '#F59E0B';
   const GREEN = '#10B981';
 
   const tiers = [
-    { label: 'Critical', val: 28, sub: '> 75% fail prob', color: RED, grad: 'linear-gradient(135deg, #FF3355 0%, #DC2626 100%)' },
-    { label: 'High Risk', val: 64, sub: '50–75% fail prob', color: ORANGE, grad: 'linear-gradient(135deg, #FF8800 0%, #EA580C 100%)' },
+    { label: 'Critical', val: 28, sub: '> 75% fail prob', color: RED, grad: 'linear-gradient(135deg, #ff3b30 0%, #DC2626 100%)' },
+    { label: 'High Risk', val: 64, sub: '50–75% fail prob', color: ORANGE, grad: 'linear-gradient(135deg, #ff9500 0%, #EA580C 100%)' },
     { label: 'Watch List', val: 142, sub: '25–50% fail prob', color: AMBER, grad: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)' },
     { label: 'Safe', val: 8186, sub: '< 25% fail prob', color: GREEN, grad: 'linear-gradient(135deg, #10B981 0%, #059669 100%)' },
   ];
@@ -29,14 +29,14 @@ const OwnerAIRiskPredictorIPad = () => {
   const studentsAlert = [
     {
       name: 'Aryan Reddy', initials: 'AR', branch: 'Bandra · G10', tier: 'Critical', tierColor: RED,
-      tierGrad: 'linear-gradient(135deg, #FF3355 0%, #DC2626 100%)',
+      tierGrad: 'linear-gradient(135deg, #ff3b30 0%, #DC2626 100%)',
       prob: 82, att: 48, score: 41, trend: -12, expanded: true,
       factors: ['Att 48% (3w↓)', 'Marks ↓ 24%', 'No HW × 6', 'Late × 9'],
       tests: [38, 41, 35, 44, 39, 36],
     },
     {
       name: 'Riya Kapoor', initials: 'RK', branch: 'Powai · G7', tier: 'High', tierColor: ORANGE,
-      tierGrad: 'linear-gradient(135deg, #FF8800 0%, #EA580C 100%)',
+      tierGrad: 'linear-gradient(135deg, #ff9500 0%, #EA580C 100%)',
       prob: 68, att: 64, score: 58, trend: -7, expanded: false,
     },
     {
@@ -94,7 +94,7 @@ const OwnerAIRiskPredictorIPad = () => {
           <div style={{ display: 'flex', gap: 4 }}>
             {[
               { name: 'All', count: 8420, active: false, color: BLUE },
-              { name: 'Critical', count: 28, active: true, color: RED, grad: 'linear-gradient(135deg, #FF3355, #DC2626)' },
+              { name: 'Critical', count: 28, active: true, color: RED, grad: 'linear-gradient(135deg, #ff3b30, #DC2626)' },
               { name: 'High', count: 64, active: false, color: ORANGE },
               { name: 'Watch', count: 142, active: false, color: AMBER },
               { name: 'Safe', count: 8186, active: false, color: GREEN },
@@ -183,7 +183,7 @@ const OwnerAIRiskPredictorIPad = () => {
                       <div style={{ background: '#fff', borderRadius: 6, padding: 7, fontSize: 6.5, color: T1, lineHeight: 1.4, border: `0.5px solid ${BLUE}22`, marginBottom: 5 }}>
                         Notify parent immediately. Schedule remedial Math + Bio. 4-week recovery plan likely.
                       </div>
-                      <div style={{ fontSize: 6, fontWeight: 500, color: '#fff', background: `linear-gradient(135deg, ${BLUE}, #1166FF)`, padding: '4px 8px', borderRadius: 6, textAlign: 'center' }}>
+                      <div style={{ fontSize: 6, fontWeight: 500, color: '#fff', background: `linear-gradient(135deg, ${BLUE}, #0a84ff)`, padding: '4px 8px', borderRadius: 6, textAlign: 'center' }}>
                         Generate Parent Link →
                       </div>
                     </div>
@@ -202,13 +202,13 @@ const OwnerAIRiskPredictorIPad = () => {
         }}>
           <div style={{ position: 'absolute', top: -25, right: -25, width: 90, height: 90, borderRadius: '50%', background: 'radial-gradient(circle, rgba(123,63,244,0.5) 0%, transparent 65%)' }} />
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, position: 'relative', zIndex: 2 }}>
-            <div style={{ width: 22, height: 22, borderRadius: 6, background: 'linear-gradient(135deg, #7B3FF4, #0055FF)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 22, height: 22, borderRadius: 6, background: 'linear-gradient(135deg, #5856d6, #0a84ff)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1" /></svg>
             </div>
             <div style={{ flex: 1 }}>
               <div style={{ fontSize: 8, fontWeight: 600, letterSpacing: '0.06em' }}>How the model works</div>
               <div style={{ fontSize: 6.5, color: 'rgba(255,255,255,0.75)', marginTop: 2, lineHeight: 1.4 }}>
-                Weekly score across <span style={{ color: '#FFCC22' }}>Attendance (35%)</span> · <span style={{ color: '#FFCC22' }}>Marks trend (30%)</span> · <span style={{ color: '#FFCC22' }}>Behaviour (20%)</span> · <span style={{ color: '#FFCC22' }}>Engagement (15%)</span>. Auto-recalibrated quarterly from outcome data.
+                Weekly score across <span style={{ color: '#ffcc00' }}>Attendance (35%)</span> · <span style={{ color: '#ffcc00' }}>Marks trend (30%)</span> · <span style={{ color: '#ffcc00' }}>Behaviour (20%)</span> · <span style={{ color: '#ffcc00' }}>Engagement (15%)</span>. Auto-recalibrated quarterly from outcome data.
               </div>
             </div>
           </div>

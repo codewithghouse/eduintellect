@@ -10,13 +10,13 @@
 import OwnerIPadShell from './OwnerIPadShell';
 
 const OwnerTeacherLeaderboardIPad = () => {
-  const BLUE = '#0055FF';
+  const BLUE = '#0a84ff';
   const T1 = '#1e294b';
   const T3 = '#64748b';
   const T4 = '#94a3b8';
   const EMERALD = '#10B981';
-  const VIOLET = '#7B3FF4';
-  const GOLD = '#FFAA00';
+  const VIOLET = '#5856d6';
+  const GOLD = '#ffcc00';
   const SILVER = '#A8A8B5';
   const BRONZE = '#CD7F32';
 
@@ -58,7 +58,7 @@ const OwnerTeacherLeaderboardIPad = () => {
               <div key={p} style={{
                 fontSize: 6.5, fontWeight: 500,
                 padding: '4px 9px', borderRadius: 6,
-                background: i === 1 ? `linear-gradient(135deg, ${BLUE}, #1166FF)` : 'transparent',
+                background: i === 1 ? `linear-gradient(135deg, ${BLUE}, #0a84ff)` : 'transparent',
                 color: i === 1 ? '#fff' : T3,
               }}>{p}</div>
             ))}

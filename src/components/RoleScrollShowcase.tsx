@@ -1,4 +1,8 @@
 import { ContainerScroll } from './ui/container-scroll-animation';
+import OwnerBrandLeaderboardScreen from './OwnerBrandLeaderboardScreen';
+import PrincipalDashboardScreen from './PrincipalDashboardScreen';
+import TeacherPerformanceScreen from './TeacherPerformanceScreen';
+import ParentPerformanceScreen from './ParentPerformanceScreen';
 import {
   Building2,
   GraduationCap,
@@ -25,39 +29,19 @@ import {
 const RoleScrollShowcase = () => (
   <section className="bg-[#fbfbfd]">
     <ContainerScroll titleComponent={<Title eyebrow="For Owners" headline="See every campus at a glance." brand="#0071e3" />}>
-      <img
-        src="/dashboards/ownerui.png"
-        alt="Owner dashboard"
-        className="mx-auto rounded-xl object-contain h-full w-full"
-        draggable={false}
-      />
+      <OwnerBrandLeaderboardScreen />
     </ContainerScroll>
 
     <ContainerScroll titleComponent={<Title eyebrow="For Principals" headline="Run your school with intelligence." brand="#003ECC" />}>
-      <img
-        src="/dashboards/principalui.png"
-        alt="Principal dashboard"
-        className="mx-auto rounded-xl object-contain h-full w-full"
-        draggable={false}
-      />
+      <PrincipalDashboardScreen />
     </ContainerScroll>
 
     <ContainerScroll titleComponent={<Title eyebrow="For Teachers" headline="Less paperwork. More teaching." brand="#059669" />}>
-      <img
-        src="/dashboards/teacherui.png"
-        alt="Teacher dashboard"
-        className="mx-auto rounded-xl object-contain h-full w-full"
-        draggable={false}
-      />
+      <TeacherPerformanceScreen />
     </ContainerScroll>
 
     <ContainerScroll titleComponent={<Title eyebrow="For Students & Parents" headline="Stay close to every milestone." brand="#d97706" />}>
-      <img
-        src="/dashboards/parentui.png"
-        alt="Parent dashboard — Performance Analytics"
-        className="mx-auto rounded-xl object-contain h-full w-full"
-        draggable={false}
-      />
+      <ParentPerformanceScreen />
     </ContainerScroll>
   </section>
 );

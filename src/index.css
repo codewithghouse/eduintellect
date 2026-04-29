@@ -125,3 +125,13 @@ html {
   background: rgba(0, 113, 227, 0.2);
   color: #1d1d1f;
 }
+
+/* ── Mobile fix for RoleScrollShowcase live screens ── */
+@media (max-width: 768px) {
+  .role-screen-sidebar { display: none !important; }
+  .role-screen-main { padding: 10px 12px !important; }
+  .role-screen-grid-5 { grid-template-columns: repeat(2, 1fr) !important; }
+  .role-screen-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  .role-screen-grid-2 { grid-template-columns: 1fr !important; }
+  .role-screen-hide-mobile { display: none !important; }
+}

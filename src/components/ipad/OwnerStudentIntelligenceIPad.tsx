@@ -14,14 +14,14 @@ import OwnerIPadShell from './OwnerIPadShell';
 
 const OwnerStudentIntelligenceIPad = () => {
   // Tokens mirror source: T1/T3/T4 text, B1 blue, etc.
-  const B1 = '#0055FF';
+  const B1 = '#0a84ff';
   const T1 = '#0F172A';
   const T3 = '#64748B';
   const T4 = '#94A3B8';
-  const GREEN = '#00C853';
+  const GREEN = '#34c759';
   const GOLD = '#F5A524';
-  const RED = '#FF3355';
-  const VIOLET = '#7B3FF4';
+  const RED = '#ff3b30';
+  const VIOLET = '#5856d6';
 
   // Mock data
   const totalEnrollment = 8420;
@@ -102,7 +102,7 @@ const OwnerStudentIntelligenceIPad = () => {
         {/* ── Page Head ─────────────────────────────────── */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            <div style={{ width: 26, height: 26, borderRadius: 7, background: `linear-gradient(135deg, ${B1}, #1166FF)`, boxShadow: `0 6px 14px ${B1}55`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ width: 26, height: 26, borderRadius: 7, background: `linear-gradient(135deg, ${B1}, #0a84ff)`, boxShadow: `0 6px 14px ${B1}55`, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg>
             </div>
             <div>
@@ -110,7 +110,7 @@ const OwnerStudentIntelligenceIPad = () => {
               <p style={{ fontSize: 7, fontWeight: 500, color: T3, margin: '2px 0 0 0' }}>Enrollment, performance &amp; behavior analytics</p>
             </div>
           </div>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '5px 9px', borderRadius: 7, background: `linear-gradient(135deg, ${B1}, #1166FF)`, color: '#fff', fontSize: 6, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, boxShadow: `0 4px 10px ${B1}40` }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 4, padding: '5px 9px', borderRadius: 7, background: `linear-gradient(135deg, ${B1}, #0a84ff)`, color: '#fff', fontSize: 6, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, boxShadow: `0 4px 10px ${B1}40` }}>
             <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
             Add Student
           </div>
@@ -118,7 +118,7 @@ const OwnerStudentIntelligenceIPad = () => {
 
         {/* ── Dark Hero Banner ──────────────────────────── */}
         <div style={{
-          background: 'linear-gradient(135deg, #000A33 0%, #001A66 35%, #0044CC 75%, #0055FF 100%)',
+          background: 'linear-gradient(135deg, #000A33 0%, #001A66 35%, #0066cc 75%, #0a84ff 100%)',
           borderRadius: 14, padding: '12px 14px', color: '#fff',
           marginBottom: 10, position: 'relative', overflow: 'hidden',
           boxShadow: '0 14px 30px rgba(0,8,60,0.32)',
@@ -131,7 +131,7 @@ const OwnerStudentIntelligenceIPad = () => {
               </div>
               <div style={{ minWidth: 0 }}>
                 <div style={{ display: 'inline-flex', alignItems: 'center', gap: 3, padding: '2px 7px', borderRadius: 999, background: 'rgba(255,255,255,0.14)', border: '0.5px solid rgba(255,255,255,0.22)', fontSize: 5.5, fontWeight: 700, letterSpacing: '0.14em', textTransform: 'uppercase' as const, marginBottom: 5 }}>
-                  <svg width="7" height="7" viewBox="0 0 24 24" fill="#FFCC22" stroke="none"><path d="M12 2l2 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L3 9h7z" /></svg>
+                  <svg width="7" height="7" viewBox="0 0 24 24" fill="#ffcc00" stroke="none"><path d="M12 2l2 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L3 9h7z" /></svg>
                   Academic Intelligence
                 </div>
                 <h2 style={{ fontSize: 22, fontWeight: 800, letterSpacing: '-0.7px', margin: 0, lineHeight: 1, color: '#fff' }}>
@@ -285,7 +285,7 @@ const OwnerStudentIntelligenceIPad = () => {
         <div style={{ background: '#fff', borderRadius: 11, padding: '10px 12px', boxShadow: '0 4px 12px rgba(0,85,255,0.06)', border: '0.5px solid rgba(0,85,255,0.08)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 7 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 7 }}>
-              <div style={{ width: 20, height: 20, borderRadius: 6, background: `linear-gradient(135deg, ${B1}, #1166FF)`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 4px 10px ${B1}40` }}>
+              <div style={{ width: 20, height: 20, borderRadius: 6, background: `linear-gradient(135deg, ${B1}, #0a84ff)`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: `0 4px 10px ${B1}40` }}>
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.3"><line x1="19" y1="5" x2="5" y2="19" /><circle cx="6.5" cy="6.5" r="2.5" /><circle cx="17.5" cy="17.5" r="2.5" /></svg>
               </div>
               <div>
