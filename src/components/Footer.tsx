@@ -1,5 +1,3 @@
-import { GraduationCap } from 'lucide-react';
-
 const PORTAL_URLS = {
   owner: import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/',
   principal: import.meta.env.VITE_PRINCIPAL_DASHBOARD_URL || 'https://principal-dashboard-seven.vercel.app/',
@@ -16,9 +14,12 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2 justify-center md:justify-start">
-              <div className="w-7 h-7 bg-[#0071e3] rounded-lg flex items-center justify-center">
-                <GraduationCap className="text-white w-4 h-4" />
-              </div>
+              <img
+                src="/edullent-icon.png"
+                alt="Edullent"
+                className="w-7 h-7 rounded-lg object-contain"
+                draggable={false}
+              />
               <span className="text-[17px] font-normal text-[#1d1d1f] tracking-tight">
                 Edu<span className="text-[#0071e3]">llent</span>
               </span>

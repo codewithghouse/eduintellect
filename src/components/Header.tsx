@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { GraduationCap, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 import LoginModal from './LoginModal';
 
@@ -37,9 +37,12 @@ const Header = () => {
       <div className="max-w-[980px] mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2.5 group">
-          <div className="w-8 h-8 bg-[#0071e3] rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-            <GraduationCap className="text-white w-5 h-5" />
-          </div>
+          <img
+            src="/edullent-icon.png"
+            alt="Edullent"
+            className="w-8 h-8 rounded-lg group-hover:scale-105 transition-transform duration-300 object-contain"
+            draggable={false}
+          />
           <span className={cn(
             "text-[21px] font-normal tracking-tight transition-colors duration-300",
             isScrolled ? "text-[#1d1d1f]" : "text-[#1d1d1f]"
