@@ -1,1802 +1,212 @@
 [
-  {
-    "code": "EDU-FOUNDER-HK55",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-KUJE",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-H3FU",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-2MMG",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-H7AC",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-AG2K",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-JZZM",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-WXTD",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-HT29",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-XCUV",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-N6SU",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-EKAF",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-UX7G",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-9KGC",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-CHBH",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-Z2RQ",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-BNFU",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-TCAC",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-GMHH",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-FOUNDER-R25Y",
-    "tier": "founder",
-    "discountPercent": 100,
-    "label": "Founder — 100% off first year",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-YQRC",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-PHKF",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-QUNH",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-4EYG",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-TTDN",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-SSXB",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-JJWG",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-UBAN",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-2XVW",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-4DJY",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-SGCX",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-VH4E",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-USJA",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-V5U4",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-9F5W",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-T4J4",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-XZNY",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-VDXK",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-JNSP",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-NGXX",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-HV3N",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-4AZA",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-S2RZ",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-U452",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-8JRG",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-DY9U",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-D3V4",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-5ZDZ",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-YGAE",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-NVZX",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-XCWD",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-GFU7",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-MDU2",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-4VCU",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-U5ZU",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-MWE2",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-XG2K",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-AN3R",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-VJ6U",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-EARLY-QFPH",
-    "tier": "early",
-    "discountPercent": 50,
-    "label": "Early bird — 50% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-HPXP",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-C3YS",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-AH5A",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-J3DZ",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-NCUA",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-FDHB",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-3YAP",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-6JGB",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-H8JY",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-YXAR",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-WH8J",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-NFTW",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-S5XJ",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-7TBS",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-4SNZ",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-WUWR",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-NZNG",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-39CF",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-YAEX",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-DPCG",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-AKWF",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-N282",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-HFMZ",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-RSHK",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-VVK7",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-BW25",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-37PH",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-7Q88",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-TWPK",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-XQFC",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-YJGC",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-PENF",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-7Y9X",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-MZKU",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-56PW",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-YZ2H",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-B59K",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-KTHN",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-8PAM",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-CQQ9",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-B4DD",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-XMYS",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-Z5VG",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-W9EC",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-2RAT",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-4D2Q",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-GJBS",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-N93A",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-XVUM",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-LAUNCH-MEF6",
-    "tier": "launch",
-    "discountPercent": 30,
-    "label": "Launch promo — 30% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-7PP2",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-FG8Z",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-AMU5",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-CUVM",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-AKCD",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-SX9T",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-33UF",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-4F2M",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-TUXN",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-8HDM",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-2Y9B",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-9VV4",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-DBMZ",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-BZC8",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-7GSV",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-28BA",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-BM3Z",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-NPVX",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-RXZH",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-H7GR",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-KCE5",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-RPK5",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-HJRM",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-YUET",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-JPV6",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-WJER",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-NGF3",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-PURV",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-F7RD",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-BETA-Z7BU",
-    "tier": "beta",
-    "discountPercent": 60,
-    "label": "Beta tester — 60% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-TN3N",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-E6GW",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-RBTZ",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-P85B",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-UATY",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-2QVM",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-ZA95",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-UYQZ",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-AAVZ",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-4G59",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-VS7T",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-F4H4",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-MG3V",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-8C4T",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-7XQM",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-UA4M",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-TKCF",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-3APK",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-JDQZ",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-A9BE",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-J4NF",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-RF5B",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-7TY6",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-AN9W",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-BZRN",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-NWKX",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-SB2K",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-FU34",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-2VKT",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-SCHOOL-XJC7",
-    "tier": "school",
-    "discountPercent": 40,
-    "label": "School pack — 40% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-MGSJ",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-KYTF",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-FBM5",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-29F6",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-HJCM",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-SGYX",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-K77A",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-AQSQ",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-5R5A",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-K8R8",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-2XE3",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-ESYU",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-RU3S",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-WRBS",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-BRSF",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-BYWH",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-H2RU",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-XK4B",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-QPKQ",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-ZZ8D",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-XWW9",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-92MQ",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-9HX8",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-B39W",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-SSZE",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-PJVX",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-YRKV",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-Q8TH",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-7HVD",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  },
-  {
-    "code": "EDU-REFER-RVT5",
-    "tier": "refer",
-    "discountPercent": 20,
-    "label": "Referral — 20% off",
-    "maxRedemptions": 1,
-    "redeemed": 0,
-    "active": true
-  }
+  "EDUZS",
+  "EDU7T",
+  "EDUT7",
+  "EDU33",
+  "EDU2X",
+  "EDU8G",
+  "EDUDC",
+  "EDU4J",
+  "EDU8A",
+  "EDUCN",
+  "EDUW6",
+  "EDUFP",
+  "EDU8E",
+  "EDU7E",
+  "EDUV8",
+  "EDUVH",
+  "EDUF7",
+  "EDUF5",
+  "EDUJ6",
+  "EDUMS",
+  "EDU5W",
+  "EDUHZ",
+  "EDUWH",
+  "EDUDQ",
+  "EDU9T",
+  "EDUVK",
+  "EDUBF",
+  "EDUMC",
+  "EDUBE",
+  "EDUCD",
+  "EDU9K",
+  "EDUKG",
+  "EDUJZ",
+  "EDUH6",
+  "EDUBZ",
+  "EDUGH",
+  "EDU4E",
+  "EDUX3",
+  "EDUQA",
+  "EDUGD",
+  "EDU3Z",
+  "EDUSA",
+  "EDUN8",
+  "EDUMN",
+  "EDUP4",
+  "EDUFA",
+  "EDUQU",
+  "EDUXU",
+  "EDURK",
+  "EDU9W",
+  "EDUNE",
+  "EDUW5",
+  "EDU74",
+  "EDU5F",
+  "EDU9F",
+  "EDUHP",
+  "EDUUG",
+  "EDU5V",
+  "EDUBA",
+  "EDUMP",
+  "EDUTD",
+  "EDU4F",
+  "EDUWP",
+  "EDU2D",
+  "EDUQX",
+  "EDUCC",
+  "EDUSB",
+  "EDUMW",
+  "EDUAZ",
+  "EDUYH",
+  "EDUR5",
+  "EDU2M",
+  "EDUNS",
+  "EDU7Y",
+  "EDUKT",
+  "EDUGG",
+  "EDUA6",
+  "EDUEH",
+  "EDUGV",
+  "EDU4M",
+  "EDUTN",
+  "EDUEK",
+  "EDUC5",
+  "EDUW2",
+  "EDUPX",
+  "EDUMR",
+  "EDUZD",
+  "EDUFJ",
+  "EDUUZ",
+  "EDU3U",
+  "EDU6D",
+  "EDU7M",
+  "EDU7C",
+  "EDUPA",
+  "EDUM5",
+  "EDUCB",
+  "EDUW7",
+  "EDU86",
+  "EDU5P",
+  "EDU4P",
+  "EDUP2",
+  "EDUG2",
+  "EDU6Y",
+  "EDU83",
+  "EDUVX",
+  "EDUHU",
+  "EDU94",
+  "EDURF",
+  "EDUQ6",
+  "EDUDX",
+  "EDUDK",
+  "EDUBT",
+  "EDUMU",
+  "EDURW",
+  "EDU9N",
+  "EDUE8",
+  "EDUZZ",
+  "EDUUF",
+  "EDUR9",
+  "EDUPD",
+  "EDUPV",
+  "EDUDY",
+  "EDU73",
+  "EDUVY",
+  "EDUVV",
+  "EDU36",
+  "EDUYW",
+  "EDU6W",
+  "EDUGC",
+  "EDU3K",
+  "EDUCF",
+  "EDUD8",
+  "EDUAA",
+  "EDUET",
+  "EDUW8",
+  "EDUYC",
+  "EDUBB",
+  "EDU7G",
+  "EDU8Y",
+  "EDU9S",
+  "EDUME",
+  "EDUEG",
+  "EDUF3",
+  "EDUSK",
+  "EDUQR",
+  "EDUKD",
+  "EDU2C",
+  "EDUH2",
+  "EDUF2",
+  "EDUCZ",
+  "EDUB3",
+  "EDU8H",
+  "EDUZP",
+  "EDU4D",
+  "EDUVW",
+  "EDUHN",
+  "EDUDP",
+  "EDUV6",
+  "EDUTZ",
+  "EDUXG",
+  "EDUSF",
+  "EDUN5",
+  "EDU5C",
+  "EDUWJ",
+  "EDUY9",
+  "EDUUY",
+  "EDUTJ",
+  "EDUSW",
+  "EDUR8",
+  "EDUFG",
+  "EDUHR",
+  "EDUNU",
+  "EDURN",
+  "EDU7A",
+  "EDUUJ",
+  "EDU2Z",
+  "EDUSP",
+  "EDU2G",
+  "EDUSQ",
+  "EDUNX",
+  "EDUGR",
+  "EDUXM",
+  "EDUG9",
+  "EDUH5",
+  "EDU3G",
+  "EDUHG",
+  "EDU38",
+  "EDUQT",
+  "EDU7U",
+  "EDUTU",
+  "EDU4V",
+  "EDUGJ",
+  "EDUNK",
+  "EDUZB",
+  "EDUTQ",
+  "EDUE2",
+  "EDUUM",
+  "EDUK3",
+  "EDU28",
+  "EDUM3",
+  "EDU9V",
+  "EDUEY",
+  "EDUXP",
+  "EDU2Y",
+  "EDUS8",
+  "EDU9B",
+  "EDUY5",
+  "EDU3D",
+  "EDUVN",
+  "EDUQV"
 ]
