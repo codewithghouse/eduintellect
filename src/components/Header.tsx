@@ -107,18 +107,24 @@ const Header = () => {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-[#fbfbfd]/95 backdrop-blur-2xl border-b border-[#d2d2d7]/40 animate-fade-in">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-white border-b border-[#d2d2d7]/60 shadow-[0_12px_32px_rgba(0,0,0,0.08)] animate-fade-in">
           <nav className="flex flex-col max-w-[980px] mx-auto px-6 py-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.href}
-                className="text-[17px] font-normal text-[#1d1d1f] py-3 border-b border-[#d2d2d7]/30"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  className={cn(
+                    "text-[17px] py-3 border-b border-[#d2d2d7]/40 transition-colors",
+                    isActive ? "text-[#0071e3] font-medium" : "text-[#1d1d1f] font-normal"
+                  )}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
             <div className="flex flex-col gap-3 pt-4">
               <button
                 onClick={() => {

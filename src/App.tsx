@@ -7,10 +7,12 @@ import PrincipalDashboard from './pages/PrincipalDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import StudentParentDashboard from './pages/StudentParentDashboard';
 import { SplashScreen } from './components/SplashScreen';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<HomePage />} />
