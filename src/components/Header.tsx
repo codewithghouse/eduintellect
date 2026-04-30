@@ -31,7 +31,7 @@ const Header = () => {
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isScrolled
           ? "bg-[#fbfbfd]/80 backdrop-blur-2xl backdrop-saturate-[1.8] border-b border-[#d2d2d7]/40 py-2.5"
-          : "bg-transparent py-4"
+          : "bg-[#fbfbfd]/80 backdrop-blur-2xl backdrop-saturate-[1.8] border-b border-[#d2d2d7]/40 py-3 md:bg-transparent md:backdrop-blur-0 md:backdrop-saturate-100 md:border-b-0 md:py-4"
       )}
     >
       <div className="max-w-[980px] mx-auto px-6 flex items-center justify-between">
@@ -85,13 +85,24 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-[#1d1d1f]"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        {/* Mobile Actions */}
+        <div className="flex md:hidden items-center gap-2">
+          <Link
+            to="/register"
+            className="text-[13px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-3.5 py-1.5 rounded-full transition-all duration-300"
+          >
+            Get Started
+          </Link>
+          <button
+            type="button"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            className="w-9 h-9 flex items-center justify-center rounded-full text-[#1d1d1f] bg-[#f5f5f7] hover:bg-[#eaeaee] active:scale-95 transition-all"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
