@@ -6,6 +6,7 @@ import OwnerDashboard from './pages/OwnerDashboard';
 import PrincipalDashboard from './pages/PrincipalDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import StudentParentDashboard from './pages/StudentParentDashboard';
+import { SplashScreen } from './components/SplashScreen';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/student-parent" element={<StudentParentDashboard />} />
         </Routes>
       </Layout>
+      <SplashScreen />
     </Router>
   );
 }
