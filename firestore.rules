@@ -1,0 +1,192 @@
+rules_version = '2';
+
+// Edullent — Firestore security rules
+//
+// Trust model:
+//   - "Permanent superadmin" is identified by the verified Google email
+//     edullentofficial@gmail.com. This MUST stay in sync with
+//     PERMANENT_SUPERADMIN_EMAILS in src/lib/auth.tsx.
+//   - "Admin" / "Superadmin" are determined by the admins/{uid} document's
+//     `role` field. The client cannot escalate this — only an existing
+//     superadmin (or the permanent superadmin self-bootstrapping) can write
+//     admins/.
+//   - All collections are denied by default; each match block opts in.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ─── Helpers ─────────────────────────────────────────────────────────
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function myUid() {
+      return request.auth.uid;
+    }
+
+    function myEmail() {
+      return request.auth.token.email;
+    }
+
+    function isPermanent() {
+      return isSignedIn()
+        && request.auth.token.email_verified == true
+        && request.auth.token.email == 'edullentofficial@gmail.com';
+    }
+
+    function adminDocPath() {
+      return /databases/$(database)/documents/admins/$(myUid());
+    }
+
+    function adminRole() {
+      return get(adminDocPath()).data.role;
+    }
+
+    function hasAdminDoc() {
+      return isSignedIn() && exists(adminDocPath());
+    }
+
+    function isAdmin() {
+      return isPermanent()
+        || (hasAdminDoc() && (adminRole() == 'admin' || adminRole() == 'superadmin'));
+    }
+
+    function isSuper() {
+      return isPermanent()
+        || (hasAdminDoc() && adminRole() == 'superadmin');
+    }
+
+    // Field validators for school registration. Mirrors RegisterPage caps.
+    function validNewSchool(d) {
+      return d.keys().hasAll(['schoolName', 'ownerName', 'email', 'phone', 'address', 'ownerId', 'role', 'status'])
+        && d.ownerId == myUid()
+        && d.role == 'owner'
+        && d.status == 'active'
+        && d.email is string && d.email.size() <= 254
+        && d.schoolName is string && d.schoolName.size() > 0 && d.schoolName.size() <= 120
+        && d.ownerName is string && d.ownerName.size() > 0 && d.ownerName.size() <= 120
+        && d.phone is string && d.phone.size() <= 20
+        && d.address is string && d.address.size() <= 500;
+    }
+
+    // ─── /schools/{schoolId} ─────────────────────────────────────────────
+    // Schools are keyed by the owner's UID. Owners self-register (one doc per
+    // UID), can read/update their own profile, and admins manage everyone.
+    match /schools/{schoolId} {
+
+      allow get: if schoolId == myUid() || isAdmin();
+
+      // List queries (admin pages) — admin only.
+      allow list: if isAdmin();
+
+      allow create: if isSignedIn()
+        && schoolId == myUid()
+        && validNewSchool(request.resource.data);
+
+      // Owners can update their own profile fields, but cannot escalate
+      // role or unsuspend themselves. Status changes are admin-only.
+      allow update: if isSignedIn() && (
+        (schoolId == myUid()
+          && request.resource.data.role == resource.data.role
+          && request.resource.data.status == resource.data.status
+          && request.resource.data.ownerId == resource.data.ownerId
+        )
+        || isAdmin()
+      );
+
+      // Hard delete only by superadmin.
+      allow delete: if isSuper();
+    }
+
+    // ─── /admins/{adminId} ───────────────────────────────────────────────
+    // Two doc shapes live here:
+    //   1. Real admin records: doc id = uid, fields { email, role, ... }
+    //   2. Pending invites:    doc id = "invite_<sanitized_email>",
+    //                          fields { inviteEmail, role, ... }
+    match /admins/{adminId} {
+
+      // A signed-in user can read their own admin record, OR a pending
+      // invite addressed to their verified email (so they can be promoted
+      // on first sign-in). Existing admins can read everything.
+      allow get: if isSignedIn() && (
+        adminId == myUid()
+        || isAdmin()
+        || (resource.data.inviteEmail is string
+            && resource.data.inviteEmail == myEmail())
+      );
+
+      allow list: if isAdmin();
+
+      // Self-create on first sign-in:
+      //   - Permanent superadmin bootstrap: { role: 'superadmin', ... }
+      //   - Invite consumption: an invite with matching email exists, and
+      //     the new doc inherits its role.
+      // Otherwise only superadmins can create admin records (e.g. invites).
+      allow create: if isSignedIn() && (
+        // permanent superadmin bootstrap
+        (adminId == myUid()
+          && isPermanent()
+          && request.resource.data.role == 'superadmin')
+
+        // invite consumption — copy role from the existing invite doc
+        || (adminId == myUid()
+          && exists(/databases/$(database)/documents/admins/$('invite_' + myEmail().lower().replace('[^a-z0-9]', '_')))
+          && (request.resource.data.role == 'admin'
+              || request.resource.data.role == 'superadmin'))
+
+        // superadmin creating any admin doc (e.g. an invite)
+        || isSuper()
+      );
+
+      // Self-update permitted only for non-role fields (lastSeenAt, photo,
+      // displayName); superadmins can update anything except their own role.
+      allow update: if isSignedIn() && (
+        (adminId == myUid()
+          && request.resource.data.role == resource.data.role)
+        || (isSuper() && !(adminId == myUid()
+              && request.resource.data.role != resource.data.role))
+      );
+
+      // Only superadmins can revoke. They cannot delete themselves —
+      // prevents accidental lock-out. Permanent superadmin record is
+      // protected by its `permanent: true` flag.
+      allow delete: if isSuper()
+        && adminId != myUid()
+        && !(resource.data.permanent == true);
+    }
+
+    // ─── /accessRequests/{requestId} ─────────────────────────────────────
+    // requestId is always the requester's uid. Anyone signed in can submit
+    // a request for themselves; only admins can see them; only superadmins
+    // can act on them.
+    match /accessRequests/{requestId} {
+
+      allow get: if isSignedIn() && (requestId == myUid() || isAdmin());
+
+      allow list: if isAdmin();
+
+      allow create: if isSignedIn()
+        && requestId == myUid()
+        && request.resource.data.uid == myUid()
+        && request.resource.data.status == 'pending'
+        && (request.resource.data.email == myEmail()
+            || request.resource.data.email == null)
+        && (!('reason' in request.resource.data)
+            || request.resource.data.reason == null
+            || (request.resource.data.reason is string
+                && request.resource.data.reason.size() <= 500));
+
+      // Requests are immutable once submitted — accept/reject = delete.
+      allow update: if false;
+
+      // The user can withdraw their own pending request; superadmins can
+      // delete on accept/reject.
+      allow delete: if isSignedIn() && (requestId == myUid() || isSuper());
+    }
+
+    // ─── Default deny ────────────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
