@@ -78,8 +78,40 @@
 body {
   margin: 0;
   min-width: 320px;
+  /* Use dynamic viewport height where supported so iOS Safari's URL bar
+     doesn't cause layout jumps. Fallback to 100vh on older browsers. */
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
+  /* Prevent the rubber-band horizontal bounce on iOS while still
+     allowing vertical scroll. */
+  overscroll-behavior-x: none;
+  /* Don't auto-detect/style phone numbers as links — Safari does this
+     by default and it makes our marketing copy show ugly underlines. */
+  -webkit-text-size-adjust: 100%;
+}
+
+/* ── Mobile/touch: kill iOS tap highlight + speed up tap response ── */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+a,
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  /* Removes the 300ms tap delay on iOS and disables double-tap-to-zoom
+     on these elements (still pinch-zoomable elsewhere). */
+  touch-action: manipulation;
+}
+
+/* ── Inputs: keep ≥16px font-size to stop iOS auto-zoom on focus ── */
+@media (max-width: 767px) {
+  input:not([type="checkbox"]):not([type="radio"]),
+  textarea,
+  select {
+    font-size: max(16px, 1em);
+  }
 }
 
 @layer base {
@@ -115,9 +147,37 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
+/* Smooth scrolling — only when the user hasn't asked for reduced motion.
+   Forced smooth scroll on a low-end Android can feel laggy and triggers
+   vestibular issues for some users. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ── Mobile perf: lighten heavy backdrop-blur on small screens ──
+   `backdrop-blur-2xl` (40px) tanks frame rate on mid-range Android.
+   Cut it down on phones; desktops keep the full effect. */
+@media (max-width: 767px) {
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl {
+    backdrop-filter: blur(10px) saturate(1.4);
+    -webkit-backdrop-filter: blur(10px) saturate(1.4);
+  }
+}
+
+/* ── Respect reduced-motion globally for non-essential animations ── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Selection color */

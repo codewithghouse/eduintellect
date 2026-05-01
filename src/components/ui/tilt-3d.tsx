@@ -1,5 +1,24 @@
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import { useRef, type ReactNode } from 'react';
+import { useRef, useState, useEffect, type ReactNode } from 'react';
+
+/**
+ * Detects whether the primary input device supports hover (i.e. a real
+ * mouse / trackpad). Touch-only devices return false. We use this to
+ * skip the 3D tilt effect entirely on phones/tablets — otherwise the
+ * tilt sticks after a tap on iOS Safari and looks broken.
+ */
+const useHasHover = () => {
+  const [hasHover, setHasHover] = useState(true);
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setHasHover(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setHasHover(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+  return hasHover;
+};
 
 export const Tilt3D = ({
   children,
@@ -12,6 +31,7 @@ export const Tilt3D = ({
   rotation?: number;
 }) => {
   const ref = useRef<HTMLDivElement>(null);
+  const hasHover = useHasHover();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
@@ -42,6 +62,12 @@ export const Tilt3D = ({
     x.set(0);
     y.set(0);
   };
+
+  // Touch devices: render a plain wrapper, no perspective, no 3D — keeps
+  // text crisp and avoids the iOS sticky-hover artifact.
+  if (!hasHover) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <div style={{ perspective: '1200px' }} className={className}>

@@ -8,9 +8,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="min-h-screen bg-[#fbfbfd] flex flex-col selection:bg-[#0071e3]/20 selection:text-[#1d1d1f]">
+    <div className="min-h-screen min-h-[100dvh] bg-[#fbfbfd] flex flex-col selection:bg-[#0071e3]/20 selection:text-[#1d1d1f]">
       <Header />
-      <main className="flex-grow">
+      <main className="flex-grow" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         {children}
       </main>
       <Footer />

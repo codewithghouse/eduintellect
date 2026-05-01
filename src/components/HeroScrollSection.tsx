@@ -93,7 +93,7 @@ const HeroScrollSection = () => {
       ref={sectionRef}
       className="relative h-[460vh] bg-[#fbfbfd]"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+      <div className="sticky top-0 h-screen h-[100dvh] w-full overflow-hidden flex items-center justify-center">
         {/* Parallax decorative background */}
         <motion.div
           aria-hidden

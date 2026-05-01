@@ -12,8 +12,27 @@
  * Usage: <IPadBezel><YourScreenContent /></IPadBezel>
  */
 
-import { useRef, useState, useLayoutEffect } from 'react';
+import { useRef, useState, useLayoutEffect, useEffect } from 'react';
 import type { ReactNode } from 'react';
+
+/**
+ * `true` when the primary input is a real pointer (mouse/trackpad).
+ * Touch-only devices return `false` — we use this to skip the 3D tilt
+ * handlers entirely on iOS/Android, otherwise the hover-driven
+ * transform can stick after a tap.
+ */
+const useHasHover = () => {
+  const [hasHover, setHasHover] = useState(true);
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+    const mq = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setHasHover(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setHasHover(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+  return hasHover;
+};
 
 interface Props {
   children: ReactNode;
@@ -36,6 +55,7 @@ const IPadBezel = ({ children, aspectRatio = '1.43 / 1' }: Props) => {
   const ipadRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
+  const hasHover = useHasHover();
 
   useLayoutEffect(() => {
     const el = screenRef.current;
@@ -87,9 +107,9 @@ const IPadBezel = ({ children, aspectRatio = '1.43 / 1' }: Props) => {
   return (
     <div
       ref={ipadRef}
-      onMouseEnter={handle3DEnter}
-      onMouseMove={handle3DMove}
-      onMouseLeave={handle3DLeave}
+      onMouseEnter={hasHover ? handle3DEnter : undefined}
+      onMouseMove={hasHover ? handle3DMove : undefined}
+      onMouseLeave={hasHover ? handle3DLeave : undefined}
       style={{
         width: '100%',
         aspectRatio,
