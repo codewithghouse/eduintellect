@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import {
   User,
   School as SchoolIcon,
@@ -10,6 +11,7 @@ import {
   Loader2,
   CheckCircle2,
   MessageSquare,
+  Rocket,
 } from 'lucide-react';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { db } from '../lib/firebase';
@@ -139,6 +141,18 @@ const ContactPage = () => {
             Tell us a bit about your school and our team will reach out to walk
             you through pricing, onboarding and a live demo.
           </p>
+
+          {/* Direct registration CTA — for schools who already know they want in */}
+          <div className="mt-6 inline-flex items-center gap-2 text-[13.5px] text-[#424245]">
+            <span>Already decided?</span>
+            <Link
+              to="/register"
+              className="inline-flex items-center gap-1 text-[#0071e3] font-medium hover:underline"
+            >
+              Register your school directly
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-10">
@@ -265,6 +279,30 @@ const ContactPage = () => {
                 30-minute walkthrough at a time that suits your team.
               </p>
             </div>
+
+            {/* School registration shortcut — keeps the existing /register
+                flow one click away for schools that don't need to talk first. */}
+            <Link
+              to="/register"
+              className="block rounded-[16px] bg-[#1d1d1f] text-white p-5 hover:bg-[#0a0a0a] transition group"
+            >
+              <div className="flex items-start gap-3">
+                <div className="w-9 h-9 rounded-[10px] bg-white/10 flex items-center justify-center shrink-0">
+                  <Rocket className="w-4 h-4 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <div className="text-[13px] font-medium">Register your school</div>
+                  <div className="text-[12px] text-white/70 mt-1 leading-[1.45]">
+                    Skip the call — create your school account in 2 minutes and
+                    get instant access to the owner dashboard.
+                  </div>
+                  <div className="mt-2.5 inline-flex items-center gap-1 text-[12px] text-white font-medium">
+                    Go to registration
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            </Link>
           </motion.aside>
         </div>
       </div>
