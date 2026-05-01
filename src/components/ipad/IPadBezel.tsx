@@ -5,11 +5,15 @@
  *  - 3D tilt that follows the cursor (only on hover — keeps rest state crisp)
  *  - Bluish glow box-shadow on hover
  *  - Edullent #EEF4FF inner screen background
+ *  - Proportional scaling: inner content is rendered at a fixed design size
+ *    and scaled with CSS transform so every iPad mockup stays correctly
+ *    proportioned at any viewport width (mobile → desktop).
  *
  * Usage: <IPadBezel><YourScreenContent /></IPadBezel>
  */
 
-import { useRef, useState, ReactNode } from 'react';
+import { useRef, useState, useLayoutEffect } from 'react';
+import type { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
@@ -17,9 +21,34 @@ interface Props {
   aspectRatio?: string;
 }
 
+// Design canvas the inner UI is authored against. Matches a typical
+// desktop-rendered iPad bezel screen width (~700px bezel → 672px screen
+// after 2% padding). All hardcoded px sizes inside individual iPad
+// mockups are tuned to this canvas.
+const DESIGN_W = 672;
+// Aspect of the SCREEN (not the bezel). With 2% bezel padding on a
+// 1.43:1 chassis, the inner screen ratio is ~1.456:1.
+const SCREEN_ASPECT = 1.456;
+const DESIGN_H = DESIGN_W / SCREEN_ASPECT;
+
 const IPadBezel = ({ children, aspectRatio = '1.43 / 1' }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const ipadRef = useRef<HTMLDivElement>(null);
+  const screenRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
+
+  useLayoutEffect(() => {
+    const el = screenRef.current;
+    if (!el) return;
+    const update = () => {
+      const w = el.clientWidth;
+      if (w > 0) setScale(w / DESIGN_W);
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   const handle3DEnter = () => {
     setIsHovered(true);
@@ -65,8 +94,13 @@ const IPadBezel = ({ children, aspectRatio = '1.43 / 1' }: Props) => {
         width: '100%',
         aspectRatio,
         background: '#1c1c1e',
-        borderRadius: 38,
-        padding: 14,
+        // Use clamp so corners scale on small screens but cap at the
+        // original 38px on desktop — keeps the iPad silhouette correct
+        // at any width without giving small mockups soap-bar corners.
+        borderRadius: 'clamp(14px, 5.4%, 38px)',
+        // Percentage padding keeps inner-screen aspect ratio constant
+        // across viewport widths (was fixed 14px before).
+        padding: '2%',
         boxShadow: isHovered
           ? '0 0 0 1.5px rgba(0,85,255,0.45), 0 0 40px rgba(0,85,255,0.28), 0 30px 80px rgba(0,85,255,0.30), 0 80px 160px rgba(0,85,255,0.22)'
           : '0 0 0 1.5px #2c2c2e, 0 30px 80px rgba(15,23,42,0.25), 0 80px 160px rgba(15,23,42,0.18)',
@@ -82,28 +116,45 @@ const IPadBezel = ({ children, aspectRatio = '1.43 / 1' }: Props) => {
       <div
         style={{
           position: 'absolute',
-          top: 6,
+          top: '0.85%',
           left: '50%',
           transform: 'translateX(-50%)',
-          width: 5,
-          height: 5,
+          width: '0.7%',
+          aspectRatio: '1 / 1',
           borderRadius: '50%',
           background: '#3a3a3c',
         }}
       />
       {/* Screen */}
       <div
+        ref={screenRef}
         style={{
           width: '100%',
           height: '100%',
           background: '#EEF4FF',
-          borderRadius: 26,
+          borderRadius: 'clamp(10px, 3.7%, 26px)',
           overflow: 'hidden',
-          display: 'flex',
-          flexDirection: 'column',
+          position: 'relative',
         }}
       >
-        {children}
+        {/* Fixed design-size canvas — scaled to fit the screen so all
+            inner mockups (which use hardcoded px sizes) stay perfectly
+            proportioned at any width. */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: DESIGN_W,
+            height: DESIGN_H,
+            transform: `scale(${scale})`,
+            transformOrigin: 'top left',
+            display: 'flex',
+            flexDirection: 'column',
+          }}
+        >
+          {children}
+        </div>
       </div>
     </div>
   );

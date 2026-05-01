@@ -1,9 +1,24 @@
+import { Link } from 'react-router-dom';
+
 const PORTAL_URLS = {
   owner: import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/',
   principal: import.meta.env.VITE_PRINCIPAL_DASHBOARD_URL || 'https://principal-dashboard-seven.vercel.app/',
   teacher: import.meta.env.VITE_TEACHER_DASHBOARD_URL || 'https://teacher-dashboard-ochre.vercel.app/',
   parent: import.meta.env.VITE_PARENT_DASHBOARD_URL || 'https://parent-dashboard-ten.vercel.app/',
 };
+
+const FEATURE_LINKS = [
+  { label: 'AI Student Monitoring', to: '/features/ai-monitoring' },
+  { label: 'Digital Attendance',    to: '/features/attendance' },
+  { label: 'Report Generation',     to: '/features/reports' },
+  { label: 'Fee Management',        to: '/features/fees' },
+];
+
+const LEGAL_LINKS = [
+  { label: 'Privacy Policy', to: '/legal/privacy' },
+  { label: 'Terms of Use',   to: '/legal/terms' },
+  { label: 'Legal',          to: '/legal' },
+];
 
 const Footer = () => {
   return (
@@ -33,10 +48,10 @@ const Footer = () => {
           <div>
             <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Portals</h4>
             <ul className="space-y-3">
-              <li><a href={PORTAL_URLS.owner} target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Owner Dashboard</a></li>
+              <li><a href={PORTAL_URLS.owner}     target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Owner Dashboard</a></li>
               <li><a href={PORTAL_URLS.principal} target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Principal Portal</a></li>
-              <li><a href={PORTAL_URLS.teacher} target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Teacher App</a></li>
-              <li><a href={PORTAL_URLS.parent} target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Parent Connect</a></li>
+              <li><a href={PORTAL_URLS.teacher}   target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Teacher App</a></li>
+              <li><a href={PORTAL_URLS.parent}    target="_blank" rel="noopener noreferrer" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Parent Connect</a></li>
             </ul>
           </div>
 
@@ -44,10 +59,13 @@ const Footer = () => {
           <div>
             <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Features</h4>
             <ul className="space-y-3">
-              <li><a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">AI Student Monitoring</a></li>
-              <li><a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Digital Attendance</a></li>
-              <li><a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Report Generation</a></li>
-              <li><a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Fee Management</a></li>
+              {FEATURE_LINKS.map(f => (
+                <li key={f.to}>
+                  <Link to={f.to} className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">
+                    {f.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -55,9 +73,19 @@ const Footer = () => {
           <div>
             <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Contact</h4>
             <ul className="space-y-3">
-              <li className="text-[#424245] text-[12px]">support@edullent.com</li>
-              <li className="text-[#424245] text-[12px]">+1 (234) 567-890</li>
-              <li className="text-[#424245] text-[12px] leading-[1.47]">123 Tech Lane, Silicon Valley,<br />Innovation City, 560001</li>
+              <li>
+                <a href="mailto:support@edullent.com" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">
+                  support@edullent.com
+                </a>
+              </li>
+              <li>
+                <a href="tel:+919876543210" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">
+                  +91 98765 43210
+                </a>
+              </li>
+              <li className="text-[#424245] text-[12px] leading-[1.47]">
+                Hyderabad, Telangana,<br />India 500032
+              </li>
             </ul>
           </div>
         </div>
@@ -70,9 +98,15 @@ const Footer = () => {
             Copyright &copy; {new Date().getFullYear()} Edullent. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Privacy Policy</a>
-            <a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Terms of Use</a>
-            <a href="#" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">Legal</a>
+            {LEGAL_LINKS.map(l => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300"
+              >
+                {l.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

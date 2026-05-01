@@ -5,6 +5,7 @@ interface Tier {
   name: string;
   icon: ReactNode;
   price: number | string;
+  perStudent?: string;
   description: string;
   features: string[];
   popular?: boolean;
@@ -17,49 +18,60 @@ const TIERS: Tier[] = [
   {
     name: 'Starter',
     icon: <GraduationCap className="w-5 h-5" />,
-    price: 49,
-    description: 'Perfect for small schools or single branches.',
+    price: 2999,
+    perStudent: '₹15 per student / month',
+    description: 'Perfect for small schools or single branches just getting started.',
     brand: '#FF9500',
     iconBg: '#FFF4E0',
     features: [
       'Up to 200 students',
-      'Core management tools',
-      'Basic reports',
+      'Single branch',
+      'All AI features included',
+      'Parent & Teacher mobile apps',
+      'Real-time dashboards',
       'Email support',
     ],
   },
   {
     name: 'Pro',
     icon: <Star className="w-5 h-5" />,
-    price: 129,
-    description: 'The complete solution for growing institutions.',
+    price: 7999,
+    perStudent: '₹16 per student / month',
+    description: 'The complete solution for growing institutions with multiple branches.',
     brand: '#0055FF',
     iconBg: '#E5EDFF',
     popular: true,
     features: [
-      'Unlimited students',
-      'AI risk monitoring',
-      'Advanced analytics',
-      'Parent-Teacher app',
-      'Priority support',
+      'Up to 500 students',
+      'Up to 3 branches',
+      'All AI features included',
+      'WhatsApp Business integration',
+      'Real-time leaderboards',
+      'Custom subdomain branding',
+      'Priority 24/7 support',
     ],
   },
   {
     name: 'Enterprise',
     icon: <Sparkles className="w-5 h-5" />,
     price: 'Custom',
-    description: 'Advanced features for multi-branch networks.',
+    perStudent: 'From ₹13 per student / month',
+    description: 'Advanced control for multi-branch networks and large institutions.',
     brand: '#7B3FF4',
     iconBg: '#F2EBFF',
     cta: 'Talk to sales',
     features: [
-      'Multi-branch sync',
-      'Custom AI models',
-      'Whitelabel app',
+      'Unlimited students & branches',
+      'All AI features + custom AI models',
+      'White-label mobile apps',
       'Dedicated account manager',
+      'API access & custom integrations',
+      'Volume pricing & SLA',
     ],
   },
 ];
+
+const formatINR = (n: number) => n.toLocaleString('en-IN');
 
 const Pricing = () => (
   <section id="pricing" className="py-24 md:py-28 bg-[#fbfbfd] relative overflow-hidden">
@@ -72,8 +84,8 @@ const Pricing = () => (
         <h2 className="text-[40px] md:text-[56px] font-light text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-5">
           Plans built for every school.
         </h2>
-        <p className="text-[#86868b] text-[19px] font-light max-w-[540px] mx-auto leading-[1.45] tracking-[0.011em]">
-          Pick the plan that matches your vision — switch anytime.
+        <p className="text-[#86868b] text-[19px] font-light max-w-[560px] mx-auto leading-[1.45] tracking-[0.011em]">
+          Every plan includes all features. Pick the size that fits your school — switch anytime.
         </p>
       </div>
 
@@ -83,6 +95,11 @@ const Pricing = () => (
           <PricingCard key={tier.name} tier={tier} />
         ))}
       </div>
+
+      {/* Trust line */}
+      <p className="text-center text-[13px] text-[#86868b] mt-10 font-light tracking-[0.005em]">
+        All prices in INR · GST extra · No setup fee · Cancel anytime
+      </p>
     </div>
   </section>
 );
@@ -133,20 +150,29 @@ const PricingCard = ({ tier }: { tier: Tier }) => {
         <p className="text-[12px] font-medium tracking-[0.16em] uppercase mb-1.5" style={{ color: tier.brand }}>
           {tier.name} plan
         </p>
-        <p className="text-[14px] font-normal text-[#86868b] leading-[1.45] tracking-[0.005em] mb-6 min-h-[40px]">
+        <p className="text-[14px] font-normal text-[#86868b] leading-[1.45] tracking-[0.005em] mb-6 min-h-[60px]">
           {tier.description}
         </p>
 
         {/* Price */}
-        <div className="flex items-baseline gap-1 mb-6 pb-6 border-b border-[#f0f0f2]">
-          {typeof tier.price === 'number' ? (
-            <>
-              <span className="text-[20px] font-normal text-[#1d1d1f] tracking-[-0.02em] self-start mt-2">$</span>
-              <span className="text-[56px] font-light text-[#1d1d1f] tracking-[-0.04em] leading-none">{tier.price}</span>
-              <span className="text-[15px] font-normal text-[#86868b] ml-1">/mo</span>
-            </>
-          ) : (
-            <span className="text-[44px] font-light text-[#1d1d1f] tracking-[-0.03em] leading-none">{tier.price}</span>
+        <div className="mb-6 pb-6 border-b border-[#f0f0f2]">
+          <div className="flex items-baseline gap-1">
+            {typeof tier.price === 'number' ? (
+              <>
+                <span className="text-[20px] font-normal text-[#1d1d1f] tracking-[-0.02em] self-start mt-2">₹</span>
+                <span className="text-[52px] font-light text-[#1d1d1f] tracking-[-0.04em] leading-none">
+                  {formatINR(tier.price)}
+                </span>
+                <span className="text-[15px] font-normal text-[#86868b] ml-1">/mo</span>
+              </>
+            ) : (
+              <span className="text-[44px] font-light text-[#1d1d1f] tracking-[-0.03em] leading-none">{tier.price}</span>
+            )}
+          </div>
+          {tier.perStudent && (
+            <p className="text-[12px] font-normal text-[#86868b] mt-2 tracking-[0.005em]">
+              {tier.perStudent}
+            </p>
           )}
         </div>
 

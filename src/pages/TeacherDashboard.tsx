@@ -2644,11 +2644,11 @@ const TeacherDashboard = () => {
           {
             ipad: <TeacherSummarizeLessonIPad />,
             eyebrow: 'Summarize Lesson',
-            headline: 'Any recording → a digestible summary.',
-            body: 'Drop audio, text or PDF — AI extracts key concepts, must-remember points, follow-up questions, and a parent-friendly summary.',
+            headline: 'Any PDF → exam-ready study notes.',
+            body: 'Drop a chapter PDF and get 7 ready-made study sections back in seconds — quick summary, key concepts, must-remember points, examples, practice questions, parent note, and vocabulary.',
             bullets: [
-              'Multi-modal: audio (transcribe + summarize), text, PDF',
-              'Auto-shares parent version to the parent dashboard',
+              'Text-based PDF support up to 20MB',
+              'Auto-shares parent-friendly version to the parent dashboard',
               'Builds a searchable knowledge base of every lesson',
             ],
             brand: '#00C853',
