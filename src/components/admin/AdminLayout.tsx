@@ -9,6 +9,7 @@ import {
   X,
   ExternalLink,
   Inbox,
+  Mail,
 } from 'lucide-react';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
@@ -19,13 +20,14 @@ interface NavItem {
   label: string;
   icon: ReactNode;
   end?: boolean;
-  badgeKey?: 'requests';
+  badgeKey?: 'requests' | 'info';
 }
 
 const NAV: NavItem[] = [
   { to: '/admin', label: 'Overview', icon: <LayoutDashboard className="w-4 h-4" />, end: true },
   { to: '/admin/schools', label: 'Schools', icon: <Building2 className="w-4 h-4" /> },
   { to: '/admin/requests', label: 'Requests', icon: <Inbox className="w-4 h-4" />, badgeKey: 'requests' },
+  { to: '/admin/info', label: 'Info', icon: <Mail className="w-4 h-4" />, badgeKey: 'info' },
   { to: '/admin/admins', label: 'Admins', icon: <ShieldCheck className="w-4 h-4" /> },
 ];
 
@@ -34,6 +36,7 @@ export default function AdminLayout() {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [pendingRequests, setPendingRequests] = useState(0);
+  const [newSubmissions, setNewSubmissions] = useState(0);
 
   useEffect(() => {
     const q = query(collection(db, 'accessRequests'), where('status', '==', 'pending'));
@@ -43,6 +46,19 @@ export default function AdminLayout() {
       (err) => {
         console.warn('[layout] pending requests subscribe failed:', err);
         setPendingRequests(0);
+      },
+    );
+    return unsub;
+  }, []);
+
+  useEffect(() => {
+    const q = query(collection(db, 'contact_submissions'), where('status', '==', 'new'));
+    const unsub = onSnapshot(
+      q,
+      (snap) => setNewSubmissions(snap.size),
+      (err) => {
+        console.warn('[layout] new submissions subscribe failed:', err);
+        setNewSubmissions(0);
       },
     );
     return unsub;
@@ -60,8 +76,9 @@ export default function AdminLayout() {
     .map((s) => s[0]?.toUpperCase())
     .join('');
 
-  const badgeFor = (key?: 'requests') => {
+  const badgeFor = (key?: 'requests' | 'info') => {
     if (key === 'requests' && pendingRequests > 0) return pendingRequests;
+    if (key === 'info' && newSubmissions > 0) return newSubmissions;
     return null;
   };
 
@@ -75,7 +92,7 @@ export default function AdminLayout() {
           aria-label="Toggle navigation"
         >
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          {pendingRequests > 0 && !open && (
+          {(pendingRequests > 0 || newSubmissions > 0) && !open && (
             <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#ff3b30]" />
           )}
         </button>

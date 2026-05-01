@@ -74,6 +74,11 @@ const Footer = () => {
             <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Contact</h4>
             <ul className="space-y-3">
               <li>
+                <Link to="/contact" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">
+                  Contact us
+                </Link>
+              </li>
+              <li>
                 <a href="mailto:support@edullent.com" className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">
                   support@edullent.com
                 </a>

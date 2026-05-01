@@ -27,6 +27,8 @@ import AdminSchools from './pages/admin/AdminSchools';
 import AdminSchoolDetail from './pages/admin/AdminSchoolDetail';
 import AdminAdmins from './pages/admin/AdminAdmins';
 import AdminRequests from './pages/admin/AdminRequests';
+import AdminInfo from './pages/admin/AdminInfo';
+import ContactPage from './pages/ContactPage';
 
 const IPadPreview = ({ children }: { children: ReactNode }) => (
   <div style={{ minHeight: '100vh', background: '#f5f5f7', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 40 }}>
@@ -56,6 +58,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/contact" element={<ContactPage />} />
             <Route path="/owner" element={<OwnerDashboard />} />
             <Route path="/principal" element={<PrincipalDashboard />} />
             <Route path="/teacher" element={<TeacherDashboard />} />
@@ -89,6 +92,7 @@ function App() {
               <Route path="schools" element={<AdminSchools />} />
               <Route path="schools/:id" element={<AdminSchoolDetail />} />
               <Route path="requests" element={<AdminRequests />} />
+              <Route path="info" element={<AdminInfo />} />
               <Route path="admins" element={<AdminAdmins />} />
             </Route>
           </Routes>

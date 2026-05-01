@@ -23,6 +23,7 @@ const Header = () => {
     { name: 'Principal', href: '/principal' },
     { name: 'Teacher', href: '/teacher' },
     { name: 'Student/Parent', href: '/student-parent' },
+    { name: 'Contact', href: '/contact' },
   ];
 
   return (
