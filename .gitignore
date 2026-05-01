@@ -9,6 +9,9 @@ dist-ssr
 .env.*
 .env.local
 
+# Firestore rules version-history dumps (transient, regenerable)
+_recovered_rules/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
