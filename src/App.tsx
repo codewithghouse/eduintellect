@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
+import OwnerLoginPage from './pages/OwnerLoginPage';
+import WelcomePage from './pages/WelcomePage';
+import ActivatePage from './pages/ActivatePage';
 import OwnerDashboard from './pages/OwnerDashboard';
 import PrincipalDashboard from './pages/PrincipalDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
@@ -58,6 +61,9 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={<OwnerLoginPage />} />
+            <Route path="/welcome" element={<WelcomePage />} />
+            <Route path="/activate" element={<ActivatePage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/owner" element={<OwnerDashboard />} />
             <Route path="/principal" element={<PrincipalDashboard />} />

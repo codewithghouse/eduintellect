@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, UserCog, LayoutDashboard, GraduationCap, Users, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -15,7 +15,9 @@ const roles = [
     subtitle: 'Administration & Analytics',
     icon: <UserCog className="w-5 h-5" />,
     color: '#0071e3',
-    url: import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/'
+    // Owner login flows through /login on this site (Google + email)
+    // — internal auth page handles the redirect to the live dashboard.
+    internalRoute: '/login',
   },
   {
     id: 'principal',
@@ -23,7 +25,7 @@ const roles = [
     subtitle: 'Academic Management',
     icon: <LayoutDashboard className="w-5 h-5" />,
     color: '#0055FF',
-    url: import.meta.env.VITE_PRINCIPAL_DASHBOARD_URL || 'https://principal-dashboard-seven.vercel.app/'
+    url: import.meta.env.VITE_PRINCIPAL_DASHBOARD_URL || 'https://principal-dashboard-seven.vercel.app/',
   },
   {
     id: 'teacher',
@@ -31,7 +33,7 @@ const roles = [
     subtitle: 'Classroom Tools',
     icon: <GraduationCap className="w-5 h-5" />,
     color: '#34c759',
-    url: import.meta.env.VITE_TEACHER_DASHBOARD_URL || 'https://teacher-dashboard-ochre.vercel.app/'
+    url: import.meta.env.VITE_TEACHER_DASHBOARD_URL || 'https://teacher-dashboard-ochre.vercel.app/',
   },
   {
     id: 'parent',
@@ -39,11 +41,12 @@ const roles = [
     subtitle: 'Family Connect',
     icon: <Users className="w-5 h-5" />,
     color: '#ff9500',
-    url: import.meta.env.VITE_PARENT_DASHBOARD_URL || 'https://parent-dashboard-ten.vercel.app/'
-  }
-];
+    url: import.meta.env.VITE_PARENT_DASHBOARD_URL || 'https://parent-dashboard-ten.vercel.app/',
+  },
+] as const;
 
 const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
+  const navigate = useNavigate();
   return (
     <AnimatePresence>
       {isOpen && (
@@ -87,7 +90,9 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                   <button
                     key={role.id}
                     onClick={() => {
-                      if (role.url) {
+                      if ('internalRoute' in role && role.internalRoute) {
+                        navigate(role.internalRoute);
+                      } else if ('url' in role && role.url) {
                         window.open(role.url, '_blank', 'noopener,noreferrer');
                       }
                       onClose();

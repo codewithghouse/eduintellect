@@ -1,25 +1,61 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Loader2, ArrowRight, ShieldCheck } from 'lucide-react';
-import { auth, db } from '../lib/firebase';
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { auth, db, googleProvider } from '../lib/firebase';
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  sendPasswordResetEmail,
+} from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { useNavigate, Link } from 'react-router-dom';
+import GoogleIcon from '../components/GoogleIcon';
 
 const OwnerLoginPage = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
   const [error, setError] = useState('');
   const [resetSent, setResetSent] = useState(false);
   const [resetLoading, setResetLoading] = useState(false);
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({ email: '', password: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // After auth succeeds, look up the school doc and route appropriately.
+  // - school doc exists  → owner-dashboard
+  // - school doc missing → /register (finish onboarding)
+  const routeAfterAuth = async (uid: string) => {
+    const snap = await getDoc(doc(db, 'schools', uid));
+    if (snap.exists() && snap.data()?.role === 'owner') {
+      window.location.href = import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/';
+    } else {
+      navigate('/register');
+    }
+  };
+
+  const handleGoogle = async () => {
+    setError('');
+    setGoogleLoading(true);
+    try {
+      const cred = await signInWithPopup(auth, googleProvider);
+      await routeAfterAuth(cred.user.uid);
+    } catch (err: any) {
+      const code = err?.code ?? '';
+      if (code === 'auth/popup-closed-by-user') {
+        // silent
+      } else if (code === 'auth/popup-blocked') {
+        setError('Popup was blocked. Please allow popups for this site.');
+      } else {
+        console.error('[login] google sign-in failed:', code, err?.message);
+        setError('Google sign-in failed. Please try again.');
+      }
+    } finally {
+      setGoogleLoading(false);
+    }
   };
 
   const handleLogin = async (e: React.FormEvent) => {
@@ -28,22 +64,14 @@ const OwnerLoginPage = () => {
     setError('');
 
     try {
-      // 1. Sign in with Firebase Auth
-      const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password);
-      const user = userCredential.user;
-
-      // 2. Verify if user is an owner in Firestore
-      const userDoc = await getDoc(doc(db, 'schools', user.uid));
-      
-      if (userDoc.exists() && userDoc.data().role === 'owner') {
-        // Successful login for owner
-        // Redirect to live Vercel dashboard or internal portal
+      const cred = await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      const snap = await getDoc(doc(db, 'schools', cred.user.uid));
+      if (snap.exists() && snap.data()?.role === 'owner') {
         window.location.href = import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/';
       } else {
         await auth.signOut();
         setError('Access Denied. You are not registered as a school owner.');
       }
-
     } catch (err: any) {
       if (err.code === 'auth/wrong-password' || err.code === 'auth/user-not-found' || err.code === 'auth/invalid-credential') {
         setError('Invalid email or password.');
@@ -58,7 +86,7 @@ const OwnerLoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-20">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(60,130,246,0.1),transparent)] pointer-events-none"></div>
-      
+
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -84,6 +112,22 @@ const OwnerLoginPage = () => {
               Password reset email sent! Check your inbox.
             </div>
           )}
+
+          {/* Google sign-in */}
+          <button
+            type="button"
+            onClick={handleGoogle}
+            disabled={googleLoading || loading}
+            className="w-full flex items-center justify-center gap-3 bg-white text-[#1d1d1f] py-3 rounded-xl text-sm font-medium hover:bg-slate-100 transition-all disabled:opacity-50"
+          >
+            {googleLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <><GoogleIcon /> Continue with Google</>}
+          </button>
+
+          <div className="my-6 flex items-center gap-3">
+            <div className="h-px flex-1 bg-slate-800" />
+            <span className="text-xs text-slate-500">or use email</span>
+            <div className="h-px flex-1 bg-slate-800" />
+          </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div className="space-y-2">
@@ -165,7 +209,7 @@ const OwnerLoginPage = () => {
           </div>
         </div>
 
-        <button 
+        <button
           onClick={() => navigate('/')}
           className="mt-8 text-slate-500 hover:text-white transition-colors text-sm font-medium flex items-center justify-center gap-2 mx-auto"
         >

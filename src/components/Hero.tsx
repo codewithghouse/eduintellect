@@ -91,14 +91,14 @@ const Hero = () => {
               to="/register"
               className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-[17px] font-normal px-8 py-3 rounded-full transition-all duration-300"
             >
-              Get Started <ArrowRight className="w-4 h-4" />
+              Start 14-day Free Trial <ArrowRight className="w-4 h-4" />
             </Link>
-            <a
-              href="#features"
+            <Link
+              to="/contact"
               className="inline-flex items-center gap-1 text-[#0071e3] hover:text-[#0077ed] text-[17px] font-normal transition-colors duration-300"
             >
-              Learn more <ArrowRight className="w-4 h-4" />
-            </a>
+              Book a Demo <ArrowRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </div>
