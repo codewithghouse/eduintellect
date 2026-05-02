@@ -91,6 +91,30 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
+/* ── Enforce SF Pro Display end-to-end ─────────────────────────────────
+   Several iPad mockups and dashboard-screen components hardcode
+   `fontFamily: 'Plus Jakarta Sans'` inline. Inline styles beat the :root
+   declaration above (specificity 1,0,0,0), so without this rule those
+   subtrees render in Plus Jakarta (or system fallback) while the rest
+   of the marketing site renders in SF Pro — visually inconsistent across
+   /owner vs /principal vs /teacher vs /student-parent.
+   `!important` is the only way to override the inline declaration. */
+body,
+body *,
+body *::before,
+body *::after {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont,
+               'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+}
+
+/* …but keep monospace for actual code-ish content (admin pages render
+   IDs / collection paths in <code> and the Tailwind `font-mono` class). */
+code, pre, kbd, samp,
+.font-mono, .font-mono * {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
+               'Courier New', monospace !important;
+}
+
 /* ── Mobile/touch: kill iOS tap highlight + speed up tap response ── */
 * {
   -webkit-tap-highlight-color: transparent;
