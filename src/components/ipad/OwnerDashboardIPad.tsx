@@ -59,9 +59,9 @@ const OwnerDashboardIPad = () => {
 
   return (
     <IPadBezel>
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', minHeight: 0 }}>
+      <div style={{ display: 'flex', alignItems: 'stretch' }}>
         {/* SIDEBAR */}
-        <div style={{ width: 162, flexShrink: 0, padding: '8px 0 8px 8px' }}>
+        <div style={{ width: 162, flexShrink: 0, padding: '8px 0 8px 8px', alignSelf: 'stretch' }}>
           <div style={{ width: '100%', height: '100%', background: '#fff', borderRadius: 12, boxShadow: '0 6px 18px rgba(15,23,42,0.06)', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
             <div style={{ padding: '10px 8px 6px', display: 'flex', alignItems: 'center', gap: 6, borderBottom: '1px solid #f1f5f9' }}>
               <div style={{ width: 22, height: 22, borderRadius: 6, background: NAVY_DEEP, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 8, fontWeight: 500 }}>EDLT</div>

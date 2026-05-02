@@ -6,7 +6,7 @@
  * Pass `activePath` to highlight the matching nav item.
  */
 
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import IPadBezel from './IPadBezel';
 
 const NAVY = '#1e3272';
@@ -142,10 +142,11 @@ const IPadShellWithSidebar = ({ activePath, children }: Props) => (
       </div>
     </div>
 
-    {/* ── Body: sidebar + content ── */}
-    <div style={{ flex: 1, display: 'flex', overflow: 'hidden', minHeight: 0 }}>
+    {/* ── Body — natural-height row so the bezel grows with the children
+        rather than scrolling internally and hiding content on desktop. ── */}
+    <div style={{ display: 'flex', alignItems: 'stretch' }}>
       {/* SIDEBAR */}
-      <div style={{ width: 150, flexShrink: 0, padding: '6px 0 6px 6px' }}>
+      <div style={{ width: 150, flexShrink: 0, padding: '6px 0 6px 6px', alignSelf: 'stretch' }}>
         <div
           style={{
             width: '100%',
@@ -229,8 +230,8 @@ const IPadShellWithSidebar = ({ activePath, children }: Props) => (
         </div>
       </div>
 
-      {/* MAIN CONTENT SLOT */}
-      <div style={{ flex: 1, overflowY: 'auto', minWidth: 0, color: TT3 /* default text color */ }}>
+      {/* MAIN CONTENT SLOT — height grows with children */}
+      <div style={{ flex: 1, minWidth: 0, color: TT3 /* default text color */ }}>
         {children}
       </div>
     </div>
