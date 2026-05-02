@@ -1,16 +1,13 @@
 /**
- * Shared iPad bezel wrapper (content-grown variant).
- *
- * Behaviour:
+ * Shared iPad Pro (landscape) bezel wrapper.
+ * Provides:
  *  - Modern flat iPad chassis (#1c1c1e + camera dot)
  *  - 3D tilt that follows the cursor (only on hover — keeps rest state crisp)
- *  - Bluish glow on hover
+ *  - Bluish glow box-shadow on hover
  *  - Edullent #EEF4FF inner screen background
- *  - **Bezel height grows to fit children.** Inner content is authored at a
- *    fixed design width (`DESIGN_W = 672`), with natural height. The bezel
- *    measures the rendered child height and sets the screen to
- *    `contentHeight × scale`, so nothing is ever clipped — at any viewport
- *    width, the entire mockup is visible end-to-end.
+ *  - Proportional scaling: inner content is rendered at a fixed design size
+ *    and scaled with CSS transform so every iPad mockup stays correctly
+ *    proportioned at any viewport width (mobile → desktop).
  *
  * Usage: <IPadBezel><YourScreenContent /></IPadBezel>
  */
@@ -18,6 +15,12 @@
 import { useRef, useState, useLayoutEffect, useEffect } from 'react';
 import type { ReactNode } from 'react';
 
+/**
+ * `true` when the primary input is a real pointer (mouse/trackpad).
+ * Touch-only devices return `false` — we use this to skip the 3D tilt
+ * handlers entirely on iOS/Android, otherwise the hover-driven
+ * transform can stick after a tap.
+ */
 const useHasHover = () => {
   const [hasHover, setHasHover] = useState(true);
   useEffect(() => {
@@ -33,49 +36,39 @@ const useHasHover = () => {
 
 interface Props {
   children: ReactNode;
-  /** Kept for API compatibility but no longer used — bezel auto-fits content. */
+  /** override aspect ratio if needed (default: iPad Pro 11" landscape ~1.43:1) */
   aspectRatio?: string;
 }
 
-// Design canvas the inner UI is authored against. All hardcoded px sizes
-// inside individual iPad mockups are tuned to this canvas WIDTH.
-// (Height is content-driven now.)
+// Design canvas the inner UI is authored against. Matches a typical
+// desktop-rendered iPad bezel screen width (~700px bezel → 672px screen
+// after 2% padding). All hardcoded px sizes inside individual iPad
+// mockups are tuned to this canvas.
 const DESIGN_W = 672;
+// Aspect of the SCREEN (not the bezel). With 2% bezel padding on a
+// 1.43:1 chassis, the inner screen ratio is ~1.456:1.
+const SCREEN_ASPECT = 1.456;
+const DESIGN_H = DESIGN_W / SCREEN_ASPECT;
 
-const IPadBezel = ({ children }: Props) => {
+const IPadBezel = ({ children, aspectRatio = '1.43 / 1' }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
   const ipadRef = useRef<HTMLDivElement>(null);
   const screenRef = useRef<HTMLDivElement>(null);
-  const innerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
-  // Content's natural height in design pixels. Null until first measurement
-  // so the screen doesn't briefly render at 0 height (which would collapse
-  // the bezel and trigger a visible reflow on mount).
-  const [contentH, setContentH] = useState<number | null>(null);
   const hasHover = useHasHover();
 
   useLayoutEffect(() => {
-    const screen = screenRef.current;
-    const inner = innerRef.current;
-    if (!screen || !inner) return;
-
+    const el = screenRef.current;
+    if (!el) return;
     const update = () => {
-      const w = screen.clientWidth;
+      const w = el.clientWidth;
       if (w > 0) setScale(w / DESIGN_W);
-      // scrollHeight rather than offsetHeight so children with overflow still
-      // contribute their full intrinsic height to the measurement.
-      const h = inner.scrollHeight;
-      if (h > 0) setContentH(h);
     };
-
     update();
     const ro = new ResizeObserver(update);
-    ro.observe(screen);
-    ro.observe(inner);
+    ro.observe(el);
     return () => ro.disconnect();
   }, []);
-
-  const screenHeightPx = contentH != null ? contentH * scale : undefined;
 
   const handle3DEnter = () => {
     setIsHovered(true);
@@ -119,8 +112,14 @@ const IPadBezel = ({ children }: Props) => {
       onMouseLeave={hasHover ? handle3DLeave : undefined}
       style={{
         width: '100%',
+        aspectRatio,
         background: '#1c1c1e',
+        // Use clamp so corners scale on small screens but cap at the
+        // original 38px on desktop — keeps the iPad silhouette correct
+        // at any width without giving small mockups soap-bar corners.
         borderRadius: 'clamp(14px, 5.4%, 38px)',
+        // Percentage padding keeps inner-screen aspect ratio constant
+        // across viewport widths (was fixed 14px before).
         padding: '2%',
         boxShadow: isHovered
           ? '0 0 0 1.5px rgba(0,85,255,0.45), 0 0 40px rgba(0,85,255,0.28), 0 30px 80px rgba(0,85,255,0.30), 0 80px 160px rgba(0,85,255,0.22)'
@@ -151,20 +150,23 @@ const IPadBezel = ({ children }: Props) => {
         ref={screenRef}
         style={{
           width: '100%',
-          height: screenHeightPx,
+          height: '100%',
           background: '#EEF4FF',
           borderRadius: 'clamp(10px, 3.7%, 26px)',
           overflow: 'hidden',
           position: 'relative',
         }}
       >
-        {/* Inner content rendered at fixed design width with natural height,
-            scaled to fill the screen. transformOrigin top-left so the scaled
-            bounding box aligns with the screen rectangle. */}
+        {/* Fixed design-size canvas — scaled to fit the screen so all
+            inner mockups (which use hardcoded px sizes) stay perfectly
+            proportioned at any width. */}
         <div
-          ref={innerRef}
           style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
             width: DESIGN_W,
+            height: DESIGN_H,
             transform: `scale(${scale})`,
             transformOrigin: 'top left',
             display: 'flex',

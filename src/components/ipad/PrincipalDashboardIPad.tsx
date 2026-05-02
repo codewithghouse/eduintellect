@@ -17,6 +17,7 @@ const PrincipalDashboardIPad = () => {
   const GREEN = '#00C853';
   const RED = '#FF3355';
   const ORANGE = '#FF8800';
+  const VIOLET = '#0055FF';
 
   const NAV: { title: string; items: { label: string; icon: string; active?: boolean }[] }[] = [
     { title: 'Overview', items: [{ label: 'Dashboard', icon: 'dashboard', active: true }] },
@@ -56,9 +57,9 @@ const PrincipalDashboardIPad = () => {
 
   return (
     <IPadBezel>
-      <div style={{ display: 'flex', alignItems: 'stretch' }}>
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden', minHeight: 0 }}>
         {/* SIDEBAR */}
-        <div style={{ width: 160, flexShrink: 0, padding: '8px 0 8px 8px', alignSelf: 'stretch' }}>
+        <div style={{ width: 160, flexShrink: 0, padding: '8px 0 8px 8px' }}>
           <div
             style={{
               width: '100%',
