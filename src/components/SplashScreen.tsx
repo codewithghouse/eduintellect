@@ -7,6 +7,8 @@ const FADE_OUT_MS = 420;
 
 function shouldShowSplash(): boolean {
   if (typeof window === "undefined") return false;
+  const force = new URLSearchParams(window.location.search).get("splash") === "force";
+  if (force) return true;
   if (window.innerWidth >= MOBILE_BREAKPOINT) return false;
   try {
     if (window.sessionStorage.getItem(SESSION_KEY) === "1") return false;
