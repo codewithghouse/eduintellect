@@ -3,12 +3,11 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight, Sparkles, Loader2, CreditCard } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, Timestamp } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase';
 
 interface SchoolDoc {
   schoolName?: string;
-  trialEndsAt?: Timestamp;
   subscriptionStatus?: string;
 }
 
@@ -50,14 +49,6 @@ const WelcomePage = () => {
     );
   }
 
-  const daysLeft = school?.trialEndsAt
-    ? Math.max(0, Math.ceil((school.trialEndsAt.toDate().getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
-    : 14;
-
-  const trialEndStr = school?.trialEndsAt
-    ? school.trialEndsAt.toDate().toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
-    : '';
-
   return (
     <div className="min-h-screen pt-28 pb-20 px-6 bg-[#fbfbfd]">
       <div className="max-w-[760px] mx-auto">
@@ -71,23 +62,16 @@ const WelcomePage = () => {
             <CheckCircle2 className="w-8 h-8 text-[#34c759]" />
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#34c759]/10 text-[#1f8a3c] text-[12px] font-medium mb-4">
-            <Sparkles className="w-3.5 h-3.5" /> Free trial active
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0071e3]/10 text-[#0055FF] text-[12px] font-medium mb-4">
+            <Sparkles className="w-3.5 h-3.5" /> Launch offer · 40 % off · locked in
           </div>
 
           <h1 className="text-[32px] md:text-[40px] font-normal text-[#1d1d1f] tracking-[-0.025em] mb-3">
             Welcome to Edullent{school?.schoolName ? `, ${school.schoolName}` : ''}.
           </h1>
           <p className="text-[#86868b] text-[17px] leading-[1.5] max-w-[520px] mx-auto mb-8">
-            Your 14-day free trial has started. Explore every feature across all four portals — owner, principal, teacher, and parent — with no card on file.
+            Your school is live. Explore every feature across all four portals — owner, principal, teacher, and parent.
           </p>
-
-          {/* Trial countdown card */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-[560px] mx-auto mb-10">
-            <Stat label="Days left" value={`${daysLeft}`} accent="#0071e3" />
-            <Stat label="Trial ends" value={trialEndStr || '—'} small accent="#1d1d1f" />
-            <Stat label="Status" value="Active" accent="#34c759" />
-          </div>
 
           <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
             <a
@@ -125,17 +109,5 @@ const WelcomePage = () => {
     </div>
   );
 };
-
-const Stat = ({ label, value, accent, small }: { label: string; value: string; accent: string; small?: boolean }) => (
-  <div className="bg-[#fbfbfd] border border-[#d2d2d7]/40 rounded-[14px] p-4">
-    <div className="text-[11px] font-medium tracking-[0.14em] uppercase text-[#86868b] mb-1">{label}</div>
-    <div
-      className={`${small ? 'text-[14px]' : 'text-[28px]'} font-light tracking-[-0.02em]`}
-      style={{ color: accent }}
-    >
-      {value}
-    </div>
-  </div>
-);
 
 export default WelcomePage;

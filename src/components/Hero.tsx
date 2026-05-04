@@ -91,7 +91,7 @@ const Hero = () => {
               to="/register"
               className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-[17px] font-normal px-8 py-3 rounded-full transition-all duration-300"
             >
-              Start 14-day Free Trial <ArrowRight className="w-4 h-4" />
+              Get Started — 40 % Launch Offer <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               to="/contact"

@@ -186,7 +186,7 @@ const RegisterPage = () => {
           </div>
           <h2 className="text-[28px] font-normal text-[#1d1d1f] mb-3 tracking-[-0.02em]">School Registered</h2>
           <p className="text-[#86868b] text-[15px] mb-8 leading-[1.47]">
-            <strong className="text-[#1d1d1f]">{details.schoolName}</strong> is set up. Activating your 14-day free trial...
+            <strong className="text-[#1d1d1f]">{details.schoolName}</strong> is set up. Taking you to your dashboard...
           </p>
           <Loader2 className="w-5 h-5 text-[#0071e3] animate-spin mx-auto" />
         </motion.div>
@@ -205,15 +205,15 @@ const RegisterPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ease: [0.16, 1, 0.3, 1] }}
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#34c759]/10 text-[#1f8a3c] text-[12px] font-medium mb-4">
-                <Sparkles className="w-3.5 h-3.5" /> 14-day free trial · No credit card
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#0071e3]/10 text-[#0055FF] text-[12px] font-medium mb-4">
+                <Sparkles className="w-3.5 h-3.5" /> Launch offer · 40 % off · limited time
               </div>
               <h1 className="text-[40px] md:text-[48px] font-normal text-[#1d1d1f] mb-5 leading-[1.08] tracking-[-0.035em]">
                 Empower your{' '}
                 <span className="gradient-text">institution</span> today.
               </h1>
               <p className="text-[#86868b] text-[17px] leading-[1.47] tracking-[0.011em]">
-                Sign in once. Set up your school in under 2 minutes. Try every feature free for 14 days, then activate when you're ready.
+                Sign in once. Set up your school in under 2 minutes. Lock in launch pricing — 40 % off the regular plan, for the full first year.
               </p>
             </motion.div>
 
@@ -294,7 +294,7 @@ const StepHeader = ({ step }: { step: Step }) => (
     <p className="text-[#86868b] text-[14px]">
       {step === 'auth'
         ? 'Use Google or email to create your owner account.'
-        : 'A few quick details and your trial begins.'}
+        : 'A few quick details and your school is live.'}
     </p>
   </div>
 );
@@ -471,7 +471,7 @@ const DetailsStep: React.FC<DetailsStepProps> = ({ user, details, setDetails, lo
 
       <button disabled={loading} type="submit"
         className="w-full bg-[#0071e3] hover:bg-[#0077ed] text-white py-3.5 rounded-[12px] text-[15px] font-medium flex items-center justify-center gap-2 transition-all disabled:opacity-50">
-        {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Start 14-day Free Trial <ArrowRight className="w-4 h-4" /></>}
+        {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <>Activate My School <ArrowRight className="w-4 h-4" /></>}
       </button>
 
       <p className="text-center text-[#86868b] text-[12px]">

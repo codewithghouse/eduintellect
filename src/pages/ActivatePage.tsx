@@ -3,12 +3,11 @@ import { motion } from 'framer-motion';
 import { Loader2, ShieldCheck, ArrowRight, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, Timestamp } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase';
 
 interface SchoolDoc {
   schoolName?: string;
-  trialEndsAt?: Timestamp;
   subscriptionStatus?: string;
   paymentStatus?: string;
 }
@@ -68,9 +67,6 @@ const ActivatePage = () => {
   }
 
   const isPaid = school?.subscriptionStatus === 'active';
-  const daysLeft = school?.trialEndsAt
-    ? Math.max(0, Math.ceil((school.trialEndsAt.toDate().getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
-    : null;
 
   const handlePay = async () => {
     setPaying(true);
@@ -90,7 +86,7 @@ const ActivatePage = () => {
     // ─────────────────────────────────────────────────────────────────────
     setTimeout(() => {
       setPaying(false);
-      alert('Payment integration coming soon. For now, your trial continues — contact sales to activate manually.');
+      alert('Payment integration coming soon. Please contact sales to activate manually.');
     }, 800);
   };
 
@@ -114,24 +110,20 @@ const ActivatePage = () => {
           </p>
         </motion.div>
 
-        {/* Trial state banner */}
+        {/* State banner */}
         {school && (
           <div
             className={`max-w-[760px] mx-auto mb-8 p-4 rounded-[14px] flex items-center gap-3 text-[14px] ${
               isPaid
                 ? 'bg-[#34c759]/10 text-[#1f8a3c] border border-[#34c759]/30'
-                : daysLeft !== null && daysLeft <= 3
-                  ? 'bg-[#ff9500]/10 text-[#a25b00] border border-[#ff9500]/30'
-                  : 'bg-[#0071e3]/5 text-[#0055b3] border border-[#0071e3]/20'
+                : 'bg-[#0071e3]/5 text-[#0055b3] border border-[#0071e3]/20'
             }`}
           >
             {isPaid ? <CheckCircle2 className="w-5 h-5" /> : <AlertCircle className="w-5 h-5" />}
             <div>
               {isPaid
                 ? <>Your school is already <strong>active</strong>. You can change plans below.</>
-                : daysLeft !== null
-                  ? <>You have <strong>{daysLeft} {daysLeft === 1 ? 'day' : 'days'}</strong> left in your free trial.</>
-                  : <>Trial state unknown — please refresh.</>
+                : <>Pick a plan to activate your school. <strong>Launch offer — 40 % off</strong> applied automatically.</>
               }
             </div>
           </div>
@@ -190,14 +182,14 @@ const ActivatePage = () => {
           </div>
         </div>
 
-        {/* Skip / continue trial */}
+        {/* Skip activation for now */}
         {!isPaid && (
           <div className="text-center mt-6">
             <a
               href={import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/'}
               className="text-[14px] text-[#86868b] hover:text-[#1d1d1f] transition-colors"
             >
-              Continue using trial →
+              Take me to my dashboard →
             </a>
           </div>
         )}
