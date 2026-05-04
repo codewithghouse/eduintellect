@@ -233,18 +233,6 @@ const PricingCard = ({ tier }: { tier: Tier }) => {
           </p>
         </div>
 
-        {/* Per-school totals */}
-        <div className="mb-5 space-y-1">
-          <div className="flex items-center justify-between text-[12px]">
-            <span className="text-[#86868b]">Per school / year</span>
-            <span className="text-[#1d1d1f] font-medium">{tier.perSchoolYearRange}</span>
-          </div>
-          <div className="flex items-center justify-between text-[12px]">
-            <span className="text-[#86868b]">Per school / month</span>
-            <span className="text-[#1d1d1f] font-medium">{tier.perSchoolMonthRange}</span>
-          </div>
-        </div>
-
         {/* Best for */}
         <div
           className="rounded-xl px-3.5 py-3 mb-5 text-[12px] leading-[1.45]"
