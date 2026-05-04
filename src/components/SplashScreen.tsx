@@ -194,6 +194,7 @@ const splashStyles = `
   top: 50%;
   left: 50%;
   transform: translate(-72px, -50%);
+  font-family: 'Mokoto', 'Audiowide', 'Arial Black', sans-serif !important;
   font-size: 48px;
   font-weight: 400;
   color: #1d1d6e;
@@ -203,6 +204,7 @@ const splashStyles = `
   line-height: 1;
 }
 .edu-splash__wordmark span {
+  font-family: 'Mokoto', 'Audiowide', 'Arial Black', sans-serif !important;
   display: inline-block;
   opacity: 0;
   transform: translateY(16px);
