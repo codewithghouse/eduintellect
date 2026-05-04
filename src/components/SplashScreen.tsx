@@ -125,7 +125,7 @@ const splashStyles = `
   position: fixed;
   inset: 0;
   z-index: 2147483000;
-  background: linear-gradient(180deg, #f9fafe 0%, #eaf0fa 100%);
+  background: linear-gradient(180deg, #e1eaf9 0%, #b3c5ec 100%);
   display: flex;
   align-items: center;
   justify-content: center;

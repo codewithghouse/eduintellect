@@ -33,6 +33,15 @@
   font-display: swap;
 }
 
+/* Mokoto - geometric/sci-fi wordmark font (used on splash + nav logo) */
+@font-face {
+  font-family: 'Mokoto';
+  src: url('/fonts/mokoto.regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
   --color-brand-50: #f5f5f7;
   --color-brand-100: #e8e8ed;
@@ -113,6 +122,11 @@ code, pre, kbd, samp,
 .font-mono, .font-mono * {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco,
                'Courier New', monospace !important;
+}
+
+/* Mokoto wordmark exception — used on splash screen + nav logo "Edullent" */
+.font-mokoto, .font-mokoto * {
+  font-family: 'Mokoto', 'Audiowide', 'Arial Black', sans-serif !important;
 }
 
 /* ── Mobile/touch: kill iOS tap highlight + speed up tap response ── */

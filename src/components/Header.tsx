@@ -46,7 +46,7 @@ const Header = () => {
             draggable={false}
           />
           <span className={cn(
-            "text-[21px] font-normal tracking-tight transition-colors duration-300",
+            "font-mokoto text-[21px] font-normal tracking-tight transition-colors duration-300",
             isScrolled ? "text-[#1d1d1f]" : "text-[#1d1d1f]"
           )}>
             Edu<span className="text-[#0071e3]">llent</span>
