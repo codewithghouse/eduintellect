@@ -28,12 +28,12 @@ const Header = () => {
 
   return (
     <header
-      style={{ paddingTop: 'env(safe-area-inset-top)' }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        "[padding-top:max(12px,env(safe-area-inset-top))] md:[padding-top:max(16px,env(safe-area-inset-top))]",
         isScrolled
-          ? "bg-[#fbfbfd]/80 backdrop-blur-2xl backdrop-saturate-[1.8] border-b border-[#d2d2d7]/40 py-2.5"
-          : "bg-[#fbfbfd]/80 backdrop-blur-2xl backdrop-saturate-[1.8] border-b border-[#d2d2d7]/40 py-3 md:bg-transparent md:backdrop-blur-0 md:backdrop-saturate-100 md:border-b-0 md:py-4"
+          ? "bg-[#fbfbfd]/80 backdrop-blur-2xl backdrop-saturate-[1.8] border-b border-[#d2d2d7]/40 pb-2.5"
+          : "bg-[#fbfbfd]/80 backdrop-blur-2xl backdrop-saturate-[1.8] border-b border-[#d2d2d7]/40 pb-3 md:bg-transparent md:backdrop-blur-0 md:backdrop-saturate-100 md:border-b-0 md:pb-4"
       )}
     >
       <div className="max-w-[980px] mx-auto px-6 flex items-center justify-between">
