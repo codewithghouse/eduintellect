@@ -5,6 +5,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  Briefcase,
   Trash2,
   Search,
   Download,
@@ -37,6 +38,7 @@ interface ContactDoc {
   id: string;
   name?: string;
   schoolName?: string;
+  position?: string;
   email?: string;
   phone?: string;
   location?: string;
@@ -78,7 +80,7 @@ export default function AdminInfo() {
     const q = search.trim().toLowerCase();
     if (!q) return list;
     return list.filter((r) =>
-      [r.name, r.schoolName, r.email, r.phone, r.location]
+      [r.name, r.schoolName, r.position, r.email, r.phone, r.location]
         .some((v) => (v ?? '').toString().toLowerCase().includes(q)),
     );
   }, [rows, search]);
@@ -92,7 +94,7 @@ export default function AdminInfo() {
   }, [rows]);
 
   const exportCsv = () => {
-    const header = ['Name', 'School Name', 'Email', 'Phone', 'Location', 'Status', 'Submitted At'];
+    const header = ['Name', 'School Name', 'Position', 'Email', 'Phone', 'Location', 'Status', 'Submitted At'];
     const csvCell = (v: unknown) => {
       const s = v == null ? '' : String(v);
       // Escape CSV — wrap in quotes if it contains comma, quote or newline.
@@ -105,6 +107,7 @@ export default function AdminInfo() {
       lines.push([
         csvCell(r.name),
         csvCell(r.schoolName),
+        csvCell(r.position),
         csvCell(r.email),
         csvCell(r.phone),
         csvCell(r.location),
@@ -196,7 +199,7 @@ export default function AdminInfo() {
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by name, school, email, phone or location…"
+            placeholder="Search by name, school, position, email, phone or location…"
             className="w-full pl-9 pr-3.5 py-2 rounded-[10px] border border-[#d2d2d7] focus:border-[#0071e3] focus:ring-2 focus:ring-[#0071e3]/15 outline-none text-[13px] bg-white"
           />
         </div>
@@ -230,6 +233,7 @@ export default function AdminInfo() {
                 <tr>
                   <Th>Name</Th>
                   <Th>School</Th>
+                  <Th>Position</Th>
                   <Th>Email</Th>
                   <Th>Phone</Th>
                   <Th>Location</Th>
@@ -250,6 +254,12 @@ export default function AdminInfo() {
                       </Td>
                       <Td>
                         <div className="text-[#424245]">{r.schoolName || '—'}</div>
+                      </Td>
+                      <Td>
+                        <div className="flex items-center gap-1.5 text-[#424245]">
+                          <Briefcase className="w-3 h-3 text-[#86868b] shrink-0" />
+                          <span className="truncate max-w-[140px]" title={r.position}>{r.position || '—'}</span>
+                        </div>
                       </Td>
                       <Td>
                         <div className="flex items-center gap-1.5 text-[#424245]">

@@ -7,6 +7,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  Briefcase,
   ArrowRight,
   Loader2,
   CheckCircle2,
@@ -22,15 +23,30 @@ const MAX_SCHOOL   = 200;
 const MAX_EMAIL    = 200;
 const MAX_PHONE    = 25;
 const MAX_LOCATION = 300;
+const MAX_POSITION = 80;
 
 const clean = (s: string, max: number) => s.trim().slice(0, max);
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^\+?[\d\s\-()]{7,20}$/;
 
+// Controlled vocabulary so admin filtering stays consistent.
+const POSITION_OPTIONS = [
+  'Owner / Trustee',
+  'Director',
+  'Principal',
+  'Vice Principal',
+  'Administrator',
+  'Coordinator',
+  'Teacher',
+  'Parent',
+  'Other',
+] as const;
+
 interface FormState {
   name: string;
   schoolName: string;
+  position: string;
   email: string;
   phone: string;
   location: string;
@@ -39,6 +55,7 @@ interface FormState {
 const initial: FormState = {
   name: '',
   schoolName: '',
+  position: '',
   email: '',
   phone: '',
   location: '',
@@ -50,7 +67,7 @@ const ContactPage = () => {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -58,8 +75,19 @@ const ContactPage = () => {
     e.preventDefault();
     setError('');
 
-    if (!form.name.trim() || !form.schoolName.trim() || !form.email.trim() || !form.phone.trim() || !form.location.trim()) {
+    if (
+      !form.name.trim() ||
+      !form.schoolName.trim() ||
+      !form.position.trim() ||
+      !form.email.trim() ||
+      !form.phone.trim() ||
+      !form.location.trim()
+    ) {
       setError('Please fill in all fields.');
+      return;
+    }
+    if (!POSITION_OPTIONS.includes(form.position as typeof POSITION_OPTIONS[number])) {
+      setError('Please pick your position from the list.');
       return;
     }
     if (!EMAIL_RE.test(form.email.trim())) {
@@ -76,6 +104,7 @@ const ContactPage = () => {
       await addDoc(collection(db, 'contact_submissions'), {
         name:       clean(form.name,       MAX_NAME),
         schoolName: clean(form.schoolName, MAX_SCHOOL),
+        position:   clean(form.position,   MAX_POSITION),
         email:      clean(form.email,      MAX_EMAIL).toLowerCase(),
         phone:      clean(form.phone,      MAX_PHONE),
         location:   clean(form.location,   MAX_LOCATION),
@@ -183,6 +212,16 @@ const ContactPage = () => {
               placeholder="Greenfield Public School"
               maxLength={MAX_SCHOOL}
               autoComplete="organization"
+            />
+            <SelectField
+              label="Your position"
+              name="position"
+              icon={<Briefcase className="w-4 h-4" />}
+              value={form.position}
+              onChange={onChange}
+              placeholder="Select your role at the school"
+              options={POSITION_OPTIONS}
+              autoComplete="organization-title"
             />
             <Field
               label="Email (Gmail or work)"
@@ -338,6 +377,51 @@ const Field = ({ label, name, value, onChange, icon, placeholder, type = 'text',
         required
         className="w-full pl-10 pr-3.5 py-2.5 rounded-[12px] border border-[#d2d2d7] focus:border-[#0071e3] focus:ring-2 focus:ring-[#0071e3]/15 outline-none text-[14px] text-[#1d1d1f] placeholder:text-[#86868b]/70 bg-white transition"
       />
+    </div>
+  </label>
+);
+
+interface SelectFieldProps {
+  label: string;
+  name: keyof FormState;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  icon: React.ReactNode;
+  placeholder: string;
+  options: readonly string[];
+  autoComplete?: string;
+}
+
+const SelectField = ({ label, name, value, onChange, icon, placeholder, options, autoComplete }: SelectFieldProps) => (
+  <label className="block">
+    <span className="text-[13px] font-medium text-[#1d1d1f] mb-1.5 block">{label}</span>
+    <div className="relative">
+      <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#86868b] pointer-events-none">{icon}</span>
+      <select
+        name={name}
+        value={value}
+        onChange={onChange}
+        autoComplete={autoComplete}
+        required
+        // Win-Chromium select-text-invisible workaround: 0 vertical padding +
+        // explicit height, no lineHeight, no box-sizing override.
+        style={{ height: 42, paddingTop: 0, paddingBottom: 0 }}
+        className={`w-full pl-10 pr-9 rounded-[12px] border border-[#d2d2d7] focus:border-[#0071e3] focus:ring-2 focus:ring-[#0071e3]/15 outline-none text-[14px] bg-white transition appearance-none ${value ? 'text-[#1d1d1f]' : 'text-[#86868b]/70'}`}
+      >
+        <option value="" disabled>{placeholder}</option>
+        {options.map((opt) => (
+          <option key={opt} value={opt} className="text-[#1d1d1f]">{opt}</option>
+        ))}
+      </select>
+      {/* Custom dropdown chevron — appearance-none hides the native one */}
+      <svg
+        className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b] pointer-events-none"
+        viewBox="0 0 20 20"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path d="M6 8l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
     </div>
   </label>
 );
