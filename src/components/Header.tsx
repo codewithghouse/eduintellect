@@ -97,18 +97,10 @@ const Header = () => {
         </div>
 
         {/* Mobile Actions */}
-        <div className="flex md:hidden items-center gap-1.5">
-          <button
-            onClick={() => setIsParentModalOpen(true)}
-            aria-label="Interested parent"
-            className="inline-flex items-center gap-1 text-[12px] font-medium text-[#1d1d1f] bg-white border border-[#d2d2d7] hover:bg-[#f5f5f7] px-2.5 py-1.5 rounded-full transition-all"
-          >
-            <HeartHandshake className="w-3.5 h-3.5 text-[#ff9500]" />
-            Parent
-          </button>
+        <div className="flex md:hidden items-center gap-2">
           <Link
             to="/register"
-            className="text-[12px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-3 py-1.5 rounded-full transition-all duration-300"
+            className="text-[13px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-3.5 py-1.5 rounded-full transition-all duration-300"
           >
             Get Started
           </Link>
@@ -122,6 +114,19 @@ const Header = () => {
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
+      </div>
+
+      {/* Mobile sub-bar — Interested parent CTA below the navbar.
+          Sits inside the fixed header so it stays sticky with the rest of
+          the chrome. Hidden on desktop where the same CTA is inline above. */}
+      <div className="md:hidden max-w-[980px] mx-auto px-6 mt-2.5 flex justify-center">
+        <button
+          onClick={() => setIsParentModalOpen(true)}
+          className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#1d1d1f] bg-white border border-[#d2d2d7] hover:bg-[#f5f5f7] active:scale-[0.98] px-4 py-1.5 rounded-full transition-all shadow-sm"
+        >
+          <HeartHandshake className="w-3.5 h-3.5 text-[#ff9500]" />
+          Interested parent
+        </button>
       </div>
 
       {/* Mobile Menu */}
