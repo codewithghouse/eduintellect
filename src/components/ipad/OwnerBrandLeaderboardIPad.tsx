@@ -59,7 +59,7 @@ const OwnerBrandLeaderboardIPad = () => {
           <div style={{ position: 'relative', zIndex: 2 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 4, marginBottom: 4 }}>
               <svg width="9" height="9" viewBox="0 0 24 24" fill="#ffcc00"><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" stroke="#ffcc00" strokeWidth="2" /></svg>
-              <span style={{ fontSize: 6, fontWeight: 600, color: '#ffcc00', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>
+              <span className="font-mokoto" style={{ fontSize: 6, fontWeight: 600, color: '#ffcc00', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>
                 Edullent Group · October
               </span>
             </div>
@@ -180,7 +180,7 @@ const OwnerBrandLeaderboardIPad = () => {
               <div style={{ display: 'flex', alignItems: 'center', gap: 12, position: 'relative', zIndex: 2 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 3, padding: '2px 6px', background: 'rgba(255,255,255,0.18)', borderRadius: 999 }}>
                   <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2"><path d="M12 2v4M12 18v4M5.6 5.6l2.1 2.1" /></svg>
-                  <span style={{ fontSize: 5.5, fontWeight: 600, color: '#fff', letterSpacing: '0.04em' }}>EDULLENT AI · CACHED</span>
+                  <span className="font-mokoto" style={{ fontSize: 5.5, fontWeight: 600, color: '#fff', letterSpacing: '0.04em' }}>EDULLENT AI · CACHED</span>
                 </div>
                 <div style={{ textAlign: 'right' }}>
                   <div style={{ fontSize: 16, fontWeight: 300, letterSpacing: '-0.5px', lineHeight: 1 }}>64%</div>

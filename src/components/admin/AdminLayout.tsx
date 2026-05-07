@@ -113,7 +113,7 @@ export default function AdminLayout() {
             <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#ff3b30]" />
           )}
         </button>
-        <div className="text-[15px] font-medium tracking-[-0.01em]">Edullent Admin</div>
+        <div className="text-[15px] font-medium tracking-[-0.01em]"><span className="font-mokoto">Edullent</span> Admin</div>
         <div className="w-9 h-9 rounded-full bg-[#0071e3]/10 flex items-center justify-center text-[#0071e3] text-[12px] font-medium">
           {initials}
         </div>
@@ -134,7 +134,7 @@ export default function AdminLayout() {
               <ShieldCheck className="w-4 h-4 text-white" />
             </div>
             <div className="leading-tight">
-              <div className="text-[14px] font-medium tracking-[-0.01em]">Edullent</div>
+              <div className="text-[14px] font-medium tracking-[-0.01em] font-mokoto">Edullent</div>
               <div className="text-[11px] text-[#86868b]">Admin Console</div>
             </div>
           </div>
@@ -215,7 +215,7 @@ export default function AdminLayout() {
         {/* Main */}
         <main className="flex-1 min-w-0">
           <div className="hidden lg:flex h-16 px-8 items-center justify-between border-b border-[#d2d2d7]/50 bg-white/60 backdrop-blur sticky top-0 z-10">
-            <div className="text-[13px] text-[#86868b]">Edullent platform · Admin Console</div>
+            <div className="text-[13px] text-[#86868b]"><span className="font-mokoto">Edullent</span> platform · Admin Console</div>
             <a
               href="/"
               target="_blank"

@@ -67,7 +67,7 @@ const OwnerDashboardIPad = () => {
               <div style={{ width: 22, height: 22, borderRadius: 6, background: NAVY_DEEP, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 8, fontWeight: 500 }}>EDLT</div>
               <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
                 <span style={{ fontSize: 8, fontWeight: 500, color: NAVY_DEEP }}>EDLT</span>
-                <span style={{ fontSize: 5, fontWeight: 500, color: '#94a3b8', marginTop: 2, letterSpacing: '0.18em' }}>EDULLENT</span>
+                <span className="font-mokoto" style={{ fontSize: 5, fontWeight: 500, color: '#94a3b8', marginTop: 2, letterSpacing: '0.18em' }}>EDULLENT</span>
               </div>
             </div>
             <div style={{ flex: 1, padding: '8px 6px', overflowY: 'auto', minHeight: 0 }}>
@@ -120,7 +120,7 @@ const OwnerDashboardIPad = () => {
           >
             <div style={{ position: 'absolute', top: -25, right: -25, width: 110, height: 110, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,215,0,0.16) 0%, transparent 65%)' }} />
             <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 6, position: 'relative', zIndex: 2 }}>
-              <span style={{ fontSize: 6, fontWeight: 500, color: '#FFD166', letterSpacing: '0.18em', textTransform: 'uppercase' as const, background: 'rgba(255,209,102,0.18)', padding: '2px 6px', borderRadius: 999 }}>
+              <span className="font-mokoto" style={{ fontSize: 6, fontWeight: 500, color: '#FFD166', letterSpacing: '0.18em', textTransform: 'uppercase' as const, background: 'rgba(255,209,102,0.18)', padding: '2px 6px', borderRadius: 999 }}>
                 ⚡ Edullent Group of Schools · April
               </span>
             </div>

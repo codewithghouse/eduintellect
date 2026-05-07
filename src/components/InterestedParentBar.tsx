@@ -42,7 +42,7 @@ const InterestedParentBar = () => {
             </span>
             <span className="font-medium">Are you a parent?</span>
             <span className="text-[#86868b] hidden sm:inline">
-              We'd love to bring Edullent to your child's school.
+              We'd love to bring <span className="font-mokoto">Edullent</span> to your child's school.
             </span>
           </div>
 

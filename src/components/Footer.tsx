@@ -100,7 +100,7 @@ const Footer = () => {
       <div className="border-t border-[#d2d2d7]/60">
         <div className="max-w-[980px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-[#86868b] text-[12px] text-center md:text-left">
-            Copyright &copy; {new Date().getFullYear()} Edullent. All rights reserved.
+            Copyright &copy; {new Date().getFullYear()} <span className="font-mokoto">Edullent</span>. All rights reserved.
           </p>
           <div className="flex gap-6">
             {LEGAL_LINKS.map(l => (

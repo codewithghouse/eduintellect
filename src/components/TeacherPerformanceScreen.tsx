@@ -64,7 +64,7 @@ const TeacherPerformanceScreen = () => {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C-1 6.5 5 1 12 6c7-5 13 .5 9.5 6-2.5 4.5-9.5 9-9.5 9z" /></svg>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, color: NAVY, letterSpacing: '0.04em' }}>EDULLENT INTERNATIONAL SCHOOL</span>
+            <span className="font-mokoto" style={{ fontSize: 11, fontWeight: 700, color: NAVY, letterSpacing: '0.04em' }}>EDULLENT INTERNATIONAL SCHOOL</span>
             <span style={{ fontSize: 8, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.18em', marginTop: 3 }}>MAIN CAMPUS</span>
           </div>
         </div>

@@ -177,7 +177,7 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
                     Interested parent
                   </h3>
                   <p className="text-[#86868b] text-[12.5px] sm:text-[13px] mt-0.5 leading-[1.45]">
-                    Drop your details — we'll reach out about bringing Edullent to your child's school.
+                    Drop your details — we'll reach out about bringing <span className="font-mokoto">Edullent</span> to your child's school.
                   </p>
                 </div>
               </div>
@@ -293,7 +293,7 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
                 </button>
 
                 <p className="text-[11px] text-[#86868b] text-center leading-[1.45]">
-                  We'll only use these details to contact you about Edullent.
+                  We'll only use these details to contact you about <span className="font-mokoto">Edullent</span>.
                 </p>
               </form>
             )}

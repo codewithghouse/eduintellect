@@ -134,7 +134,7 @@ export default function AdminLoginPage() {
             Admin Console
           </h1>
           <p className="text-[#86868b] text-[14px] mt-1">
-            Sign in to manage the Edullent platform
+            Sign in to manage the <span className="font-mokoto">Edullent</span> platform
           </p>
         </div>
 

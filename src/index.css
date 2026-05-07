@@ -124,9 +124,15 @@ code, pre, kbd, samp,
                'Courier New', monospace !important;
 }
 
-/* Mokoto wordmark exception — used on splash screen + nav logo "Edullent" */
-.font-mokoto, .font-mokoto * {
+/* Mokoto wordmark exception — used everywhere "Edullent" / "EDULLENT" is
+   shown as a brand mark (splash, nav logo, footer copyright, hero, body
+   copy mentions, iPad mockup brand strips, admin chrome). Letter-spacing
+   is enforced too so the wordmark always reads with proper breathing
+   between glyphs (Mokoto's geometric letterforms otherwise crowd). */
+.font-mokoto, .font-mokoto *,
+.sp-brand-txt, .pp-brand-txt, .pp-ai-hdr-txt {
   font-family: 'Mokoto', 'Audiowide', 'Arial Black', sans-serif !important;
+  letter-spacing: 0.06em !important;
 }
 
 /* ── Mobile/touch: kill iOS tap highlight + speed up tap response ── */

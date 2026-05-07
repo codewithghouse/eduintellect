@@ -70,7 +70,7 @@ const ParentPerformanceScreen = () => {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.5-9.5-9C-1 6.5 5 1 12 6c7-5 13 .5 9.5 6-2.5 4.5-9.5 9-9.5 9z" /></svg>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontSize: 11, fontWeight: 700, color: NAVY_DEEP, letterSpacing: '0.04em' }}>EDULLENT</span>
+            <span className="font-mokoto" style={{ fontSize: 11, fontWeight: 700, color: NAVY_DEEP, letterSpacing: '0.04em' }}>EDULLENT</span>
             <span style={{ fontSize: 7, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.18em', marginTop: 3 }}>PARENT PORTAL</span>
           </div>
         </div>
@@ -118,7 +118,7 @@ const ParentPerformanceScreen = () => {
         {/* Top header */}
         <div style={{ height: 44, background: '#fff', borderBottom: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 18px', flexShrink: 0 }}>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontSize: 10, fontWeight: 700, color: NAVY_DEEP, letterSpacing: '0.06em' }}>EDULLENT DEMO SCHOOL</span>
+            <span className="font-mokoto" style={{ fontSize: 10, fontWeight: 700, color: NAVY_DEEP, letterSpacing: '0.06em' }}>EDULLENT DEMO SCHOOL</span>
             <span style={{ fontSize: 8, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.18em', marginTop: 3 }}>MAIN CAMPUS</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

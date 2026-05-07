@@ -223,7 +223,7 @@ const InsideContent = () => {
   return (
     <div className="text-white">
       <p className="inline-flex items-center gap-2 text-[#7aa9ff] text-[13px] md:text-[14px] font-semibold mb-4 tracking-[-0.01em]">
-        <Sparkles className="w-4 h-4" /> Inside Edullent
+        <Sparkles className="w-4 h-4" /> Inside <span className="font-mokoto">Edullent</span>
       </p>
       <h3 className="text-[34px] md:text-[56px] lg:text-[68px] font-semibold leading-[1.04] tracking-[-0.04em] mb-5">
         Step inside the{' '}
@@ -266,7 +266,7 @@ const DashboardUI = () => (
         <div className="w-7 h-7 rounded-lg bg-[#0071e3] flex items-center justify-center">
           <GraduationCap className="w-4 h-4 text-white" />
         </div>
-        <span className="font-semibold text-[#1d1d1f] text-[13px] md:text-[14px]">
+        <span className="font-mokoto font-semibold text-[#1d1d1f] text-[13px] md:text-[14px]">
           Edullent
         </span>
         <span className="hidden md:inline text-[12px] text-[#86868b] ml-1">

@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 
@@ -7,6 +7,17 @@ export interface FeatureSection {
   body: string;
   bullets?: string[];
 }
+
+// Wraps every standalone "Edullent" wordmark in a font-mokoto span.
+// Word-bounded so URL fragments like "edullent.com" stay untouched.
+const withBrand = (text: string): ReactNode =>
+  text.split(/(\bEdullent\b)/g).map((part, i) =>
+    part === 'Edullent' ? (
+      <span key={i} className="font-mokoto">Edullent</span>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    ),
+  );
 
 export interface FeaturePageProps {
   eyebrow: string;
@@ -55,10 +66,10 @@ const FeaturePageLayout = ({
             {eyebrow}
           </p>
           <h1 className="text-[44px] md:text-[64px] font-light text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-6">
-            {headline}
+            {withBrand(headline)}
           </h1>
           <p className="text-[#86868b] text-[19px] md:text-[21px] font-light leading-[1.45] tracking-[0.011em]">
-            {subhead}
+            {withBrand(subhead)}
           </p>
           {cta && (
             <a
@@ -92,10 +103,10 @@ const FeaturePageLayout = ({
             }}
           >
             <h2 className="text-[26px] md:text-[34px] font-light text-[#1d1d1f] leading-[1.15] tracking-[-0.025em] mb-4">
-              {s.title}
+              {withBrand(s.title)}
             </h2>
             <p className="text-[#424245] text-[16px] md:text-[17px] font-normal leading-[1.55] tracking-[0.005em]">
-              {s.body}
+              {withBrand(s.body)}
             </p>
             {s.bullets && s.bullets.length > 0 && (
               <ul className="mt-6 space-y-3">
@@ -118,7 +129,7 @@ const FeaturePageLayout = ({
                       <Check className="w-3.5 h-3.5" strokeWidth={3} />
                     </div>
                     <span className="text-[15px] md:text-[16px] font-normal text-[#1d1d1f] leading-[1.5]">
-                      {b}
+                      {withBrand(b)}
                     </span>
                   </li>
                 ))}

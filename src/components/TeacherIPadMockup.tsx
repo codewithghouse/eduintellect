@@ -102,7 +102,7 @@ const TeacherIPadMockup = () => {
               </svg>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1, minWidth: 0 }}>
-              <span style={{ fontSize: 11, fontWeight: 500, color: NAVY, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>
+              <span className="font-mokoto" style={{ fontSize: 11, fontWeight: 500, color: NAVY, letterSpacing: '0.06em', textTransform: 'uppercase' as const }}>
                 Edullent High
               </span>
               <span style={{ fontSize: 7, fontWeight: 500, color: '#94a3b8', letterSpacing: '0.18em', textTransform: 'uppercase' as const, marginTop: 2 }}>

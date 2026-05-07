@@ -67,7 +67,7 @@ const WelcomePage = () => {
           </div>
 
           <h1 className="text-[32px] md:text-[40px] font-normal text-[#1d1d1f] tracking-[-0.025em] mb-3">
-            Welcome to Edullent{school?.schoolName ? `, ${school.schoolName}` : ''}.
+            Welcome to <span className="font-mokoto">Edullent</span>{school?.schoolName ? `, ${school.schoolName}` : ''}.
           </h1>
           <p className="text-[#86868b] text-[17px] leading-[1.5] max-w-[520px] mx-auto mb-8">
             Your school is live. Explore every feature across all four portals — owner, principal, teacher, and parent.

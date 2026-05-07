@@ -65,7 +65,7 @@ const ParentIPadShell = ({ activePath, children }: Props) => (
           </svg>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-          <span style={{ fontSize: 8, fontWeight: 600, color: NAVY_DEEP, letterSpacing: '0.02em' }}>Edullent High</span>
+          <span className="font-mokoto" style={{ fontSize: 8, fontWeight: 600, color: NAVY_DEEP, letterSpacing: '0.02em' }}>Edullent High</span>
           <span style={{ fontSize: 6, fontWeight: 500, color: '#94a3b8', letterSpacing: '0.16em', marginTop: 2, textTransform: 'uppercase' as const }}>Parent Portal</span>
         </div>
       </div>

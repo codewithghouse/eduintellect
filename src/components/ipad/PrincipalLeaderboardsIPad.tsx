@@ -32,7 +32,7 @@ const PrincipalLeaderboardsIPad = () => {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 17 9 11 13 15 21 7" /><polyline points="14 7 21 7 21 14" /></svg>
           </div>
           <div>
-            <div style={{ fontSize: 7, color: T3, fontWeight: 500, letterSpacing: '0.04em' }}>Edullent Public School · Week 18</div>
+            <div className="font-mokoto" style={{ fontSize: 7, color: T3, fontWeight: 500, letterSpacing: '0.04em' }}>Edullent Public School · Week 18</div>
             <div style={{ fontSize: 12, fontWeight: 500, color: T1, letterSpacing: '-0.3px', lineHeight: 1, marginTop: 1 }}>Leaderboards</div>
           </div>
         </div>

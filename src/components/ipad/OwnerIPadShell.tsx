@@ -58,7 +58,7 @@ const OwnerIPadShell = ({ activePath, children }: Props) => (
           fontSize: 7, fontWeight: 600, color: '#fff', letterSpacing: '0.04em',
         }}>EDLT</div>
         <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-          <span style={{ fontSize: 9, fontWeight: 600, color: NAVY, letterSpacing: '0.04em' }}>EDULLENT</span>
+          <span className="font-mokoto" style={{ fontSize: 9, fontWeight: 600, color: NAVY, letterSpacing: '0.04em' }}>EDULLENT</span>
           <span style={{ fontSize: 6, fontWeight: 500, color: '#94a3b8', letterSpacing: '0.18em', marginTop: 2, textTransform: 'uppercase' as const }}>Group</span>
         </div>
       </div>

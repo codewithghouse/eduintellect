@@ -1,3 +1,4 @@
+import { Fragment, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
 
 export interface LegalSection {
@@ -11,6 +12,19 @@ export interface LegalPageProps {
   intro: string;
   sections: LegalSection[];
 }
+
+// Splits a string on the standalone wordmark "Edullent" (case-sensitive,
+// word-bounded so URL fragments like edullent.com are left untouched) and
+// wraps every match in a font-mokoto span. Returns a ReactNode safe to
+// render inside a <p> or any text container.
+const withBrand = (text: string): ReactNode =>
+  text.split(/(\bEdullent\b)/g).map((part, i) =>
+    part === 'Edullent' ? (
+      <span key={i} className="font-mokoto">Edullent</span>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    ),
+  );
 
 const LegalPageLayout = ({ title, effectiveDate, intro, sections }: LegalPageProps) => (
   <div className="bg-[#fbfbfd]">
@@ -31,7 +45,7 @@ const LegalPageLayout = ({ title, effectiveDate, intro, sections }: LegalPagePro
             Effective from {effectiveDate}
           </p>
           <p className="text-[#424245] text-[17px] md:text-[18px] font-normal leading-[1.55] tracking-[0.005em]">
-            {intro}
+            {withBrand(intro)}
           </p>
         </motion.div>
       </div>
@@ -56,7 +70,7 @@ const LegalPageLayout = ({ title, effectiveDate, intro, sections }: LegalPagePro
                   key={idx}
                   className="text-[#424245] text-[15px] md:text-[16px] font-normal leading-[1.6] tracking-[0.005em]"
                 >
-                  {p}
+                  {withBrand(p)}
                 </p>
               ))}
             </div>

@@ -181,7 +181,7 @@ const TeacherExamGeneratorIPad = () => {
           <div style={{ background: '#fff', borderRadius: 12, boxShadow: '0 4px 12px rgba(0,85,255,0.06)', border: '0.5px solid rgba(0,85,255,0.08)', overflow: 'hidden' }}>
             <div style={{ padding: '8px 10px', background: 'linear-gradient(180deg, #F8FAFE 0%, #fff 100%)', borderBottom: `0.5px solid ${SURFACE2}` }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
-                <div style={{ fontSize: 5.5, fontWeight: 700, color: VIOLET, letterSpacing: '0.16em', textTransform: 'uppercase' as const }}>EDULLENT HIGH · CLASS 10 · CBSE</div>
+                <div className="font-mokoto" style={{ fontSize: 5.5, fontWeight: 700, color: VIOLET, letterSpacing: '0.16em', textTransform: 'uppercase' as const }}>EDULLENT HIGH · CLASS 10 · CBSE</div>
                 <div style={{ fontSize: 5.5, fontWeight: 700, color: T3 }}>50 marks · 90 min</div>
               </div>
               <div style={{ fontSize: 11, fontWeight: 800, color: T1, letterSpacing: '-0.3px' }}>Mathematics — Term 2 Paper</div>

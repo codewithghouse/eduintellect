@@ -73,7 +73,7 @@ const TeacherPerformanceIPad = () => {
               { icon: 'school', text: 'Edullent Main' },
               { icon: 'doc', text: '4 report types' },
             ].map((p, i) => (
-              <div key={i} style={{ padding: '3px 7px', background: `${B1}14`, color: B1, fontSize: 6, fontWeight: 700, borderRadius: 999, letterSpacing: '0.04em', display: 'flex', alignItems: 'center', gap: 3, border: `0.5px solid ${B1}28` }}>
+              <div key={i} className={p.text.includes('Edullent') ? 'font-mokoto' : undefined} style={{ padding: '3px 7px', background: `${B1}14`, color: B1, fontSize: 6, fontWeight: 700, borderRadius: 999, letterSpacing: '0.04em', display: 'flex', alignItems: 'center', gap: 3, border: `0.5px solid ${B1}28` }}>
                 <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4">
                   {p.icon === 'school' ? <><path d="M3 21h18" /><path d="M5 21V7l8-4v18" /><path d="M19 21V11l-6-4" /></> : <><rect x="3" y="3" width="18" height="18" rx="2" /><line x1="9" y1="9" x2="15" y2="9" /><line x1="9" y1="13" x2="15" y2="13" /></>}
                 </svg>

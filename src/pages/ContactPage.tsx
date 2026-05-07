@@ -164,7 +164,7 @@ const ContactPage = () => {
             Contact us
           </div>
           <h1 className="text-[40px] sm:text-[48px] font-normal tracking-[-0.025em] text-[#1d1d1f] leading-[1.08]">
-            Let's bring Edullent to your school.
+            Let's bring <span className="font-mokoto">Edullent</span> to your school.
           </h1>
           <p className="mt-4 text-[17px] sm:text-[19px] text-[#424245] max-w-[640px] mx-auto leading-[1.42]">
             Tell us a bit about your school and our team will reach out to walk
@@ -281,7 +281,7 @@ const ContactPage = () => {
             </button>
 
             <p className="text-[11.5px] text-[#86868b] text-center mt-2 leading-[1.45]">
-              By submitting this form, you agree to be contacted by Edullent
+              By submitting this form, you agree to be contacted by <span className="font-mokoto">Edullent</span>
               regarding your enquiry. We never share your details with third
               parties.
             </p>

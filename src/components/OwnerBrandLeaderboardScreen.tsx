@@ -60,7 +60,7 @@ const OwnerBrandLeaderboardScreen = () => {
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <div style={{ width: 30, height: 30, borderRadius: 8, background: NAVY_DEEP, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, fontWeight: 700, color: '#fff', letterSpacing: '0.04em' }}>EDLT</div>
           <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <span style={{ fontSize: 13, fontWeight: 700, color: NAVY_DEEP, letterSpacing: '0.04em' }}>EDULLENT</span>
+            <span className="font-mokoto" style={{ fontSize: 13, fontWeight: 700, color: NAVY_DEEP, letterSpacing: '0.04em' }}>EDULLENT</span>
             <span style={{ fontSize: 9, fontWeight: 600, color: '#94a3b8', letterSpacing: '0.18em', marginTop: 3, textTransform: 'uppercase' }}>Group</span>
           </div>
         </div>
@@ -140,7 +140,7 @@ const OwnerBrandLeaderboardScreen = () => {
             <div style={{ position: 'relative', zIndex: 2 }}>
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 10px', borderRadius: 999, background: 'rgba(255,255,255,0.14)', border: '0.5px solid rgba(255,255,255,0.22)', marginBottom: 8 }}>
                 <svg width="11" height="11" viewBox="0 0 24 24" fill="#FFCC22"><path d="M12 2l2 7h7l-5.5 4 2 7-5.5-4-5.5 4 2-7L3 9h7z" stroke="#FFCC22" strokeWidth="2" /></svg>
-                <span style={{ fontSize: 10, fontWeight: 700, color: '#FFCC22', letterSpacing: '0.18em', textTransform: 'uppercase' }}>Edullent Group of Schools · April</span>
+                <span className="font-mokoto" style={{ fontSize: 10, fontWeight: 700, color: '#FFCC22', letterSpacing: '0.18em', textTransform: 'uppercase' }}>Edullent Group of Schools · April</span>
               </div>
               <h1 style={{ fontSize: 26, fontWeight: 600, letterSpacing: '-0.6px', lineHeight: 1.05, margin: 0 }}>
                 Branch Leaderboard

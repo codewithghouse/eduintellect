@@ -83,7 +83,7 @@ const TeacherLessonPlannerIPad = () => {
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2"><path d="M15 4V2M15 16v-2M8 9h2M20 9h2M17.8 11.8L19 13M15 9h0M17.8 6.2L19 5M3 21l9-9M12.2 6.2L11 5" /></svg>
               </div>
               <div>
-                <div style={{ fontSize: 6, fontWeight: 700, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>Powered by Edullent engine</div>
+                <div className="font-mokoto" style={{ fontSize: 6, fontWeight: 700, color: 'rgba(255,255,255,0.85)', letterSpacing: '0.18em', textTransform: 'uppercase' as const }}>Powered by Edullent engine</div>
                 <div style={{ fontSize: 6.5, color: 'rgba(255,255,255,0.55)', marginTop: 1, fontWeight: 500, letterSpacing: '-0.1px' }}>Curriculum-aligned · Real-time</div>
               </div>
               <div style={{ marginLeft: 'auto', display: 'inline-flex', alignItems: 'center', gap: 4, padding: '3px 8px', borderRadius: 999, background: 'rgba(255,255,255,0.18)', border: '0.5px solid rgba(255,255,255,0.32)', color: '#fff', fontSize: 6, fontWeight: 700 }}>
