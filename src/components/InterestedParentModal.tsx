@@ -11,7 +11,7 @@ import {
   CheckCircle2,
   HeartHandshake,
 } from 'lucide-react';
-import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, increment, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 
 // ── Field caps — keep in sync with firestore.rules `interested_parents`.
@@ -107,6 +107,21 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
         status:     'new',
         createdAt:  serverTimestamp(),
       });
+
+      // Bump the public social-proof counter. Best-effort — a failure here
+      // (rules denial, offline, etc.) must NOT fail the submission since
+      // the user's record is already saved. setDoc + merge handles both
+      // the create-on-first-submit case and the steady-state increment.
+      try {
+        await setDoc(
+          doc(db, 'public_stats', 'interested_parents'),
+          { count: increment(1) },
+          { merge: true },
+        );
+      } catch (counterErr) {
+        console.warn('[interested-parent] counter increment failed:', counterErr);
+      }
+
       setSuccess(true);
     } catch (err) {
       console.error('[interested-parent] submit failed:', err);

@@ -1042,6 +1042,30 @@ service cloud.firestore {
       allow delete: if isPlatformSuper();
     }
 
+    // ── Public counter — interested-parent submission tally ─────────
+    //   Single doc /public_stats/interested_parents holds { count: int }.
+    //   Public GET so the home-page banner can show social proof; LIST
+    //   denied. WRITE is paired with /interested_parents creation: anyone
+    //   can create the doc (must start at 1) or update by exactly +1 —
+    //   no other field changes, no decrements, no arbitrary values, no
+    //   delete. This protects the counter from spam-decrement / reset
+    //   while keeping the marketing display simple (no Cloud Function
+    //   required).
+    match /public_stats/{docId} {
+      allow get:    if docId == 'interested_parents';
+      allow list:   if false;
+      allow create: if docId == 'interested_parents'
+                    && request.resource.data.keys().hasOnly(['count'])
+                    && request.resource.data.count is int
+                    && request.resource.data.count == 1;
+      allow update: if docId == 'interested_parents'
+                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['count'])
+                    && request.resource.data.count is int
+                    && resource.data.count is int
+                    && request.resource.data.count == resource.data.count + 1;
+      allow delete: if false;
+    }
+
     match /accessRequests/{requestId} {
       allow get:  if signedIn() && (requestId == uid() || isPlatformAdmin());
       allow list: if isPlatformAdmin();

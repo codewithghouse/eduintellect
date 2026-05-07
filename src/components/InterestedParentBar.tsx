@@ -1,14 +1,36 @@
-import { useState } from 'react';
-import { HeartHandshake, ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { HeartHandshake, ArrowRight, Users } from 'lucide-react';
+import { doc, onSnapshot } from 'firebase/firestore';
+import { db } from '../lib/firebase';
 import InterestedParentModal from './InterestedParentModal';
 
 /**
  * Slim CTA banner that sits BELOW the navbar, in normal page flow.
- * Self-contained: owns its own modal state, so callers just drop
- * <InterestedParentBar /> wherever they want the banner to appear.
+ * Self-contained: owns its own modal state and live counter, so callers
+ * just drop <InterestedParentBar /> wherever they want the banner.
+ *
+ * The counter is read from /public_stats/interested_parents (single doc,
+ * publicly readable per firestore.rules) and updates in real time as
+ * other parents submit the form.
  */
 const InterestedParentBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [count, setCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const unsub = onSnapshot(
+      doc(db, 'public_stats', 'interested_parents'),
+      (snap) => {
+        const data = snap.data() as { count?: number } | undefined;
+        setCount(typeof data?.count === 'number' ? data.count : 0);
+      },
+      (err) => {
+        console.warn('[interested-parent-bar] counter read failed:', err);
+        setCount(0);
+      },
+    );
+    return unsub;
+  }, []);
 
   return (
     <>
@@ -23,6 +45,16 @@ const InterestedParentBar = () => {
               We'd love to bring Edullent to your child's school.
             </span>
           </div>
+
+          {/* Live social-proof counter — only renders once we know the
+              real value (>0) so we never flash a fake "0 interested". */}
+          {count !== null && count > 0 && (
+            <span className="inline-flex items-center gap-1.5 bg-white border border-[#ff9500]/30 text-[#1d1d1f] text-[11.5px] sm:text-[12px] font-medium px-2.5 py-1 rounded-full shadow-sm">
+              <Users className="w-3 h-3 text-[#ff9500]" />
+              {count.toLocaleString('en-IN')} {count === 1 ? 'parent' : 'parents'} interested
+            </span>
+          )}
+
           <button
             onClick={() => setIsOpen(true)}
             className="inline-flex items-center gap-1.5 bg-[#1d1d1f] hover:bg-[#0a0a0a] active:scale-[0.98] text-white text-[12px] sm:text-[12.5px] font-medium px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all shadow-sm"
