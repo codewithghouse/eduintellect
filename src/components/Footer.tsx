@@ -35,7 +35,7 @@ const Footer = () => {
                 className="w-7 h-7 rounded-lg object-contain"
                 draggable={false}
               />
-              <span className="text-[17px] font-normal text-[#1d1d1f] tracking-tight">
+              <span className="font-mokoto text-[17px] font-normal text-[#1d1d1f]">
                 Edu<span className="text-[#0071e3]">llent</span>
               </span>
             </div>
