@@ -65,6 +65,17 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
     return () => window.removeEventListener('keydown', onKey);
   }, [isOpen, onClose]);
 
+  // Lock background scroll while open. Restores prior overflow on cleanup
+  // so other body styles aren't trampled.
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [isOpen]);
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   };
@@ -108,156 +119,171 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
+        // Single fixed stage: backdrop + click-to-close target. On mobile we
+        // align the modal to the bottom (bottom-sheet UX); on sm+ it floats
+        // centered. 100dvh handles mobile browser chrome correctly so the
+        // backdrop covers the FULL visible viewport (vh alone leaves a
+        // visible page strip on iOS Safari with the URL bar collapsed).
+        <motion.div
+          key="interested-parent-modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          onClick={onClose}
+          role="presentation"
+          className="fixed inset-0 z-[80] flex items-end sm:items-center justify-center bg-black/45 backdrop-blur-md sm:p-4 overscroll-contain"
+          style={{ height: '100dvh' }}
+        >
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/40 backdrop-blur-xl z-[60]"
-          />
+            initial={{ y: 32, scale: 0.98, opacity: 0 }}
+            animate={{ y: 0, scale: 1, opacity: 1 }}
+            exit={{ y: 32, scale: 0.98, opacity: 0 }}
+            transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Interested parent enquiry"
+            className="bg-white w-full sm:max-w-[440px] rounded-t-[22px] sm:rounded-[20px] shadow-2xl flex flex-col overflow-hidden max-h-[92dvh]"
+          >
+            {/* Mobile drag-handle affordance — bottom-sheet visual cue */}
+            <div className="sm:hidden flex justify-center pt-2.5 pb-1">
+              <span className="w-9 h-1 rounded-full bg-[#d2d2d7]" />
+            </div>
 
-          <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[70] p-4">
-            <motion.div
-              initial={{ scale: 0.96, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.96, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              role="dialog"
-              aria-modal="true"
-              aria-label="Interested parent enquiry"
-              className="bg-white w-full max-w-[440px] rounded-[20px] overflow-hidden pointer-events-auto shadow-2xl max-h-[92vh] flex flex-col"
-            >
-              {/* Header */}
-              <div className="px-7 pt-7 pb-4 flex items-start justify-between">
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-[10px] bg-[#ff9500]/10 text-[#ff9500] flex items-center justify-center shrink-0">
-                    <HeartHandshake className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-[20px] font-normal text-[#1d1d1f] tracking-[-0.02em]">
-                      Interested parent
-                    </h3>
-                    <p className="text-[#86868b] text-[13px] mt-0.5 leading-[1.45]">
-                      Drop your details — we'll reach out about bringing Edullent to your child's school.
-                    </p>
-                  </div>
+            {/* Header */}
+            <div className="px-5 sm:px-7 pt-3 sm:pt-7 pb-3 sm:pb-4 flex items-start justify-between gap-3">
+              <div className="flex items-start gap-3 min-w-0">
+                <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-[10px] bg-[#ff9500]/10 text-[#ff9500] flex items-center justify-center shrink-0">
+                  <HeartHandshake className="w-[18px] h-[18px] sm:w-5 sm:h-5" />
                 </div>
-                <button
-                  onClick={onClose}
-                  aria-label="Close"
-                  className="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#86868b] hover:text-[#1d1d1f] transition-all duration-200 flex items-center justify-center shrink-0"
-                >
-                  <X className="w-4 h-4" />
-                </button>
-              </div>
-
-              {success ? (
-                <div className="px-7 pb-8 pt-2 flex-1 overflow-y-auto">
-                  <div className="text-center py-6">
-                    <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#34c759]/10 flex items-center justify-center">
-                      <CheckCircle2 className="w-7 h-7 text-[#34c759]" />
-                    </div>
-                    <h4 className="text-[19px] font-normal tracking-[-0.02em] text-[#1d1d1f]">
-                      Thanks — we got it.
-                    </h4>
-                    <p className="text-[#86868b] text-[13.5px] mt-2 leading-[1.5]">
-                      Our team will reach out within one business day at the
-                      number you shared.
-                    </p>
-                    <button
-                      onClick={onClose}
-                      className="mt-5 inline-flex items-center justify-center gap-1.5 bg-[#0071e3] hover:bg-[#0066cc] text-white text-[14px] font-medium px-5 py-2.5 rounded-[12px] transition"
-                    >
-                      Done
-                    </button>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={onSubmit} className="px-7 pb-7 pt-1 space-y-4 flex-1 overflow-y-auto">
-                  <Field
-                    label="Your name"
-                    name="name"
-                    value={form.name}
-                    onChange={onChange}
-                    icon={<User className="w-4 h-4" />}
-                    placeholder="Riya Sharma"
-                    maxLength={MAX_NAME}
-                    autoComplete="name"
-                    required
-                  />
-                  <Field
-                    label="Phone number"
-                    name="phone"
-                    type="tel"
-                    value={form.phone}
-                    onChange={onChange}
-                    icon={<Phone className="w-4 h-4" />}
-                    placeholder="+91 98765 43210"
-                    maxLength={MAX_PHONE}
-                    autoComplete="tel"
-                    required
-                  />
-                  <Field
-                    label="School name"
-                    name="schoolName"
-                    value={form.schoolName}
-                    onChange={onChange}
-                    icon={<SchoolIcon className="w-4 h-4" />}
-                    placeholder="Greenfield Public School"
-                    maxLength={MAX_SCHOOL}
-                    autoComplete="organization"
-                    required
-                  />
-                  <Field
-                    label={
-                      <>
-                        Email <span className="text-[#86868b] font-normal">(optional)</span>
-                      </>
-                    }
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={onChange}
-                    icon={<Mail className="w-4 h-4" />}
-                    placeholder="riya@example.com"
-                    maxLength={MAX_EMAIL}
-                    autoComplete="email"
-                  />
-
-                  {error && (
-                    <div className="rounded-[12px] bg-[#ff3b30]/5 border border-[#ff3b30]/25 text-[#b3221a] text-[12.5px] px-3.5 py-2.5">
-                      {error}
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full mt-1 inline-flex items-center justify-center gap-2 bg-[#0071e3] hover:bg-[#0066cc] text-white font-medium text-[14.5px] py-2.5 rounded-[12px] transition disabled:opacity-60 disabled:cursor-not-allowed"
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Submitting…
-                      </>
-                    ) : (
-                      <>
-                        Send my details
-                        <ArrowRight className="w-4 h-4" />
-                      </>
-                    )}
-                  </button>
-
-                  <p className="text-[11px] text-[#86868b] text-center leading-[1.45]">
-                    We'll only use these details to contact you about Edullent.
+                <div className="min-w-0">
+                  <h3 className="text-[18px] sm:text-[20px] font-normal text-[#1d1d1f] tracking-[-0.02em]">
+                    Interested parent
+                  </h3>
+                  <p className="text-[#86868b] text-[12.5px] sm:text-[13px] mt-0.5 leading-[1.45]">
+                    Drop your details — we'll reach out about bringing Edullent to your child's school.
                   </p>
-                </form>
-              )}
-            </motion.div>
-          </div>
-        </>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                aria-label="Close"
+                className="w-8 h-8 rounded-full bg-[#f5f5f7] hover:bg-[#e8e8ed] text-[#86868b] hover:text-[#1d1d1f] transition-all duration-200 flex items-center justify-center shrink-0"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {success ? (
+              <div className="px-5 sm:px-7 pb-7 pt-2 flex-1 overflow-y-auto"
+                style={{ paddingBottom: 'max(1.75rem, env(safe-area-inset-bottom))' }}>
+                <div className="text-center py-6">
+                  <div className="w-14 h-14 mx-auto mb-4 rounded-full bg-[#34c759]/10 flex items-center justify-center">
+                    <CheckCircle2 className="w-7 h-7 text-[#34c759]" />
+                  </div>
+                  <h4 className="text-[19px] font-normal tracking-[-0.02em] text-[#1d1d1f]">
+                    Thanks — we got it.
+                  </h4>
+                  <p className="text-[#86868b] text-[13.5px] mt-2 leading-[1.5]">
+                    Our team will reach out within one business day at the
+                    number you shared.
+                  </p>
+                  <button
+                    onClick={onClose}
+                    className="mt-5 inline-flex items-center justify-center gap-1.5 bg-[#0071e3] hover:bg-[#0066cc] text-white text-[14px] font-medium px-5 py-2.5 rounded-[12px] transition"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <form
+                onSubmit={onSubmit}
+                className="px-5 sm:px-7 pb-5 sm:pb-7 pt-1 space-y-3.5 sm:space-y-4 flex-1 overflow-y-auto overscroll-contain"
+                style={{ paddingBottom: 'max(1.25rem, env(safe-area-inset-bottom))' }}
+              >
+                <Field
+                  label="Your name"
+                  name="name"
+                  value={form.name}
+                  onChange={onChange}
+                  icon={<User className="w-4 h-4" />}
+                  placeholder="Riya Sharma"
+                  maxLength={MAX_NAME}
+                  autoComplete="name"
+                  required
+                />
+                <Field
+                  label="Phone number"
+                  name="phone"
+                  type="tel"
+                  value={form.phone}
+                  onChange={onChange}
+                  icon={<Phone className="w-4 h-4" />}
+                  placeholder="+91 98765 43210"
+                  maxLength={MAX_PHONE}
+                  autoComplete="tel"
+                  required
+                />
+                <Field
+                  label="School name"
+                  name="schoolName"
+                  value={form.schoolName}
+                  onChange={onChange}
+                  icon={<SchoolIcon className="w-4 h-4" />}
+                  placeholder="Greenfield Public School"
+                  maxLength={MAX_SCHOOL}
+                  autoComplete="organization"
+                  required
+                />
+                <Field
+                  label={
+                    <>
+                      Email <span className="text-[#86868b] font-normal">(optional)</span>
+                    </>
+                  }
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={onChange}
+                  icon={<Mail className="w-4 h-4" />}
+                  placeholder="riya@example.com"
+                  maxLength={MAX_EMAIL}
+                  autoComplete="email"
+                />
+
+                {error && (
+                  <div className="rounded-[12px] bg-[#ff3b30]/5 border border-[#ff3b30]/25 text-[#b3221a] text-[12.5px] px-3.5 py-2.5">
+                    {error}
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full mt-1 inline-flex items-center justify-center gap-2 bg-[#0071e3] hover:bg-[#0066cc] text-white font-medium text-[14.5px] py-3 rounded-[12px] transition disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Submitting…
+                    </>
+                  ) : (
+                    <>
+                      Send my details
+                      <ArrowRight className="w-4 h-4" />
+                    </>
+                  )}
+                </button>
+
+                <p className="text-[11px] text-[#86868b] text-center leading-[1.45]">
+                  We'll only use these details to contact you about Edullent.
+                </p>
+              </form>
+            )}
+          </motion.div>
+        </motion.div>
       )}
     </AnimatePresence>
   );
