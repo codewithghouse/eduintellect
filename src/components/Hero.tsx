@@ -20,7 +20,7 @@ const Hero = () => {
   const longest = titles.reduce((a, b) => (a.length > b.length ? a : b));
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-44 md:pb-28 overflow-hidden bg-[#fbfbfd]">
+    <section className="relative pt-10 pb-20 md:pt-16 md:pb-28 overflow-hidden bg-[#fbfbfd]">
       <div className="absolute inset-0 -z-10">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-gradient-to-b from-[#0071e3]/[0.04] via-transparent to-transparent rounded-full blur-3xl"></div>
       </div>

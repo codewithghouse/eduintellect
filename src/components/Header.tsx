@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, HeartHandshake } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 import LoginModal from './LoginModal';
-import InterestedParentModal from './InterestedParentModal';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-  const [isParentModalOpen, setIsParentModalOpen] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -77,19 +75,12 @@ const Header = () => {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-5">
           <button
             onClick={() => setIsLoginModalOpen(true)}
             className="text-[12px] font-normal text-[#424245] hover:text-[#1d1d1f] transition-colors duration-300"
           >
             Sign in
-          </button>
-          <button
-            onClick={() => setIsParentModalOpen(true)}
-            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#1d1d1f] bg-white border border-[#d2d2d7] hover:border-[#1d1d1f]/50 hover:bg-[#f5f5f7] px-3.5 py-1.5 rounded-full transition-all duration-300"
-          >
-            <HeartHandshake className="w-3.5 h-3.5 text-[#ff9500]" />
-            Interested parent
           </button>
           <Link to="/register" className="text-[12px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-1.5 rounded-full transition-all duration-300">
             Get Started
@@ -114,19 +105,6 @@ const Header = () => {
             {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </div>
-
-      {/* Mobile sub-bar — Interested parent CTA below the navbar.
-          Sits inside the fixed header so it stays sticky with the rest of
-          the chrome. Hidden on desktop where the same CTA is inline above. */}
-      <div className="md:hidden max-w-[980px] mx-auto px-6 mt-2.5 flex justify-center">
-        <button
-          onClick={() => setIsParentModalOpen(true)}
-          className="inline-flex items-center gap-1.5 text-[12.5px] font-medium text-[#1d1d1f] bg-white border border-[#d2d2d7] hover:bg-[#f5f5f7] active:scale-[0.98] px-4 py-1.5 rounded-full transition-all shadow-sm"
-        >
-          <HeartHandshake className="w-3.5 h-3.5 text-[#ff9500]" />
-          Interested parent
-        </button>
       </div>
 
       {/* Mobile Menu */}
@@ -159,16 +137,6 @@ const Header = () => {
               >
                 Sign in
               </button>
-              <button
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  setIsParentModalOpen(true);
-                }}
-                className="w-full text-center text-[17px] font-medium text-[#1d1d1f] bg-white border border-[#d2d2d7] hover:bg-[#f5f5f7] py-2.5 rounded-full transition inline-flex items-center justify-center gap-1.5"
-              >
-                <HeartHandshake className="w-4 h-4 text-[#ff9500]" />
-                Interested parent
-              </button>
               <Link
                 to="/register"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -184,10 +152,6 @@ const Header = () => {
       <LoginModal
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
-      />
-      <InterestedParentModal
-        isOpen={isParentModalOpen}
-        onClose={() => setIsParentModalOpen(false)}
       />
     </header>
   );
