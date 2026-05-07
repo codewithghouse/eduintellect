@@ -1,13 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, HeartHandshake } from 'lucide-react';
 import { cn } from '../lib/utils';
 import LoginModal from './LoginModal';
+import InterestedParentModal from './InterestedParentModal';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isParentModalOpen, setIsParentModalOpen] = useState(false);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -75,12 +77,19 @@ const Header = () => {
         </nav>
 
         {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-5">
+        <div className="hidden md:flex items-center gap-4">
           <button
             onClick={() => setIsLoginModalOpen(true)}
             className="text-[12px] font-normal text-[#424245] hover:text-[#1d1d1f] transition-colors duration-300"
           >
             Sign in
+          </button>
+          <button
+            onClick={() => setIsParentModalOpen(true)}
+            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[#1d1d1f] bg-white border border-[#d2d2d7] hover:border-[#1d1d1f]/50 hover:bg-[#f5f5f7] px-3.5 py-1.5 rounded-full transition-all duration-300"
+          >
+            <HeartHandshake className="w-3.5 h-3.5 text-[#ff9500]" />
+            Interested parent
           </button>
           <Link to="/register" className="text-[12px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-1.5 rounded-full transition-all duration-300">
             Get Started
@@ -88,10 +97,18 @@ const Header = () => {
         </div>
 
         {/* Mobile Actions */}
-        <div className="flex md:hidden items-center gap-2">
+        <div className="flex md:hidden items-center gap-1.5">
+          <button
+            onClick={() => setIsParentModalOpen(true)}
+            aria-label="Interested parent"
+            className="inline-flex items-center gap-1 text-[12px] font-medium text-[#1d1d1f] bg-white border border-[#d2d2d7] hover:bg-[#f5f5f7] px-2.5 py-1.5 rounded-full transition-all"
+          >
+            <HeartHandshake className="w-3.5 h-3.5 text-[#ff9500]" />
+            Parent
+          </button>
           <Link
             to="/register"
-            className="text-[13px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-3.5 py-1.5 rounded-full transition-all duration-300"
+            className="text-[12px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-3 py-1.5 rounded-full transition-all duration-300"
           >
             Get Started
           </Link>
@@ -137,6 +154,16 @@ const Header = () => {
               >
                 Sign in
               </button>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  setIsParentModalOpen(true);
+                }}
+                className="w-full text-center text-[17px] font-medium text-[#1d1d1f] bg-white border border-[#d2d2d7] hover:bg-[#f5f5f7] py-2.5 rounded-full transition inline-flex items-center justify-center gap-1.5"
+              >
+                <HeartHandshake className="w-4 h-4 text-[#ff9500]" />
+                Interested parent
+              </button>
               <Link
                 to="/register"
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -152,6 +179,10 @@ const Header = () => {
       <LoginModal
         isOpen={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
+      />
+      <InterestedParentModal
+        isOpen={isParentModalOpen}
+        onClose={() => setIsParentModalOpen(false)}
       />
     </header>
   );

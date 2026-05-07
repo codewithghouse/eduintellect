@@ -10,6 +10,7 @@ import {
   ExternalLink,
   Inbox,
   Mail,
+  HeartHandshake,
 } from 'lucide-react';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
@@ -20,13 +21,14 @@ interface NavItem {
   label: string;
   icon: ReactNode;
   end?: boolean;
-  badgeKey?: 'requests' | 'info';
+  badgeKey?: 'requests' | 'info' | 'parents';
 }
 
 const NAV: NavItem[] = [
   { to: '/admin', label: 'Overview', icon: <LayoutDashboard className="w-4 h-4" />, end: true },
   { to: '/admin/schools', label: 'Schools', icon: <Building2 className="w-4 h-4" /> },
   { to: '/admin/requests', label: 'Requests', icon: <Inbox className="w-4 h-4" />, badgeKey: 'requests' },
+  { to: '/admin/parents', label: 'Parents', icon: <HeartHandshake className="w-4 h-4" />, badgeKey: 'parents' },
   { to: '/admin/info', label: 'Info', icon: <Mail className="w-4 h-4" />, badgeKey: 'info' },
   { to: '/admin/admins', label: 'Admins', icon: <ShieldCheck className="w-4 h-4" /> },
 ];
@@ -37,6 +39,7 @@ export default function AdminLayout() {
   const [open, setOpen] = useState(false);
   const [pendingRequests, setPendingRequests] = useState(0);
   const [newSubmissions, setNewSubmissions] = useState(0);
+  const [newParents, setNewParents] = useState(0);
 
   useEffect(() => {
     const q = query(collection(db, 'accessRequests'), where('status', '==', 'pending'));
@@ -64,6 +67,19 @@ export default function AdminLayout() {
     return unsub;
   }, []);
 
+  useEffect(() => {
+    const q = query(collection(db, 'interested_parents'), where('status', '==', 'new'));
+    const unsub = onSnapshot(
+      q,
+      (snap) => setNewParents(snap.size),
+      (err) => {
+        console.warn('[layout] new parents subscribe failed:', err);
+        setNewParents(0);
+      },
+    );
+    return unsub;
+  }, []);
+
   const handleSignOut = async () => {
     await signOut();
     navigate('/admin/login', { replace: true });
@@ -76,9 +92,10 @@ export default function AdminLayout() {
     .map((s) => s[0]?.toUpperCase())
     .join('');
 
-  const badgeFor = (key?: 'requests' | 'info') => {
+  const badgeFor = (key?: 'requests' | 'info' | 'parents') => {
     if (key === 'requests' && pendingRequests > 0) return pendingRequests;
     if (key === 'info' && newSubmissions > 0) return newSubmissions;
+    if (key === 'parents' && newParents > 0) return newParents;
     return null;
   };
 
@@ -92,7 +109,7 @@ export default function AdminLayout() {
           aria-label="Toggle navigation"
         >
           {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          {(pendingRequests > 0 || newSubmissions > 0) && !open && (
+          {(pendingRequests > 0 || newSubmissions > 0 || newParents > 0) && !open && (
             <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#ff3b30]" />
           )}
         </button>

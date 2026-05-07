@@ -31,6 +31,7 @@ import AdminSchoolDetail from './pages/admin/AdminSchoolDetail';
 import AdminAdmins from './pages/admin/AdminAdmins';
 import AdminRequests from './pages/admin/AdminRequests';
 import AdminInfo from './pages/admin/AdminInfo';
+import AdminInterestedParents from './pages/admin/AdminInterestedParents';
 import ContactPage from './pages/ContactPage';
 
 const IPadPreview = ({ children }: { children: ReactNode }) => (
@@ -98,6 +99,7 @@ function App() {
               <Route path="schools" element={<AdminSchools />} />
               <Route path="schools/:id" element={<AdminSchoolDetail />} />
               <Route path="requests" element={<AdminRequests />} />
+              <Route path="parents" element={<AdminInterestedParents />} />
               <Route path="info" element={<AdminInfo />} />
               <Route path="admins" element={<AdminAdmins />} />
             </Route>
