@@ -115,7 +115,7 @@ export default function AdminInterestedParents() {
     const a = document.createElement('a');
     const stamp = new Date().toISOString().slice(0, 10);
     a.href = url;
-    a.download = `edullent-interested-parents-${stamp}.csv`;
+    a.download = `edullent-school-enquiries-${stamp}.csv`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -140,7 +140,7 @@ export default function AdminInterestedParents() {
 
   const remove = async (row: ParentDoc) => {
     if (!isSuper) return;
-    if (!window.confirm(`Delete enquiry from ${row.name || row.phone || 'this parent'}? This cannot be undone.`)) return;
+    if (!window.confirm(`Delete enquiry from ${row.name || row.phone || 'this school'}? This cannot be undone.`)) return;
     setBusyId(row.id);
     setError('');
     try {
@@ -169,7 +169,7 @@ export default function AdminInterestedParents() {
   return (
     <>
       <PageHeader
-        title="Interested parents"
+        title="Interested schools"
         subtitle={
           loading
             ? 'Loading enquiries…'
@@ -213,11 +213,11 @@ export default function AdminInterestedParents() {
         ) : filtered.length === 0 ? (
           <EmptyState
             icon={<HeartHandshake className="w-5 h-5" />}
-            title={search ? 'No enquiries match your search' : 'No interested parents yet'}
+            title={search ? 'No enquiries match your search' : 'No school enquiries yet'}
             description={
               search
                 ? 'Try a different search term, or clear the search to see all submissions.'
-                : 'When a parent fills the "Interested parent" form on the public website, their details appear here.'
+                : 'When a school owner or principal fills the "I\'m interested" form on the public website, their details appear here.'
             }
           />
         ) : (
@@ -346,8 +346,8 @@ export default function AdminInterestedParents() {
       <div className="mt-6 text-[12px] text-[#86868b] flex items-start gap-2">
         <HeartHandshake className="w-3.5 h-3.5 mt-0.5 shrink-0" />
         <span>
-          Submissions arrive from the "Interested parent" button in the public
-          website header. Use the clock icon to mark an enquiry as contacted,
+          Submissions arrive from the "I'm interested" button on the public
+          website. Use the clock icon to mark an enquiry as contacted,
           the tick to close it, and Export CSV to download the current view.
         </span>
       </div>

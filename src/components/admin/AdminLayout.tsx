@@ -28,7 +28,7 @@ const NAV: NavItem[] = [
   { to: '/admin', label: 'Overview', icon: <LayoutDashboard className="w-4 h-4" />, end: true },
   { to: '/admin/schools', label: 'Schools', icon: <Building2 className="w-4 h-4" /> },
   { to: '/admin/requests', label: 'Requests', icon: <Inbox className="w-4 h-4" />, badgeKey: 'requests' },
-  { to: '/admin/parents', label: 'Parents', icon: <HeartHandshake className="w-4 h-4" />, badgeKey: 'parents' },
+  { to: '/admin/parents', label: 'Enquiries', icon: <HeartHandshake className="w-4 h-4" />, badgeKey: 'parents' },
   { to: '/admin/info', label: 'Info', icon: <Mail className="w-4 h-4" />, badgeKey: 'info' },
   { to: '/admin/admins', label: 'Admins', icon: <ShieldCheck className="w-4 h-4" /> },
 ];

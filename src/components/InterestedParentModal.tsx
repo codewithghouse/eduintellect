@@ -158,7 +158,7 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
             onClick={(e) => e.stopPropagation()}
             role="dialog"
             aria-modal="true"
-            aria-label="Interested parent enquiry"
+            aria-label="Interested school enquiry"
             className="bg-white w-full sm:max-w-[440px] rounded-t-[22px] sm:rounded-[20px] shadow-2xl flex flex-col overflow-hidden max-h-[92dvh]"
           >
             {/* Mobile drag-handle affordance — bottom-sheet visual cue */}
@@ -174,10 +174,10 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
                 </div>
                 <div className="min-w-0">
                   <h3 className="text-[18px] sm:text-[20px] font-normal text-[#1d1d1f] tracking-[-0.02em]">
-                    Interested parent
+                    Bring Edullent to your school
                   </h3>
                   <p className="text-[#86868b] text-[12.5px] sm:text-[13px] mt-0.5 leading-[1.45]">
-                    Drop your details — we'll reach out about bringing <span className="font-mokoto">Edullent</span> to your child's school.
+                    Drop your details — we'll reach out to set up a quick demo for <span className="font-mokoto">Edullent</span>.
                   </p>
                 </div>
               </div>
@@ -224,7 +224,7 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   value={form.name}
                   onChange={onChange}
                   icon={<User className="w-4 h-4" />}
-                  placeholder="Riya Sharma"
+                  placeholder="Rajesh Sharma"
                   maxLength={MAX_NAME}
                   autoComplete="name"
                   required
@@ -263,7 +263,7 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
                   value={form.email}
                   onChange={onChange}
                   icon={<Mail className="w-4 h-4" />}
-                  placeholder="riya@example.com"
+                  placeholder="rajesh@school.in"
                   maxLength={MAX_EMAIL}
                   autoComplete="email"
                 />

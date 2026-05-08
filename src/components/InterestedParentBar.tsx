@@ -40,9 +40,9 @@ const InterestedParentBar = () => {
             <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-[#ff9500]/30 text-[#ff9500] flex items-center justify-center shrink-0">
               <HeartHandshake className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </span>
-            <span className="font-medium">Are you a parent?</span>
+            <span className="font-medium">Own or run a school?</span>
             <span className="text-[#86868b] hidden sm:inline">
-              We'd love to bring <span className="font-mokoto">Edullent</span> to your child's school.
+              Let's bring <span className="font-mokoto">Edullent</span> to your students.
             </span>
           </div>
 
@@ -51,7 +51,7 @@ const InterestedParentBar = () => {
           {count !== null && count > 0 && (
             <span className="inline-flex items-center gap-1.5 bg-white border border-[#ff9500]/30 text-[#1d1d1f] text-[11.5px] sm:text-[12px] font-medium px-2.5 py-1 rounded-full shadow-sm">
               <Users className="w-3 h-3 text-[#ff9500]" />
-              {count.toLocaleString('en-IN')} {count === 1 ? 'parent' : 'parents'} interested
+              {count.toLocaleString('en-IN')} {count === 1 ? 'school' : 'schools'} interested
             </span>
           )}
 
@@ -59,7 +59,7 @@ const InterestedParentBar = () => {
             onClick={() => setIsOpen(true)}
             className="inline-flex items-center gap-1.5 bg-[#1d1d1f] hover:bg-[#0a0a0a] active:scale-[0.98] text-white text-[12px] sm:text-[12.5px] font-medium px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all shadow-sm"
           >
-            Interested parent
+            I'm interested
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

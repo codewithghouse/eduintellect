@@ -123,7 +123,7 @@ export default function AdminOverview() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <Link to="/admin/parents" className="block sm:col-span-2 lg:col-span-1">
           <StatCard
-            label="Interested parents"
+            label="Interested schools"
             value={parentTotal}
             hint={
               parentNew > 0
