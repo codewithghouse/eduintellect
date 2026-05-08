@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { School, User, Mail, Lock, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, Sparkles } from 'lucide-react';
+import { School, User, Mail, Lock, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, Sparkles, Info } from 'lucide-react';
 import { auth, db, googleProvider } from '../lib/firebase';
 import {
   createUserWithEmailAndPassword,
@@ -19,6 +19,15 @@ const MAX_PHONE       = 20;
 const MAX_ADDRESS     = 500;
 const MIN_PASSWORD    = 10;
 const TRIAL_DAYS      = 14;
+
+// Master kill-switch for new sign-ups. Flip to `true` once the payment
+// gateway is wired up and we're ready to onboard schools again.
+// While `false`: the form still renders so visitors can preview it, but
+// every entry point (Google, email/password, details submit) short-circuits
+// with a friendly "opening soon" notice — no auth user, no Firestore write.
+const REGISTRATION_OPEN = false;
+const REGISTRATION_HOLD_MSG =
+  'Registrations are opening soon — we\'re putting the final touches on our payment system. Tap "I\'m interested" on the homepage to be notified the moment we go live.';
 
 const clean = (s: string, max: number) => s.trim().slice(0, max);
 
@@ -66,6 +75,10 @@ const RegisterPage = () => {
 
   const handleGoogle = async () => {
     setError('');
+    if (!REGISTRATION_OPEN) {
+      setError(REGISTRATION_HOLD_MSG);
+      return;
+    }
     setLoading(true);
     try {
       await signInWithPopup(auth, googleProvider);
@@ -88,6 +101,11 @@ const RegisterPage = () => {
   const handleEmailCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+
+    if (!REGISTRATION_OPEN) {
+      setError(REGISTRATION_HOLD_MSG);
+      return;
+    }
 
     if (authForm.password.length < MIN_PASSWORD) {
       setError(`Password must be at least ${MIN_PASSWORD} characters.`);
@@ -130,6 +148,10 @@ const RegisterPage = () => {
   const handleSubmitDetails = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    if (!REGISTRATION_OPEN) {
+      setError(REGISTRATION_HOLD_MSG);
+      return;
+    }
     if (!user) {
       setError('Session expired. Please sign in again.');
       setStep('auth');
@@ -197,6 +219,28 @@ const RegisterPage = () => {
   return (
     <div className="min-h-screen pt-28 pb-20 px-6 bg-[#fbfbfd]">
       <div className="max-w-[980px] mx-auto">
+        {!REGISTRATION_OPEN && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ ease: [0.16, 1, 0.3, 1] }}
+            className="mb-10 flex items-start gap-3 p-4 sm:p-5 rounded-[14px] bg-[#fff7ed] border border-[#ff9500]/30"
+          >
+            <span className="w-8 h-8 rounded-full bg-white border border-[#ff9500]/30 text-[#ff9500] flex items-center justify-center shrink-0 mt-0.5">
+              <Info className="w-4 h-4" />
+            </span>
+            <div className="text-[13px] sm:text-[13.5px] text-[#1d1d1f] leading-[1.5]">
+              <span className="font-medium">Registrations opening soon.</span>{' '}
+              <span className="text-[#424245]">
+                We're finalising our payment system. Tap{' '}
+                <Link to="/" className="text-[#0071e3] hover:underline font-medium">
+                  I'm interested
+                </Link>{' '}
+                on the homepage to be notified the moment we go live.
+              </span>
+            </div>
+          </motion.div>
+        )}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text Side */}
           <div className="space-y-8">
