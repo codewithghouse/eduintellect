@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HeartHandshake, ArrowRight, Users } from 'lucide-react';
+import { HeartHandshake, ArrowRight } from 'lucide-react';
 import { doc, onSnapshot } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import InterestedParentModal from './InterestedParentModal';
@@ -40,20 +40,20 @@ const InterestedParentBar = () => {
             <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white border border-[#ff9500]/30 text-[#ff9500] flex items-center justify-center shrink-0">
               <HeartHandshake className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
             </span>
-            <span className="font-medium">Own or run a school?</span>
-            <span className="text-[#86868b] hidden sm:inline">
-              Let's bring <span className="font-mokoto">Edullent</span> to your students.
-            </span>
+            {/* Live social-proof — the count of interested submissions
+                received so far. Renders only once we have a real value (>0)
+                so we never flash a fake "0 interested" while loading. */}
+            {count !== null && count > 0 && (
+              <>
+                <span className="font-semibold tabular-nums">
+                  {count.toLocaleString('en-IN')}
+                </span>
+                <span className="text-[#1d1d1f]">
+                  interested in <span className="font-mokoto">Edullent</span>
+                </span>
+              </>
+            )}
           </div>
-
-          {/* Live social-proof counter — only renders once we know the
-              real value (>0) so we never flash a fake "0 interested". */}
-          {count !== null && count > 0 && (
-            <span className="inline-flex items-center gap-1.5 bg-white border border-[#ff9500]/30 text-[#1d1d1f] text-[11.5px] sm:text-[12px] font-medium px-2.5 py-1 rounded-full shadow-sm">
-              <Users className="w-3 h-3 text-[#ff9500]" />
-              {count.toLocaleString('en-IN')} {count === 1 ? 'school' : 'schools'} interested
-            </span>
-          )}
 
           <button
             onClick={() => setIsOpen(true)}
