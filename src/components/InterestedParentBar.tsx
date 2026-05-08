@@ -59,7 +59,7 @@ const InterestedParentBar = () => {
             onClick={() => setIsOpen(true)}
             className="inline-flex items-center gap-1.5 bg-[#1d1d1f] hover:bg-[#0a0a0a] active:scale-[0.98] text-white text-[12px] sm:text-[12.5px] font-medium px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full transition-all shadow-sm"
           >
-            I'm interested
+            Interested parent
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
