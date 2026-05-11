@@ -115,7 +115,7 @@ const ContactPage = () => {
       setForm(initial);
     } catch (err) {
       console.error('[contact] submit failed:', err);
-      setError('Could not submit your enquiry. Please try again or email support@edullent.com.');
+      setError('Could not submit your enquiry. Please try again or email edullentofficial@gmail.com.');
     } finally {
       setLoading(false);
     }
@@ -297,12 +297,12 @@ const ContactPage = () => {
             <SidePanel
               icon={<Mail className="w-4 h-4 text-[#0071e3]" />}
               title="Email us"
-              body={<a href="mailto:support@edullent.com" className="text-[#0071e3] hover:underline">support@edullent.com</a>}
+              body={<a href="mailto:edullentofficial@gmail.com" className="text-[#0071e3] hover:underline">edullentofficial@gmail.com</a>}
             />
             <SidePanel
               icon={<Phone className="w-4 h-4 text-[#0071e3]" />}
               title="Call us"
-              body={<a href="tel:+919876543210" className="text-[#0071e3] hover:underline">+91 98765 43210</a>}
+              body={<a href="tel:+919100600458" className="text-[#0071e3] hover:underline">+91 91006 00458</a>}
             />
             <SidePanel
               icon={<MapPin className="w-4 h-4 text-[#0071e3]" />}

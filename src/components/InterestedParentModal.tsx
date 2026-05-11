@@ -125,7 +125,7 @@ const InterestedParentModal: React.FC<Props> = ({ isOpen, onClose }) => {
       setSuccess(true);
     } catch (err) {
       console.error('[interested-parent] submit failed:', err);
-      setError('Could not submit. Please try again or email support@edullent.com.');
+      setError('Could not submit. Please try again or email edullentofficial@gmail.com.');
     } finally {
       setLoading(false);
     }
