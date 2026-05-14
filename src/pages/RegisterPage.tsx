@@ -25,7 +25,7 @@ const TRIAL_DAYS      = 14;
 // While `false`: the form still renders so visitors can preview it, but
 // every entry point (Google, email/password, details submit) short-circuits
 // with a friendly "opening soon" notice — no auth user, no Firestore write.
-const REGISTRATION_OPEN = true;
+const REGISTRATION_OPEN = false;
 const REGISTRATION_HOLD_MSG =
   'Registrations are opening soon — we\'re putting the final touches on our payment system. Tap "I\'m interested" on the homepage to be notified the moment we go live.';
 
