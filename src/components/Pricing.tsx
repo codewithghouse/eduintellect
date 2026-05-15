@@ -30,9 +30,20 @@ interface Tier {
 
 // Dashboard USPs shared across every plan — every school gets the full
 // feature set regardless of tier. Backend enforces per-plan limits
-// (run counts, storage caps, etc.) — those scale-tier values are listed
-// separately at the top of each card.
+// (AI run counts, storage caps, WhatsApp credits, support tier, etc.).
+// Plans are differentiated PUBLICLY only by student-count band + price —
+// scale-tier limits stay internal so the customer never sees a "5 runs"
+// kind of number on their quote.
 const DASHBOARD_USPS: Feature[] = [
+  { label: 'Core', value: true, isSection: true },
+  { label: 'AI features', value: true },
+  { label: 'Cloud storage', value: true },
+  { label: 'WhatsApp notifications', value: true },
+  { label: 'Support', value: true },
+  { label: 'Onboarding', value: true },
+  { label: 'Training', value: true },
+  { label: 'Data migration', value: true },
+
   { label: 'Owner Dashboard', value: true, isSection: true },
   { label: 'Branch Comparison · live side-by-side', value: true },
   { label: 'Risk Predictor · 60-day lookahead', value: true },
@@ -92,17 +103,7 @@ const TIERS: Tier[] = [
     bestFor: 'Small private schools, primary-only schools, new institutions',
     brand: '#FF9500',
     iconBg: '#FFF4E0',
-    features: [
-      { label: 'Your Plan', value: true, isSection: true },
-      { label: 'AI features', value: 'Basic (5 runs / mo)' },
-      { label: 'Cloud storage', value: '50 GB' },
-      { label: 'WhatsApp notifications', value: '10 K / month' },
-      { label: 'Support', value: 'Email · 48 hr response' },
-      { label: 'Onboarding', value: 'Self-serve · video library' },
-      { label: 'Training', value: 'Video library' },
-      { label: 'Data migration', value: 'DIY' },
-      ...DASHBOARD_USPS,
-    ],
+    features: [...DASHBOARD_USPS],
   },
   {
     name: 'Growth',
@@ -118,17 +119,7 @@ const TIERS: Tier[] = [
     brand: '#0055FF',
     iconBg: '#E5EDFF',
     popular: true,
-    features: [
-      { label: 'Your Plan', value: true, isSection: true },
-      { label: 'AI features', value: 'Standard (50 runs / mo)' },
-      { label: 'Cloud storage', value: '200 GB' },
-      { label: 'WhatsApp notifications', value: '50 K / month' },
-      { label: 'Support', value: 'Email + Phone · business hours' },
-      { label: 'Onboarding', value: 'Group session · 4 hours' },
-      { label: 'Training', value: 'Live webinars' },
-      { label: 'Data migration', value: 'Assisted' },
-      ...DASHBOARD_USPS,
-    ],
+    features: [...DASHBOARD_USPS],
   },
   {
     name: 'Enterprise',
@@ -144,17 +135,7 @@ const TIERS: Tier[] = [
     brand: '#7B3FF4',
     iconBg: '#F2EBFF',
     cta: 'Talk to sales',
-    features: [
-      { label: 'Your Plan', value: true, isSection: true },
-      { label: 'AI features', value: 'Unlimited · priority' },
-      { label: 'Cloud storage', value: 'Unlimited' },
-      { label: 'WhatsApp notifications', value: 'Unlimited' },
-      { label: 'Support', value: 'Dedicated AM · 24 / 7 priority' },
-      { label: 'Onboarding', value: '1-on-1 · 16 hrs + on-site' },
-      { label: 'Training', value: 'On-site training' },
-      { label: 'Data migration', value: 'Full-service' },
-      ...DASHBOARD_USPS,
-    ],
+    features: [...DASHBOARD_USPS],
   },
 ];
 
