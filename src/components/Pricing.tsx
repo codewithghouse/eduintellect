@@ -1,5 +1,14 @@
-import { GraduationCap, Star, Sparkles, Check, X } from 'lucide-react';
+import { GraduationCap, Star, Sparkles, Check } from 'lucide-react';
 import type { ReactNode } from 'react';
+
+interface Feature {
+  label: string;
+  value: string | true;
+  // Section divider — renders the label as a small uppercase heading and
+  // skips the checkmark. Used to group features by dashboard so the long
+  // USP list stays scannable.
+  isSection?: boolean;
+}
 
 interface Tier {
   name: string;
@@ -16,8 +25,58 @@ interface Tier {
   iconBg: string;
   popular?: boolean;
   cta?: string;
-  features: { label: string; value: string | true | false }[];
+  features: Feature[];
 }
+
+// Dashboard USPs shared across every plan — every school gets the full
+// feature set regardless of tier. Backend enforces per-plan limits
+// (run counts, storage caps, etc.) — those scale-tier values are listed
+// separately at the top of each card.
+const DASHBOARD_USPS: Feature[] = [
+  { label: 'Owner Dashboard', value: true, isSection: true },
+  { label: 'Branch Comparison · live side-by-side', value: true },
+  { label: 'Risk Predictor · 60-day lookahead', value: true },
+  { label: 'Group-wide financial summary', value: true },
+  { label: 'Branch leaderboard with ranks', value: true },
+  { label: 'Fee health by branch', value: true },
+
+  { label: 'Principal Dashboard', value: true, isSection: true },
+  { label: 'AI Recommendations engine', value: true },
+  { label: 'Risk Intervention dashboard', value: true },
+  { label: 'Teacher Leaderboard', value: true },
+  { label: 'Teacher performance insights', value: true },
+  { label: 'Class-level analytics', value: true },
+
+  { label: 'Teacher Dashboard', value: true, isSection: true },
+  { label: 'AI Exam Paper Generator', value: true },
+  { label: 'AI Auto-Correction (objective + subjective assist)', value: true },
+  { label: 'AI Lesson Planner', value: true },
+  { label: 'Pre-Result Predictor (headline)', value: true },
+  { label: 'Concept Mastery + Strengths', value: true },
+  { label: 'Smart Gradebook', value: true },
+  { label: 'Smart Attendance', value: true },
+  { label: 'Risk Alerts per student', value: true },
+
+  { label: 'Parent Dashboard', value: true, isSection: true },
+  { label: 'AI Doubt Solver (photo + text)', value: true },
+  { label: 'AI Concept Explainer (Tutor)', value: true },
+  { label: 'Weekly AI Summary', value: true },
+  { label: 'Career Direction Projection', value: true },
+  { label: 'AI Practice + Practice Exams', value: true },
+  { label: 'Direct Teacher Chat', value: true },
+  { label: 'Performance + attendance trends', value: true },
+
+  { label: 'Platform', value: true, isSection: true },
+  { label: 'All 4 dashboards · 1 brain · real-time sync', value: true },
+  { label: 'Multi-branch architecture', value: true },
+  { label: 'Excel import · 2-minute onboarding', value: true },
+  { label: 'Tenant isolation + security', value: true },
+  { label: 'Custom branding', value: true },
+  { label: 'Custom domain', value: true },
+  { label: 'API access', value: true },
+  { label: 'Custom integrations', value: true },
+  { label: 'SLA uptime guarantee', value: true },
+];
 
 const TIERS: Tier[] = [
   {
@@ -34,6 +93,7 @@ const TIERS: Tier[] = [
     brand: '#FF9500',
     iconBg: '#FFF4E0',
     features: [
+      { label: 'Your Plan', value: true, isSection: true },
       { label: 'AI features', value: 'Basic (5 runs / mo)' },
       { label: 'Cloud storage', value: '50 GB' },
       { label: 'WhatsApp notifications', value: '10 K / month' },
@@ -41,11 +101,7 @@ const TIERS: Tier[] = [
       { label: 'Onboarding', value: 'Self-serve · video library' },
       { label: 'Training', value: 'Video library' },
       { label: 'Data migration', value: 'DIY' },
-      { label: 'Custom branding', value: false },
-      { label: 'Custom domain', value: false },
-      { label: 'API access', value: false },
-      { label: 'Custom integrations', value: false },
-      { label: 'SLA uptime guarantee', value: false },
+      ...DASHBOARD_USPS,
     ],
   },
   {
@@ -63,6 +119,7 @@ const TIERS: Tier[] = [
     iconBg: '#E5EDFF',
     popular: true,
     features: [
+      { label: 'Your Plan', value: true, isSection: true },
       { label: 'AI features', value: 'Standard (50 runs / mo)' },
       { label: 'Cloud storage', value: '200 GB' },
       { label: 'WhatsApp notifications', value: '50 K / month' },
@@ -70,11 +127,7 @@ const TIERS: Tier[] = [
       { label: 'Onboarding', value: 'Group session · 4 hours' },
       { label: 'Training', value: 'Live webinars' },
       { label: 'Data migration', value: 'Assisted' },
-      { label: 'Custom branding', value: 'Logo only' },
-      { label: 'API access', value: 'Read-only' },
-      { label: 'SLA uptime guarantee', value: '99 %' },
-      { label: 'Custom domain', value: false },
-      { label: 'Custom integrations', value: false },
+      ...DASHBOARD_USPS,
     ],
   },
   {
@@ -92,6 +145,7 @@ const TIERS: Tier[] = [
     iconBg: '#F2EBFF',
     cta: 'Talk to sales',
     features: [
+      { label: 'Your Plan', value: true, isSection: true },
       { label: 'AI features', value: 'Unlimited · priority' },
       { label: 'Cloud storage', value: 'Unlimited' },
       { label: 'WhatsApp notifications', value: 'Unlimited' },
@@ -99,11 +153,7 @@ const TIERS: Tier[] = [
       { label: 'Onboarding', value: '1-on-1 · 16 hrs + on-site' },
       { label: 'Training', value: 'On-site training' },
       { label: 'Data migration', value: 'Full-service' },
-      { label: 'Custom branding', value: 'Full white-label' },
-      { label: 'Custom domain', value: 'Included' },
-      { label: 'API access', value: 'Full read/write' },
-      { label: 'Custom integrations', value: 'Available' },
-      { label: 'SLA uptime guarantee', value: '99.9 %' },
+      ...DASHBOARD_USPS,
     ],
   },
 ];
@@ -244,8 +294,18 @@ const PricingCard = ({ tier }: { tier: Tier }) => {
 
         {/* Features */}
         <div className="space-y-2.5 mb-7 flex-1">
-          {tier.features.map(f => {
-            const isFalse = f.value === false;
+          {tier.features.map((f, idx) => {
+            if (f.isSection) {
+              return (
+                <div
+                  key={`section-${idx}-${f.label}`}
+                  className="pt-3 pb-1 text-[10.5px] font-semibold tracking-[0.14em] uppercase"
+                  style={{ color: tier.brand, marginTop: idx === 0 ? 0 : 6 }}
+                >
+                  {f.label}
+                </div>
+              );
+            }
             const isTrue = f.value === true;
             return (
               <div key={f.label} className="flex items-start gap-2.5">
@@ -254,8 +314,8 @@ const PricingCard = ({ tier }: { tier: Tier }) => {
                     width: 18,
                     height: 18,
                     borderRadius: '50%',
-                    background: isFalse ? '#f5f5f7' : tier.iconBg,
-                    color: isFalse ? '#c7c7cc' : tier.brand,
+                    background: tier.iconBg,
+                    color: tier.brand,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -263,13 +323,13 @@ const PricingCard = ({ tier }: { tier: Tier }) => {
                     marginTop: 1,
                   }}
                 >
-                  {isFalse ? <X className="w-2.5 h-2.5" strokeWidth={3} /> : <Check className="w-2.5 h-2.5" strokeWidth={3} />}
+                  <Check className="w-2.5 h-2.5" strokeWidth={3} />
                 </div>
                 <div className="flex-1 flex items-baseline justify-between gap-2 min-w-0">
-                  <span className={`text-[12.5px] font-normal leading-[1.4] tracking-[-0.005em] ${isFalse ? 'text-[#86868b]' : 'text-[#1d1d1f]'}`}>
+                  <span className="text-[12.5px] font-normal leading-[1.4] tracking-[-0.005em] text-[#1d1d1f]">
                     {f.label}
                   </span>
-                  {!isTrue && !isFalse && (
+                  {!isTrue && (
                     <span className="text-[12px] font-normal text-[#86868b] text-right shrink-0">
                       {f.value}
                     </span>
