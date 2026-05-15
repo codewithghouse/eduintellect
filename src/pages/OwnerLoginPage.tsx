@@ -26,14 +26,20 @@ const OwnerLoginPage = () => {
   };
 
   // After auth succeeds, look up the school doc and route appropriately.
-  // - school doc exists  → owner-dashboard
-  // - school doc missing → /register (finish onboarding)
+  // - school doc missing                       → /register
+  // - school doc exists, paymentStatus !== paid → /activate (pay-to-unlock)
+  // - school doc exists, paymentStatus === paid → owner-dashboard
   const routeAfterAuth = async (uid: string) => {
     const snap = await getDoc(doc(db, 'schools', uid));
-    if (snap.exists() && snap.data()?.role === 'owner') {
-      window.location.href = import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/';
-    } else {
+    if (!snap.exists() || snap.data()?.role !== 'owner') {
       navigate('/register');
+      return;
+    }
+    if (snap.data()?.paymentStatus === 'paid') {
+      window.location.href =
+        import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/';
+    } else {
+      navigate('/activate');
     }
   };
 
@@ -67,7 +73,13 @@ const OwnerLoginPage = () => {
       const cred = await signInWithEmailAndPassword(auth, formData.email, formData.password);
       const snap = await getDoc(doc(db, 'schools', cred.user.uid));
       if (snap.exists() && snap.data()?.role === 'owner') {
-        window.location.href = import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/';
+        if (snap.data()?.paymentStatus === 'paid') {
+          window.location.href =
+            import.meta.env.VITE_OWNER_DASHBOARD_URL ||
+            'https://owner-dashboard-blue.vercel.app/';
+        } else {
+          navigate('/activate');
+        }
       } else {
         await auth.signOut();
         setError('Access Denied. You are not registered as a school owner.');

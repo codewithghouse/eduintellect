@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { School, User, Mail, Lock, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, Sparkles, Info } from 'lucide-react';
+import { School, User, Mail, Lock, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, Sparkles } from 'lucide-react';
 import { auth, db, googleProvider } from '../lib/firebase';
 import {
   createUserWithEmailAndPassword,
@@ -9,7 +9,7 @@ import {
   signOut,
   type User as FirebaseUser,
 } from 'firebase/auth';
-import { doc, getDoc, setDoc, serverTimestamp, Timestamp } from 'firebase/firestore';
+import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleIcon from '../components/GoogleIcon';
 
@@ -18,16 +18,6 @@ const MAX_OWNER_NAME  = 120;
 const MAX_PHONE       = 20;
 const MAX_ADDRESS     = 500;
 const MIN_PASSWORD    = 10;
-const TRIAL_DAYS      = 14;
-
-// Master kill-switch for new sign-ups. Flip to `true` once the payment
-// gateway is wired up and we're ready to onboard schools again.
-// While `false`: the form still renders so visitors can preview it, but
-// every entry point (Google, email/password, details submit) short-circuits
-// with a friendly "opening soon" notice — no auth user, no Firestore write.
-const REGISTRATION_OPEN = false;
-const REGISTRATION_HOLD_MSG =
-  'Registrations are opening soon — we\'re putting the final touches on our payment system. Tap "I\'m interested" on the homepage to be notified the moment we go live.';
 
 const clean = (s: string, max: number) => s.trim().slice(0, max);
 
@@ -52,14 +42,22 @@ const RegisterPage = () => {
   });
 
   // If user is already signed in (e.g. came from /login), skip auth step.
+  // - school doc exists + paid → owner-dashboard
+  // - school doc exists + unpaid → /activate
+  // - school doc missing → details step
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (u) => {
       if (!u) return;
-      // If a school doc already exists for this user, send them straight to dashboard.
       try {
         const snap = await getDoc(doc(db, 'schools', u.uid));
         if (snap.exists()) {
-          window.location.href = import.meta.env.VITE_OWNER_DASHBOARD_URL || 'https://owner-dashboard-blue.vercel.app/';
+          if (snap.data()?.paymentStatus === 'paid') {
+            window.location.href =
+              import.meta.env.VITE_OWNER_DASHBOARD_URL ||
+              'https://owner-dashboard-blue.vercel.app/';
+          } else {
+            navigate('/activate');
+          }
           return;
         }
       } catch { /* ignore — proceed to details */ }
@@ -71,14 +69,10 @@ const RegisterPage = () => {
       setStep('details');
     });
     return unsub;
-  }, []);
+  }, [navigate]);
 
   const handleGoogle = async () => {
     setError('');
-    if (!REGISTRATION_OPEN) {
-      setError(REGISTRATION_HOLD_MSG);
-      return;
-    }
     setLoading(true);
     try {
       await signInWithPopup(auth, googleProvider);
@@ -101,11 +95,6 @@ const RegisterPage = () => {
   const handleEmailCreate = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-
-    if (!REGISTRATION_OPEN) {
-      setError(REGISTRATION_HOLD_MSG);
-      return;
-    }
 
     if (authForm.password.length < MIN_PASSWORD) {
       setError(`Password must be at least ${MIN_PASSWORD} characters.`);
@@ -148,10 +137,6 @@ const RegisterPage = () => {
   const handleSubmitDetails = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
-    if (!REGISTRATION_OPEN) {
-      setError(REGISTRATION_HOLD_MSG);
-      return;
-    }
     if (!user) {
       setError('Session expired. Please sign in again.');
       setStep('auth');
@@ -164,9 +149,6 @@ const RegisterPage = () => {
 
     setLoading(true);
     try {
-      const trialStart = new Date();
-      const trialEnd = new Date(trialStart.getTime() + TRIAL_DAYS * 24 * 60 * 60 * 1000);
-
       await setDoc(doc(db, 'schools', user.uid), {
         schoolName: clean(details.schoolName, MAX_SCHOOL_NAME),
         ownerName: clean(details.ownerName, MAX_OWNER_NAME),
@@ -176,16 +158,14 @@ const RegisterPage = () => {
         ownerId: user.uid,
         role: 'owner',
         status: 'active',
-        // Trial / billing state — read by dashboards to gate access.
-        subscriptionStatus: 'trial',
+        // Billing state — payment is gated on /activate.
+        subscriptionStatus: 'pending',
         paymentStatus: 'pending',
-        trialStartedAt: Timestamp.fromDate(trialStart),
-        trialEndsAt: Timestamp.fromDate(trialEnd),
         createdAt: serverTimestamp(),
       }, { merge: true });
 
       setStep('success');
-      setTimeout(() => navigate('/welcome'), 1400);
+      setTimeout(() => navigate('/activate'), 1200);
     } catch (err: any) {
       console.error('[register] details write failed:', err);
       setError('Could not save school details. Please try again.');
@@ -208,7 +188,7 @@ const RegisterPage = () => {
           </div>
           <h2 className="text-[28px] font-normal text-[#1d1d1f] mb-3 tracking-[-0.02em]">School Registered</h2>
           <p className="text-[#86868b] text-[15px] mb-8 leading-[1.47]">
-            <strong className="text-[#1d1d1f]">{details.schoolName}</strong> is set up. Taking you to your dashboard...
+            <strong className="text-[#1d1d1f]">{details.schoolName}</strong> is set up. Taking you to the activation step...
           </p>
           <Loader2 className="w-5 h-5 text-[#0071e3] animate-spin mx-auto" />
         </motion.div>
@@ -219,28 +199,6 @@ const RegisterPage = () => {
   return (
     <div className="min-h-screen pt-28 pb-20 px-6 bg-[#fbfbfd]">
       <div className="max-w-[980px] mx-auto">
-        {!REGISTRATION_OPEN && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ ease: [0.16, 1, 0.3, 1] }}
-            className="mb-10 flex items-start gap-3 p-4 sm:p-5 rounded-[14px] bg-[#fff7ed] border border-[#ff9500]/30"
-          >
-            <span className="w-8 h-8 rounded-full bg-white border border-[#ff9500]/30 text-[#ff9500] flex items-center justify-center shrink-0 mt-0.5">
-              <Info className="w-4 h-4" />
-            </span>
-            <div className="text-[13px] sm:text-[13.5px] text-[#1d1d1f] leading-[1.5]">
-              <span className="font-medium">Registrations opening soon.</span>{' '}
-              <span className="text-[#424245]">
-                We're finalising our payment system. Tap{' '}
-                <Link to="/" className="text-[#0071e3] hover:underline font-medium">
-                  I'm interested
-                </Link>{' '}
-                on the homepage to be notified the moment we go live.
-              </span>
-            </div>
-          </motion.div>
-        )}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Text Side */}
           <div className="space-y-8">
