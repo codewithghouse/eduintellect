@@ -3,6 +3,7 @@ import Hero from '../components/Hero';
 import InterestedParentBar from '../components/InterestedParentBar';
 import RoleScrollShowcase from '../components/RoleScrollShowcase';
 import PortalShowcase from '../components/PortalShowcase';
+import USPs from '../components/USPs';
 import Pricing from '../components/Pricing';
 import { Tilt3D } from '../components/ui/tilt-3d';
 
@@ -50,6 +51,7 @@ const HomePage = () => {
       <IpadShowcase />
       <RoleScrollShowcase />
       <PortalShowcase />
+      <USPs />
       <Pricing />
     </div>
   );
