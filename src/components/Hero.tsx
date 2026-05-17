@@ -88,14 +88,8 @@ const Hero = () => {
             className="flex flex-col sm:flex-row items-center gap-4"
           >
             <Link
-              to="/register"
-              className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-[17px] font-normal px-8 py-3 rounded-full transition-all duration-300"
-            >
-              Get Started — 40 % Launch Offer <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
               to="/contact"
-              className="inline-flex items-center gap-1 text-[#0071e3] hover:text-[#0077ed] text-[17px] font-normal transition-colors duration-300"
+              className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-[17px] font-normal px-8 py-3 rounded-full transition-all duration-300"
             >
               Book a Demo <ArrowRight className="w-4 h-4" />
             </Link>

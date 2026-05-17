@@ -121,8 +121,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
               <div className="px-7 py-5 bg-[#f5f5f7] text-center border-t border-[#d2d2d7]/40">
                 <p className="text-[#86868b] text-[13px]">
                   New here?{' '}
-                  <Link to="/register" onClick={onClose} className="text-[#0071e3] hover:underline">
-                    Register your school
+                  <Link to="/contact" onClick={onClose} className="text-[#0071e3] hover:underline">
+                    Talk to our team
                   </Link>
                 </p>
               </div>

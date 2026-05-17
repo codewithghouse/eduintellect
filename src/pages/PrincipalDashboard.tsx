@@ -493,10 +493,10 @@ const PrincipalDashboard = () => {
             Edullent gives the principal one screen, one truth, one move every morning. The rest of the school catches up to that clarity.
           </p>
           <a
-            href="/register"
+            href="/contact"
             className="inline-flex items-center gap-2 bg-[#0055FF] hover:bg-[#1166FF] text-white text-[16px] font-medium px-7 py-3.5 rounded-full shadow-[0_10px_30px_-8px_rgba(0,85,255,0.5)] transition-colors"
           >
-            Open the live demo
+            Book a Demo
             <ChevronRight className="w-4 h-4" />
           </a>
         </div>

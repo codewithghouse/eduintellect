@@ -125,10 +125,10 @@ const HeroScrollSection = () => {
             Scroll down — step inside the platform.
           </p>
           <Link
-            to="/register"
+            to="/contact"
             className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-[16px] font-medium px-6 py-2.5 rounded-full shadow-[0_10px_40px_-10px_rgba(0,113,227,0.55)] transition-all duration-300"
           >
-            Try the live demo <ArrowRight className="w-4 h-4" />
+            Book a Demo <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
 

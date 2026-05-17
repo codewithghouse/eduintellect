@@ -82,18 +82,18 @@ const Header = () => {
           >
             Sign in
           </button>
-          <Link to="/register" className="text-[12px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-1.5 rounded-full transition-all duration-300">
-            Get Started
+          <Link to="/contact" className="text-[12px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-1.5 rounded-full transition-all duration-300">
+            Get in Touch
           </Link>
         </div>
 
         {/* Mobile Actions */}
         <div className="flex md:hidden items-center gap-2">
           <Link
-            to="/register"
+            to="/contact"
             className="text-[13px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-3.5 py-1.5 rounded-full transition-all duration-300"
           >
-            Get Started
+            Get in Touch
           </Link>
           <button
             type="button"
@@ -138,11 +138,11 @@ const Header = () => {
                 Sign in
               </button>
               <Link
-                to="/register"
+                to="/contact"
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="btn-primary w-full text-center text-[17px]"
               >
-                Get Started
+                Get in Touch
               </Link>
             </div>
           </nav>

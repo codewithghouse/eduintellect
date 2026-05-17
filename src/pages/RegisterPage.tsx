@@ -13,6 +13,11 @@ import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleIcon from '../components/GoogleIcon';
 
+// Registrations gated off — public CTAs hidden across the site, /contact is the
+// active funnel. Flip to true when the payment gateway flow is fully wired and
+// trial schools can complete sign-up without getting stuck.
+const REGISTRATION_OPEN = false;
+
 const MAX_SCHOOL_NAME = 120;
 const MAX_OWNER_NAME  = 120;
 const MAX_PHONE       = 20;
@@ -173,6 +178,38 @@ const RegisterPage = () => {
       setLoading(false);
     }
   };
+
+  if (!REGISTRATION_OPEN) {
+    return (
+      <div className="min-h-[80vh] flex items-center justify-center p-6 bg-[#fbfbfd]">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ ease: [0.16, 1, 0.3, 1], duration: 0.5 }}
+          className="bg-white rounded-[20px] border border-[#d2d2d7]/40 p-10 sm:p-12 text-center max-w-md w-full shadow-[0_24px_60px_-24px_rgba(0,0,0,0.18)]"
+        >
+          <div className="w-16 h-16 bg-[#0071e3]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Sparkles className="w-8 h-8 text-[#0071e3]" />
+          </div>
+          <h2 className="text-[26px] sm:text-[28px] font-normal text-[#1d1d1f] mb-3 tracking-[-0.02em]">
+            Registrations opening soon
+          </h2>
+          <p className="text-[#86868b] text-[15px] mb-8 leading-[1.5]">
+            We're onboarding schools one at a time during launch. Tell us a bit
+            about your school and our team will reach out to walk you through
+            pricing, onboarding and a live demo.
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 bg-[#0071e3] hover:bg-[#0077ed] text-white text-[15px] font-medium px-6 py-3 rounded-full transition-colors"
+          >
+            Talk to our team
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+      </div>
+    );
+  }
 
   if (step === 'success') {
     return (
