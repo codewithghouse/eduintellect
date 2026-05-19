@@ -457,6 +457,14 @@ service cloud.firestore {
       allow update:    if signedIn() && inSameSchool() && schoolIdImmutable() && hasStaffRole();
       allow delete:    if signedIn() && inSameSchool() && hasAdminRole();
     }
+    // school_holidays — principal-declared school-wide off-days
+    match /school_holidays/{id} {
+      allow get:  if signedIn() && inSameSchool();
+      allow list: if signedIn();
+      allow create: if signedIn() && hasSchoolId() && writingToOwnSchool() && hasAdminRole();
+      allow update: if signedIn() && inSameSchool() && schoolIdImmutable() && hasAdminRole();
+      allow delete: if signedIn() && inSameSchool() && hasAdminRole();
+    }
     match /results/{id} {
       allow get:  if signedIn() && inSameSchool();
       allow list: if signedIn();  // TEMPORARY PHASE-1: relaxed while client queries migrate. Re-tighten to inSameSchool() once all pages filter by schoolId.
