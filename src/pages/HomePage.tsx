@@ -37,7 +37,9 @@ const HomePage = () => {
     description:
       'Edullent is the intelligence layer between a school and its data — AI-powered dashboards for Owners, Principals, Teachers and Parents. One platform, every role.',
     canonical: 'https://edullent.com',
-    ogImage: 'https://edullent.com/dashboards/hero-mockup.png',
+    ogTitle: 'Edullent',
+    ogDescription: 'Smart School Management Platform',
+    ogImage: 'https://edullent.com/og-image.png',
   });
 
   return (
