@@ -126,6 +126,17 @@ const TIERS: Tier[] = [
 const Pricing = () => (
   <section id="pricing" className="py-24 md:py-28 bg-[#fbfbfd] relative overflow-hidden">
     <div className="max-w-[1200px] mx-auto px-6">
+      {/* Launch banner */}
+      <div className="flex justify-center mb-6">
+        <div
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-medium tracking-[0.08em] uppercase text-white"
+          style={{ background: 'linear-gradient(135deg, #FF3B30, #FF8800)', boxShadow: '0 6px 18px rgba(255,59,48,0.30)' }}
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          Launch offer · 40 % off · limited time
+        </div>
+      </div>
+
       {/* Header */}
       <div className="text-center mb-16">
         <p className="text-[14px] font-normal tracking-[-0.01em] mb-3" style={{ color: '#0055FF' }}>
