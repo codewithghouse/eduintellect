@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/edullent-icon.png" />
+    <link rel="icon" type="image/png" href="/logo.png" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -13,7 +13,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Edullent" />
     <meta name="format-detection" content="telephone=no" />
-    <link rel="apple-touch-icon" href="/edullent-icon.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
     <link rel="preload" href="/fonts/mokoto.regular.ttf" as="font" type="font/ttf" crossorigin="anonymous" />
 
     <!-- Primary SEO -->
@@ -45,7 +45,7 @@
     <meta name="twitter:image" content="https://edullent.com/og-image.png" />
     <meta name="twitter:image:alt" content="Edullent — Smart School Management Platform" />
 
-    <!-- Structured data: Organization + SoftwareApplication -->
+    <!-- Structured data: Organization + WebSite + SoftwareApplication -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -55,8 +55,13 @@
           "@id": "https://edullent.com/#organization",
           "name": "Edullent",
           "url": "https://edullent.com",
-          "logo": "https://edullent.com/edullent-icon.png",
-          "sameAs": []
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://edullent.com/logo.png",
+            "width": 1024,
+            "height": 1024,
+            "caption": "Edullent"
+          }
         },
         {
           "@type": "WebSite",
@@ -70,8 +75,9 @@
           "name": "Edullent",
           "applicationCategory": "EducationalApplication",
           "operatingSystem": "Web, iOS, Android",
-          "description": "Advanced intelligence system for modern institutions — AI-powered dashboards for Owners, Principals, Teachers and Parents.",
+          "description": "Smart School Management Platform — AI-powered dashboards for Owners, Principals, Teachers and Parents.",
           "url": "https://edullent.com",
+          "image": "https://edullent.com/logo.png",
           "publisher": { "@id": "https://edullent.com/#organization" }
         }
       ]
