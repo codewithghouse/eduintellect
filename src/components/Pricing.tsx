@@ -24,9 +24,14 @@ interface Tier {
   brand: string;
   iconBg: string;
   popular?: boolean;
-  cta?: string;
   features: Feature[];
 }
+
+const SALES_WHATSAPP = '919100600458';
+const buildWhatsAppLink = (planName: string) => {
+  const message = `Hi Edullent, I'm interested in the ${planName} plan. Could you share more details?`;
+  return `https://wa.me/${SALES_WHATSAPP}?text=${encodeURIComponent(message)}`;
+};
 
 // Dashboard USPs shared across every plan — every school gets the full
 // feature set regardless of tier. Backend enforces per-plan limits
@@ -134,7 +139,6 @@ const TIERS: Tier[] = [
     bestFor: 'Large schools, school chains, premium institutions',
     brand: '#7B3FF4',
     iconBg: '#F2EBFF',
-    cta: 'Talk to sales',
     features: [...DASHBOARD_USPS],
   },
 ];
@@ -322,8 +326,11 @@ const PricingCard = ({ tier }: { tier: Tier }) => {
         </div>
 
         {/* CTA */}
-        <button
-          className="w-full h-12 rounded-[12px] text-[14px] font-medium tracking-[-0.005em] transition-all duration-200 hover:-translate-y-0.5"
+        <a
+          href={buildWhatsAppLink(tier.name)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full h-12 rounded-[12px] text-[14px] font-medium tracking-[-0.005em] transition-all duration-200 hover:-translate-y-0.5 inline-flex items-center justify-center"
           style={{
             background: popular
               ? `linear-gradient(135deg, ${tier.brand}, #1166FF)`
@@ -334,10 +341,11 @@ const PricingCard = ({ tier }: { tier: Tier }) => {
               : '0 6px 16px rgba(29,29,31,0.18)',
             border: 'none',
             cursor: 'pointer',
+            textDecoration: 'none',
           }}
         >
-          {tier.cta ?? 'Get Started'}
-        </button>
+          Contact Sales
+        </a>
       </div>
     </div>
   );
