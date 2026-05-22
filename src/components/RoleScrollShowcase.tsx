@@ -30,7 +30,7 @@ const RoleScrollShowcase = () => (
     <ContainerScroll titleComponent={<Title eyebrow="For Students & Parents" headline="Stay close to every milestone." brand="#d97706" />}>
       <ParentPerformanceScreen />
     </ContainerScroll>
-    <RoleCta to="/student-parent" label="Explore Student & Parent Dashboard" brand="#d97706" />
+    <RoleCta to="/parent" label="Explore Parent Dashboard" brand="#d97706" />
   </section>
 );
 

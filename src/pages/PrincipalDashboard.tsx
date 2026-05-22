@@ -6,6 +6,7 @@ import {
   Award, Compass, ChevronRight,
 } from 'lucide-react';
 import PrincipalDashboardIPad from '../components/ipad/PrincipalDashboardIPad';
+import { useSeo } from '../lib/useSeo';
 import PrincipalStudentIntelligenceIPad from '../components/ipad/PrincipalStudentIntelligenceIPad';
 import PrincipalRiskStudentsIPad from '../components/ipad/PrincipalRiskStudentsIPad';
 import PrincipalTeacherPerformanceIPad from '../components/ipad/PrincipalTeacherPerformanceIPad';
@@ -432,6 +433,12 @@ const KeynoteAct = ({ act }: { act: Act }) => {
 /* ─── Page ──────────────────────────────────────────────────────────────── */
 
 const PrincipalDashboard = () => {
+  useSeo({
+    title: 'Principal Dashboard – Edullent',
+    description:
+      'Run your school with AI-powered intelligence. Risk Intervention, Teacher Leaderboard, Class Analytics and AI Recommendations — built for school principals.',
+    canonical: 'https://edullent.com/principal',
+  });
   return (
     <div className="min-h-screen pt-28 pb-12 bg-white">
       {/* ── Hero ── */}

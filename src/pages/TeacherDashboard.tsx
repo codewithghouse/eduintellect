@@ -7,6 +7,7 @@ import { TestsOverview, CreateTestForm } from '../components/TestsScreens';
 import { AssignmentsOverview, CreateAssignment } from '../components/AssignmentsScreens';
 import { AttendanceOverview, AttendanceConcerns, MarkAttendanceScreen } from '../components/AttendanceScreens';
 import TeacherIPadMockup from '../components/TeacherIPadMockup';
+import { useSeo } from '../lib/useSeo';
 import TeacherExamGeneratorIPad from '../components/ipad/TeacherExamGeneratorIPad';
 import TeacherBehaviourIPad from '../components/ipad/TeacherBehaviourIPad';
 import TeacherLeaderboardIPad from '../components/ipad/TeacherLeaderboardIPad';
@@ -2492,6 +2493,12 @@ const GradebookScores = () => (
    MAIN PAGE
    ═══════════════════════════════════════ */
 const TeacherDashboard = () => {
+  useSeo({
+    title: 'Teacher Dashboard – Edullent',
+    description:
+      'Less paperwork. More teaching. AI Exam Paper Generator, AI Lesson Planner, Smart Gradebook and Auto-Correction — the teaching workspace built for modern classrooms.',
+    canonical: 'https://edullent.com/teacher',
+  });
   return (
     <div className="min-h-screen pt-28 pb-20 bg-[#fbfbfd]">
       <div className="max-w-[1600px] mx-auto px-6">

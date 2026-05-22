@@ -106,7 +106,7 @@ body {
    declaration above (specificity 1,0,0,0), so without this rule those
    subtrees render in Plus Jakarta (or system fallback) while the rest
    of the marketing site renders in SF Pro — visually inconsistent across
-   /owner vs /principal vs /teacher vs /student-parent.
+   /owner vs /principal vs /teacher vs /parent.
    `!important` is the only way to override the inline declaration. */
 body,
 body *,

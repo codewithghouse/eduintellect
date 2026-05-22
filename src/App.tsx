@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Layout from './components/Layout';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
@@ -68,7 +68,8 @@ function App() {
             <Route path="/owner" element={<OwnerDashboard />} />
             <Route path="/principal" element={<PrincipalDashboard />} />
             <Route path="/teacher" element={<TeacherDashboard />} />
-            <Route path="/student-parent" element={<StudentParentDashboard />} />
+            <Route path="/parent" element={<StudentParentDashboard />} />
+            <Route path="/student-parent" element={<Navigate to="/parent" replace />} />
 
             {/* Feature pages (linked from footer) */}
             <Route path="/features/ai-monitoring" element={<AIMonitoring />} />

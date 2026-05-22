@@ -7,6 +7,7 @@ import ParentConceptStrengthsIPad from '../components/ipad/ParentConceptStrength
 import ParentAIPracticeIPad from '../components/ipad/ParentAIPracticeIPad';
 import ParentBehaviourIPad from '../components/ipad/ParentBehaviourIPad';
 import ParentSyllabusIPad from '../components/ipad/ParentSyllabusIPad';
+import { useSeo } from '../lib/useSeo';
 
 const FEATURES: {
   ipad: ComponentType;
@@ -84,6 +85,12 @@ const FEATURES: {
 ];
 
 const StudentParentDashboard = () => {
+  useSeo({
+    title: 'Parent Dashboard – Edullent',
+    description:
+      'Stay close to every milestone. AI Doubt Solver, Weekly AI Summary, Career Projection, Practice Exams and direct teacher chat — the parent window into every learner.',
+    canonical: 'https://edullent.com/parent',
+  });
   return (
     <div className="min-h-screen pt-28 pb-20 bg-white">
       <div className="max-w-[1400px] mx-auto px-6">

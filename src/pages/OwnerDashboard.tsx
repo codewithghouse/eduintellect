@@ -8,6 +8,7 @@ import OwnerTeacherLeaderboardIPad from '../components/ipad/OwnerTeacherLeaderbo
 import OwnerBranchComparisonIPad from '../components/ipad/OwnerBranchComparisonIPad';
 import OwnerBrandLeaderboardIPad from '../components/ipad/OwnerBrandLeaderboardIPad';
 import OwnerRisksAlertsIPad from '../components/ipad/OwnerRisksAlertsIPad';
+import { useSeo } from '../lib/useSeo';
 
 const FEATURES: {
   ipad: ComponentType;
@@ -111,6 +112,12 @@ const FEATURES: {
 ];
 
 const OwnerDashboard = () => {
+  useSeo({
+    title: 'Owner Dashboard – Edullent',
+    description:
+      'See every campus at a glance. Cross-branch student intelligence, AI risk prediction, teacher performance leaderboards — the owner control tower for modern institutions.',
+    canonical: 'https://edullent.com/owner',
+  });
   return (
     <div className="owner-page-sf min-h-screen pt-28 pb-20" style={{ background: '#f5f5f7' }}>
       <style dangerouslySetInnerHTML={{ __html: `

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /admin/
+Disallow: /_preview/
+
+Sitemap: https://edullent.com/sitemap.xml

@@ -1,10 +1,12 @@
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
+import DashboardLinks from '../components/DashboardLinks';
 import RoleScrollShowcase from '../components/RoleScrollShowcase';
 import PortalShowcase from '../components/PortalShowcase';
 import USPs from '../components/USPs';
 import Pricing from '../components/Pricing';
 import { Tilt3D } from '../components/ui/tilt-3d';
+import { useSeo } from '../lib/useSeo';
 
 const HeroShowcase = () => (
   <section className="py-20 md:py-28 bg-[#fbfbfd]">
@@ -30,12 +32,21 @@ const HeroShowcase = () => (
 );
 
 const HomePage = () => {
+  useSeo({
+    title: 'EDULLENT – Advanced Intelligence System for Modern Institutions',
+    description:
+      'Edullent is the intelligence layer between a school and its data — AI-powered dashboards for Owners, Principals, Teachers and Parents. One platform, every role.',
+    canonical: 'https://edullent.com',
+    ogImage: 'https://edullent.com/dashboards/hero-mockup.png',
+  });
+
   return (
     <div className="bg-[#fbfbfd]">
       {/* Spacer clears the fixed navbar above the hero. */}
       <div className="pt-[60px] md:pt-[72px]" />
       <Hero />
       <HeroShowcase />
+      <DashboardLinks />
       <RoleScrollShowcase />
       <PortalShowcase />
       <USPs />
