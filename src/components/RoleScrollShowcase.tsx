@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ContainerScroll } from './ui/container-scroll-animation';
-import OwnerBrandLeaderboardScreen from './OwnerBrandLeaderboardScreen';
 import PrincipalDashboardScreen from './PrincipalDashboardScreen';
 import TeacherPerformanceScreen from './TeacherPerformanceScreen';
 import ParentPerformanceScreen from './ParentPerformanceScreen';
@@ -13,7 +12,12 @@ import { Sparkles, ArrowRight } from 'lucide-react';
 const RoleScrollShowcase = () => (
   <section className="bg-[#fbfbfd]">
     <ContainerScroll titleComponent={<Title eyebrow="For Owners" headline="See every campus at a glance." brand="#0071e3" />}>
-      <OwnerBrandLeaderboardScreen />
+      <img
+        src="/dashboards/owner-branch-leaderboard.png"
+        alt="Edullent Owner Dashboard — Branch Leaderboard"
+        className="w-full h-full object-cover object-top"
+        draggable={false}
+      />
     </ContainerScroll>
     <RoleCta to="/owner" label="Explore Owner Dashboard" brand="#0071e3" />
 
