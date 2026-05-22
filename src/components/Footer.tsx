@@ -20,14 +20,30 @@ const LEGAL_LINKS = [
   { label: 'Legal',          to: '/legal' },
 ];
 
+const RESOURCE_LINKS = [
+  { label: 'Education Intelligence Platform', to: '/education-intelligence-platform' },
+  { label: 'What is Edullent',                to: '/what-is-edullent' },
+  { label: 'School ERP vs Intelligence',      to: '/school-erp-vs-education-intelligence' },
+  { label: 'Insights',                        to: '/insights' },
+  { label: 'Research',                        to: '/research' },
+  { label: 'About',                           to: '/about/edullent' },
+];
+
+const ROLE_PAGE_LINKS = [
+  { label: 'For School Owners', to: '/for-school-owners' },
+  { label: 'For Principals',    to: '/for-principals' },
+  { label: 'For Teachers',      to: '/for-teachers' },
+  { label: 'For Parents',       to: '/for-parents' },
+];
+
 const Footer = () => {
   return (
     <footer className="bg-[#f5f5f7] border-t border-[#d2d2d7]/60">
       {/* Links section */}
-      <div className="max-w-[980px] mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 text-center md:text-left">
+      <div className="max-w-[1180px] mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 text-center md:text-left">
           {/* Brand */}
-          <div className="space-y-4">
+          <div className="space-y-4 lg:col-span-2">
             <div className="flex items-center gap-2 justify-center md:justify-start">
               <img
                 src="/edullent-icon.png"
@@ -69,6 +85,34 @@ const Footer = () => {
             </ul>
           </div>
 
+          {/* Resources — Phase 1 SEO content links (soft discoverability) */}
+          <div>
+            <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Resources</h4>
+            <ul className="space-y-3">
+              {RESOURCE_LINKS.map(l => (
+                <li key={l.to}>
+                  <Link to={l.to} className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* For your role */}
+          <div>
+            <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">For your role</h4>
+            <ul className="space-y-3">
+              {ROLE_PAGE_LINKS.map(l => (
+                <li key={l.to}>
+                  <Link to={l.to} className="text-[#424245] hover:text-[#1d1d1f] text-[12px] transition-colors duration-300">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* Contact */}
           <div>
             <h4 className="text-[#1d1d1f] font-normal text-[12px] mb-4 tracking-[-0.01em]">Contact</h4>
@@ -98,7 +142,7 @@ const Footer = () => {
 
       {/* Bottom bar */}
       <div className="border-t border-[#d2d2d7]/60">
-        <div className="max-w-[980px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-3">
+        <div className="max-w-[1180px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-3">
           <p className="text-[#86868b] text-[12px] text-center md:text-left">
             Copyright &copy; {new Date().getFullYear()} <span className="font-mokoto">Edullent</span>. All rights reserved.
           </p>
