@@ -6,7 +6,6 @@ import {
   Inbox,
   Loader2,
   ArrowUpRight,
-  HeartHandshake,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { collection, onSnapshot, query, orderBy, limit, where } from 'firebase/firestore';
@@ -25,8 +24,6 @@ interface SchoolDoc {
 export default function AdminOverview() {
   const [schools, setSchools] = useState<SchoolDoc[] | null>(null);
   const [pendingRequests, setPendingRequests] = useState(0);
-  const [parentTotal, setParentTotal] = useState(0);
-  const [parentNew, setParentNew] = useState(0);
 
   useEffect(() => {
     const q = query(collection(db, 'schools'), orderBy('createdAt', 'desc'), limit(200));
@@ -51,24 +48,6 @@ export default function AdminOverview() {
       (err) => {
         console.warn('[overview] requests subscribe failed:', err);
         setPendingRequests(0);
-      },
-    );
-    return unsub;
-  }, []);
-
-  useEffect(() => {
-    const unsub = onSnapshot(
-      collection(db, 'interested_parents'),
-      (snap) => {
-        setParentTotal(snap.size);
-        setParentNew(
-          snap.docs.filter((d) => ((d.data() as { status?: string }).status ?? 'new') === 'new').length,
-        );
-      },
-      (err) => {
-        console.warn('[overview] parents subscribe failed:', err);
-        setParentTotal(0);
-        setParentNew(0);
       },
     );
     return unsub;
@@ -116,24 +95,6 @@ export default function AdminOverview() {
             hint={pendingRequests > 0 ? 'Tap to review' : 'All caught up'}
             tone={pendingRequests > 0 ? 'danger' : 'default'}
             icon={<Inbox className="w-5 h-5" />}
-          />
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <Link to="/admin/parents" className="block sm:col-span-2 lg:col-span-1">
-          <StatCard
-            label="Interested schools"
-            value={parentTotal}
-            hint={
-              parentNew > 0
-                ? `${parentNew} new — tap to follow up`
-                : parentTotal > 0
-                ? 'All caught up'
-                : 'No enquiries yet'
-            }
-            tone={parentNew > 0 ? 'danger' : parentTotal > 0 ? 'success' : 'default'}
-            icon={<HeartHandshake className="w-5 h-5" />}
           />
         </Link>
       </div>

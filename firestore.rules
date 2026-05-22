@@ -1036,68 +1036,6 @@ service cloud.firestore {
       allow delete: if isPlatformSuper();
     }
 
-    // ── Interested-parent enquiries (main-website header CTA) ─────────
-    //   Anyone (unauthenticated) can submit from the public header modal.
-    //   Platform admins read/list/manage; only platform-superadmin can
-    //   hard-delete. Strict schema validation + size caps prevent spam
-    //   payload abuse. Email is optional — name, phone, schoolName required.
-    match /interested_parents/{docId} {
-      allow get, list: if isPlatformAdmin();
-
-      allow create: if request.resource.data.keys().hasOnly([
-                        'name','phone','schoolName','email',
-                        'status','createdAt'
-                      ])
-                    && request.resource.data.keys().hasAll([
-                        'name','phone','schoolName','status','createdAt'
-                      ])
-                    && request.resource.data.name is string
-                    && request.resource.data.name.size() > 0
-                    && request.resource.data.name.size() <= 200
-                    && request.resource.data.phone is string
-                    && request.resource.data.phone.size() > 0
-                    && request.resource.data.phone.size() <= 40
-                    && request.resource.data.schoolName is string
-                    && request.resource.data.schoolName.size() > 0
-                    && request.resource.data.schoolName.size() <= 300
-                    && (!('email' in request.resource.data)
-                        || (request.resource.data.email is string
-                            && request.resource.data.email.size() <= 300))
-                    && request.resource.data.status == 'new'
-                    && request.resource.data.createdAt is timestamp;
-
-      allow update: if isPlatformAdmin()
-                    && request.resource.data.diff(resource.data).affectedKeys()
-                         .hasOnly(['status','statusUpdatedAt'])
-                    && request.resource.data.status in ['new','contacted','closed'];
-
-      allow delete: if isPlatformSuper();
-    }
-
-    // ── Public counter — interested-parent submission tally ─────────
-    //   Single doc /public_stats/interested_parents holds { count: int }.
-    //   Public GET so the home-page banner can show social proof; LIST
-    //   denied. WRITE is paired with /interested_parents creation: anyone
-    //   can create the doc (must start at 1) or update by exactly +1 —
-    //   no other field changes, no decrements, no arbitrary values, no
-    //   delete. This protects the counter from spam-decrement / reset
-    //   while keeping the marketing display simple (no Cloud Function
-    //   required).
-    match /public_stats/{docId} {
-      allow get:    if docId == 'interested_parents';
-      allow list:   if false;
-      allow create: if docId == 'interested_parents'
-                    && request.resource.data.keys().hasOnly(['count'])
-                    && request.resource.data.count is int
-                    && request.resource.data.count == 1;
-      allow update: if docId == 'interested_parents'
-                    && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['count'])
-                    && request.resource.data.count is int
-                    && resource.data.count is int
-                    && request.resource.data.count == resource.data.count + 1;
-      allow delete: if false;
-    }
-
     match /accessRequests/{requestId} {
       allow get:  if signedIn() && (requestId == uid() || isPlatformAdmin());
       allow list: if isPlatformAdmin();

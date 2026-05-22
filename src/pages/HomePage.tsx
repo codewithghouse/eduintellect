@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
-import InterestedParentBar from '../components/InterestedParentBar';
 import RoleScrollShowcase from '../components/RoleScrollShowcase';
 import PortalShowcase from '../components/PortalShowcase';
 import USPs from '../components/USPs';
@@ -33,11 +32,8 @@ const HeroShowcase = () => (
 const HomePage = () => {
   return (
     <div className="bg-[#fbfbfd]">
-      {/* CTA banner — sits BELOW the fixed navbar (top padding clears the
-          header) but is its own component so it isn't tied to header chrome. */}
-      <div className="pt-[60px] md:pt-[72px]">
-        <InterestedParentBar />
-      </div>
+      {/* Spacer clears the fixed navbar above the hero. */}
+      <div className="pt-[60px] md:pt-[72px]" />
       <Hero />
       <HeroShowcase />
       <RoleScrollShowcase />
