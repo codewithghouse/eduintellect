@@ -14,12 +14,7 @@ interface Tier {
   name: string;
   tagline: string;
   icon: ReactNode;
-  launchPrice: number;        // ₹ per student / year (LAUNCH)
-  regularPrice: number;       // ₹ per student / year (regular, struck through)
-  perStudentMonth: number;    // ₹ per student / month (LAUNCH)
   schoolSize: string;
-  perSchoolYearRange: string;
-  perSchoolMonthRange: string;
   bestFor: string;
   brand: string;
   iconBg: string;
@@ -36,7 +31,7 @@ const buildWhatsAppLink = (planName: string) => {
 // Dashboard USPs shared across every plan — every school gets the full
 // feature set regardless of tier. Backend enforces per-plan limits
 // (AI run counts, storage caps, WhatsApp credits, support tier, etc.).
-// Plans are differentiated PUBLICLY only by student-count band + price —
+// Plans are differentiated PUBLICLY only by student-count band —
 // scale-tier limits stay internal so the customer never sees a "5 runs"
 // kind of number on their quote.
 const DASHBOARD_USPS: Feature[] = [
@@ -99,12 +94,7 @@ const TIERS: Tier[] = [
     name: 'Starter',
     tagline: 'Small Schools',
     icon: <GraduationCap className="w-5 h-5" />,
-    launchPrice: 1500,
-    regularPrice: 2500,
-    perStudentMonth: 125,
     schoolSize: '100 – 500 students',
-    perSchoolYearRange: '₹1.5 L – ₹7.5 L / year',
-    perSchoolMonthRange: '₹12.5 K – ₹62.5 K / month',
     bestFor: 'Small private schools, primary-only schools, new institutions',
     brand: '#FF9500',
     iconBg: '#FFF4E0',
@@ -114,12 +104,7 @@ const TIERS: Tier[] = [
     name: 'Growth',
     tagline: 'Mid-Size Schools',
     icon: <Star className="w-5 h-5" />,
-    launchPrice: 1200,
-    regularPrice: 2000,
-    perStudentMonth: 100,
     schoolSize: '501 – 1,500 students',
-    perSchoolYearRange: '₹6 L – ₹18 L / year',
-    perSchoolMonthRange: '₹50 K – ₹1.5 L / month',
     bestFor: 'Mid-size CBSE / ICSE / State Board schools',
     brand: '#0055FF',
     iconBg: '#E5EDFF',
@@ -130,12 +115,7 @@ const TIERS: Tier[] = [
     name: 'Enterprise',
     tagline: 'Large Schools / Chains',
     icon: <Sparkles className="w-5 h-5" />,
-    launchPrice: 900,
-    regularPrice: 1500,
-    perStudentMonth: 75,
     schoolSize: '1,500+ students',
-    perSchoolYearRange: '₹13.5 L+ / year',
-    perSchoolMonthRange: '₹1.12 L+ / month',
     bestFor: 'Large schools, school chains, premium institutions',
     brand: '#7B3FF4',
     iconBg: '#F2EBFF',
@@ -143,22 +123,9 @@ const TIERS: Tier[] = [
   },
 ];
 
-const formatINR = (n: number) => n.toLocaleString('en-IN');
-
 const Pricing = () => (
   <section id="pricing" className="py-24 md:py-28 bg-[#fbfbfd] relative overflow-hidden">
     <div className="max-w-[1200px] mx-auto px-6">
-      {/* Launch banner */}
-      <div className="flex justify-center mb-6">
-        <div
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[12px] font-medium tracking-[0.08em] uppercase text-white"
-          style={{ background: 'linear-gradient(135deg, #FF3B30, #FF8800)', boxShadow: '0 6px 18px rgba(255,59,48,0.30)' }}
-        >
-          <Sparkles className="w-3.5 h-3.5" />
-          Launch offer · 40 % off · limited time
-        </div>
-      </div>
-
       {/* Header */}
       <div className="text-center mb-16">
         <p className="text-[14px] font-normal tracking-[-0.01em] mb-3" style={{ color: '#0055FF' }}>
@@ -182,7 +149,7 @@ const Pricing = () => (
 
       {/* Trust line */}
       <p className="text-center text-[13px] text-[#86868b] mt-10 font-light tracking-[0.005em]">
-        All prices in INR · GST extra · No setup fee · Cancel anytime · Volume discounts on Enterprise
+        No setup fee · Cancel anytime · Custom pricing on request
       </p>
     </div>
   </section>
@@ -190,7 +157,6 @@ const Pricing = () => (
 
 const PricingCard = ({ tier }: { tier: Tier }) => {
   const popular = !!tier.popular;
-  const savePerStudent = tier.regularPrice - tier.launchPrice;
 
   return (
     <div className="relative">
@@ -237,36 +203,7 @@ const PricingCard = ({ tier }: { tier: Tier }) => {
           {tier.name}
         </p>
         <p className="text-[14px] font-normal text-[#1d1d1f] mb-1">{tier.tagline}</p>
-        <p className="text-[13px] font-normal text-[#86868b] mb-5">{tier.schoolSize}</p>
-
-        {/* Price block */}
-        <div className="mb-5 pb-5 border-b border-[#f0f0f2]">
-          {/* Strike + save */}
-          <div className="flex items-center gap-2 mb-1">
-            <span className="text-[13px] font-normal text-[#86868b] line-through">
-              ₹{formatINR(tier.regularPrice)}
-            </span>
-            <span
-              className="text-[10px] font-medium tracking-[0.10em] uppercase px-1.5 py-0.5 rounded text-white"
-              style={{ background: tier.brand }}
-            >
-              40 % off
-            </span>
-          </div>
-
-          {/* Big launch price */}
-          <div className="flex items-baseline gap-1">
-            <span className="text-[20px] font-normal text-[#1d1d1f] tracking-[-0.02em] self-start mt-2">₹</span>
-            <span className="text-[52px] font-light text-[#1d1d1f] tracking-[-0.04em] leading-none">
-              {formatINR(tier.launchPrice)}
-            </span>
-            <span className="text-[14px] font-normal text-[#86868b] ml-1">/ student / yr</span>
-          </div>
-
-          <p className="text-[12px] font-normal text-[#86868b] mt-2 tracking-[0.005em]">
-            ₹{tier.perStudentMonth} per student / month · save ₹{formatINR(savePerStudent)} per student / yr
-          </p>
-        </div>
+        <p className="text-[13px] font-normal text-[#86868b] mb-5 pb-5 border-b border-[#f0f0f2]">{tier.schoolSize}</p>
 
         {/* Best for */}
         <div
