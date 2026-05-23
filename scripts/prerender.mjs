@@ -15,7 +15,7 @@ import { createServer } from 'node:http';
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { chromium } from 'playwright';
+import { chromium } from 'playwright-core';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -86,9 +86,25 @@ async function readRoutes() {
 await new Promise((resolve) => server.listen(PORT, resolve));
 console.log(`prerender: dev server on ${ORIGIN}`);
 
-const browser = await chromium.launch({
-  args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-});
+const SANDBOX_FLAGS = ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'];
+
+async function getLaunchOptions() {
+  // Vercel / Lambda: Vercel's Linux image lacks the system libs Chromium needs
+  // (libnspr4, libnss3, etc.). @sparticuz/chromium ships a Lambda-compatible
+  // Chromium binary with those libs bundled.
+  if (process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+    const sparticuz = (await import('@sparticuz/chromium')).default;
+    return {
+      args: [...sparticuz.args, ...SANDBOX_FLAGS],
+      executablePath: await sparticuz.executablePath(),
+      headless: true,
+    };
+  }
+  // Local dev: rely on the system / playwright-installed Chromium.
+  return { args: SANDBOX_FLAGS };
+}
+
+const browser = await chromium.launch(await getLaunchOptions());
 const context = await browser.newContext({
   userAgent:
     'Mozilla/5.0 (compatible; EdullentPrerender/1.0; +https://edullent.com)',
