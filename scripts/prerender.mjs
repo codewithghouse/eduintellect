@@ -120,9 +120,13 @@ let fail = 0;
 for (const route of routes) {
   const page = await context.newPage();
   try {
-    await page.goto(`${ORIGIN}${route}`, { waitUntil: 'networkidle', timeout: 30_000 });
-    // Give the Seo component's useEffect one tick to inject schema/meta
-    await page.waitForTimeout(400);
+    // 'load' (window.onload) is more reliable than 'networkidle' here because
+    // index.html loads Razorpay's checkout.js and Firebase opens a long-lived
+    // WebChannel — neither lets the network reach idle.
+    await page.goto(`${ORIGIN}${route}`, { waitUntil: 'load', timeout: 60_000 });
+    // Give React + the Seo component's useEffect time to mount and inject
+    // title / meta / JSON-LD schema into <head>.
+    await page.waitForTimeout(1500);
     const html = await page.content();
 
     const outDir = route === '/' ? DIST : path.join(DIST, route.replace(/^\/+/, ''));
