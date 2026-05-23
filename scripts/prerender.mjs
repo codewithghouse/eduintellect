@@ -86,7 +86,9 @@ async function readRoutes() {
 await new Promise((resolve) => server.listen(PORT, resolve));
 console.log(`prerender: dev server on ${ORIGIN}`);
 
-const browser = await chromium.launch();
+const browser = await chromium.launch({
+  args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+});
 const context = await browser.newContext({
   userAgent:
     'Mozilla/5.0 (compatible; EdullentPrerender/1.0; +https://edullent.com)',
