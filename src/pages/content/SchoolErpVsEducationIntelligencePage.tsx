@@ -71,9 +71,9 @@ const ROWS = [
 
 const RELATED = [
   { to: '/education-intelligence-platform', title: 'Education Intelligence Platform', description: 'The flagship view of the category.' },
-  { to: '/what-is-edullent', title: 'What is Edullent', description: 'The platform, the philosophy, who it serves.' },
+  { to: '/use-cases', title: 'Use cases', description: 'Concrete operational shapes that ERPs cannot address.' },
+  { to: '/customers', title: 'Customer stories', description: 'Pilot schools that moved off the ERP framing — and what changed.' },
   { to: '/best-school-management-software-india', title: 'Best School Management Software in India', description: 'Evaluation criteria for modern institutions.' },
-  { to: '/future-of-school-management', title: 'The Future of School Management', description: 'Where school operations are heading.' },
 ];
 
 const SchoolErpVsEducationIntelligencePage = () => (

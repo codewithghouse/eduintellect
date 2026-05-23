@@ -24,6 +24,8 @@ const RESOURCE_LINKS = [
   { label: 'Education Intelligence Platform', to: '/education-intelligence-platform' },
   { label: 'What is Edullent',                to: '/what-is-edullent' },
   { label: 'School ERP vs Intelligence',      to: '/school-erp-vs-education-intelligence' },
+  { label: 'Use Cases',                       to: '/use-cases' },
+  { label: 'Customers',                       to: '/customers' },
   { label: 'Insights',                        to: '/insights' },
   { label: 'Research',                        to: '/research' },
   { label: 'About',                           to: '/about/edullent' },

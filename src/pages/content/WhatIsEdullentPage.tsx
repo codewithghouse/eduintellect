@@ -81,9 +81,9 @@ const SERVES = [
 
 const RELATED = [
   { to: '/education-intelligence-platform', title: 'Education Intelligence Platform', description: 'The category Edullent operates in.' },
-  { to: '/about/edullent', title: 'About Edullent', description: 'The team, the mission, the founding story.' },
+  { to: '/use-cases', title: 'Use cases', description: 'The six operational shapes Edullent addresses.' },
+  { to: '/customers', title: 'Customer stories', description: 'How Pilot Schools A, B and C run on Edullent.' },
   { to: '/school-erp-vs-education-intelligence', title: 'School ERP vs Education Intelligence', description: 'Where traditional software stops.' },
-  { to: '/for-school-owners', title: 'For School Owners', description: 'Multi-branch intelligence built for chairmen.' },
 ];
 
 const WhatIsEdullentPage = () => (

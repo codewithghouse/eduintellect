@@ -52,8 +52,8 @@ const CAPABILITIES = [
 
 const RELATED = [
   { to: '/teacher', title: 'Teacher Dashboard preview', description: 'Walk through the actual dashboard.' },
-  { to: '/education-intelligence-platform', title: 'Education Intelligence Platform', description: 'The category Edullent operates in.' },
-  { to: '/for-principals', title: 'For Principals', description: 'How the principal supports faculty on Edullent.' },
+  { to: '/use-cases/attendance', title: 'Attendance use case', description: 'One-tap class attendance and what it triggers downstream.' },
+  { to: '/use-cases/reporting', title: 'Reporting use case', description: 'No more re-typing marks into report templates.' },
   { to: '/insights/ai-in-school-administration', title: 'AI in school administration — practical, not hype', description: 'How AI actually changes a teacher\'s day.' },
 ];
 

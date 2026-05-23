@@ -50,6 +50,11 @@ import ResearchArticlesPage from './pages/content/research/ResearchArticlesPage'
 import ResearchReportsPage from './pages/content/research/ResearchReportsPage';
 import ResearchTrendsPage from './pages/content/research/ResearchTrendsPage';
 
+// Content / SEO pages — Phase 3 (customers + use cases)
+import CustomersPage from './pages/content/CustomersPage';
+import UseCasesIndexPage from './pages/content/use-cases/UseCasesIndexPage';
+import UseCasePage from './pages/content/use-cases/UseCasePage';
+
 import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminLayout from './components/admin/AdminLayout';
 import ProtectedAdminRoute from './components/admin/ProtectedAdminRoute';
@@ -138,6 +143,11 @@ function App() {
             <Route path="/research/articles"                   element={<ResearchArticlesPage />} />
             <Route path="/research/reports"                    element={<ResearchReportsPage />} />
             <Route path="/research/trends"                     element={<ResearchTrendsPage />} />
+
+            {/* ── Content / SEO routes — Phase 3 (customers + use cases) ─ */}
+            <Route path="/customers"                           element={<CustomersPage />} />
+            <Route path="/use-cases"                           element={<UseCasesIndexPage />} />
+            <Route path="/use-cases/:slug"                     element={<UseCasePage />} />
 
             <Route path="/_preview/owner-dashboard" element={<IPadPreview><OwnerDashboardIPad /></IPadPreview>} />
             <Route path="/_preview/teacher-summarize" element={<IPadPreview><TeacherSummarizeLessonIPad /></IPadPreview>} />

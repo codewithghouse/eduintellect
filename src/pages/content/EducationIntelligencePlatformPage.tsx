@@ -127,10 +127,10 @@ const COMPARISON_ROWS = [
 ];
 
 const RELATED = [
+  { to: '/use-cases', title: 'Use cases', description: 'Browse the platform by the operational problem you want to solve.' },
+  { to: '/customers', title: 'Customer stories', description: 'How Pilot Schools A, B and C run on the intelligence layer.' },
   { to: '/what-is-edullent', title: 'What is Edullent', description: 'The platform, the philosophy, who it serves.' },
   { to: '/school-erp-vs-education-intelligence', title: 'School ERP vs Education Intelligence', description: 'Where traditional software stops and intelligence begins.' },
-  { to: '/for-school-owners', title: 'For School Owners', description: 'Multi-branch intelligence built for chairmen and groups.' },
-  { to: '/for-principals', title: 'For Principals', description: 'Daily operating intelligence for the people running the school.' },
 ];
 
 const EducationIntelligencePlatformPage = () => (

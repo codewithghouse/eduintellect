@@ -40,6 +40,7 @@ export interface PublicRoute {
 }
 
 const TODAY = '2026-05-22';
+const PHASE_3 = '2026-05-23';
 
 export const PUBLIC_ROUTES: PublicRoute[] = [
   // ── Core ────────────────────────────────────────────────────────────
@@ -76,6 +77,18 @@ export const PUBLIC_ROUTES: PublicRoute[] = [
   { path: '/education-operating-system',            title: 'Education Operating System',                breadcrumbLabel: 'Education Operating System',                priority: 0.7,  changefreq: 'monthly', lastmod: TODAY, group: 'search-capture' },
   { path: '/school-analytics-platform',             title: 'School Analytics Platform',                 breadcrumbLabel: 'School Analytics Platform',                 priority: 0.7,  changefreq: 'monthly', lastmod: TODAY, group: 'search-capture' },
   { path: '/student-intelligence-platform',         title: 'Student Intelligence Platform',             breadcrumbLabel: 'Student Intelligence Platform',             priority: 0.7,  changefreq: 'monthly', lastmod: TODAY, group: 'search-capture' },
+
+  // ── Customers (Phase 3) ─────────────────────────────────────────────
+  { path: '/customers', title: 'Customers — How Schools Run on Edullent', breadcrumbLabel: 'Customers', priority: 0.85, changefreq: 'monthly', lastmod: PHASE_3, group: 'customers' },
+
+  // ── Use cases (Phase 3) ─────────────────────────────────────────────
+  { path: '/use-cases',                         title: 'Use Cases',          breadcrumbLabel: 'Use Cases',          priority: 0.85, changefreq: 'monthly', lastmod: PHASE_3, group: 'use-cases' },
+  { path: '/use-cases/student-performance',     title: 'Student Performance Intelligence',  breadcrumbLabel: 'Student Performance', priority: 0.75, changefreq: 'monthly', lastmod: PHASE_3, group: 'use-cases' },
+  { path: '/use-cases/attendance',              title: 'Digital Attendance Intelligence',   breadcrumbLabel: 'Attendance',          priority: 0.75, changefreq: 'monthly', lastmod: PHASE_3, group: 'use-cases' },
+  { path: '/use-cases/communication',           title: 'Parent Communication',              breadcrumbLabel: 'Parent Communication', priority: 0.75, changefreq: 'monthly', lastmod: PHASE_3, group: 'use-cases' },
+  { path: '/use-cases/analytics',               title: 'School Analytics Platform',         breadcrumbLabel: 'School Analytics',     priority: 0.75, changefreq: 'monthly', lastmod: PHASE_3, group: 'use-cases' },
+  { path: '/use-cases/operations',              title: 'School Operations',                 breadcrumbLabel: 'Operations',           priority: 0.75, changefreq: 'monthly', lastmod: PHASE_3, group: 'use-cases' },
+  { path: '/use-cases/reporting',               title: 'Automated School Reporting',        breadcrumbLabel: 'Reporting',            priority: 0.75, changefreq: 'monthly', lastmod: PHASE_3, group: 'use-cases' },
 
   // ── Contact + features + legal (existing, included for completeness) ──
   { path: '/contact', title: 'Contact', breadcrumbLabel: 'Contact', priority: 0.7, changefreq: 'monthly', lastmod: TODAY, group: 'core' },

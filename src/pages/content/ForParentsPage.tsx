@@ -52,8 +52,8 @@ const CAPABILITIES = [
 
 const RELATED = [
   { to: '/parent', title: 'Parent Dashboard preview', description: 'Walk through the actual dashboard.' },
-  { to: '/education-intelligence-platform', title: 'Education Intelligence Platform', description: 'The category Edullent operates in.' },
-  { to: '/for-teachers', title: 'For Teachers', description: 'How teachers communicate with parents on Edullent.' },
+  { to: '/use-cases/communication', title: 'Parent communication use case', description: 'Why Parent Connect replaces the class WhatsApp group.' },
+  { to: '/customers', title: 'Customer stories', description: 'How Pilot School C ran the parent-facing layer with zero child-facing UI.' },
   { to: '/insights/why-student-analytics-is-the-new-attendance', title: 'Why student analytics is the new attendance', description: 'How modern schools track what really matters.' },
 ];
 
