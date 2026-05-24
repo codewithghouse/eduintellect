@@ -51,6 +51,8 @@ export const PUBLIC_ROUTES: PublicRoute[] = [
   { path: '/principal', title: 'Principal Dashboard', breadcrumbLabel: 'Principal Dashboard', priority: 0.85, changefreq: 'monthly', lastmod: TODAY, group: 'role-product' },
   { path: '/teacher',   title: 'Teacher Dashboard',   breadcrumbLabel: 'Teacher Dashboard',   priority: 0.85, changefreq: 'monthly', lastmod: TODAY, group: 'role-product' },
   { path: '/parent',    title: 'Parent Dashboard',    breadcrumbLabel: 'Parent Dashboard',    priority: 0.85, changefreq: 'monthly', lastmod: TODAY, group: 'role-product' },
+  { path: '/pre-primary-teacher', title: 'Pre-Primary Teacher Dashboard', breadcrumbLabel: 'Pre-Primary Teacher Dashboard', priority: 0.85, changefreq: 'monthly', lastmod: '2026-05-24', group: 'role-product' },
+  { path: '/pre-primary-parent',  title: 'Pre-Primary Parent Dashboard',  breadcrumbLabel: 'Pre-Primary Parent Dashboard',  priority: 0.85, changefreq: 'monthly', lastmod: '2026-05-24', group: 'role-product' },
 
   // ── Category foundation ─────────────────────────────────────────────
   { path: '/education-intelligence-platform', title: 'Education Intelligence Platform', breadcrumbLabel: 'Education Intelligence Platform', priority: 0.95, changefreq: 'monthly', lastmod: TODAY, group: 'category' },

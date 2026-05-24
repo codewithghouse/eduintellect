@@ -10,6 +10,8 @@ import OwnerDashboard from './pages/OwnerDashboard';
 import PrincipalDashboard from './pages/PrincipalDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import StudentParentDashboard from './pages/StudentParentDashboard';
+import PrePrimaryTeacherDashboard from './pages/PrePrimaryTeacherDashboard';
+import PrePrimaryParentDashboard from './pages/PrePrimaryParentDashboard';
 import AIMonitoring from './pages/features/AIMonitoring';
 import DigitalAttendance from './pages/features/DigitalAttendance';
 import ReportGeneration from './pages/features/ReportGeneration';
@@ -102,6 +104,8 @@ function App() {
             <Route path="/principal" element={<PrincipalDashboard />} />
             <Route path="/teacher" element={<TeacherDashboard />} />
             <Route path="/parent" element={<StudentParentDashboard />} />
+            <Route path="/pre-primary-teacher" element={<PrePrimaryTeacherDashboard />} />
+            <Route path="/pre-primary-parent" element={<PrePrimaryParentDashboard />} />
             <Route path="/student-parent" element={<Navigate to="/parent" replace />} />
 
             {/* Feature pages (linked from footer) */}
