@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {
   collection,
   onSnapshot,
-  orderBy,
   query,
   where,
 } from 'firebase/firestore';
@@ -17,8 +16,20 @@ interface PublishedArticle {
   excerpt?: string;
   coverImage?: string;
   images?: string[];
-  publishedAt?: { toDate?: () => Date } | null;
+  publishedAt?: { toDate?: () => Date; seconds?: number } | null;
   authorName?: string;
+}
+
+function publishedMs(a: PublishedArticle): number {
+  const v = a.publishedAt;
+  if (!v) return 0;
+  try {
+    if (typeof v.toDate === 'function') return v.toDate().getTime();
+  } catch {
+    /* fall through */
+  }
+  if (typeof v.seconds === 'number') return v.seconds * 1000;
+  return 0;
 }
 
 function fmtDate(value: PublishedArticle['publishedAt']): string {
@@ -36,14 +47,21 @@ export default function ArticlesIndexPage() {
   const [articles, setArticles] = useState<PublishedArticle[] | null>(null);
 
   useEffect(() => {
+    // Plain where() with no orderBy avoids needing a composite index. Client
+    // sorts by publishedAt below — fine because the published set stays small.
     const q = query(
       collection(db, 'articles'),
       where('status', '==', 'published'),
-      orderBy('publishedAt', 'desc'),
     );
     const unsub = onSnapshot(
       q,
-      (snap) => setArticles(snap.docs.map((d) => ({ id: d.id, ...(d.data() as object) }))),
+      (snap) => {
+        const rows = snap.docs.map(
+          (d) => ({ id: d.id, ...(d.data() as object) } as PublishedArticle),
+        );
+        rows.sort((a, b) => publishedMs(b) - publishedMs(a));
+        setArticles(rows);
+      },
       (err) => {
         console.warn('[articles-public] subscribe failed:', err);
         setArticles([]);

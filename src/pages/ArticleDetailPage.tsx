@@ -49,18 +49,21 @@ export default function ArticleDetailPage() {
     setError('');
     (async () => {
       try {
-        // Try slug lookup first (the canonical path).
+        // Slug lookup. Single equality filter — no composite index needed.
+        // Status check happens client-side so we don't depend on a 2-field
+        // composite index existing on the project.
         const q = query(
           collection(db, 'articles'),
           where('slug', '==', slug),
-          where('status', '==', 'published'),
-          limit(1),
+          limit(5),
         );
         const snap = await getDocs(q);
         if (cancelled) return;
-        if (!snap.empty) {
-          const d = snap.docs[0];
-          setArticle({ id: d.id, ...(d.data() as object) });
+        const published = snap.docs.find(
+          (d) => (d.data() as { status?: string }).status === 'published',
+        );
+        if (published) {
+          setArticle({ id: published.id, ...(published.data() as object) });
           setLoading(false);
           return;
         }
