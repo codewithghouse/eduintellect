@@ -93,11 +93,20 @@ async function resolveRole(user: User): Promise<ResolvedRole> {
     if (snap.exists()) {
       const data = snap.data();
       const r = data?.role;
-      if (r === 'superadmin') {
-        return { role: 'superadmin', sections: [...ADMIN_SECTION_KEYS] };
-      }
-      if (r === 'admin') {
-        return { role: 'admin', sections: normalizeSections(data?.sections) };
+      if (r === 'superadmin' || r === 'admin') {
+        // Sections come straight from the doc. Legacy docs (created before
+        // sections existed) have no `sections` field — for those we keep the
+        // old "god mode" behaviour: superadmins see all sections, admins see
+        // none until a superadmin grants them.
+        const hasField = data && Object.prototype.hasOwnProperty.call(data, 'sections');
+        const stored = normalizeSections(data?.sections);
+        const sections =
+          hasField
+            ? stored
+            : r === 'superadmin'
+            ? [...ADMIN_SECTION_KEYS]
+            : [];
+        return { role: r, sections };
       }
     }
   } catch (err) {
@@ -111,10 +120,17 @@ async function resolveRole(user: User): Promise<ResolvedRole> {
       if (inviteSnap.exists()) {
         const data = inviteSnap.data();
         const r: AdminRole = data?.role === 'superadmin' ? 'superadmin' : 'admin';
-        const sections =
-          r === 'superadmin'
-            ? [...ADMIN_SECTION_KEYS]
-            : normalizeSections(data?.sections);
+        // Whatever sections the superadmin picked on the invite — respect it.
+        // If the invite doc literally has no sections field (legacy invite),
+        // default superadmin → all sections, admin → none.
+        const inviteHasField =
+          data && Object.prototype.hasOwnProperty.call(data, 'sections');
+        const stored = normalizeSections(data?.sections);
+        const sections = inviteHasField
+          ? stored
+          : r === 'superadmin'
+          ? [...ADMIN_SECTION_KEYS]
+          : [];
         await setDoc(doc(db, 'admins', user.uid), {
           email,
           displayName: user.displayName ?? null,

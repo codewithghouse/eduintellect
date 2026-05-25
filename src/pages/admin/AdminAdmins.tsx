@@ -63,6 +63,21 @@ export default function AdminAdmins() {
     sections: AdminSectionKey[];
   }>({ email: '', role: 'admin', sections: ['articles'] });
 
+  // When the role changes, swap in a sensible default section set so the
+  // picker isn't blank/stale — superadmins get every section pre-ticked.
+  const setRole = (role: 'admin' | 'superadmin') => {
+    setForm((prev) => ({
+      ...prev,
+      role,
+      sections:
+        role === 'superadmin'
+          ? [...ADMIN_SECTION_KEYS]
+          : prev.sections.length === ADMIN_SECTION_KEYS.length
+          ? ['articles']
+          : prev.sections,
+    }));
+  };
+
   // Section-edit modal state.
   const [editing, setEditing] = useState<AdminDoc | null>(null);
   const [editingSections, setEditingSections] = useState<AdminSectionKey[]>([]);
@@ -109,7 +124,7 @@ export default function AdminAdmins() {
       await setDoc(doc(db, 'admins', id), {
         inviteEmail: email,
         role: form.role,
-        sections: form.role === 'superadmin' ? [...ADMIN_SECTION_KEYS] : form.sections,
+        sections: form.sections,
         invitedBy: user.email ?? user.uid,
         createdAt: serverTimestamp(),
       });
@@ -219,9 +234,7 @@ export default function AdminAdmins() {
                 <label className="text-[12px] font-medium text-[#86868b] ml-1">Role</label>
                 <select
                   value={form.role}
-                  onChange={(e) =>
-                    setForm({ ...form, role: e.target.value as 'admin' | 'superadmin' })
-                  }
+                  onChange={(e) => setRole(e.target.value as 'admin' | 'superadmin')}
                   className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 px-3 text-[14px] outline-none focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition"
                 >
                   <option value="admin">Admin</option>
@@ -243,39 +256,57 @@ export default function AdminAdmins() {
               </button>
             </div>
 
-            {form.role === 'admin' && (
-              <div className="space-y-2">
-                <label className="text-[12px] font-medium text-[#86868b] ml-1 block">
-                  Sections this admin can use
+            <div className="space-y-2">
+              <div className="flex items-center justify-between ml-1">
+                <label className="text-[12px] font-medium text-[#86868b] block">
+                  Sections this {form.role === 'superadmin' ? 'superadmin' : 'admin'} can use
                 </label>
-                <div className="flex flex-wrap gap-1.5">
-                  {ADMIN_SECTIONS.map((s) => {
-                    const on = form.sections.includes(s.key);
-                    return (
-                      <button
-                        type="button"
-                        key={s.key}
-                        onClick={() => toggleFormSection(s.key)}
-                        className={[
-                          'px-3 py-1.5 rounded-full text-[12.5px] border transition',
-                          on
-                            ? 'bg-[#0071e3]/10 text-[#0071e3] border-[#0071e3]/30'
-                            : 'bg-white text-[#424245] border-[#d2d2d7]/60 hover:bg-[#fafafa]',
-                        ].join(' ')}
-                      >
-                        {s.label}
-                      </button>
-                    );
-                  })}
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setForm((prev) => ({ ...prev, sections: [...ADMIN_SECTION_KEYS] }))
+                    }
+                    className="text-[11.5px] text-[#0071e3] hover:underline"
+                  >
+                    Select all
+                  </button>
+                  <span className="text-[11px] text-[#c7c7cc]">·</span>
+                  <button
+                    type="button"
+                    onClick={() => setForm((prev) => ({ ...prev, sections: [] }))}
+                    className="text-[11.5px] text-[#86868b] hover:underline"
+                  >
+                    Clear
+                  </button>
                 </div>
               </div>
-            )}
-
-            {form.role === 'superadmin' && (
-              <div className="text-[12px] text-[#86868b] leading-snug">
-                Superadmins automatically have access to every section.
+              <div className="flex flex-wrap gap-1.5">
+                {ADMIN_SECTIONS.map((s) => {
+                  const on = form.sections.includes(s.key);
+                  return (
+                    <button
+                      type="button"
+                      key={s.key}
+                      onClick={() => toggleFormSection(s.key)}
+                      className={[
+                        'px-3 py-1.5 rounded-full text-[12.5px] border transition',
+                        on
+                          ? 'bg-[#0071e3]/10 text-[#0071e3] border-[#0071e3]/30'
+                          : 'bg-white text-[#424245] border-[#d2d2d7]/60 hover:bg-[#fafafa]',
+                      ].join(' ')}
+                    >
+                      {s.label}
+                    </button>
+                  );
+                })}
               </div>
-            )}
+              {form.role === 'superadmin' && (
+                <div className="text-[11.5px] text-[#86868b] leading-snug ml-1">
+                  Superadmins also keep cross-tenant powers (approve admins, hard-delete, etc.) regardless of section ticks.
+                </div>
+              )}
+            </div>
           </form>
           <p className="mt-3 text-[12px] text-[#86868b] leading-snug">
             Invites are stored as pending records. When the invitee signs in with
@@ -336,22 +367,28 @@ export default function AdminAdmins() {
                     </Badge>
                   </div>
                   <div className="min-w-0">
-                    {isSuperRow ? (
+                    {isSuperRow && a.permanent ? (
                       <span className="text-[12px] text-[#86868b]">All sections</span>
                     ) : sectionList.length === 0 ? (
                       <span className="text-[12px] text-[#a55b00] bg-[#ff9500]/10 border border-[#ff9500]/30 px-2 py-0.5 rounded-full">
-                        none
+                        {isSuperRow ? 'All sections' : 'none'}
                       </span>
                     ) : (
                       <div className="flex flex-wrap gap-1">
-                        {sectionList.map((sk) => (
-                          <span
-                            key={sk}
-                            className="text-[11.5px] bg-[#f5f5f7] text-[#424245] border border-[#d2d2d7]/60 px-2 py-0.5 rounded-full"
-                          >
-                            {ADMIN_SECTIONS.find((x) => x.key === sk)?.label ?? sk}
+                        {sectionList.length === ADMIN_SECTION_KEYS.length ? (
+                          <span className="text-[11.5px] bg-[#0071e3]/10 text-[#0071e3] border border-[#0071e3]/30 px-2 py-0.5 rounded-full">
+                            All sections
                           </span>
-                        ))}
+                        ) : (
+                          sectionList.map((sk) => (
+                            <span
+                              key={sk}
+                              className="text-[11.5px] bg-[#f5f5f7] text-[#424245] border border-[#d2d2d7]/60 px-2 py-0.5 rounded-full"
+                            >
+                              {ADMIN_SECTIONS.find((x) => x.key === sk)?.label ?? sk}
+                            </span>
+                          ))
+                        )}
                       </div>
                     )}
                   </div>
@@ -359,7 +396,7 @@ export default function AdminAdmins() {
                     {formatDate(a.createdAt)}
                   </div>
                   <div className="flex md:justify-end items-center gap-1">
-                    {isSuper && !isSuperRow && !isPending && (
+                    {isSuper && !isPending && !a.permanent && (
                       <button
                         onClick={() => openEdit(a)}
                         className="p-2 rounded-[8px] text-[#86868b] hover:text-[#0071e3] hover:bg-[#0071e3]/5 transition"
