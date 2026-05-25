@@ -11,14 +11,7 @@ import { Sparkles, ArrowRight } from 'lucide-react';
  */
 const RoleScrollShowcase = () => (
   <section className="bg-[#fbfbfd]">
-    <ContainerScroll titleComponent={<Title eyebrow="For Owners" headline="See every campus at a glance." brand="#0071e3" />}>
-      <img
-        src="/dashboards/owner-branch-leaderboard.png"
-        alt="Edullent Owner Dashboard — Branch Leaderboard"
-        className="w-full h-full object-cover object-top"
-        draggable={false}
-      />
-    </ContainerScroll>
+    <OwnerShowcase />
     <RoleCta to="/owner" label="Explore Owner Dashboard" brand="#0071e3" />
 
     <ContainerScroll titleComponent={<Title eyebrow="For Principals" headline="Run your school with intelligence." brand="#003ECC" />}>
@@ -36,6 +29,42 @@ const RoleScrollShowcase = () => (
     </ContainerScroll>
     <RoleCta to="/parent" label="Explore Parent Dashboard" brand="#d97706" />
   </section>
+);
+
+/* ---------------------- Flat Owner showcase (no iPad bezel) ---------------------- */
+const OwnerShowcase = () => (
+  <div className="pt-16 md:pt-28 pb-10 md:pb-20 px-4 md:px-8">
+    <div className="max-w-5xl mx-auto text-center mb-8 md:mb-14">
+      <p
+        className="inline-flex items-center gap-2 text-[14px] md:text-[15px] font-semibold mb-4 tracking-[-0.01em]"
+        style={{ color: '#0071e3' }}
+      >
+        <Sparkles className="w-4 h-4" /> For Owners
+      </p>
+      <h2 className="text-[32px] md:text-[56px] lg:text-[64px] font-light text-[#1d1d1f] leading-[1.05] tracking-[-0.035em] mb-4">
+        See every campus at a glance.
+      </h2>
+      <p className="text-[#86868b] text-[16px] md:text-[18px] max-w-[560px] mx-auto leading-[1.45]">
+        The owner's bird's-eye view — every branch ranked, every metric in one frame.
+      </p>
+    </div>
+    <div className="max-w-[1240px] mx-auto">
+      <div
+        className="relative rounded-2xl md:rounded-3xl overflow-hidden bg-white ring-1 ring-black/[0.06]"
+        style={{
+          boxShadow:
+            '0 30px 80px rgba(15,23,42,0.18), 0 80px 160px rgba(15,23,42,0.12)',
+        }}
+      >
+        <img
+          src="/dashboards/owner-branch-leaderboard.png"
+          alt="Edullent Owner Dashboard — Branch Leaderboard"
+          className="w-full h-auto block"
+          draggable={false}
+        />
+      </div>
+    </div>
+  </div>
 );
 
 /* ---------------------- Per-role CTA below each scroll container ---------------------- */
