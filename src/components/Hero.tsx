@@ -102,7 +102,7 @@ const Hero = () => {
             className="mt-14 md:mt-16 w-full max-w-[640px]"
           >
             <div className="text-[11px] md:text-[12px] uppercase tracking-[0.16em] text-[#86868b] mb-2.5">
-              From the team
+              Articles · From the team
             </div>
             <Link
               to="/articles"
@@ -113,14 +113,23 @@ const Hero = () => {
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <div className="text-left flex-1 min-w-0">
-                  <div className="text-[15.5px] md:text-[17px] font-medium text-[#1d1d1f] tracking-[-0.005em] group-hover:text-[#0071e3] transition-colors">
-                    Notes from inside the platform.
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <span className="text-[15.5px] md:text-[17px] font-medium text-[#1d1d1f] tracking-[-0.005em] group-hover:text-[#0071e3] transition-colors">
+                      Notes from inside the platform.
+                    </span>
+                    <span className="text-[10.5px] md:text-[11px] font-medium uppercase tracking-[0.12em] text-[#0071e3] bg-[#0071e3]/10 border border-[#0071e3]/20 px-2 py-0.5 rounded-full">
+                      Articles
+                    </span>
                   </div>
-                  <div className="text-[12.5px] md:text-[13.5px] text-[#86868b] leading-[1.45] mt-0.5">
+                  <div className="text-[12.5px] md:text-[13.5px] text-[#86868b] leading-[1.45] mt-1">
                     Field reports, product updates and ideas on running modern schools.
                   </div>
                 </div>
-                <ArrowRight className="w-4 h-4 text-[#86868b] group-hover:text-[#0071e3] group-hover:translate-x-0.5 transition-all shrink-0" />
+                <span className="hidden sm:inline-flex items-center gap-1 text-[12.5px] font-medium text-[#0071e3] group-hover:underline shrink-0">
+                  Read articles
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                </span>
+                <ArrowRight className="sm:hidden w-4 h-4 text-[#0071e3] group-hover:translate-x-0.5 transition-transform shrink-0" />
               </div>
             </Link>
           </motion.div>
