@@ -41,6 +41,7 @@ interface ArticleDoc {
   createdAt?: unknown;
   updatedAt?: unknown;
   publishedAt?: unknown;
+  authorUid?: string;
   authorEmail?: string;
   authorName?: string;
 }
@@ -98,8 +99,18 @@ export default function AdminArticles() {
     }
   };
 
-  const canDelete = (a: ArticleDoc) =>
-    isSuper || (user && a.authorEmail && user.email?.toLowerCase() === a.authorEmail.toLowerCase());
+  // Delete gate matches the Firestore rule exactly: superadmin can delete
+  // anything, otherwise only the original author. Email fallback handles
+  // legacy articles created before authorUid started being written.
+  const canDelete = (a: ArticleDoc) => {
+    if (isSuper) return true;
+    if (!user) return false;
+    if (a.authorUid) return a.authorUid === user.uid;
+    if (a.authorEmail && user.email) {
+      return a.authorEmail.toLowerCase() === user.email.toLowerCase();
+    }
+    return false;
+  };
 
   const loading = articles === null;
 
