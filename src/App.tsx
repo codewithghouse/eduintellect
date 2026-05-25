@@ -66,6 +66,10 @@ import AdminSchoolDetail from './pages/admin/AdminSchoolDetail';
 import AdminAdmins from './pages/admin/AdminAdmins';
 import AdminRequests from './pages/admin/AdminRequests';
 import AdminInfo from './pages/admin/AdminInfo';
+import AdminArticles from './pages/admin/AdminArticles';
+import AdminArticleEditor from './pages/admin/AdminArticleEditor';
+import ArticlesIndexPage from './pages/ArticlesIndexPage';
+import ArticleDetailPage from './pages/ArticleDetailPage';
 import ContactPage from './pages/ContactPage';
 
 const IPadPreview = ({ children }: { children: ReactNode }) => (
@@ -153,6 +157,10 @@ function App() {
             <Route path="/use-cases"                           element={<UseCasesIndexPage />} />
             <Route path="/use-cases/:slug"                     element={<UseCasePage />} />
 
+            {/* ── Public articles (admin-authored) ──────────────────────── */}
+            <Route path="/articles"                            element={<ArticlesIndexPage />} />
+            <Route path="/articles/:slug"                      element={<ArticleDetailPage />} />
+
             <Route path="/_preview/owner-dashboard" element={<IPadPreview><OwnerDashboardIPad /></IPadPreview>} />
             <Route path="/_preview/teacher-summarize" element={<IPadPreview><TeacherSummarizeLessonIPad /></IPadPreview>} />
 
@@ -167,11 +175,70 @@ function App() {
               }
             >
               <Route index element={<AdminOverview />} />
-              <Route path="schools" element={<AdminSchools />} />
-              <Route path="schools/:id" element={<AdminSchoolDetail />} />
-              <Route path="requests" element={<AdminRequests />} />
-              <Route path="info" element={<AdminInfo />} />
-              <Route path="admins" element={<AdminAdmins />} />
+              <Route
+                path="schools"
+                element={
+                  <ProtectedAdminRoute section="schools">
+                    <AdminSchools />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="schools/:id"
+                element={
+                  <ProtectedAdminRoute section="schools">
+                    <AdminSchoolDetail />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="requests"
+                element={
+                  <ProtectedAdminRoute section="requests">
+                    <AdminRequests />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="info"
+                element={
+                  <ProtectedAdminRoute section="info">
+                    <AdminInfo />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="admins"
+                element={
+                  <ProtectedAdminRoute section="admins">
+                    <AdminAdmins />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="articles"
+                element={
+                  <ProtectedAdminRoute section="articles">
+                    <AdminArticles />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="articles/new"
+                element={
+                  <ProtectedAdminRoute section="articles">
+                    <AdminArticleEditor />
+                  </ProtectedAdminRoute>
+                }
+              />
+              <Route
+                path="articles/:id"
+                element={
+                  <ProtectedAdminRoute section="articles">
+                    <AdminArticleEditor />
+                  </ProtectedAdminRoute>
+                }
+              />
             </Route>
           </Routes>
         </PublicShell>

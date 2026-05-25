@@ -7,6 +7,7 @@ import {
   Mail,
   ShieldCheck,
   Lock,
+  Sparkles,
 } from 'lucide-react';
 import {
   collection,
@@ -27,6 +28,10 @@ import {
   PageHeader,
   formatDate,
 } from '../../components/admin/ui';
+import {
+  ADMIN_SECTIONS,
+  type AdminSectionKey,
+} from '../../lib/adminSections';
 
 interface RequestDoc {
   id: string;
@@ -46,6 +51,11 @@ export default function AdminRequests() {
   const [requests, setRequests] = useState<RequestDoc[] | null>(null);
   const [busyId, setBusyId] = useState<string | null>(null);
   const [error, setError] = useState('');
+
+  // Approval modal state — which request is being approved + which sections
+  // are ticked.
+  const [approving, setApproving] = useState<RequestDoc | null>(null);
+  const [pickedSections, setPickedSections] = useState<AdminSectionKey[]>([]);
 
   useEffect(() => {
     const q = query(collection(db, 'accessRequests'), orderBy('requestedAt', 'desc'));
@@ -67,25 +77,47 @@ export default function AdminRequests() {
     [requests],
   );
 
-  const accept = async (req: RequestDoc) => {
-    if (!isSuper || !user) return;
-    if (!req.uid) {
+  const openApproval = (req: RequestDoc) => {
+    if (!isSuper) return;
+    setApproving(req);
+    // Sensible default — give every new admin Articles, since that's the
+    // most common reason people request access. Superadmin can untick.
+    setPickedSections(['articles']);
+    setError('');
+  };
+
+  const closeApproval = () => {
+    setApproving(null);
+    setPickedSections([]);
+  };
+
+  const togglePicked = (s: AdminSectionKey) => {
+    setPickedSections((prev) =>
+      prev.includes(s) ? prev.filter((x) => x !== s) : [...prev, s],
+    );
+  };
+
+  const confirmApproval = async () => {
+    if (!isSuper || !user || !approving) return;
+    if (!approving.uid) {
       setError('Request is missing a user id.');
       return;
     }
-    setBusyId(req.id);
+    setBusyId(approving.id);
     setError('');
     try {
-      await setDoc(doc(db, 'admins', req.uid), {
-        email: req.email ?? null,
-        displayName: req.displayName ?? null,
-        photoURL: req.photoURL ?? null,
+      await setDoc(doc(db, 'admins', approving.uid), {
+        email: approving.email ?? null,
+        displayName: approving.displayName ?? null,
+        photoURL: approving.photoURL ?? null,
         role: 'admin',
+        sections: pickedSections,
         approvedBy: user.email ?? user.uid,
         approvedAt: serverTimestamp(),
         createdAt: serverTimestamp(),
       });
-      await deleteDoc(doc(db, 'accessRequests', req.id));
+      await deleteDoc(doc(db, 'accessRequests', approving.id));
+      closeApproval();
     } catch (err) {
       console.error('[requests] accept failed:', err);
       setError('Could not accept request. Check Firestore permissions.');
@@ -208,7 +240,7 @@ export default function AdminRequests() {
                           <X className="w-4 h-4" /> Reject
                         </button>
                         <button
-                          onClick={() => accept(req)}
+                          onClick={() => openApproval(req)}
                           disabled={busy}
                           className="px-3.5 py-2 rounded-[10px] text-[13px] font-medium bg-[#34c759] hover:bg-[#2eb050] text-white transition flex items-center gap-1.5 disabled:opacity-50"
                         >
@@ -236,9 +268,87 @@ export default function AdminRequests() {
         <ShieldCheck className="w-3.5 h-3.5 mt-0.5 shrink-0" />
         <span>
           Accepting a request creates an <code className="text-[11px]">admins/&lt;uid&gt;</code> record
-          with role <strong>admin</strong>. The user gets access on their next sign-in or page load.
+          with role <strong>admin</strong> and the sections you pick. The user gets access on their next sign-in or page load.
         </span>
       </div>
+
+      {/* ── Approval modal ─────────────────────────────────────────────── */}
+      {approving && (
+        <div
+          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm flex items-center justify-center px-4"
+          onClick={closeApproval}
+        >
+          <div
+            className="w-full max-w-[460px] bg-white rounded-[18px] border border-[#d2d2d7]/40 shadow-2xl overflow-hidden"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="px-6 py-5 border-b border-[#d2d2d7]/40">
+              <div className="flex items-center gap-2.5 mb-1">
+                <Sparkles className="w-4 h-4 text-[#0071e3]" />
+                <span className="text-[12px] font-medium uppercase tracking-wider text-[#0071e3]">
+                  Grant admin access
+                </span>
+              </div>
+              <div className="text-[16px] font-medium text-[#1d1d1f] tracking-[-0.01em]">
+                {approving.displayName || approving.email || 'Admin'}
+              </div>
+              <div className="text-[12.5px] text-[#86868b]">{approving.email}</div>
+            </div>
+
+            <div className="px-6 py-5">
+              <div className="text-[13px] text-[#424245] mb-3">
+                Pick which sections this admin can use. Anything left unticked stays hidden in their sidebar.
+              </div>
+              <div className="space-y-1.5">
+                {ADMIN_SECTIONS.map((s) => {
+                  const checked = pickedSections.includes(s.key);
+                  return (
+                    <label
+                      key={s.key}
+                      className={[
+                        'flex items-center gap-3 px-3.5 py-2.5 rounded-[10px] cursor-pointer transition border',
+                        checked
+                          ? 'bg-[#0071e3]/5 border-[#0071e3]/30'
+                          : 'bg-white border-[#d2d2d7]/50 hover:bg-[#fafafa]',
+                      ].join(' ')}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={checked}
+                        onChange={() => togglePicked(s.key)}
+                        className="w-4 h-4 accent-[#0071e3]"
+                      />
+                      <span className="text-[13.5px] text-[#1d1d1f]">{s.label}</span>
+                    </label>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="px-6 pb-5 pt-1 flex items-center justify-end gap-2">
+              <button
+                onClick={closeApproval}
+                className="px-3.5 py-2 rounded-[10px] text-[13px] font-medium border border-[#d2d2d7] text-[#1d1d1f] hover:bg-[#f5f5f7] transition"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={confirmApproval}
+                disabled={busyId === approving.id}
+                className="px-3.5 py-2 rounded-[10px] text-[13px] font-medium bg-[#34c759] hover:bg-[#2eb050] text-white transition flex items-center gap-1.5 disabled:opacity-50"
+              >
+                {busyId === approving.id ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <>
+                    <Check className="w-4 h-4" /> Grant access
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }

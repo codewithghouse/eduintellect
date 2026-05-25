@@ -7,13 +7,19 @@ import {
 } from 'firebase/auth';
 import { deleteDoc, doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { auth, db, googleProvider } from './firebase';
+import {
+  ADMIN_SECTION_KEYS,
+  type AdminSectionKey,
+} from './adminSections';
 
 export type AdminRole = 'superadmin' | 'admin' | null;
 
 interface AuthState {
   user: User | null;
   role: AdminRole;
+  sections: AdminSectionKey[];
   isAdmin: boolean;
+  hasSection: (s: AdminSectionKey) => boolean;
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
@@ -42,7 +48,23 @@ function inviteIdForEmail(email: string): string {
   return `invite_${email.replace(/[^a-z0-9]/g, '_')}`;
 }
 
-async function resolveRole(user: User): Promise<AdminRole> {
+interface ResolvedRole {
+  role: AdminRole;
+  sections: AdminSectionKey[];
+}
+
+function normalizeSections(raw: unknown): AdminSectionKey[] {
+  if (!Array.isArray(raw)) return [];
+  const out: AdminSectionKey[] = [];
+  for (const v of raw) {
+    if (typeof v === 'string' && (ADMIN_SECTION_KEYS as readonly string[]).includes(v)) {
+      out.push(v as AdminSectionKey);
+    }
+  }
+  return out;
+}
+
+async function resolveRole(user: User): Promise<ResolvedRole> {
   const email = user.email?.toLowerCase();
 
   if (email && PERMANENT_SUPERADMIN_EMAILS.includes(email)) {
@@ -62,7 +84,8 @@ async function resolveRole(user: User): Promise<AdminRole> {
     } catch (err) {
       console.warn('[auth] permanent superadmin sync failed:', err);
     }
-    return 'superadmin';
+    // Superadmin implicitly has every section.
+    return { role: 'superadmin', sections: [...ADMIN_SECTION_KEYS] };
   }
 
   try {
@@ -70,7 +93,12 @@ async function resolveRole(user: User): Promise<AdminRole> {
     if (snap.exists()) {
       const data = snap.data();
       const r = data?.role;
-      if (r === 'superadmin' || r === 'admin') return r;
+      if (r === 'superadmin') {
+        return { role: 'superadmin', sections: [...ADMIN_SECTION_KEYS] };
+      }
+      if (r === 'admin') {
+        return { role: 'admin', sections: normalizeSections(data?.sections) };
+      }
     }
   } catch (err) {
     console.warn('[auth] admins lookup failed:', err);
@@ -82,17 +110,22 @@ async function resolveRole(user: User): Promise<AdminRole> {
       const inviteSnap = await getDoc(inviteRef);
       if (inviteSnap.exists()) {
         const data = inviteSnap.data();
-        const r = data?.role === 'superadmin' ? 'superadmin' : 'admin';
+        const r: AdminRole = data?.role === 'superadmin' ? 'superadmin' : 'admin';
+        const sections =
+          r === 'superadmin'
+            ? [...ADMIN_SECTION_KEYS]
+            : normalizeSections(data?.sections);
         await setDoc(doc(db, 'admins', user.uid), {
           email,
           displayName: user.displayName ?? null,
           role: r,
+          sections,
           invitedBy: data?.invitedBy ?? null,
           createdAt: data?.createdAt ?? serverTimestamp(),
           promotedAt: serverTimestamp(),
         });
         await deleteDoc(inviteRef).catch(() => {});
-        return r;
+        return { role: r, sections };
       }
     } catch (err) {
       console.warn('[auth] invite lookup failed:', err);
@@ -111,15 +144,16 @@ async function resolveRole(user: User): Promise<AdminRole> {
     } catch (err) {
       console.warn('[auth] bootstrap write failed (rules?):', err);
     }
-    return 'superadmin';
+    return { role: 'superadmin', sections: [...ADMIN_SECTION_KEYS] };
   }
 
-  return null;
+  return { role: null, sections: [] };
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
   const [role, setRole] = useState<AdminRole>(null);
+  const [sections, setSections] = useState<AdminSectionKey[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -127,9 +161,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       setUser(u);
       if (u) {
         const r = await resolveRole(u);
-        setRole(r);
+        setRole(r.role);
+        setSections(r.sections);
       } else {
         setRole(null);
+        setSections([]);
       }
       setLoading(false);
     });
@@ -147,16 +183,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const refreshRole = async () => {
     if (user) {
       const r = await resolveRole(user);
-      setRole(r);
+      setRole(r.role);
+      setSections(r.sections);
     }
   };
+
+  const hasSection = (s: AdminSectionKey) =>
+    role === 'superadmin' || sections.includes(s);
 
   return (
     <AuthCtx.Provider
       value={{
         user,
         role,
+        sections,
         isAdmin: role === 'admin' || role === 'superadmin',
+        hasSection,
         loading,
         signInWithGoogle,
         signOut,

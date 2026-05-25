@@ -10,10 +10,12 @@ import {
   ExternalLink,
   Inbox,
   Mail,
+  FileText,
 } from 'lucide-react';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useAuth } from '../../lib/auth';
+import type { AdminSectionKey } from '../../lib/adminSections';
 
 interface NavItem {
   to: string;
@@ -21,24 +23,34 @@ interface NavItem {
   icon: ReactNode;
   end?: boolean;
   badgeKey?: 'requests' | 'info';
+  section: AdminSectionKey;
 }
 
 const NAV: NavItem[] = [
-  { to: '/admin', label: 'Overview', icon: <LayoutDashboard className="w-4 h-4" />, end: true },
-  { to: '/admin/schools', label: 'Schools', icon: <Building2 className="w-4 h-4" /> },
-  { to: '/admin/requests', label: 'Requests', icon: <Inbox className="w-4 h-4" />, badgeKey: 'requests' },
-  { to: '/admin/info', label: 'Info', icon: <Mail className="w-4 h-4" />, badgeKey: 'info' },
-  { to: '/admin/admins', label: 'Admins', icon: <ShieldCheck className="w-4 h-4" /> },
+  { to: '/admin',          label: 'Overview', icon: <LayoutDashboard className="w-4 h-4" />, end: true, section: 'overview' },
+  { to: '/admin/schools',  label: 'Schools',  icon: <Building2     className="w-4 h-4" />,            section: 'schools'  },
+  { to: '/admin/articles', label: 'Articles', icon: <FileText      className="w-4 h-4" />,            section: 'articles' },
+  { to: '/admin/requests', label: 'Requests', icon: <Inbox         className="w-4 h-4" />, badgeKey: 'requests', section: 'requests' },
+  { to: '/admin/info',     label: 'Info',     icon: <Mail          className="w-4 h-4" />, badgeKey: 'info',     section: 'info'     },
+  { to: '/admin/admins',   label: 'Admins',   icon: <ShieldCheck   className="w-4 h-4" />,            section: 'admins'   },
 ];
 
 export default function AdminLayout() {
-  const { user, role, signOut } = useAuth();
+  const { user, role, hasSection, signOut } = useAuth();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [pendingRequests, setPendingRequests] = useState(0);
   const [newSubmissions, setNewSubmissions] = useState(0);
 
+  const visibleNav = NAV.filter((item) =>
+    role === 'superadmin' ? true : hasSection(item.section),
+  );
+
   useEffect(() => {
+    if (!hasSection('requests')) {
+      setPendingRequests(0);
+      return;
+    }
     const q = query(collection(db, 'accessRequests'), where('status', '==', 'pending'));
     const unsub = onSnapshot(
       q,
@@ -49,9 +61,13 @@ export default function AdminLayout() {
       },
     );
     return unsub;
-  }, []);
+  }, [hasSection]);
 
   useEffect(() => {
+    if (!hasSection('info')) {
+      setNewSubmissions(0);
+      return;
+    }
     const q = query(collection(db, 'contact_submissions'), where('status', '==', 'new'));
     const unsub = onSnapshot(
       q,
@@ -62,7 +78,7 @@ export default function AdminLayout() {
       },
     );
     return unsub;
-  }, []);
+  }, [hasSection]);
 
   const handleSignOut = async () => {
     await signOut();
@@ -123,7 +139,7 @@ export default function AdminLayout() {
           </div>
 
           <nav className="p-3 space-y-0.5">
-            {NAV.map((item) => {
+            {visibleNav.map((item) => {
               const badge = badgeFor(item.badgeKey);
               return (
                 <NavLink
@@ -152,6 +168,11 @@ export default function AdminLayout() {
                 </NavLink>
               );
             })}
+            {visibleNav.length === 0 && (
+              <div className="px-3 py-4 text-[12.5px] text-[#86868b] leading-snug">
+                No sections assigned yet. A superadmin will grant access from the Admins page.
+              </div>
+            )}
           </nav>
 
           <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-[#d2d2d7]/50 bg-white">
