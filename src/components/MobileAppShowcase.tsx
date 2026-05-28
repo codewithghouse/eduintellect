@@ -3,13 +3,31 @@ import type { CSSProperties, ComponentType } from 'react';
 import { Sparkles, Zap, ShieldCheck, Bell } from 'lucide-react';
 import IPhoneMockup from './IPhoneMockup';
 
-/** Recognisable 4-colour Google Play triangle, drawn inline. */
-const GooglePlayMark = ({ size = 22 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden>
-    <polygon points="6,4 6,16 16,10" fill="#00D95F" />
-    <polygon points="6,16 16,10 26,16" fill="#FFCE00" />
-    <polygon points="6,16 6,28 16,22" fill="#00C3FF" />
-    <polygon points="6,16 16,22 26,16" fill="#FF3A44" />
+/** Google Play logo — 4 gradient facets for the official glossy look. */
+const GooglePlayMark = ({ size = 26 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden>
+    <defs>
+      <linearGradient id="gpGreen" x1="3" y1="3" x2="12.5" y2="12" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stopColor="#00EF8B" />
+        <stop offset="1" stopColor="#00C75F" />
+      </linearGradient>
+      <linearGradient id="gpYellow" x1="7" y1="7" x2="21.5" y2="12" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stopColor="#FFD500" />
+        <stop offset="1" stopColor="#FFA600" />
+      </linearGradient>
+      <linearGradient id="gpBlue" x1="3" y1="12" x2="12.5" y2="21" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stopColor="#00DBFF" />
+        <stop offset="1" stopColor="#009FFF" />
+      </linearGradient>
+      <linearGradient id="gpRed" x1="9" y1="13" x2="21.5" y2="12" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stopColor="#FF5066" />
+        <stop offset="1" stopColor="#FB1C36" />
+      </linearGradient>
+    </defs>
+    <polygon points="3,2.6 3,12 12.5,7.3" fill="url(#gpGreen)" />
+    <polygon points="3,12 12.5,7.3 21.5,12" fill="url(#gpYellow)" />
+    <polygon points="3,12 3,21.4 12.5,16.7" fill="url(#gpBlue)" />
+    <polygon points="3,12 12.5,16.7 21.5,12" fill="url(#gpRed)" />
   </svg>
 );
 
@@ -121,7 +139,7 @@ const MobileAppShowcase = () => (
           style={{ boxShadow: '0 10px 30px -12px rgba(0,0,0,0.45)' }}
           aria-label="Coming soon on Google Play"
         >
-          <GooglePlayMark size={24} />
+          <GooglePlayMark size={27} />
           <span className="flex flex-col leading-none text-left">
             <span className="text-[9.5px] font-medium tracking-[0.14em] text-white/70 uppercase">
               Coming soon on
