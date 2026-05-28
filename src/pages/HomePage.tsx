@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Hero from '../components/Hero';
 import DashboardLinks from '../components/DashboardLinks';
+import MobileAppShowcase from '../components/MobileAppShowcase';
 import RoleScrollShowcase from '../components/RoleScrollShowcase';
 import PortalShowcase from '../components/PortalShowcase';
 import USPs from '../components/USPs';
@@ -49,6 +50,7 @@ const HomePage = () => {
       <Hero />
       <HeroShowcase />
       <DashboardLinks />
+      <MobileAppShowcase />
       <RoleScrollShowcase />
       <PortalShowcase />
       <USPs />
