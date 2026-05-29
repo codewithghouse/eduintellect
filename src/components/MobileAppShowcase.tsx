@@ -132,8 +132,26 @@ const MobileAppShowcase = () => (
         </div>
       </div>
 
+      {/* Value props — desktop floats these as callouts; mobile gets a compact grid. */}
+      <div className="mt-12 grid grid-cols-2 gap-2.5 max-w-[420px] mx-auto md:hidden">
+        {callouts.map((c) => {
+          const Icon = c.Icon;
+          return (
+            <div
+              key={c.text}
+              className="flex items-center justify-center gap-2 px-3 py-2.5 rounded-2xl bg-white shadow-[0_4px_14px_rgba(15,23,42,0.06),0_0_0_0.5px_rgba(15,23,42,0.05)]"
+            >
+              <Icon size={14} strokeWidth={2.2} style={{ color: c.color }} />
+              <span className="text-[12px] font-medium leading-tight tracking-[-0.005em] text-center text-[#1d1d1f]">
+                {c.text}
+              </span>
+            </div>
+          );
+        })}
+      </div>
+
       {/* Coming-soon Google Play badge */}
-      <div className="mt-16 flex flex-col items-center gap-3">
+      <div className="mt-12 md:mt-16 flex flex-col items-center gap-3">
         <div
           className="inline-flex items-center gap-3 rounded-[14px] bg-[#1d1d1f] px-5 py-2.5 select-none"
           style={{ boxShadow: '0 10px 30px -12px rgba(0,0,0,0.45)' }}
