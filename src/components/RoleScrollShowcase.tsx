@@ -77,7 +77,7 @@ const RoleCta = ({
   label: string;
   brand: string;
 }) => (
-  <div className="flex justify-center -mt-6 md:-mt-12 mb-12 md:mb-20 px-6">
+  <div className="relative z-20 flex justify-center -mt-6 md:-mt-12 mb-12 md:mb-20 px-6">
     <Link
       to={to}
       className="group inline-flex items-center gap-2 px-5 md:px-7 py-3 md:py-3.5 rounded-full text-white text-[14px] md:text-[15px] font-medium transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
