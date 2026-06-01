@@ -109,7 +109,7 @@ const PreTeacherPhotoStudioIPad = () => {
                   background: 'rgba(15,23,42,0.55)', padding: '1.5px 5px',
                   borderRadius: 999, letterSpacing: '0.08em',
                   display: 'flex', alignItems: 'center', gap: 3,
-                  backdropFilter: 'blur(4px)',
+                  backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
                 }}>
                   <span style={{ width: 4, height: 4, borderRadius: '50%', background: MINT, boxShadow: `0 0 4px ${MINT}` }} />
                   {p.faces} faces · AI detected

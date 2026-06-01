@@ -435,7 +435,7 @@ const PrePrimaryTeacherDashboard = () => {
             Tomorrow&apos;s pre-primary teacher
             <br />
             won&apos;t carry a notebook.
-            <span style={{ background: `linear-gradient(90deg, ${PEACH}, ${BLUSH})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <span style={{ background: `linear-gradient(90deg, ${PEACH}, ${BLUSH})`, WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               {' '}She&apos;ll carry the room.
             </span>
           </motion.h2>

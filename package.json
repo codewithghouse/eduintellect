@@ -3,6 +3,13 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "browserslist": [
+    "> 0.3%",
+    "last 3 versions",
+    "iOS >= 14",
+    "Safari >= 14",
+    "not dead"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "playwright install chromium && vite build && node scripts/prerender.mjs",

@@ -97,7 +97,7 @@ const PreParentGalleryIPad = () => {
                   position: 'absolute', bottom: 3, right: 3,
                   fontSize: 5, fontWeight: 800, color: '#fff', letterSpacing: '0.08em',
                   background: 'rgba(15,23,42,0.55)', padding: '1.5px 5px', borderRadius: 999,
-                  backdropFilter: 'blur(4px)',
+                  backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
                 }}>{a.count} pics</span>
               </div>
               <div style={{ padding: '5px 4px 2px' }}>
@@ -138,7 +138,7 @@ const PreParentGalleryIPad = () => {
               <span style={{
                 position: 'absolute', bottom: 5, right: 5, fontSize: 5.5, fontWeight: 800,
                 color: '#fff', background: 'rgba(15,23,42,0.55)', padding: '2px 6px', borderRadius: 999,
-                letterSpacing: '0.08em', backdropFilter: 'blur(4px)',
+                letterSpacing: '0.08em', backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)',
               }}>10:14 AM · 3 faces · cleared</span>
             </div>
 

@@ -436,7 +436,7 @@ const PrePrimaryParentDashboard = () => {
             Tomorrow&apos;s pre-primary parent
             <br />
             won&apos;t guess the day.
-            <span style={{ background: `linear-gradient(90deg, ${PEACH}, ${BLUSH})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+            <span style={{ background: `linear-gradient(90deg, ${PEACH}, ${BLUSH})`, WebkitBackgroundClip: 'text', backgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
               {' '}She&apos;ll watch it.
             </span>
           </motion.h2>

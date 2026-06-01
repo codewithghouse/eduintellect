@@ -41,11 +41,11 @@ const ClassCard = ({ theme, subject, subjectIcon, teacherInit, teacherName, teac
       <div style={{ position: 'absolute', top: 14, right: 14, display: 'inline-flex', alignItems: 'center', gap: 4, padding: '4px 10px', borderRadius: 100, background: 'rgba(255,255,255,.18)', border: '.5px solid rgba(255,255,255,.3)', fontSize: 10, fontWeight: 300, color: '#fff' }}>
         <div style={{ width: 5, height: 5, background: '#2ebc71', borderRadius: '50%', boxShadow: '0 0 0 2px rgba(46,188,113,.3)' }} />Active
       </div>
-      <div style={{ width: 40, height: 40, borderRadius: 13, background: 'rgba(255,255,255,.15)', border: '.5px solid rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12, backdropFilter: 'blur(8px)' }}>
+      <div style={{ width: 40, height: 40, borderRadius: 13, background: 'rgba(255,255,255,.15)', border: '.5px solid rgba(255,255,255,.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12, backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20" /><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z" /></svg>
       </div>
       <div style={{ fontSize: 20, fontWeight: 300, color: '#fff', letterSpacing: '-.3px', marginBottom: 8 }}>Class</div>
-      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '5px 10px', borderRadius: 100, background: 'rgba(255,255,255,.15)', border: '.5px solid rgba(255,255,255,.22)', fontSize: 11, fontWeight: 400, color: 'rgba(255,255,255,.9)', backdropFilter: 'blur(8px)' }}>
+      <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, padding: '5px 10px', borderRadius: 100, background: 'rgba(255,255,255,.15)', border: '.5px solid rgba(255,255,255,.22)', fontSize: 11, fontWeight: 400, color: 'rgba(255,255,255,.9)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)' }}>
         {subjectIcon}{subject}
       </div>
     </div>

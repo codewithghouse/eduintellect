@@ -174,7 +174,7 @@ const OwnerBranchComparisonIPad = () => {
               <div style={{ fontSize: 6, color: 'rgba(255,255,255,0.6)', marginTop: 1 }}>2,140 students · 68 teachers</div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, position: 'relative', zIndex: 2 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 3, padding: '2px 6px', background: 'rgba(255,255,255,0.15)', borderRadius: 999, backdropFilter: 'blur(4px)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 3, padding: '2px 6px', background: 'rgba(255,255,255,0.15)', borderRadius: 999, backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)' }}>
                 <svg width="7" height="7" viewBox="0 0 24 24" fill="none" stroke="#ffcc00" strokeWidth="2"><path d="M12 2v4M12 18v4M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1" /></svg>
                 <span className="font-mokoto" style={{ fontSize: 5.5, fontWeight: 600, color: '#ffcc00', letterSpacing: '0.04em' }}>EDULLENT AI · FRESH</span>
               </div>
