@@ -20,7 +20,7 @@ const PreParentTodayIPad = () => {
 
   return (
     <PrePrimaryParentIPadShell activePath="/today">
-      <div style={{ background: 'linear-gradient(180deg, #FFF8F0 0%, #FCF5FF 100%)', flex: 1, overflowY: 'auto', minHeight: 0, padding: '10px 12px 12px', fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif" }}>
+      <div style={{ background: '#EEF4FF', flex: 1, overflowY: 'auto', minHeight: 0, padding: '10px 12px 12px', fontFamily: "'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif" }}>
         {/* Greeting hero */}
         <div style={{
           background: 'linear-gradient(135deg, #FFE4F0 0%, #FFE0B2 55%, #DBEAFE 100%)',
