@@ -230,12 +230,7 @@ input[type="button"] {
   color: #1d1d1f;
 }
 
-/* ── Mobile fix for RoleScrollShowcase live screens ── */
-@media (max-width: 768px) {
-  .role-screen-sidebar { display: none !important; }
-  .role-screen-main { padding: 10px 12px !important; }
-  .role-screen-grid-5 { grid-template-columns: repeat(2, 1fr) !important; }
-  .role-screen-grid-4 { grid-template-columns: repeat(2, 1fr) !important; }
-  .role-screen-grid-2 { grid-template-columns: 1fr !important; }
-  .role-screen-hide-mobile { display: none !important; }
-}
+/* RoleScrollShowcase live screens are no longer reflowed on mobile — the whole
+   desktop dashboard is rendered at its design size and uniformly scaled to fit
+   the frame (see ContainerScroll), so the full layout (sidebar + grids) shows
+   exactly like the Owner showcase, just smaller. No mobile-reflow overrides. */

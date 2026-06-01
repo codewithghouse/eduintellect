@@ -77,7 +77,7 @@ const RoleCta = ({
   label: string;
   brand: string;
 }) => (
-  <div className="relative z-20 flex justify-center -mt-6 md:-mt-12 mb-12 md:mb-20 px-6">
+  <div className="relative z-20 flex justify-center mt-8 md:mt-10 mb-14 md:mb-24 px-6">
     <Link
       to={to}
       className="group inline-flex items-center gap-2 px-5 md:px-7 py-3 md:py-3.5 rounded-full text-white text-[14px] md:text-[15px] font-medium transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
@@ -113,7 +113,7 @@ const Title = ({
       {headline}
     </h2>
     <p className="text-[#86868b] text-[16px] md:text-[18px] max-w-[560px] mx-auto leading-[1.45]">
-      Scroll to step inside the dashboard.
+      A live look inside the dashboard.
     </p>
   </>
 );
