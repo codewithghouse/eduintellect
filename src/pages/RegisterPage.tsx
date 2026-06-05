@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { School, User, Mail, Lock, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, Sparkles } from 'lucide-react';
+import { School, User, Mail, Lock, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, Sparkles, Building2, UserCheck, Briefcase, Receipt } from 'lucide-react';
 import { auth, db, googleProvider } from '../lib/firebase';
 import {
   createUserWithEmailAndPassword,
@@ -18,16 +18,33 @@ import GoogleIcon from '../components/GoogleIcon';
 // post-registration activation flow lives there).
 const REGISTRATION_OPEN = true;
 
-const MAX_SCHOOL_NAME = 120;
-const MAX_OWNER_NAME  = 120;
-const MAX_PHONE       = 20;
-const MAX_ADDRESS     = 500;
-const MIN_PASSWORD    = 10;
+const MAX_SCHOOL_NAME  = 120;
+const MAX_TRUST_NAME   = 160;
+const MAX_OWNER_NAME   = 120;
+const MAX_SIGNATORY    = 120;
+const MAX_DESIGNATION  = 80;
+const MAX_PHONE        = 20;
+const MAX_ADDRESS      = 500;
+const MIN_PASSWORD     = 10;
+
+// Indian GSTIN: 2-digit state code + 10-char PAN + entity digit + 'Z' + checksum.
+const GSTIN_RE = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;
 
 const clean = (s: string, max: number) => s.trim().slice(0, max);
 
 type Step = 'auth' | 'details' | 'success';
 type AuthMode = 'google' | 'email';
+
+type SchoolDetails = {
+  schoolName: string;
+  trustName: string;
+  ownerName: string;
+  signatoryName: string;
+  designation: string;
+  gstNumber: string;
+  phone: string;
+  address: string;
+};
 
 const RegisterPage = () => {
   const navigate = useNavigate();
@@ -39,9 +56,13 @@ const RegisterPage = () => {
   const [error, setError] = useState('');
 
   const [authForm, setAuthForm] = useState({ email: '', password: '' });
-  const [details, setDetails] = useState({
+  const [details, setDetails] = useState<SchoolDetails>({
     schoolName: '',
+    trustName: '',
     ownerName: '',
+    signatoryName: '',
+    designation: '',
+    gstNumber: '',
     phone: '',
     address: '',
   });
@@ -151,12 +172,21 @@ const RegisterPage = () => {
       setError('Please enter a valid phone number.');
       return;
     }
+    const gst = details.gstNumber.trim().toUpperCase();
+    if (gst && !GSTIN_RE.test(gst)) {
+      setError('Please enter a valid 15-character GSTIN, or leave it blank.');
+      return;
+    }
 
     setLoading(true);
     try {
       await setDoc(doc(db, 'schools', user.uid), {
         schoolName: clean(details.schoolName, MAX_SCHOOL_NAME),
+        trustName: clean(details.trustName, MAX_TRUST_NAME),
         ownerName: clean(details.ownerName, MAX_OWNER_NAME),
+        signatoryName: clean(details.signatoryName, MAX_SIGNATORY),
+        designation: clean(details.designation, MAX_DESIGNATION),
+        gstNumber: gst,
         email: (user.email ?? '').toLowerCase(),
         phone: clean(details.phone, MAX_PHONE),
         address: clean(details.address, MAX_ADDRESS),
@@ -442,8 +472,8 @@ const AuthStep: React.FC<AuthStepProps> = ({
 
 interface DetailsStepProps {
   user: FirebaseUser | null;
-  details: { schoolName: string; ownerName: string; phone: string; address: string };
-  setDetails: React.Dispatch<React.SetStateAction<{ schoolName: string; ownerName: string; phone: string; address: string }>>;
+  details: SchoolDetails;
+  setDetails: React.Dispatch<React.SetStateAction<SchoolDetails>>;
   loading: boolean;
   onSubmit: (e: React.FormEvent) => void;
   onBack: () => void;
@@ -478,12 +508,55 @@ const DetailsStep: React.FC<DetailsStepProps> = ({ user, details, setDetails, lo
           </div>
         </div>
         <div className="space-y-1.5">
+          <label className="text-[12px] font-medium text-[#86868b] ml-1">Trust / Society / Company Name</label>
+          <div className="relative">
+            <Building2 className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
+            <input required name="trustName" maxLength={MAX_TRUST_NAME} value={details.trustName} onChange={change}
+              placeholder="Registered legal entity"
+              className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]" />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="space-y-1.5">
           <label className="text-[12px] font-medium text-[#86868b] ml-1">Owner Name</label>
           <div className="relative">
             <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
             <input required name="ownerName" maxLength={MAX_OWNER_NAME} value={details.ownerName} onChange={change}
               placeholder="Full Name"
               className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]" />
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          <label className="text-[12px] font-medium text-[#86868b] ml-1">Authorized Signatory</label>
+          <div className="relative">
+            <UserCheck className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
+            <input required name="signatoryName" maxLength={MAX_SIGNATORY} value={details.signatoryName} onChange={change}
+              placeholder="Person authorised to sign"
+              className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]" />
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="space-y-1.5">
+          <label className="text-[12px] font-medium text-[#86868b] ml-1">Designation</label>
+          <div className="relative">
+            <Briefcase className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
+            <input required name="designation" maxLength={MAX_DESIGNATION} value={details.designation} onChange={change}
+              placeholder="e.g. Director / Trustee / Principal"
+              className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]" />
+          </div>
+        </div>
+        <div className="space-y-1.5">
+          <label className="text-[12px] font-medium text-[#86868b] ml-1">GST Number <span className="text-[#b0b0b8] font-normal">(if applicable)</span></label>
+          <div className="relative">
+            <Receipt className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
+            <input name="gstNumber" maxLength={15} value={details.gstNumber}
+              onChange={(e) => setDetails((d) => ({ ...d, gstNumber: e.target.value.toUpperCase() }))}
+              placeholder="15-digit GSTIN"
+              className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] tracking-[0.04em] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8] placeholder:tracking-normal" />
           </div>
         </div>
       </div>
