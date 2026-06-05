@@ -1,4 +1,5 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, UserCog, LayoutDashboard, GraduationCap, Users, ArrowRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -47,7 +48,13 @@ const roles = [
 
 const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   const navigate = useNavigate();
-  return (
+
+  // Rendered through a portal to <body> so it escapes the Header's
+  // `backdrop-blur` containing block — otherwise `position: fixed` would be
+  // measured against the navbar's tiny box, clipping the modal under the nav.
+  if (typeof document === 'undefined') return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -62,13 +69,13 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
           />
 
           {/* Modal */}
-          <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[70] p-4">
+          <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-[70] p-4 overflow-y-auto">
             <motion.div
               initial={{ scale: 0.96, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.96, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="bg-white w-full max-w-[420px] rounded-[20px] overflow-hidden pointer-events-auto shadow-2xl"
+              className="bg-white w-full max-w-[420px] my-auto rounded-[20px] overflow-y-auto max-h-[calc(100dvh-2rem)] pointer-events-auto shadow-2xl"
             >
               {/* Header */}
               <div className="px-7 pt-7 pb-5 flex items-start justify-between">
@@ -130,7 +137,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
           </div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body,
   );
 };
 
