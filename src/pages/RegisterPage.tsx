@@ -13,10 +13,10 @@ import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { Link, useNavigate } from 'react-router-dom';
 import GoogleIcon from '../components/GoogleIcon';
 
-// Registrations gated off — public CTAs hidden across the site, /contact is the
-// active funnel. Flip to true when the payment gateway flow is fully wired and
-// trial schools can complete sign-up without getting stuck.
-const REGISTRATION_OPEN = false;
+// Registration funnel is OPEN — owners can self-serve sign up (Google / email)
+// and submit school details. After details, they land on /activate (the new
+// post-registration activation flow lives there).
+const REGISTRATION_OPEN = true;
 
 const MAX_SCHOOL_NAME = 120;
 const MAX_OWNER_NAME  = 120;
