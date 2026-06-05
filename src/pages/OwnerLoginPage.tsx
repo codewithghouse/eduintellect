@@ -216,7 +216,7 @@ const OwnerLoginPage = () => {
 
           <div className="mt-8 text-center">
             <p className="text-slate-500 text-sm">
-              New school? <Link to="/contact" className="text-brand-400 font-light hover:underline">Talk to our team</Link>
+              New school? <Link to="/register" className="text-brand-400 font-light hover:underline">Register your school</Link>
             </p>
           </div>
         </div>
