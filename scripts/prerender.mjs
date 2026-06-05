@@ -121,8 +121,8 @@ for (const route of routes) {
   const page = await context.newPage();
   try {
     // 'load' (window.onload) is more reliable than 'networkidle' here because
-    // index.html loads Razorpay's checkout.js and Firebase opens a long-lived
-    // WebChannel — neither lets the network reach idle.
+    // Firebase opens a long-lived WebChannel that never lets the network reach
+    // idle.
     await page.goto(`${ORIGIN}${route}`, { waitUntil: 'load', timeout: 60_000 });
     // Give React + the Seo component's useEffect time to mount and inject
     // title / meta / JSON-LD schema into <head>.
