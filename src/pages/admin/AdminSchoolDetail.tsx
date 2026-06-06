@@ -15,9 +15,11 @@ import {
   Check,
   Users,
   Save,
+  GitBranch,
 } from 'lucide-react';
 import {
   doc,
+  collection,
   onSnapshot,
   updateDoc,
   deleteDoc,
@@ -41,6 +43,14 @@ interface SchoolDoc {
   createdAt?: unknown;
 }
 
+interface BranchDoc {
+  id: string;
+  name?: string;
+  branchName?: string;
+  location?: string;
+  studentLimit?: number;
+}
+
 export default function AdminSchoolDetail() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -50,6 +60,9 @@ export default function AdminSchoolDetail() {
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
   const [limitInput, setLimitInput] = useState('');
+  const [branches, setBranches] = useState<BranchDoc[]>([]);
+  const [branchDrafts, setBranchDrafts] = useState<Record<string, string>>({});
+  const [branchBusyId, setBranchBusyId] = useState<string | null>(null);
 
   // Keep the editable student-limit field in sync with the live doc.
   useEffect(() => {
@@ -59,6 +72,23 @@ export default function AdminSchoolDetail() {
       );
     }
   }, [school]);
+
+  // Live branches list for this school (per-branch student limits).
+  useEffect(() => {
+    if (!id) return;
+    const unsub = onSnapshot(
+      collection(db, 'schools', id, 'branches'),
+      (snap) =>
+        setBranches(
+          snap.docs.map((d) => ({ id: d.id, ...(d.data() as object) }) as BranchDoc),
+        ),
+      (err) => {
+        console.warn('[school-detail] branches subscribe failed:', err);
+        setBranches([]);
+      },
+    );
+    return unsub;
+  }, [id]);
 
   useEffect(() => {
     if (!id) return;
@@ -116,6 +146,14 @@ export default function AdminSchoolDetail() {
     limitInput.trim() !==
     (typeof school.studentLimit === 'number' ? String(school.studentLimit) : '');
 
+  // ── Branch allocation math (overall is a HARD cap on the sum) ──────────
+  const overallLimit = typeof school.studentLimit === 'number' ? school.studentLimit : 0;
+  const allocated = branches.reduce(
+    (s, b) => s + (typeof b.studentLimit === 'number' ? b.studentLimit : 0),
+    0,
+  );
+  const remaining = overallLimit - allocated;
+
   const toggleStatus = async () => {
     setBusy(true);
     setError('');
@@ -165,6 +203,38 @@ export default function AdminSchoolDetail() {
       setError('Could not save student limit. Check Firestore permissions.');
     } finally {
       setBusy(false);
+    }
+  };
+
+  const saveBranchLimit = async (b: BranchDoc) => {
+    if (!id) return;
+    const n = Math.max(0, Math.floor(Number(branchDrafts[b.id]) || 0));
+    const otherSum = allocated - (typeof b.studentLimit === 'number' ? b.studentLimit : 0);
+    // HARD cap — the sum of branch limits cannot exceed the overall org limit.
+    if (overallLimit > 0 && otherSum + n > overallLimit) {
+      setError(
+        `Branch limits ka total overall limit (${overallLimit.toLocaleString()}) se zyada nahi ho sakta. ` +
+          `Is branch ke liye max: ${Math.max(0, overallLimit - otherSum).toLocaleString()}.`,
+      );
+      return;
+    }
+    setBranchBusyId(b.id);
+    setError('');
+    try {
+      await updateDoc(doc(db, 'schools', id, 'branches', b.id), {
+        studentLimit: n,
+        studentLimitUpdatedAt: serverTimestamp(),
+      });
+      setBranchDrafts((d) => {
+        const next = { ...d };
+        delete next[b.id];
+        return next;
+      });
+    } catch (err) {
+      console.error('[school-detail] branch limit save failed:', err);
+      setError('Could not save branch limit. Check Firestore permissions.');
+    } finally {
+      setBranchBusyId(null);
     }
   };
 
@@ -334,11 +404,11 @@ export default function AdminSchoolDetail() {
           {/* Student limit */}
           <div className="sm:border-l sm:border-[#d2d2d7]/50 sm:pl-6">
             <div className="flex items-center gap-1.5 text-[14px] font-medium text-[#1d1d1f]">
-              <Users className="w-4 h-4 text-[#86868b]" /> Student Limit
+              <Users className="w-4 h-4 text-[#86868b]" /> Overall Student Limit
             </div>
             <div className="text-[12.5px] text-[#86868b] mt-1 leading-snug">
-              The owner sees this as their allowed student count. Standard minimum
-              is 200.
+              Organization-wide total across all branches. Distribute it across
+              branches below. Standard minimum is 200.
             </div>
             <div className="flex items-center gap-2 mt-3">
               <input
@@ -365,6 +435,99 @@ export default function AdminSchoolDetail() {
             </div>
           </div>
         </div>
+      </Card>
+
+      {/* ── Branch Allocation ──────────────────────────────────────── */}
+      <Card className="p-6 mt-5">
+        <div className="flex items-center justify-between gap-3 mb-5 flex-wrap">
+          <div className="flex items-center gap-1.5 text-[12px] font-medium text-[#86868b] uppercase tracking-wider">
+            <GitBranch className="w-4 h-4" /> Branch Allocation
+          </div>
+          {overallLimit > 0 && (
+            <div className="flex items-center gap-3 text-[12px]">
+              <span className="text-[#86868b]">
+                Overall <b className="text-[#1d1d1f]">{overallLimit.toLocaleString()}</b>
+              </span>
+              <span className="text-[#86868b]">
+                Allocated <b className="text-[#1d1d1f]">{allocated.toLocaleString()}</b>
+              </span>
+              <span
+                className={
+                  remaining < 0
+                    ? 'text-[#ff3b30] font-medium'
+                    : 'text-[#1d8a4a] font-medium'
+                }
+              >
+                {remaining < 0
+                  ? `Over by ${Math.abs(remaining).toLocaleString()}`
+                  : `${remaining.toLocaleString()} left`}
+              </span>
+            </div>
+          )}
+        </div>
+
+        {overallLimit === 0 && (
+          <div className="mb-4 text-[12.5px] text-[#a55b00] bg-[#ff9500]/10 border border-[#ff9500]/30 rounded-[10px] px-3 py-2">
+            Set an Overall Student Limit above first — branch limits are capped by it.
+          </div>
+        )}
+
+        {branches.length === 0 ? (
+          <div className="text-[13px] text-[#86868b]">
+            No branches yet for this school.
+          </div>
+        ) : (
+          <div className="divide-y divide-[#d2d2d7]/40">
+            {branches.map((b) => {
+              const stored =
+                typeof b.studentLimit === 'number' ? String(b.studentLimit) : '';
+              const draft = branchDrafts[b.id] ?? stored;
+              const dirty = draft.trim() !== stored;
+              return (
+                <div
+                  key={b.id}
+                  className="flex items-center justify-between gap-3 py-3"
+                >
+                  <div className="min-w-0">
+                    <div className="text-[14px] font-medium text-[#1d1d1f] truncate">
+                      {b.name || b.branchName || 'Branch'}
+                    </div>
+                    {b.location && (
+                      <div className="text-[12px] text-[#86868b] truncate">
+                        {b.location}
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <input
+                      type="number"
+                      min={0}
+                      step={1}
+                      value={draft}
+                      onChange={(e) =>
+                        setBranchDrafts((d) => ({ ...d, [b.id]: e.target.value }))
+                      }
+                      placeholder="0"
+                      className="w-24 bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] px-3 py-2 text-[14px] outline-none focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition"
+                    />
+                    <button
+                      onClick={() => saveBranchLimit(b)}
+                      disabled={branchBusyId === b.id || !dirty}
+                      className="px-3 py-2 rounded-[10px] text-[13px] font-medium bg-[#0071e3] hover:bg-[#0077ed] text-white transition flex items-center gap-1.5 disabled:opacity-40"
+                    >
+                      {branchBusyId === b.id ? (
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                      ) : (
+                        <Save className="w-4 h-4" />
+                      )}
+                      Save
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </Card>
     </>
   );
