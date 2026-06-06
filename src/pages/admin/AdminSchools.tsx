@@ -11,7 +11,6 @@ import {
   collection,
   doc,
   onSnapshot,
-  orderBy,
   query,
   serverTimestamp,
   updateDoc,
@@ -22,6 +21,7 @@ import { Badge, Card, EmptyState, PageHeader, Toggle } from '../../components/ad
 interface SchoolDoc {
   id: string;
   schoolName?: string;
+  trustName?: string;
   ownerName?: string;
   email?: string;
   phone?: string;
@@ -78,11 +78,36 @@ export default function AdminSchools() {
   };
 
   useEffect(() => {
-    const q = query(collection(db, 'schools'), orderBy('createdAt', 'desc'));
+    // NOTE: deliberately NO orderBy. A Firestore orderBy('createdAt') silently
+    // DROPS any school doc that lacks a createdAt field (older / seeded /
+    // imported schools), which made them disappear from this list entirely.
+    // We fetch every school and sort client-side instead so nothing is hidden.
+    const q = query(collection(db, 'schools'));
     const unsub = onSnapshot(
       q,
       (snap) => {
-        setSchools(snap.docs.map((d) => ({ id: d.id, ...(d.data() as object) })));
+        const rows = snap.docs.map(
+          (d) => ({ id: d.id, ...(d.data() as object) }) as SchoolDoc,
+        );
+        const ms = (v: unknown): number => {
+          if (!v) return 0;
+          if (typeof v === 'object' && v !== null && 'toMillis' in v) {
+            try {
+              return (v as { toMillis: () => number }).toMillis();
+            } catch {
+              return 0;
+            }
+          }
+          if (typeof v === 'string' || typeof v === 'number') {
+            const t = new Date(v).getTime();
+            return isNaN(t) ? 0 : t;
+          }
+          return 0;
+        };
+        // Newest first; schools without a createdAt fall to the bottom but
+        // still appear.
+        rows.sort((a, b) => ms(b.createdAt) - ms(a.createdAt));
+        setSchools(rows);
       },
       (err) => {
         console.warn('[schools] subscribe failed:', err);
@@ -99,7 +124,7 @@ export default function AdminSchools() {
       const status = s.status ?? 'active';
       if (statusFilter !== 'all' && status !== statusFilter) return false;
       if (!term) return true;
-      const hay = [s.schoolName, s.ownerName, s.email, s.phone, s.id]
+      const hay = [s.schoolName, s.trustName, s.ownerName, s.email, s.phone, s.id]
         .filter(Boolean)
         .join(' ')
         .toLowerCase();
