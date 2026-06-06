@@ -85,18 +85,21 @@ const Header = () => {
           >
             Sign in
           </button>
-          <Link to="/contact" className="text-[12px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-1.5 rounded-full transition-all duration-300">
+          <Link to="/contact" className="text-[12px] font-normal text-[#424245] hover:text-[#1d1d1f] transition-colors duration-300">
             Get in Touch
+          </Link>
+          <Link to="/register" className="text-[12px] font-medium bg-[#0071e3] hover:bg-[#0077ed] text-white px-4 py-1.5 rounded-full transition-all duration-300">
+            Register
           </Link>
         </div>
 
         {/* Mobile Actions */}
         <div className="flex md:hidden items-center gap-2">
           <Link
-            to="/contact"
-            className="text-[13px] font-normal bg-[#0071e3] hover:bg-[#0077ed] text-white px-3.5 py-1.5 rounded-full transition-all duration-300"
+            to="/register"
+            className="text-[13px] font-medium bg-[#0071e3] hover:bg-[#0077ed] text-white px-3.5 py-1.5 rounded-full transition-all duration-300"
           >
-            Get in Touch
+            Register
           </Link>
           <button
             type="button"
@@ -131,6 +134,20 @@ const Header = () => {
               );
             })}
             <div className="flex flex-col gap-3 pt-4">
+              <Link
+                to="/register"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="btn-primary w-full text-center text-[17px]"
+              >
+                Register your school
+              </Link>
+              <Link
+                to="/contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-center text-[17px] py-3 rounded-full border border-[#0071e3] text-[#0071e3] font-medium transition-colors hover:bg-[#0071e3]/5"
+              >
+                Get in Touch
+              </Link>
               <button
                 onClick={() => {
                   setIsMobileMenuOpen(false);
@@ -140,13 +157,6 @@ const Header = () => {
               >
                 Sign in
               </button>
-              <Link
-                to="/contact"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="btn-primary w-full text-center text-[17px]"
-              >
-                Get in Touch
-              </Link>
             </div>
           </nav>
         </div>
