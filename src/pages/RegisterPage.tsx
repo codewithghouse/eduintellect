@@ -196,6 +196,11 @@ const RegisterPage = () => {
         // Billing state — payment is gated on /activate.
         subscriptionStatus: 'pending',
         paymentStatus: 'pending',
+        // Access control — owner-dashboard access stays OFF until the Edullent
+        // team verifies onboarding/payment and enables it from /admin. The
+        // admin also sets the student limit there (0 = not set yet).
+        ownerAccessEnabled: false,
+        studentLimit: 0,
         createdAt: serverTimestamp(),
       }, { merge: true });
 

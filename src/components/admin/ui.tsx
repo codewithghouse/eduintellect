@@ -112,6 +112,40 @@ export function Badge({
   );
 }
 
+export function Toggle({
+  on,
+  busy = false,
+  onClick,
+  'aria-label': ariaLabel,
+}: {
+  on: boolean;
+  busy?: boolean;
+  onClick: () => void;
+  'aria-label'?: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={on}
+      aria-label={ariaLabel}
+      disabled={busy}
+      onClick={onClick}
+      className={[
+        'relative inline-flex h-6 w-11 shrink-0 items-center rounded-full transition-colors disabled:opacity-50',
+        on ? 'bg-[#34c759]' : 'bg-[#d2d2d7]',
+      ].join(' ')}
+    >
+      <span
+        className={[
+          'inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform',
+          on ? 'translate-x-[22px]' : 'translate-x-0.5',
+        ].join(' ')}
+      />
+    </button>
+  );
+}
+
 export function EmptyState({
   icon,
   title,

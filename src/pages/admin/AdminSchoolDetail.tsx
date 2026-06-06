@@ -13,6 +13,8 @@ import {
   Trash2,
   Copy,
   Check,
+  Users,
+  Save,
 } from 'lucide-react';
 import {
   doc,
@@ -23,7 +25,7 @@ import {
 } from 'firebase/firestore';
 import { db } from '../../lib/firebase';
 import { useAuth } from '../../lib/auth';
-import { Badge, Card, PageHeader, formatDate } from '../../components/admin/ui';
+import { Badge, Card, PageHeader, Toggle, formatDate } from '../../components/admin/ui';
 
 interface SchoolDoc {
   schoolName?: string;
@@ -34,6 +36,8 @@ interface SchoolDoc {
   status?: string;
   ownerId?: string;
   role?: string;
+  ownerAccessEnabled?: boolean;
+  studentLimit?: number;
   createdAt?: unknown;
 }
 
@@ -45,6 +49,16 @@ export default function AdminSchoolDetail() {
   const [busy, setBusy] = useState(false);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState('');
+  const [limitInput, setLimitInput] = useState('');
+
+  // Keep the editable student-limit field in sync with the live doc.
+  useEffect(() => {
+    if (school) {
+      setLimitInput(
+        typeof school.studentLimit === 'number' ? String(school.studentLimit) : '',
+      );
+    }
+  }, [school]);
 
   useEffect(() => {
     if (!id) return;
@@ -96,6 +110,11 @@ export default function AdminSchoolDetail() {
 
   const status = school.status ?? 'active';
   const isSuspended = status === 'suspended';
+  // "On" when not explicitly disabled — legacy schools (no field) read as enabled.
+  const accessEnabled = school.ownerAccessEnabled !== false;
+  const limitDirty =
+    limitInput.trim() !==
+    (typeof school.studentLimit === 'number' ? String(school.studentLimit) : '');
 
   const toggleStatus = async () => {
     setBusy(true);
@@ -108,6 +127,42 @@ export default function AdminSchoolDetail() {
     } catch (err) {
       console.error('[school-detail] status update failed:', err);
       setError('Could not update status. Check Firestore permissions.');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const toggleOwnerAccess = async () => {
+    if (!id || !school) return;
+    const next = !(school.ownerAccessEnabled !== false); // current "on" = !== false
+    setBusy(true);
+    setError('');
+    try {
+      await updateDoc(doc(db, 'schools', id), {
+        ownerAccessEnabled: next,
+        ownerAccessUpdatedAt: serverTimestamp(),
+      });
+    } catch (err) {
+      console.error('[school-detail] access toggle failed:', err);
+      setError('Could not update owner access. Check Firestore permissions.');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const saveStudentLimit = async () => {
+    if (!id) return;
+    const n = Math.max(0, Math.floor(Number(limitInput) || 0));
+    setBusy(true);
+    setError('');
+    try {
+      await updateDoc(doc(db, 'schools', id), {
+        studentLimit: n,
+        studentLimitUpdatedAt: serverTimestamp(),
+      });
+    } catch (err) {
+      console.error('[school-detail] student-limit save failed:', err);
+      setError('Could not save student limit. Check Firestore permissions.');
     } finally {
       setBusy(false);
     }
@@ -244,6 +299,73 @@ export default function AdminSchoolDetail() {
           </div>
         </Card>
       </div>
+
+      {/* ── Access & Student Limit ─────────────────────────────────── */}
+      <Card className="p-6 mt-5">
+        <div className="text-[12px] font-medium text-[#86868b] uppercase tracking-wider mb-5">
+          Access &amp; Student Limit
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {/* Owner dashboard access */}
+          <div className="flex items-start justify-between gap-4">
+            <div className="min-w-0">
+              <div className="text-[14px] font-medium text-[#1d1d1f]">
+                Owner Dashboard Access
+              </div>
+              <div className="text-[12.5px] text-[#86868b] mt-1 leading-snug">
+                {accessEnabled
+                  ? 'Owner can sign in and use the owner dashboard.'
+                  : 'Owner is blocked from the dashboard until you enable this.'}
+              </div>
+              <div className="mt-2">
+                <Badge tone={accessEnabled ? 'success' : 'warning'}>
+                  {accessEnabled ? 'Enabled' : 'Disabled'}
+                </Badge>
+              </div>
+            </div>
+            <Toggle
+              on={accessEnabled}
+              busy={busy}
+              onClick={toggleOwnerAccess}
+              aria-label="Toggle owner dashboard access"
+            />
+          </div>
+
+          {/* Student limit */}
+          <div className="sm:border-l sm:border-[#d2d2d7]/50 sm:pl-6">
+            <div className="flex items-center gap-1.5 text-[14px] font-medium text-[#1d1d1f]">
+              <Users className="w-4 h-4 text-[#86868b]" /> Student Limit
+            </div>
+            <div className="text-[12.5px] text-[#86868b] mt-1 leading-snug">
+              The owner sees this as their allowed student count. Standard minimum
+              is 200.
+            </div>
+            <div className="flex items-center gap-2 mt-3">
+              <input
+                type="number"
+                min={0}
+                step={1}
+                value={limitInput}
+                onChange={(e) => setLimitInput(e.target.value)}
+                placeholder="e.g. 500"
+                className="w-32 bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] px-3 py-2 text-[14px] outline-none focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition"
+              />
+              <button
+                onClick={saveStudentLimit}
+                disabled={busy || !limitDirty}
+                className="px-3.5 py-2 rounded-[10px] text-[13px] font-medium bg-[#0071e3] hover:bg-[#0077ed] text-white transition flex items-center gap-1.5 disabled:opacity-40"
+              >
+                {busy ? (
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                ) : (
+                  <Save className="w-4 h-4" />
+                )}
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      </Card>
     </>
   );
 }

@@ -7,9 +7,17 @@ import {
   ChevronRight,
   Filter,
 } from 'lucide-react';
-import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+  serverTimestamp,
+  updateDoc,
+} from 'firebase/firestore';
 import { db } from '../../lib/firebase';
-import { Badge, Card, EmptyState, PageHeader, formatDate } from '../../components/admin/ui';
+import { Badge, Card, EmptyState, PageHeader, Toggle } from '../../components/admin/ui';
 
 interface SchoolDoc {
   id: string;
@@ -18,6 +26,8 @@ interface SchoolDoc {
   email?: string;
   phone?: string;
   status?: string;
+  ownerAccessEnabled?: boolean;
+  studentLimit?: number;
   createdAt?: unknown;
 }
 
@@ -27,6 +37,22 @@ export default function AdminSchools() {
   const [schools, setSchools] = useState<SchoolDoc[] | null>(null);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
+  const [busyId, setBusyId] = useState<string | null>(null);
+
+  const toggleAccess = async (s: SchoolDoc) => {
+    const next = !(s.ownerAccessEnabled !== false); // current "on" = !== false
+    setBusyId(s.id);
+    try {
+      await updateDoc(doc(db, 'schools', s.id), {
+        ownerAccessEnabled: next,
+        ownerAccessUpdatedAt: serverTimestamp(),
+      });
+    } catch (err) {
+      console.warn('[schools] access toggle failed:', err);
+    } finally {
+      setBusyId(null);
+    }
+  };
 
   useEffect(() => {
     const q = query(collection(db, 'schools'), orderBy('createdAt', 'desc'));
@@ -117,20 +143,22 @@ export default function AdminSchools() {
           />
         ) : (
           <>
-            <div className="hidden md:grid grid-cols-[1.5fr_1fr_1fr_120px_140px_24px] gap-4 px-5 py-3 bg-[#fafafa] border-b border-[#d2d2d7]/40 text-[11px] font-medium uppercase tracking-wider text-[#86868b]">
+            <div className="hidden md:grid grid-cols-[1.6fr_1fr_110px_90px_110px_24px] gap-4 px-5 py-3 bg-[#fafafa] border-b border-[#d2d2d7]/40 text-[11px] font-medium uppercase tracking-wider text-[#86868b]">
               <div>School</div>
               <div>Owner</div>
-              <div>Email</div>
+              <div>Access</div>
+              <div>Limit</div>
               <div>Status</div>
-              <div>Joined</div>
               <div></div>
             </div>
             <div className="divide-y divide-[#d2d2d7]/40">
-              {filtered.map((s) => (
+              {filtered.map((s) => {
+                const accessOn = s.ownerAccessEnabled !== false;
+                return (
                 <Link
                   key={s.id}
                   to={`/admin/schools/${s.id}`}
-                  className="grid grid-cols-1 md:grid-cols-[1.5fr_1fr_1fr_120px_140px_24px] gap-1 md:gap-4 px-5 py-3.5 hover:bg-[#fafafa] transition items-center"
+                  className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_110px_90px_110px_24px] gap-1 md:gap-4 px-5 py-3.5 hover:bg-[#fafafa] transition items-center"
                 >
                   <div className="min-w-0">
                     <div className="text-[14px] font-medium text-[#1d1d1f] truncate">
@@ -139,24 +167,40 @@ export default function AdminSchools() {
                     <div className="text-[11.5px] text-[#86868b] truncate md:hidden">
                       {s.ownerName || '—'} · {s.email || '—'}
                     </div>
+                    <div className="text-[11.5px] text-[#86868b] truncate md:hidden mt-0.5">
+                      {accessOn ? 'Access on' : 'Access off'} · Limit {s.studentLimit ? s.studentLimit.toLocaleString() : '—'}
+                    </div>
                   </div>
                   <div className="hidden md:block text-[13px] text-[#424245] truncate">
                     {s.ownerName || '—'}
                   </div>
-                  <div className="hidden md:block text-[13px] text-[#424245] truncate">
-                    {s.email || '—'}
+                  {/* Access toggle — stop the row Link from navigating on toggle */}
+                  <div
+                    className="hidden md:block"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                    }}
+                  >
+                    <Toggle
+                      on={accessOn}
+                      busy={busyId === s.id}
+                      onClick={() => toggleAccess(s)}
+                      aria-label={`Toggle owner access for ${s.schoolName || 'school'}`}
+                    />
+                  </div>
+                  <div className="hidden md:block text-[13px] text-[#424245]">
+                    {s.studentLimit ? s.studentLimit.toLocaleString() : '—'}
                   </div>
                   <div className="hidden md:block">
                     <Badge tone={s.status === 'suspended' ? 'warning' : 'success'}>
                       {s.status || 'active'}
                     </Badge>
                   </div>
-                  <div className="hidden md:block text-[12px] text-[#86868b]">
-                    {formatDate(s.createdAt)}
-                  </div>
                   <ChevronRight className="hidden md:block w-4 h-4 text-[#b0b0b8]" />
                 </Link>
-              ))}
+                );
+              })}
             </div>
           </>
         )}
