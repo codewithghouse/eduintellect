@@ -38,6 +38,8 @@ export default function AdminSchools() {
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [busyId, setBusyId] = useState<string | null>(null);
+  // Per-row edited student-limit values (id → typed string), before saving.
+  const [limitDrafts, setLimitDrafts] = useState<Record<string, string>>({});
 
   const toggleAccess = async (s: SchoolDoc) => {
     const next = !(s.ownerAccessEnabled !== false); // current "on" = !== false
@@ -49,6 +51,27 @@ export default function AdminSchools() {
       });
     } catch (err) {
       console.warn('[schools] access toggle failed:', err);
+    } finally {
+      setBusyId(null);
+    }
+  };
+
+  const saveLimit = async (s: SchoolDoc) => {
+    const n = Math.max(0, Math.floor(Number(limitDrafts[s.id]) || 0));
+    setBusyId(s.id);
+    try {
+      await updateDoc(doc(db, 'schools', s.id), {
+        studentLimit: n,
+        studentLimitUpdatedAt: serverTimestamp(),
+      });
+      // Clear the draft so the cell falls back to the live (saved) value.
+      setLimitDrafts((d) => {
+        const next = { ...d };
+        delete next[s.id];
+        return next;
+      });
+    } catch (err) {
+      console.warn('[schools] student-limit save failed:', err);
     } finally {
       setBusyId(null);
     }
@@ -143,62 +166,96 @@ export default function AdminSchools() {
           />
         ) : (
           <>
-            <div className="hidden md:grid grid-cols-[1.6fr_1fr_110px_90px_110px_24px] gap-4 px-5 py-3 bg-[#fafafa] border-b border-[#d2d2d7]/40 text-[11px] font-medium uppercase tracking-wider text-[#86868b]">
-              <div>School</div>
-              <div>Owner</div>
+            <div className="hidden md:grid grid-cols-[2.2fr_92px_168px_100px_28px] gap-4 px-5 py-3 bg-[#fafafa] border-b border-[#d2d2d7]/40 text-[11px] font-medium uppercase tracking-wider text-[#86868b]">
+              <div>School / Owner / Email</div>
               <div>Access</div>
-              <div>Limit</div>
+              <div>Student Limit</div>
               <div>Status</div>
               <div></div>
             </div>
             <div className="divide-y divide-[#d2d2d7]/40">
               {filtered.map((s) => {
                 const accessOn = s.ownerAccessEnabled !== false;
+                const storedLimit =
+                  s.studentLimit != null ? String(s.studentLimit) : '';
+                const draft = limitDrafts[s.id] ?? storedLimit;
+                const dirty = draft.trim() !== storedLimit;
                 return (
-                <Link
-                  key={s.id}
-                  to={`/admin/schools/${s.id}`}
-                  className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_110px_90px_110px_24px] gap-1 md:gap-4 px-5 py-3.5 hover:bg-[#fafafa] transition items-center"
-                >
-                  <div className="min-w-0">
-                    <div className="text-[14px] font-medium text-[#1d1d1f] truncate">
-                      {s.schoolName || 'Untitled school'}
-                    </div>
-                    <div className="text-[11.5px] text-[#86868b] truncate md:hidden">
-                      {s.ownerName || '—'} · {s.email || '—'}
-                    </div>
-                    <div className="text-[11.5px] text-[#86868b] truncate md:hidden mt-0.5">
-                      {accessOn ? 'Access on' : 'Access off'} · Limit {s.studentLimit ? s.studentLimit.toLocaleString() : '—'}
-                    </div>
-                  </div>
-                  <div className="hidden md:block text-[13px] text-[#424245] truncate">
-                    {s.ownerName || '—'}
-                  </div>
-                  {/* Access toggle — stop the row Link from navigating on toggle */}
                   <div
-                    className="hidden md:block"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                    }}
+                    key={s.id}
+                    className="grid grid-cols-1 md:grid-cols-[2.2fr_92px_168px_100px_28px] gap-2.5 md:gap-4 px-5 py-3.5 hover:bg-[#fafafa] transition md:items-center"
                   >
-                    <Toggle
-                      on={accessOn}
-                      busy={busyId === s.id}
-                      onClick={() => toggleAccess(s)}
-                      aria-label={`Toggle owner access for ${s.schoolName || 'school'}`}
-                    />
+                    {/* School + owner + email */}
+                    <div className="min-w-0">
+                      <Link
+                        to={`/admin/schools/${s.id}`}
+                        className="text-[14px] font-medium text-[#1d1d1f] truncate hover:text-[#0071e3] transition block"
+                      >
+                        {s.schoolName || 'Untitled school'}
+                      </Link>
+                      <div className="text-[12px] text-[#86868b] truncate mt-0.5">
+                        {s.ownerName || '—'} · {s.email || '—'}
+                      </div>
+                    </div>
+
+                    {/* Access toggle */}
+                    <div className="flex items-center gap-2">
+                      <Toggle
+                        on={accessOn}
+                        busy={busyId === s.id}
+                        onClick={() => toggleAccess(s)}
+                        aria-label={`Toggle owner access for ${s.schoolName || 'school'}`}
+                      />
+                      <span className="md:hidden text-[12px] text-[#86868b]">
+                        {accessOn ? 'Access on' : 'Access off'}
+                      </span>
+                    </div>
+
+                    {/* Student limit — inline editable */}
+                    <div className="flex items-center gap-1.5">
+                      <span className="md:hidden text-[12px] text-[#86868b] w-24">
+                        Student limit
+                      </span>
+                      <input
+                        type="number"
+                        min={0}
+                        step={1}
+                        value={draft}
+                        onChange={(e) =>
+                          setLimitDrafts((d) => ({ ...d, [s.id]: e.target.value }))
+                        }
+                        placeholder="—"
+                        className="w-20 bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[8px] px-2 py-1.5 text-[13px] outline-none focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition"
+                      />
+                      <button
+                        onClick={() => saveLimit(s)}
+                        disabled={busyId === s.id || !dirty}
+                        className="px-2.5 py-1.5 rounded-[8px] text-[12px] font-medium bg-[#0071e3] hover:bg-[#0077ed] text-white transition disabled:opacity-30"
+                      >
+                        {busyId === s.id ? (
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                        ) : (
+                          'Save'
+                        )}
+                      </button>
+                    </div>
+
+                    {/* Status */}
+                    <div>
+                      <Badge tone={s.status === 'suspended' ? 'warning' : 'success'}>
+                        {s.status || 'active'}
+                      </Badge>
+                    </div>
+
+                    {/* Open detail */}
+                    <Link
+                      to={`/admin/schools/${s.id}`}
+                      aria-label="Open school details"
+                      className="hidden md:flex justify-end text-[#b0b0b8] hover:text-[#0071e3] transition"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </Link>
                   </div>
-                  <div className="hidden md:block text-[13px] text-[#424245]">
-                    {s.studentLimit ? s.studentLimit.toLocaleString() : '—'}
-                  </div>
-                  <div className="hidden md:block">
-                    <Badge tone={s.status === 'suspended' ? 'warning' : 'success'}>
-                      {s.status || 'active'}
-                    </Badge>
-                  </div>
-                  <ChevronRight className="hidden md:block w-4 h-4 text-[#b0b0b8]" />
-                </Link>
                 );
               })}
             </div>
