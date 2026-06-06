@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { School, User, Mail, Lock, Phone, MapPin, ArrowRight, Loader2, CheckCircle2, Sparkles, Building2, UserCheck, Briefcase, Receipt } from 'lucide-react';
+import { School, User, Mail, Lock, Phone, ArrowRight, Loader2, CheckCircle2, Sparkles, Building2, UserCheck, Briefcase, Receipt } from 'lucide-react';
 import { auth, db, googleProvider } from '../lib/firebase';
 import {
   createUserWithEmailAndPassword,
@@ -24,7 +24,6 @@ const MAX_OWNER_NAME   = 120;
 const MAX_SIGNATORY    = 120;
 const MAX_DESIGNATION  = 80;
 const MAX_PHONE        = 20;
-const MAX_ADDRESS      = 500;
 const MIN_PASSWORD     = 10;
 
 // Indian GSTIN: 2-digit state code + 10-char PAN + entity digit + 'Z' + checksum.
@@ -43,7 +42,6 @@ type SchoolDetails = {
   designation: string;
   gstNumber: string;
   phone: string;
-  address: string;
 };
 
 const RegisterPage = () => {
@@ -64,7 +62,6 @@ const RegisterPage = () => {
     designation: '',
     gstNumber: '',
     phone: '',
-    address: '',
   });
 
   // If user is already signed in (e.g. came from /login), skip auth step.
@@ -189,7 +186,6 @@ const RegisterPage = () => {
         gstNumber: gst,
         email: (user.email ?? '').toLowerCase(),
         phone: clean(details.phone, MAX_PHONE),
-        address: clean(details.address, MAX_ADDRESS),
         ownerId: user.uid,
         role: 'owner',
         status: 'active',
@@ -504,11 +500,11 @@ const DetailsStep: React.FC<DetailsStepProps> = ({ user, details, setDetails, lo
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div className="space-y-1.5">
-          <label className="text-[12px] font-medium text-[#86868b] ml-1">School Name</label>
+          <label className="text-[12px] font-medium text-[#86868b] ml-1">Organization Name</label>
           <div className="relative">
             <School className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#86868b]" />
             <input required name="schoolName" maxLength={MAX_SCHOOL_NAME} value={details.schoolName} onChange={change}
-              placeholder="e.g. Oakridge Academy"
+              placeholder="e.g. Oakridge Group of Institutions"
               className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]" />
           </div>
         </div>
@@ -573,16 +569,6 @@ const DetailsStep: React.FC<DetailsStepProps> = ({ user, details, setDetails, lo
           <input required name="phone" maxLength={MAX_PHONE} value={details.phone} onChange={change}
             placeholder="+91 98765 43210"
             className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none placeholder:text-[#b0b0b8]" />
-        </div>
-      </div>
-
-      <div className="space-y-1.5">
-        <label className="text-[12px] font-medium text-[#86868b] ml-1">School Address</label>
-        <div className="relative">
-          <MapPin className="absolute left-3.5 top-3.5 w-4 h-4 text-[#86868b]" />
-          <textarea required name="address" rows={3} maxLength={MAX_ADDRESS} value={details.address} onChange={change}
-            placeholder="Full address of the school"
-            className="w-full bg-[#f5f5f7] border border-[#d2d2d7]/40 rounded-[10px] py-2.5 pl-10 pr-4 text-[#1d1d1f] text-[15px] focus:border-[#0071e3] focus:ring-1 focus:ring-[#0071e3]/20 transition-all outline-none resize-none placeholder:text-[#b0b0b8]" />
         </div>
       </div>
 
